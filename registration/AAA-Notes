@@ -27,5 +27,6 @@ Need functions to schedule events:
    ScheduleEventCheck(EventID,StartDay,StartTime,RoomID) Returns "OK" or "Exists", "Overlaps", "RoomUsed
    ScheduleEventView.php                                 Graphical view or schedule
 
+=== 10/18/2014 ===
 
-
+Moved to AAA-ToDo.php
