@@ -64,7 +64,7 @@ function selectRoom()
    //-----------------------------------------------------------------------------
    // Retrieve a list of all avaliable rooms
    //-----------------------------------------------------------------------------
-   $roomList  = getRoomList();
+   $roomList  = getRoomList('fullnames');
 
    //-----------------------------------------------------------------------------
    // Print the selection Drop-Down
