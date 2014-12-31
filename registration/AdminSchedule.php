@@ -1,6 +1,8 @@
 <?php
 include 'include/RegFunctions.php';
 
+$errorID='';
+
 if ($Admin != 'Y')
 {
    header("refresh: 0; URL=Admin.php");
