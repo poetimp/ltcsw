@@ -227,27 +227,29 @@ if (isset($_POST['Apply']))
                      {
                         $SchedResult = mysql_query("select distinct
                                                            s.SchedID,
-                                                           (e.MaxWebSlots * e.MaxRooms) MaxWebSlots
-                                                    from   $EventScheduleTable     s,
-                                                           $EventsTable       e
+                                                           s.StartTime,
+                                                           (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
+                                                           IF (RoomName REGEXP '-[a-z]$',
+														                     SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+															                  RoomName)
+														                 as RoomName
+                                                    from   $EventScheduleTable  s,
+                                                           $EventsTable         e,
+                                                           $RoomsTable          r
                                                     where  s.EventID = $EventID
                                                     and    e.EventID = s.EventID
+                                                    and    s.RoomID  = r.RoomID
                                                    ")
-                                        or die ("Unable to Get scheduled slots:" . mysql_error());
+                                        or die ("Unable to Get scheduled slots for each scheduled event:" . mysql_error());
 
                         $freeSlots = 0;
                         while ($SchedRow = mysql_fetch_assoc($SchedResult))
                         {
                            $SchedID      = $SchedRow['SchedID'];
+                           $StartTime    = $SchedRow['StartTime'];
+                           $RoomName     = $SchedRow['RoomName'];
                            $MaxWebSlots  = $SchedRow['MaxWebSlots'];
-                           $SchedReg = mysql_query("select count(*) count
-                                                    from   $RegistrationTable
-                                                    where  SchedID = $SchedID
-                                                    and    EventID = $EventID
-                                                    ")
-                                       or die ("Unable to determine signup count: ".mysql_error());
-                           $row = mysql_fetch_assoc($SchedReg);
-                           $freeSlots = ((($MaxWebSlots - $row['count']) > 0) or $freeSlots);
+                           $freeSlots    = (($MaxWebSlots - slotsFilledInRoom($RoomName,$StartTime) > 0) or $freeSlots);
                         }
 
                         if ($selected == 0 and !$freeSlots)
@@ -279,29 +281,32 @@ if (isset($_POST['Apply']))
                            {
                               $SchedID = "";
                            }
-                           $SchedResult = mysql_query("select distinct
+                           $sql="select distinct
                                                               s.SchedID,
                                                               s.StartTime,
-                                                              (e.MaxWebSlots * e.MaxRooms) MaxWebSlots
+                                                              (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
+                                                              IF (RoomName REGEXP '-[a-z]$',
+                                                                  SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+                                                                  RoomName)
+                                                              as RoomName
                                                        from   $EventScheduleTable s,
-                                                              $EventsTable        e
+                                                              $EventsTable        e,
+                                                              $RoomsTable         r
                                                        where  s.EventID = $EventID
                                                        and    e.EventID = s.EventID
+                                                       and    s.RoomID  = r.RoomID
                                                        order  by StartTime
-                                                      ")
-                                           or die ("Unable to Get available scheduled slots:" . mysql_error());
+                                                      ";
+                           //print "<pre>$sql</$pre>";
+                           
+                           $SchedResult = mysql_query($sql)
+                                           or die ("Unable to Get available scheduled slots for event:" . mysql_error());
 
                            while ($SchedRow = mysql_fetch_assoc($SchedResult))
                            {
-                              $ThisSchedID = $SchedRow['SchedID'];
-                              $SchedReg = mysql_query("select count(*) count
-                                                       from   $RegistrationTable
-                                                       where  SchedID = '$ThisSchedID'
-                                                       and    EventID = $EventID
-                                                       ")
-                                          or die ("Unable to determine signup count: ".mysql_error());
-                              $row = mysql_fetch_assoc($SchedReg);
-                              if (($SchedRow['MaxWebSlots'] - $row['count']) > 0 or $selected > 0)
+                              $StartTime   = $SchedRow['StartTime'];
+                              $RoomName    = $SchedRow['RoomName'];
+                              if (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($RoomName,$StartTime) > 0) or $selected > 0)
                               {
                                  $sel =  ($selected > 0 and $SchedID == $SchedRow['SchedID']) ? "selected" : "";
                                  print "<option value=\"".$SchedRow['SchedID']."\" $sel>".TimeToStr($SchedRow['StartTime'])."</option>\n";
