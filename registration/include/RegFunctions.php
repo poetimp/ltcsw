@@ -505,19 +505,34 @@ function footer($linkText, $linkURL)
 //-----------------------------------------------------------------------------
 // Get the list of available rooms
 //-----------------------------------------------------------------------------
-function getRoomList()
+function getRoomList($fullName)
 {
    static $roomList = array();
    global $RoomsTable;
 
    if (count($roomList) == 0)
    {
-      $result     = mysql_query("select   RoomID,
-                                          RoomName
-                                 from     $RoomsTable
-                                 order by RoomName
-                                ")
-                  or die ("Unable to get room information: ".mysql_error());
+      if (isset($fullName) and $fullName == 'fullnames')
+      {
+         $result     = mysql_query("select   RoomID,
+                                             RoomName
+                                    from     $RoomsTable
+                                    order by RoomName
+                                   ")
+                     or die ("Unable to get room information: ".mysql_error());
+      }
+      else
+      {
+         $result     = mysql_query("select   RoomID,
+                                             IF (RoomName REGEXP '-[a-z]$',
+                                                SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+                                                RoomName)
+                                             as RoomName
+                                    from     $RoomsTable
+                                    order by RoomName
+                                   ")
+                     or die ("Unable to get room information: ".mysql_error());
+      }
       //$roomList[0] = 'Unassigned';
       while ($row = mysql_fetch_assoc($result))
       {
@@ -528,13 +543,16 @@ function getRoomList()
    return $roomList;
 }
 //-----------------------------------------------------------------------------
-// Get room name given RoomID
+// Get room name given RoomID (strips the stupid room itterater at the end of the name)
 //-----------------------------------------------------------------------------
 function getRoomName($RoomID)
 {
    global $RoomsTable;
 
-   $result = mysql_query("select   RoomName
+   $result = mysql_query("select   IF (RoomName REGEXP '-[a-z]$',
+										         SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+													RoomName)
+			                          as RoomName
                           from     $RoomsTable
                           where    RoomID      = $RoomID
                          ")
@@ -948,5 +966,28 @@ function hasPriv($priv)
       case "Tally":
          return (substr($_SESSION['privs'],4,1) == 'Y');
    }
+}
+//-----------------------------------------------------------------------------
+//  Because of the stupid ways we are manageing multiple events in the same room we have to use
+//  this hack. It looks for all rooms that have the same name (minus the last two characters)  and 
+//  counts the number of participants assigned. Then returns that count to the caller.
+//-----------------------------------------------------------------------------
+function slotsFilledInRoom($RoomName,$StartTime)
+{
+    global $RoomsTable,
+           $RegistrationTable,
+           $EventScheduleTable;
+
+    $result = mysql_query("select count(*) as Count
+                           from   $EventScheduleTable s,  
+                                  $RoomsTable         r,      
+                                  $RegistrationTable  p 
+                           Where  r.RoomName like '$RoomName%' 
+                           and    s.StartTime = '$StartTime' 
+                           and    s.SchedID   = p.SchedID 
+                           and    s.RoomID    = r.RoomID")
+              or die ("Unable to get slot usage for Room:$RoomName at start time $StartTime:" . mysql_error());
+   $row = mysql_fetch_assoc($result);
+   return ($row['Count']);
 }
 ?>
