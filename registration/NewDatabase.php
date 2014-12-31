@@ -10,7 +10,7 @@ if ($Admin != 'Y')
    header("refresh: 0; URL=Admin.php");
    die();
 }
-die ("Already done for 2014");
+die ("Already done for 2015");
 
 if (isset($_POST['Confirm']))
 {
