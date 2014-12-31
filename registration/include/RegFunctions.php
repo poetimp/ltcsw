@@ -46,7 +46,7 @@ $EventCoordTable      = GetTable('EventCoord');
 //-----------------------------------------------------------------------------
 function GetPrices()
 {
-   $price["Registration"] = 60;
+   $price["Registration"] = 75;
    $price["Shirt"]        = 15;
    $price["AdultMeal"]    = 25;
    $price["ChildMeal"]    = 15;
