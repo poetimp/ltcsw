@@ -478,15 +478,15 @@ function ChurchExpenses($ChurchID)
    $costDetails["ExtraAdultMeals"]      = $ExtraAdultMealCount * $AdultMealCost;
    $costDetails["ExtraChildMeals"]      = $ExtraChildMealCount * $ChildMealCost;
    $costDetails["ExtraShirts"]          = $ExtraShirtCount     * $ShirtCost;
-   
+
    $costDetails["Total"]       = $costDetails["Participant"] +
                                  $costDetails["ExtraAdultMeals"] +
                                  $costDetails["ExtraChildMeals"] +
                                  $costDetails["ExtraShirts"];
-   
+
    $costDetails["Balance"]     = $costDetails["Total"] + $MoneyInOut;
    $costDetails["MoneyInOut"]  = $MoneyInOut * -1;
-   
+
    return($costDetails);
 }
 
@@ -525,7 +525,7 @@ function getRoomList($fullName)
       {
          $result     = mysql_query("select   RoomID,
                                              IF (RoomName REGEXP '-[a-z]$',
-                                                SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+                                                SUBSTR(RoomName,1,LENGTH(RoomName)-2),
                                                 RoomName)
                                              as RoomName
                                     from     $RoomsTable
@@ -550,7 +550,7 @@ function getRoomName($RoomID)
    global $RoomsTable;
 
    $result = mysql_query("select   IF (RoomName REGEXP '-[a-z]$',
-										         SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+										         SUBSTR(RoomName,1,LENGTH(RoomName)-2),
 													RoomName)
 			                          as RoomName
                           from     $RoomsTable
@@ -711,7 +711,6 @@ function ScheduleEventTimeAvailable($EventID,$StartTime,$RoomID)
 //                                   $RoomsTable         r
 //                          where    s.RoomID         = $RoomID
 //                          and      r.RoomID         = $RoomID
-//                          and      r.AllowConflicts = FALSE
 //                          and (
 //                                 (  $StartTime >= StartTime
 //                                    and
@@ -731,7 +730,6 @@ function ScheduleEventTimeAvailable($EventID,$StartTime,$RoomID)
                                    $RoomsTable         r
                           where    s.RoomID         = $RoomID
                           and      r.RoomID         = $RoomID
-                          and      r.AllowConflicts = FALSE
                           and (
                                  (  $StartTime >= StartTime
                                     and
@@ -969,7 +967,7 @@ function hasPriv($priv)
 }
 //-----------------------------------------------------------------------------
 //  Because of the stupid ways we are manageing multiple events in the same room we have to use
-//  this hack. It looks for all rooms that have the same name (minus the last two characters)  and 
+//  this hack. It looks for all rooms that have the same name (minus the last two characters)  and
 //  counts the number of participants assigned. Then returns that count to the caller.
 //-----------------------------------------------------------------------------
 function slotsFilledInRoom($RoomName,$StartTime)
@@ -979,12 +977,12 @@ function slotsFilledInRoom($RoomName,$StartTime)
            $EventScheduleTable;
 
     $result = mysql_query("select count(*) as Count
-                           from   $EventScheduleTable s,  
-                                  $RoomsTable         r,      
-                                  $RegistrationTable  p 
-                           Where  r.RoomName like '$RoomName%' 
-                           and    s.StartTime = '$StartTime' 
-                           and    s.SchedID   = p.SchedID 
+                           from   $EventScheduleTable s,
+                                  $RoomsTable         r,
+                                  $RegistrationTable  p
+                           Where  r.RoomName like '$RoomName%'
+                           and    s.StartTime = '$StartTime'
+                           and    s.SchedID   = p.SchedID
                            and    s.RoomID    = r.RoomID")
               or die ("Unable to get slot usage for Room:$RoomName at start time $StartTime:" . mysql_error());
    $row = mysql_fetch_assoc($result);
