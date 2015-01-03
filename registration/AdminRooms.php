@@ -1,9 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+
 <?php
 include 'include/RegFunctions.php';
 
+$RoomID          = "";
 $RoomName        = "";
 $RoomSeats       = "";
-$AllowConflicts  = 0;
 
 if ($Admin != 'Y')
 {
@@ -14,12 +17,12 @@ if ($Admin != 'Y')
 if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'update')
 {
    $mode = 'update';
-   $RoomName = $_REQUEST['RoomName'];
+   $RoomID = $_REQUEST['RoomID'];
 }
 else if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'view')
 {
    $mode = 'view';
-   $RoomName = $_REQUEST['RoomName'];
+   $RoomID = $_REQUEST['RoomID'];
 }
 else //if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'add')
 {
@@ -30,13 +33,14 @@ $ErrorMsg = "";
 
 if ($mode == 'update' || $mode == 'view')
 {
-   $result = mysql_query("select * from $RoomsTable where RoomName = '$RoomName'")
+   $result = mysql_query("select RoomName,
+                                 RoomSeats
+                         from $RoomsTable where RoomID = '$RoomID'")
              or die ("Unable to get Room information: ".mysql_error());
    $row = mysql_fetch_assoc($result);
 
-   $RoomName       = isset($row['RoomName'])       ? $row['RoomName']       : "";
-   $RoomSeats      = isset($row['RoomSeats'])      ? $row['RoomSeats']      : "";
-   $AllowConflicts = isset($row['AllowConflicts']) ? $row['AllowConflicts'] : 0;
+   $RoomName  = $row['RoomName'];
+   $RoomSeats = $row['RoomSeats'];
 }
 
 if (isset($_POST['add']) or isset($_POST['update']))
@@ -50,9 +54,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
       $mode = 'update';
    }
 
+   $RoomID         = isset($_POST['RoomID'])         ? $_POST['RoomID']         : "";
    $RoomName       = isset($_POST['RoomName'])       ? $_POST['RoomName']       : "";
    $RoomSeats      = isset($_POST['RoomSeats'])      ? $_POST['RoomSeats']      : "";
-   $AllowConflicts = isset($_POST['AllowConflicts']) ? $_POST['AllowConflicts'] : 0;
 
 
    if ($RoomName == "")
@@ -75,42 +79,43 @@ if (isset($_POST['add']) or isset($_POST['update']))
       if ($mode == 'update')
       {
          $sql = "update $RoomsTable
-                    set RoomSeats      = $RoomSeats,
-                        AllowConflicts = $AllowConflicts
-                    where RoomName     = '$RoomName'";
+                    set RoomSeats    = $RoomSeats,
+                        RoomName     = '$RoomName'
+                    where RoomID     = $RoomID";
       }
       else
       {
          $sql = "insert into $RoomsTable
                         (RoomName,
-                         RoomSeats,
-                         AllowConflicts
+                         RoomSeats
                          )
                  values ('$RoomName',
-                         $RoomSeats,
-                         $AllowConflicts
+                         $RoomSeats
                          )";
       }
 
+      //print "<pre>";print_r($sql);print "</pre>\n";
       $results = mysql_query($sql) or die ("Unable to process update: " . mysql_error());
-   ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
+
+      if ($mode == 'add')
+         $RoomID = mysql_insert_id();
+
+      ?>
          <body style="background-color: rgb(217, 217, 255);">
          <?php
               if ($mode == 'update')
               {
                 ?>
-                  <h1 align=center>
-                     Room <br>"<?php  print $RoomName; ?>"<br>Updated!
+                  <h1 align="center">
+                     Room <br/>"<?php  print $RoomName; ?>"<br/>Updated!
                   </h1>
                 <?php
               }
               else
               {
                 ?>
-                  <h1 align=center>
-                     Room <br>"<?php  print $RoomName; ?>"<br>Added!
+                  <h1 align="center">
+                     Room <br/>"<?php  print $RoomName; ?>"<br/>Added!
                   </h1>
                 <?php
               }
@@ -127,8 +132,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
+
 
    <head>
    <?php
@@ -180,27 +184,32 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
       }
    ?>
 
-   <form method="post" action=AdminRooms.php>
+   <form method="post">
       <table border="1" width="100%" id="table1">
          <tr>
             <td colspan="4" bgcolor="#000000">
-            <p align="center"><font color="#FFFF00">
-            <span style="background-color: #000000">Room Information</span></font></td>
+               <p align="center">
+                  <font color="#FFFF00">
+                     <span style="background-color: #000000">
+                        Room Information
+                     </span>
+                  </font>
+               </p>
+            </td>
          </tr>
          <tr>
             <td width="12%">Name</td>
             <td width="85%" colspan="3">
                <?php
-               if ($mode != "add")
-               {
-                  print $RoomName;
-               }
-               else
-               {
-               ?>
-                  <input type="text" name="RoomName" size="36" <?php  print ($RoomName != "") ? "value=\"" . $RoomName . "\"" : ""; ?>>
-               <?php
-               }
+                  if ($mode == 'view')
+                  {
+                     print $RoomName;
+                  }
+                  else
+                  {?>
+                     <input type="text" name="RoomName" size="36" <?php  print ($RoomName != "") ? "value=\"" . $RoomName . "\"" : ""; ?>/>
+                  <?php
+                  }
                ?>
             </td>
          </tr>
@@ -215,28 +224,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-               <input type="text" name="RoomSeats" size="36" <?php  print ($RoomSeats != "") ? "value=\"" . $RoomSeats . "\"" : ""; ?>></td>
-            <?php
-            }
-            ?>
-         </tr>
-         <tr>
-            <td width="12%">Allow Conflicts</td>
-            <?php
-            if ($mode == "view")
-            {
-               print "<td width=\"85%\" colspan=\"3\">";
-               print ($AllowConflicts == 1) ? "Yes" : "No";
-               print "</td>";
-            }
-            else
-            {
-            ?>
-            <td width="14%">
-            <input type="radio" value="1" name="AllowConflicts" <?php print ($AllowConflicts == 1) ? "checked" : "" ?>>Yes</td>
-            <td width="14%">
-            <input type="radio" value="0" name="AllowConflicts" <?php  print ($AllowConflicts == 0) ? "checked" : "" ?>>No</td>
-            <td>&nbsp;</td>
+               <input type="text" name="RoomSeats" size="36" <?php  print ($RoomSeats != "") ? "value=\"" . $RoomSeats . "\"" : ""; ?>/></td>
             <?php
             }
             ?>
@@ -246,24 +234,24 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
          <?php
             if ($mode == 'update')
             {?>
-               <input type="submit" value="Update" name="update">
-               <input type="hidden" value="<?php  print $RoomName; ?>" name=RoomName>
-               <input type="hidden" value="update" name=action>
+               <input type="submit" value="Update" name="update"/>
+               <input type="hidden" value="<?php  print $RoomID; ?>"   name="RoomID"/>
+               <input type="hidden" value="update" name="action"/>
              <?php
             }
             else if ($mode == 'add')
             {?>
-               <input type="submit" value="Add" name="add">
-               <input type="hidden" value="add" name=action>
+               <input type="submit" value="Add" name="add"/>
+               <input type="hidden" value="add" name="action"/>
              <?php
             }
             else if ($mode == 'view')
             {?>
-               <input type="hidden" value="update" name=action>
+               <input type="hidden" value="update" name="action"/>
              <?php
             }
          ?>
-         <br>
+         <br/>
       </p>
    </form>
    <?php footer("Return to Rooms List","Rooms.php")?>

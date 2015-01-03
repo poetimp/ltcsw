@@ -23,11 +23,11 @@ if (isset($_POST['AddNew']))
 
 <body style="background-color: rgb(217, 217, 255);">
 <h1 align="center">Conference Room Maintenance </h1>
-<form method="post" action=Rooms.php>
+<form method="post">
       <?php
-         $results = mysql_query("select   RoomName,
-                                          RoomSeats,
-                                          if (AllowConflicts = TRUE, 'Yes', 'No') AllowConflicts
+         $results = mysql_query("select   RoomID,
+                                          RoomName,
+                                          RoomSeats
                                  from     $RoomsTable
                                  order by RoomName")
                     or die ("Unable to obtain room list:" . mysql_error());
@@ -39,11 +39,6 @@ if (isset($_POST['AddNew']))
                <td width=100 align="center" colspan="3" bgcolor="#000000">
                   <font color="#FFFF00">
                      Action
-                  </font>
-               </td>
-               <td width=10 align="center" bgcolor="#000000">
-                  <font color="#FFFF00">
-                     Allow Conflicts
                   </font>
                </td>
                <td width=10 align="center" bgcolor="#000000">
@@ -62,10 +57,9 @@ if (isset($_POST['AddNew']))
          {
             ?>
             <tr>
-               <td width=5% align="center">[<a href="AdminRooms.php?action=view<?php  print "&RoomName=".urlencode($row['RoomName']); ?>">View</a>]</td>
-               <td width=5% align="center">[<a href="AdminRooms.php?action=update<?php  print "&RoomName=".urlencode($row['RoomName']); ?>">Update</a>]</td>
-               <td width=5% align="center">[<a href="DelRoom.php?action=del<?php  print "&RoomName=".urlencode($row['RoomName']); ?>">Delete</a>]</td>
-               <td width=5% align="center"><?php  print $row['AllowConflicts']; ?></td>
+               <td width=5% align="center">[<a href="AdminRooms.php?action=view<?php  print "&RoomID=".$row['RoomID']; ?>">View</a>]</td>
+               <td width=5% align="center">[<a href="AdminRooms.php?action=update<?php  print "&RoomID=".$row['RoomID']; ?>">Update</a>]</td>
+               <td width=5% align="center">[<a href="DelRoom.php?action=del<?php  print "&RoomID=".$row['RoomID']; ?>">Delete</a>]</td>
                <td width=5% align="center"><?php  print $row['RoomSeats']; ?></td>
                <td><?php  print $row['RoomName']; ?></td>
             </tr>
