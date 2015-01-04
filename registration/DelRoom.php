@@ -10,7 +10,9 @@ if (isset($_POST['Confirm']))
    mysql_query("delete from $RoomsTable where RoomID='$RoomID'")
        or die ("Unable to delete Room record: " . mysql_error());
 
-   ?>
+   mysql_query("delete from $EventScheduleTable where RoomID='$RoomID'")
+       or die ("Unable to delete Room record from schedule table: " . mysql_error());
+       ?>
       <head>
          <title>
             Room Deleted
