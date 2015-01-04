@@ -34,6 +34,10 @@ else if (isset($_POST['Cancel']))
 }
 else
 {
+   /*
+    * TODO: The confirmation page should probably warn if there are scheduled events with
+    * participants in them
+    */
 ?>
 
        <head>
