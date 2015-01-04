@@ -104,9 +104,9 @@
  *           Detailed description:
  *              Self explanatory.
  *
- * TODO Add ability to move scheduled event to a new room
+ * Done Add ability to move scheduled event to a new room
  *           Owner: Paul
- *           Status: Not Started
+ *           Status: COMPLETED
  *           Detailed description:
  *              Self explanatory.
  *

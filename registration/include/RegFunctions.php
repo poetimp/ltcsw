@@ -624,6 +624,43 @@ function ScheduleEventAdd($EventID,$StartTime,$RoomID)   //Returns Success or Fa
 }
 
 //-----------------------------------------------------------------------------
+// Schedule an event - Returns true for success and false for failure
+// StartYime = DHHMM  where Sunday is 1 and Saturday is 7
+//-----------------------------------------------------------------------------
+function ScheduleEventUpd($SchedID,$EventID,$StartTime,$RoomID)   //Returns Success or Failure
+{
+   global $RoomsTable,
+          $EventsTable,
+          $EventScheduleTable;
+
+   //print "SchedID: [$SchedID], EventID: [$EventID], StartTime: [$StartTime],RoomID: [$RoomID]";
+   if (ScheduleEventTimeAvailable($EventID,$StartTime,$RoomID))
+   {
+
+      $result = mysql_query("select   Duration
+                             from     $EventsTable
+                             where    EventID      = $EventID
+                            ")
+                or die ("Unable to get Duration for EventID $EventID:" . mysql_error());
+
+      $row = mysql_fetch_assoc($result);
+      $EndTime = AddTime($StartTime,$row['Duration']);
+
+      mysql_query("update $EventScheduleTable
+                   set StartTime = '$StartTime',
+                       EndTime   = '$EndTime',
+                       RoomID    = '$RoomID'
+                   where SchedID = '$SchedID'
+                   ")
+      or die ("Unable to update EventSchedule: ".mysql_error());
+      return TRUE;
+   }
+   else
+   {
+      return FALSE;
+   }
+}
+//-----------------------------------------------------------------------------
 // Get a list of rooms and the times it is scheduled for an event
 //-----------------------------------------------------------------------------
 function ScheduleEventGet($EventID)                             //Returns a list of schedule ID's
@@ -987,5 +1024,111 @@ function slotsFilledInRoom($RoomName,$StartTime)
               or die ("Unable to get slot usage for Room:$RoomName at start time $StartTime:" . mysql_error());
    $row = mysql_fetch_assoc($result);
    return ($row['Count']);
+}
+//-----------------------------------------------------------------------------
+//  Dump all system variables in a table for debugging
+//-----------------------------------------------------------------------------
+
+function dumpSysVars()
+{
+   if (isset($_POST))
+   {
+      ?>
+      <table border=1>
+         <TR>
+            <TD colspan="2" align="center" bgcolor="Silver"><b>POST</b></TD>
+         </TR>
+         <TR>
+            <TD>Variable</TD>
+            <TD>Value</TD>
+         </TR>
+         <?php
+            foreach ($_POST as $varName => $varValue)
+            {
+               print "<TR>\n";
+               print "   <TD>$varName</TD>\n";
+               print "   <TD>$varValue&nbsp;</TD>\n";
+               print "</TR>\n";
+            }
+         ?>
+      </table>
+      <br>
+      <?php
+   }
+
+   if (isset($_REQUEST))
+   {
+   ?>
+      <table border=1>
+         <TR>
+            <TD colspan="2" align="center" bgcolor="Silver"><b>REQUEST</b></TD>
+         </TR>
+         <TR>
+            <TD>Variable</TD>
+            <TD>Value</TD>
+         </TR>
+         <?php
+            foreach ($_REQUEST as $varName => $varValue)
+            {
+               print "<TR>\n";
+               print "   <TD>$varName</TD>\n";
+               print "   <TD>$varValue&nbsp;</TD>\n";
+               print "</TR>\n";
+            }
+         ?>
+      </table>
+      <br>
+      <?php
+   }
+
+   if (isset($_SESSION))
+   {
+   ?>
+      <table border=1>
+         <TR>
+            <TD colspan="2" align="center" bgcolor="Silver"><b>SESSION</b></TD>
+         </TR>
+         <TR>
+            <TD>Variable</TD>
+            <TD>Value</TD>
+         </TR>
+         <?php
+            foreach ($_SESSION as $varName => $varValue)
+            {
+               print "<TR>\n";
+               print "   <TD>$varName</TD>\n";
+               print "   <TD>$varValue&nbsp;</TD>\n";
+               print "</TR>\n";
+            }
+         ?>
+      </table>
+      <br>
+      <?php
+   }
+
+   if (isset($_SERVER))
+   {
+   ?>
+      <table border=1>
+         <TR>
+            <TD colspan="2" align="center" bgcolor="Silver"><b>SERVER</b></TD>
+         </TR>
+         <TR>
+            <TD>Variable</TD>
+            <TD>Value</TD>
+         </TR>
+         <?php
+            foreach ($_SERVER as $varName => $varValue)
+            {
+               print "<TR>\n";
+               print "   <TD>$varName</TD>\n";
+               print "   <TD>$varValue&nbsp;</TD>\n";
+               print "</TR>\n";
+            }
+         ?>
+      </table>
+      <br>
+      <?php
+   }
 }
 ?>
