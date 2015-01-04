@@ -505,14 +505,14 @@ function footer($linkText, $linkURL)
 //-----------------------------------------------------------------------------
 // Get the list of available rooms
 //-----------------------------------------------------------------------------
-function getRoomList($fullName)
+function getRoomList($fullName='')
 {
    static $roomList = array();
    global $RoomsTable;
 
    if (count($roomList) == 0)
    {
-      if (isset($fullName) and $fullName == 'fullnames')
+      if ($fullName == 'fullnames')
       {
          $result     = mysql_query("select   RoomID,
                                              RoomName

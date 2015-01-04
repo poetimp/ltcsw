@@ -104,7 +104,7 @@
  *           Detailed description:
  *              Self explanatory.
  *
- * Done Add ability to move scheduled event to a new room
+ * DONE Add ability to move scheduled event to a new room
  *           Owner: Paul
  *           Status: COMPLETED
  *           Detailed description:
