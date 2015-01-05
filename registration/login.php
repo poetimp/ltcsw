@@ -14,14 +14,14 @@ function LoginHTML($p)
       </head>
 
       <body style="background-color: rgb(217, 217, 255);">
-      <?php if ($systemDown) 
+      <?php if ($systemDown)
             {?>
                <B><FONT size="+1" color="Red"><P align="center">Registration currently offline for maintenance</P></FONT></B>
       <?php }
-            else 
+            else
             {?>
-<!--           <B><FONT size="+1" color="Red"><P align="center">Registration is Open for 2014</P></FONT></B> -->
-               <B><FONT size="+1" color="Red"><P align="center">Registration is Open for Reports Only</P></FONT></B> 
+               <B><FONT size="+1" color="Red"><P align="center">Registration is Open for 2015</P></FONT></B>
+<!--           <B><FONT size="+1" color="Red"><P align="center">Registration is Open for Reports Only</P></FONT></B> -->
 <!--           <B><FONT size="+1" color="Red"><P align="center">2013 Registration Reports and Awards are Ready</P></FONT></B> -->
 <!--           <B><FONT size="+1" color="Red"><P align="center">See you in April of 2013!</P></FONT></B> -->
       <?php }?>
@@ -191,9 +191,9 @@ if (isset($_POST['submit']))
 	      $_SESSION['Status']    = $row['Status'];
 	      $_SESSION['ConvCode']  = $row['ConvCode'];
 	      $_SESSION['logged-in'] = 1;
-	
+
 	      $UserID                = $row['Userid'];
-	
+
 	      $results = mysql_query("show tables like 'LTC_".$_SESSION['ConvCode']."_%'")
 	                 or die ("Unable to get table information!". mysql_error());
 	      while ($row = mysql_fetch_row($results))
@@ -202,7 +202,7 @@ if (isset($_POST['submit']))
 	         $_SESSION[$TableName] = $row[0];
 	      }
 	      WriteToGlobalLog("Successful Login");
-	
+
 	      if (isset($_POST['redirect']))
 	      {
 	         header ("Refresh: 0; URL=" . $_POST['redirect'] . "");
@@ -212,7 +212,7 @@ if (isset($_POST['submit']))
 	         header ("Refresh: 0; URL=Admin.php");
 	      }
       }
-      else 
+      else
       {
 	    $_SESSION['logged-in'] = 0;
       	header ("Refresh: 0; URL=Admin.php");
