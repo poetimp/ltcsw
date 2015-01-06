@@ -10,24 +10,33 @@ function LoginHTML($p)
 <html lang="en">
       <head>
          <title>LTCSW Registration Signon</title>
-         <h1 align=center>LTCSW Registration</h1>
       </head>
 
       <body style="background-color: rgb(217, 217, 255);">
+      <h1 align="center">LTCSW Registration</h1>
       <?php if ($systemDown)
             {?>
-               <B><FONT size="+1" color="Red"><P align="center">Registration currently offline for maintenance</P></FONT></B>
+               <b><font size="+1" color="Red"><p align="center">Registration currently offline for maintenance</p></font></b>
       <?php }
             else
-            {?>
-               <B><FONT size="+1" color="Red"><P align="center">Registration is Open for 2015</P></FONT></B>
-<!--           <B><FONT size="+1" color="Red"><P align="center">Registration is Open for Reports Only</P></FONT></B> -->
-<!--           <B><FONT size="+1" color="Red"><P align="center">2013 Registration Reports and Awards are Ready</P></FONT></B> -->
-<!--           <B><FONT size="+1" color="Red"><P align="center">See you in April of 2013!</P></FONT></B> -->
-      <?php }?>
-         <form action='login.php' method=post>
+            {
+               if ($systemDown)
+               {?>
+                  <b><font size="+1" color="Red"><p align="center">Registration is Down for Maintenance... be back soon...</p></font></B>
+               <?php
+               }
+               else
+               {?>
+                  <b><font size="+1" color="Red"><p align="center">Registration is Open for 2015</p></font></b>
+<!--              <b><font size="+1" color="Red"><p align="center">Registration is Open for Reports Only</p></font></b> -->
+<!--              <b><font size="+1" color="Red"><p align="center">2013 Registration Reports and Awards are Ready</p></font></b> -->
+<!--              <b><font size="+1" color="Red"><p align="center">See you in April of 2013!</p></font></b> -->
+               <?php
+               }
+            }?>
+         <form action='login.php' method="post">
 
-            <input type=hidden name=Admin value="<?php   if (isset($_POST['Admin']) and $_POST['Admin'] == 1)
+            <input type="hidden" name="Admin" value="<?php   if (isset($_POST['Admin']) and $_POST['Admin'] == 1)
                                                          {
                                                             print "1";
                                                          }
@@ -39,8 +48,8 @@ function LoginHTML($p)
                                                           {
                                                             print '0';
                                                          }
-                                                    ?>">
-            <input type=hidden name=redirect value="<?php if (isset($_POST['redirect']))
+                                                    ?>"/>
+            <input type="hidden" name="redirect" value="<?php if (isset($_POST['redirect']))
                                                          {
                                                             print $_POST['redirect'];
                                                             if (isset($_POST['Admin']) and $_POST['Admin'] == 1)
@@ -60,40 +69,40 @@ function LoginHTML($p)
                                                          {
                                                             print 'Admin.php';
                                                          }
-                                                    ?>">
+                                                    ?>"/>
             <div align="center">
                <table border="1" width="39%" id="table">
                   <tr>
                      <td width="11%">Userid: </td>
-                        <td width="27%"> <input type=text name=userid size="28"></td>
+                        <td width="27%"> <input type="text" name="userid" size="28"/></td>
                   </tr>
                   <tr>
                      <td width="11%">Password: </td>
-                     <td width="27%"> <input type=password name=pwd size="28"></td>
+                     <td width="27%"> <input type="password" name="pwd" size="28"/></td>
                   </tr>
                   <tr>
-                     <td colspan="2">
-                     <p align="center">
-                     <input type=submit name=submit value=Login></td>
+                     <td colspan="2" align="center">
+                     <input type="submit" name="submit" value="Login"/></td>
                   </tr>
                </table>
             <?php
                if ($p == 'BadPass')
                {
                   ?>
-                  <p align="center"><font color="#FF0000">Invalid username and/or password</FONT><br></p>
+                  <p align="center"><font color="#FF0000">Invalid username and/or password</font><br/></p>
                   <?php
                }
                else
                {
                   ?>
                   <p align="center">Please log in to enter registration</p>
-                  <p align="center">Forgot Password or need to Register?<br>
+                  <p align="center">Forgot Password or need to Register?<br/>
                      <a href="ReqUserid.php">Click Here</a>
                   </p>
                   <?php
                }
             ?>
+
 
              <div align="center" style="position: relative; font: 13px verdana, arial, helvetica, sans-serif; width: 500px; background-color: #ffffcc; padding: 15px 15px 15px 15px; border: 1px solid #c60130; text-align: left; color: black;">
                 <h2 align="center">Can't Login?</h2>
@@ -137,7 +146,8 @@ function LoginHTML($p)
                <a href="http://www.ltcsw.org/">Home</a> |
                <a href="http://www.ltcsw.org/sitemap.htm">Site Map</a>-->
             </div>
-         </form>
+            </div>
+            </form>
          </body>
       </html>
 <?php

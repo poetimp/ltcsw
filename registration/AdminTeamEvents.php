@@ -17,6 +17,12 @@ $TeamComment = isset($_POST['TeamComment']) ? $_POST['TeamComment'] : "";
 //                              from $EventsTable
 //                             where EventID = $EventID
 //                           </pre>";
+//=======================================================================
+// Get the event details
+//=======================================================================
+// print "<pre>";print_r($_POST);"</pre>";
+// print "<pre>";print_r($_REQUEST);"</pre>";
+
 $EventInfo   = mysql_query("select EventName,
                                    EventID,
                                    MinGrade,
@@ -46,15 +52,26 @@ else
 }
 
 
+//=======================================================================
+// They have selected all of their team members and have pressed "Add"
+//=======================================================================
 if (isset($_REQUEST['Add']))
 {
+   //=======================================================================
+   // We do different things whether the even is attended (i.e. drama) or
+   // not (i.e. art)
+   //=======================================================================
    $EventResult = mysql_query("select EventAttended
                                from   $EventsTable
                                where  EventID = $EventID
                               ")
                  or die ("Unable to see if event is attended:" . mysql_error());
    $row         = mysql_fetch_assoc($EventResult);
-   
+
+   //=======================================================================
+   // If it not attended simply add the team. No check are needed for
+   // conflicts
+   //=======================================================================
    if ($row['EventAttended'] != 'Y')
    {
       mysql_query("insert into $TeamsTable
@@ -65,9 +82,12 @@ if (isset($_REQUEST['Add']))
    }
    else
    {
-//	   print "<pre>";print_r($_POST);"</pre>";	
-//	   print "<pre>";print_r($_REQUEST);"</pre>";	
-//	   print "<pre>";print_r($_SESSION);"</pre>";	
+   //=======================================================================
+   // Event is attended so we have to do a tone of conflict checking
+   //=======================================================================
+//	   print "<pre>";print_r($_POST);"</pre>";
+//	   print "<pre>";print_r($_REQUEST);"</pre>";
+//	   print "<pre>";print_r($_SESSION);"</pre>";
 //	   print "<pre>
 //	                           select   s.SchedID,
 //	                                    count(*) RegCount
@@ -80,10 +100,16 @@ if (isset($_REQUEST['Add']))
 //	                           and      s.SchedID = r.SchedID
 //	                           group by s.SchedID
 //	          </pre>";
-	   $RegInfo   = mysql_query("select distinct
+   //=======================================================================
+   // First loop through all of the possible time slots and see if any of
+   // have any openings. If they do we create a team with no members and
+   // unscheduled. Otherwise we say we can't because there are no time splts
+   // available
+   //=======================================================================
+      $RegInfo   = mysql_query("select distinct
                                        s.StartTime,
                                        IF (RoomName REGEXP '-[a-z]$',
-                                           SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+                                           SUBSTR(RoomName,1,LENGTH(RoomName)-2),
                                            RoomName)
                                        as RoomName
                                 from   $EventScheduleTable  s,
@@ -93,15 +119,15 @@ if (isset($_REQUEST['Add']))
                                 and    e.EventID = s.EventID
                                 and    s.RoomID  = r.RoomID
 	                          ")
-	   or die ("Unable to get Registration Count:" . mysql_error());
-	   
+	   or die ("Unable to get start times:" . mysql_error());
+
 	   $allFull=1; // Guilty until proven innocent
       while (($rowCount = 0 or $allFull == 1) or ($allFull and $Row = mysql_fetch_assoc($RegInfo)))
 	   {
          $StartTime    = $SchedRow['StartTime'];
          $RoomName     = $SchedRow['RoomName'];
 		   $RegCount     = slotsFilledInRoom($RoomName,$StartTime);
-		
+
 		   if ($RegCount < $MaxWebSlots)
 		   {
 		      mysql_query("insert into $TeamsTable
@@ -112,7 +138,7 @@ if (isset($_REQUEST['Add']))
 	         $allFull=0; // Cleared of all charged
 		   }
 	   }
-	   
+
 	   if ($allFull)
 	   {
 	      $message = "Sorry, there are no time slots available for this event.";
@@ -133,7 +159,10 @@ else
       $TeamComment = $Row['Comment'];
    }
 }
-
+//=======================================================================
+// They have selected members and time. So we need to check conflicts and
+// possibly schedule the event.
+//=======================================================================
 if (isset($_POST['Apply']))
 {
    $EventResult = mysql_query("select EventAttended
@@ -416,7 +445,7 @@ if (isset($_POST['Apply']))
                                                      s.StartTime,
                                                      (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
                                                      IF (RoomName REGEXP '-[a-z]$',
-                                                         SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+                                                         SUBSTR(RoomName,1,LENGTH(RoomName)-2),
                                                          RoomName)
                                                      as RoomName
                                               from   $EventScheduleTable  s,
@@ -431,11 +460,7 @@ if (isset($_POST['Apply']))
                   $freeSlots = 0;
                   while ($SchedRow = mysql_fetch_assoc($SchedResult))
                   {
-                     $SchedID      = $SchedRow['SchedID'];
-                     $StartTime    = $SchedRow['StartTime'];
-                     $RoomName     = $SchedRow['RoomName'];
-                     $MaxWebSlots  = $SchedRow['MaxWebSlots'];
-                     $freeSlots    = (($MaxWebSlots - slotsFilledInRoom($RoomName,$StartTime) > 0) or $freeSlots);
+                     $freeSlots    = (($MaxWebSlots - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or $freeSlots);
                   }
 
                   if (!$freeSlots)
@@ -450,7 +475,7 @@ if (isset($_POST['Apply']))
                                                         s.StartTime,
                                                         (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
                                                         IF (RoomName REGEXP '-[a-z]$',
-                                                            SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+                                                            SUBSTR(RoomName,1,LENGTH(RoomName)-2),
                                                             RoomName)
                                                         as RoomName
                                                  from   $EventScheduleTable  s,
@@ -459,19 +484,18 @@ if (isset($_POST['Apply']))
                                                  where  s.EventID = $EventID
                                                  and    e.EventID = s.EventID
                                                  and    s.RoomID  = r.RoomID
+                                                 order by s.StartTime
                                                 ")
                                      or die ("Unable to Get scheduled slots for each scheduled event:" . mysql_error());
 
                      $freeSlots = 0;
                      while ($SchedRow = mysql_fetch_assoc($SchedResult))
                      {
-                        $StartTime    = $SchedRow['StartTime'];
-                        $RoomName     = $SchedRow['RoomName'];
-                        if (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($RoomName,$StartTime)) > 0 or ($SchedID == $SchedRow['SchedID']))
+                        if (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime'])) > 0 or ($SchedID == $SchedRow['SchedID']))
                         {
                            $sel =  ($selected > 0 and $SchedID == $SchedRow['SchedID']) ? "selected" : "";
                            print "<option value=\"".$SchedRow['SchedID']."\" $sel>".TimeToStr($SchedRow['StartTime'])."</option>\n";
-//                           print "<option value=\"".$SchedRow['SchedID']."\" $sel>".TimeToStr($SchedRow['StartTime'])." Slots:".$SchedRow['MaxWebSlots']."Count:".$row['count']." SchedID: $SchedID EventID: $EventID</option>\n";
+//                           print "<option value=\"".$SchedRow['SchedID']."\" $sel>".TimeToStr($SchedRow['StartTime'])." Slots:".$SchedRow['MaxWebSlots']." SchedID: ".$SchedRow['SchedID']." EventID: $EventID</option>\n";
                         }
                      }
                   }
@@ -598,7 +622,7 @@ if (isset($_POST['Apply']))
                 <tr>
                   <td width="10%">
                      <center>
-						      <input type="checkbox" name="s<?php  print $ParticipantID; ?>" value="ON" <?php  print $selected == 1 ? 'checked' : '' ?>>
+						      <input type="checkbox" name="s<?php  print $ParticipantID; ?>" value="ON" <?php  print $selected == 1 ? 'checked' : '' ?>/>
 						   </center>
 						</td>
                   <td width="10%">
@@ -635,7 +659,7 @@ if (isset($_POST['Apply']))
 		{
 		?>
         <p align="center">
-        <input type="submit" value="Apply" name="Apply">
+        <input type="submit" value="Apply" name="Apply"/>
 		  </p>
 		<?php
 		}

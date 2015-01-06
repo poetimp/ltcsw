@@ -122,8 +122,8 @@ if (isset($_POST['Apply']))
        <title>
           Manage Individual Events
        </title>
-       <h1 align=center>Update Individual Events For</h1>
-       <h2 align=center><?php  print $ParticipantName; ?></h2>
+       <h1 align="center>>Update Individual Events For</h1>
+       <h2 align="center"><?php  print $ParticipantName; ?></h2>
        <?php
        if (isset($_POST['Apply']))
        {
@@ -230,7 +230,7 @@ if (isset($_POST['Apply']))
                                                            s.StartTime,
                                                            (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
                                                            IF (RoomName REGEXP '-[a-z]$',
-														                     SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+														                     SUBSTR(RoomName,1,LENGTH(RoomName)-2),
 															                  RoomName)
 														                 as RoomName
                                                     from   $EventScheduleTable  s,
@@ -245,11 +245,8 @@ if (isset($_POST['Apply']))
                         $freeSlots = 0;
                         while ($SchedRow = mysql_fetch_assoc($SchedResult))
                         {
-                           $SchedID      = $SchedRow['SchedID'];
-                           $StartTime    = $SchedRow['StartTime'];
-                           $RoomName     = $SchedRow['RoomName'];
-                           $MaxWebSlots  = $SchedRow['MaxWebSlots'];
-                           $freeSlots    = (($MaxWebSlots - slotsFilledInRoom($RoomName,$StartTime) > 0) or $freeSlots);
+
+                           $freeSlots    = (($MaxWebSlots - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or $freeSlots);
                         }
 
                         if ($selected == 0 and !$freeSlots)
@@ -286,7 +283,7 @@ if (isset($_POST['Apply']))
                                                               s.StartTime,
                                                               (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
                                                               IF (RoomName REGEXP '-[a-z]$',
-                                                                  SUBSTR(RoomName,1,LENGTH(RoomName)-2), 
+                                                                  SUBSTR(RoomName,1,LENGTH(RoomName)-2),
                                                                   RoomName)
                                                               as RoomName
                                                        from   $EventScheduleTable s,
@@ -298,15 +295,13 @@ if (isset($_POST['Apply']))
                                                        order  by StartTime
                                                       ";
                            //print "<pre>$sql</$pre>";
-                           
+
                            $SchedResult = mysql_query($sql)
                                            or die ("Unable to Get available scheduled slots for event:" . mysql_error());
 
                            while ($SchedRow = mysql_fetch_assoc($SchedResult))
                            {
-                              $StartTime   = $SchedRow['StartTime'];
-                              $RoomName    = $SchedRow['RoomName'];
-                              if (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($RoomName,$StartTime) > 0) or $selected > 0)
+                              if (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or $selected > 0)
                               {
                                  $sel =  ($selected > 0 and $SchedID == $SchedRow['SchedID']) ? "selected" : "";
                                  print "<option value=\"".$SchedRow['SchedID']."\" $sel>".TimeToStr($SchedRow['StartTime'])."</option>\n";
@@ -353,7 +348,7 @@ if (isset($_POST['Apply']))
          ?>
       </table>
         <p align="center">
-        <input type="submit" value="Apply" name="Apply">
+        <input type="submit" value="Apply" name="Apply"/>
       </p>
       </form>
       <?php footer("Return to Participant List","SignupSoloEvents.php")?>
