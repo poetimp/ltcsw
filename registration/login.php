@@ -5,7 +5,7 @@ $systemDown = 0;
 function LoginHTML($p)
 {
    global $systemDown;
-	?>
+   ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
       <head>
@@ -113,38 +113,6 @@ function LoginHTML($p)
                   click the link above and fill out as much information as you know and someone
                   will correct the problem and get back to you.
                 </p>
- <!--            <h2>
-                <p align="center">
-                   NOTICE to Church Coordinators<br>
-                   Confirmation of Participant registration
-                </p>
-             </h2>
-
-               <p>
-               In years past you received a confirmation of the
-               events your participants were registered in. In lieu of
-               mailing confirmation reports, the web program has been set up
-               for church coordinators to have the availability to view/print
-               what events they have registered their participants in.  By doing
-               this you can make any necessary changes i.e. by adding or changing
-               a registered participant in an event.  You may add or update
-               participants until registration closes on March 16, 2007</p>
-
-               <p>
-               It is important that you view or print the registration by clicking on either "WHO IS
-               IN WHAT BY PARTICIPANT" OR "WHO IS IN WHAT BY EVENT" in the Reports Section.  Remember, a
-               participant must be registered in an event to partcipate at the
-               convention.  Their being registered saves the tally room a lot
-               of time and it assures a judges form, or team form being printed
-               before the convention.</p>
-
-               <p>
-               If you have any questions, please contact Vivia Simmons at
-               <a href="mailto:viviaann@juno.com">viviaann@juno.com</a>
-               or  602-371-1157.  She will be glad to assist you.</p>
-               <p align="center">
-               <a href="http://www.ltcsw.org/">Home</a> |
-               <a href="http://www.ltcsw.org/sitemap.htm">Site Map</a>-->
             </div>
             </div>
             </form>
@@ -195,37 +163,37 @@ if (isset($_POST['submit']))
       $_SESSION['Admin']     = $row['Admin'];
       if (!$systemDown or $_SESSION['Admin'] == 'Y')
       {
-	      $_SESSION['Userid']    = $row['Userid'];
-	      $_SESSION['ChurchID']  = $row['ChurchID'];
-	      $_SESSION['Name']      = $row['Name'];
-	      $_SESSION['Status']    = $row['Status'];
-	      $_SESSION['ConvCode']  = $row['ConvCode'];
-	      $_SESSION['logged-in'] = 1;
+         $_SESSION['Userid']    = $row['Userid'];
+         $_SESSION['ChurchID']  = $row['ChurchID'];
+         $_SESSION['Name']      = $row['Name'];
+         $_SESSION['Status']    = $row['Status'];
+         $_SESSION['ConvCode']  = $row['ConvCode'];
+         $_SESSION['logged-in'] = 1;
 
-	      $UserID                = $row['Userid'];
+         $UserID                = $row['Userid'];
 
-	      $results = mysql_query("show tables like 'LTC_".$_SESSION['ConvCode']."_%'")
-	                 or die ("Unable to get table information!". mysql_error());
-	      while ($row = mysql_fetch_row($results))
-	      {
-	         list($LTC,$ConvCode,$TableName) = explode("_",$row[0]);
-	         $_SESSION[$TableName] = $row[0];
-	      }
-	      WriteToGlobalLog("Successful Login");
+         $results = mysql_query("show tables like 'LTC_".$_SESSION['ConvCode']."_%'")
+                    or die ("Unable to get table information!". mysql_error());
+         while ($row = mysql_fetch_row($results))
+         {
+            list($LTC,$ConvCode,$TableName) = explode("_",$row[0]);
+            $_SESSION[$TableName] = $row[0];
+         }
+         WriteToGlobalLog("Successful Login");
 
-	      if (isset($_POST['redirect']))
-	      {
-	         header ("Refresh: 0; URL=" . $_POST['redirect'] . "");
-	      }
-	      else
-	      {
-	         header ("Refresh: 0; URL=Admin.php");
-	      }
+         if (isset($_POST['redirect']))
+         {
+            header ("Refresh: 0; URL=" . $_POST['redirect'] . "");
+         }
+         else
+         {
+            header ("Refresh: 0; URL=Admin.php");
+         }
       }
       else
       {
-	    $_SESSION['logged-in'] = 0;
-      	header ("Refresh: 0; URL=Admin.php");
+       $_SESSION['logged-in'] = 0;
+         header ("Refresh: 0; URL=Admin.php");
       }
    }
    else
