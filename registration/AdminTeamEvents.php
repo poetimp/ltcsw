@@ -85,21 +85,21 @@ if (isset($_REQUEST['Add']))
    //=======================================================================
    // Event is attended so we have to do a tone of conflict checking
    //=======================================================================
-//	   print "<pre>";print_r($_POST);"</pre>";
-//	   print "<pre>";print_r($_REQUEST);"</pre>";
-//	   print "<pre>";print_r($_SESSION);"</pre>";
-//	   print "<pre>
-//	                           select   s.SchedID,
-//	                                    count(*) RegCount
-//	                           from     $EventScheduleTable s,
-//	                                    $RegistrationTable  r,
-//	                                    $EventsTable        e
-//	                           where    s.EventID = $EventID
-//	                           and      r.EventID = s.EventID
-//	                           and      e.EventID = s.EventID
-//	                           and      s.SchedID = r.SchedID
-//	                           group by s.SchedID
-//	          </pre>";
+//      print "<pre>";print_r($_POST);"</pre>";
+//      print "<pre>";print_r($_REQUEST);"</pre>";
+//      print "<pre>";print_r($_SESSION);"</pre>";
+//      print "<pre>
+//                              select   s.SchedID,
+//                                       count(*) RegCount
+//                              from     $EventScheduleTable s,
+//                                       $RegistrationTable  r,
+//                                       $EventsTable        e
+//                              where    s.EventID = $EventID
+//                              and      r.EventID = s.EventID
+//                              and      e.EventID = s.EventID
+//                              and      s.SchedID = r.SchedID
+//                              group by s.SchedID
+//             </pre>";
    //=======================================================================
    // First loop through all of the possible time slots and see if any of
    // have any openings. If they do we create a team with no members and
@@ -118,32 +118,32 @@ if (isset($_REQUEST['Add']))
                                 where  s.EventID = $EventID
                                 and    e.EventID = s.EventID
                                 and    s.RoomID  = r.RoomID
-	                          ")
-	   or die ("Unable to get start times:" . mysql_error());
+                             ")
+      or die ("Unable to get start times:" . mysql_error());
 
-	   $allFull=1; // Guilty until proven innocent
+      $allFull=1; // Guilty until proven innocent
       while (($rowCount = 0 or $allFull == 1) or ($allFull and $Row = mysql_fetch_assoc($RegInfo)))
-	   {
+      {
          $StartTime    = $SchedRow['StartTime'];
          $RoomName     = $SchedRow['RoomName'];
-		   $RegCount     = slotsFilledInRoom($RoomName,$StartTime);
+         $RegCount     = slotsFilledInRoom($RoomName,$StartTime);
 
-		   if ($RegCount < $MaxWebSlots)
-		   {
-		      mysql_query("insert into $TeamsTable
-		                          (ChurchID, EventID, Comment)
-		                   values($ChurchID,$EventID,'$TeamComment')")
-		      or die ("Unable to create team: " . mysql_error());
-		      $TeamID = mysql_insert_id();
-	         $allFull=0; // Cleared of all charged
-		   }
-	   }
+         if ($RegCount < $MaxWebSlots)
+         {
+            mysql_query("insert into $TeamsTable
+                                (ChurchID, EventID, Comment)
+                         values($ChurchID,$EventID,'$TeamComment')")
+            or die ("Unable to create team: " . mysql_error());
+            $TeamID = mysql_insert_id();
+            $allFull=0; // Cleared of all charged
+         }
+      }
 
-	   if ($allFull)
-	   {
-	      $message = "Sorry, there are no time slots available for this event.";
-	      $TeamID = -1;
-	   }
+      if ($allFull)
+      {
+         $message = "Sorry, there are no time slots available for this event.";
+         $TeamID = -1;
+      }
    }
 }
 else
@@ -365,8 +365,8 @@ if (isset($_POST['Apply']))
     {
     ?>
         <form method="post" action="AdminTeamEvents.php?EventID=<?php  print $EventID; ?>&TeamID=<?php  print $TeamID; ?><?php  if ($Admin == 'Y' and isset($_REQUEST['ChurchID'])) print "&ChurchID=$ChurchID"; if (isset($_REQUEST['Return'])) print '&Return='.$_REQUEST['Return']?>">
-    	<table border="1" width="100%">
-    	   <?php
+          <table border="1" width="100%">
+          <?php
          $EventResult = mysql_query("select EventAttended
                                      from   $EventsTable
                                      where  EventID = $EventID
@@ -394,11 +394,11 @@ if (isset($_POST['Apply']))
          {
             ?>
             <tr>
-   				<td width="10%" bgcolor="#000000">
-   				<?php
-   				if ($Action == "View")
-   				{
-   				   $result = mysql_query("select s.StartTime
+               <td width="10%" bgcolor="#000000">
+               <?php
+               if ($Action == "View")
+               {
+                  $result = mysql_query("select s.StartTime
                                          from   $RegistrationTable r,
                                                 $EventScheduleTable     s
                                          where  r.ChurchID      = $ChurchID
@@ -409,11 +409,11 @@ if (isset($_POST['Apply']))
                            or die("Unable to determing event time: ".mysql_error());
                   $row    = mysql_fetch_assoc($result);
                   print "<font color=#FFFF00>".TimeToStr($row['StartTime'])."</font>";
-   				}
-   				else
-   				{
-   				?>
-   				   <select size="1" <?php  print "name=\"SchedID\"";?>>
+               }
+               else
+               {
+               ?>
+                  <select size="1" <?php  print "name=\"SchedID\"";?>>
                   <?php
                      $select = "select count(*) as count
                                 from   $RegistrationTable
@@ -460,7 +460,7 @@ if (isset($_POST['Apply']))
                   $freeSlots = 0;
                   while ($SchedRow = mysql_fetch_assoc($SchedResult))
                   {
-                     $freeSlots    = (($MaxWebSlots - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or $freeSlots);
+                     $freeSlots    = (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or $freeSlots);
                   }
 
                   if (!$freeSlots)
@@ -505,64 +505,64 @@ if (isset($_POST['Apply']))
                }
                ?>
                </td>
-   				<td colspan=2 bgcolor="#000000">
-   				   <font color="#FFFF00">
-   				      <?php
-   				      if ($Action == "View")
-   				      {
-   				         print "&lt;--- Time this event meets.";
-   				      }
-   				      else
-   				      {
-   				      ?>
-   				         &lt;--- Please select the time this event meets.
-   				      <?php
-   				      }
-   				      ?>
+               <td colspan=2 bgcolor="#000000">
+                  <font color="#FFFF00">
+                     <?php
+                     if ($Action == "View")
+                     {
+                        print "&lt;--- Time this event meets.";
+                     }
+                     else
+                     {
+                     ?>
+                        &lt;--- Please select the time this event meets.
+                     <?php
+                     }
+                     ?>
                   </font>
                </td>
-			   </tr>
+            </tr>
             <?php
          }
          ?>
-			<tr>
-			   <td bgcolor = "#000000" colspan=3><center><font color="#FFFF00">
+         <tr>
+            <td bgcolor = "#000000" colspan=3><center><font color="#FFFF00">
                Comments</font></center></td>
-			</tr>
-			<tr>
-			   <td colspan=3>
-			      <?php
-			      if ($Action == "View")
-			      {
-			         print str_replace("\n","<br>",$TeamComment)."&nbsp;";
-			      }
-			      else
-			      {
-			      ?>
+         </tr>
+         <tr>
+            <td colspan=3>
+               <?php
+               if ($Action == "View")
+               {
+                  print str_replace("\n","<br>",$TeamComment)."&nbsp;";
+               }
+               else
+               {
+               ?>
                   <p align="center"><textarea rows="4" name="TeamComment" cols="71"><?php print $TeamComment;?></textarea></td>
                <?php
                }
                ?>
-			</tr>
-			<tr>
-			   <?php
-			   if ($Action == "View")
-			   {
-				   print "<td bgcolor=#000000 colspan=2><font color=#FFFF00><center>Participant Name</center></font></td>";
-			   }
-			   else
-			   {
-			   ?>
+         </tr>
+         <tr>
+            <?php
+            if ($Action == "View")
+            {
+               print "<td bgcolor=#000000 colspan=2><font color=#FFFF00><center>Participant Name</center></font></td>";
+            }
+            else
+            {
+            ?>
                <td width="10%" bgcolor="#000000"><font color="#FFFF00">Selected</font></td>
                <td width="10%" bgcolor="#000000"><font color="#FFFF00">Grade</font></td>
                <td width=80% bgcolor="#000000"><font color="#FFFF00">Participant Name</font></td>
-				<?php
-				}
-				?>
-			</tr>
-			<?php
-		   	if ($TeenCoord == 'Y')
-	   		{
+            <?php
+            }
+            ?>
+         </tr>
+         <?php
+            if ($TeenCoord == 'Y')
+            {
                $select = "select   ParticipantID,
                                    FirstName,
                                    LastName,
@@ -600,31 +600,31 @@ if (isset($_POST['Apply']))
                $cntRow = mysql_fetch_assoc($cntResult);
                $selected = $cntRow['count'];
                ?>
-		          <?php
-		          if ($Action == "View")
-		          {
-		             if ($selected > 0)
-		             {
+                <?php
+                if ($Action == "View")
+                {
+                   if ($selected > 0)
+                   {
                       print "<tr>";
-		                print "<td colspan=2>";
-		                print "   $ParticipantName ";
-		                if ($ParticipantGrade > $MaxGrade)
-		                {
-		                   print "<font color=#FF0000> (Teen Coordinator)</font>";
-		                }
-		                print "</td>";
+                      print "<td colspan=2>";
+                      print "   $ParticipantName ";
+                      if ($ParticipantGrade > $MaxGrade)
+                      {
+                         print "<font color=#FF0000> (Teen Coordinator)</font>";
+                      }
+                      print "</td>";
                       print "</tr>";
-		             }
-		          }
-		          else
-		          {
-		          ?>
+                   }
+                }
+                else
+                {
+                ?>
                 <tr>
                   <td width="10%">
                      <center>
-						      <input type="checkbox" name="s<?php  print $ParticipantID; ?>" value="ON" <?php  print $selected == 1 ? 'checked' : '' ?>/>
-						   </center>
-						</td>
+                        <input type="checkbox" name="s<?php  print $ParticipantID; ?>" value="ON" <?php  print $selected == 1 ? 'checked' : '' ?>/>
+                     </center>
+                  </td>
                   <td width="10%">
                      <div style="text-align:center">
                   <?php
@@ -635,9 +635,9 @@ if (isset($_POST['Apply']))
                   <td><?php   print $selected == 1 ? '<b>' : '';
                           print $ParticipantName;
                           if ($ParticipantGrade > $MaxGrade)
-		                    {
-		                       print "<font color=#FF0000> (As a Teen Coordinator)</font>";
-		                    }
+                          {
+                             print "<font color=#FF0000> (As a Teen Coordinator)</font>";
+                          }
                           print $selected == 1 ? '</b>' : '';
                           if (isset($conflicted[$ParticipantID]))
                           {
@@ -652,22 +652,22 @@ if (isset($_POST['Apply']))
            <?php
          }
 
-			?>
-		</table>
-		<?php
-		if ($Action != "View")
-		{
-		?>
+         ?>
+      </table>
+      <?php
+      if ($Action != "View")
+      {
+      ?>
         <p align="center">
         <input type="submit" value="Apply" name="Apply"/>
-		  </p>
-		<?php
-		}
-		?>
-		</form>
-	<?php
-	}
-	?>
+        </p>
+      <?php
+      }
+      ?>
+      </form>
+   <?php
+   }
+   ?>
         <?php
           if ($Admin == 'Y' and isset($_REQUEST['Return']))
           {

@@ -28,6 +28,7 @@ $prevTime = "";
          //--------------------------------------------------------------------
          $results = mysql_query("select   e.EventID,
                                           e.EventName,
+                                          (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
                                           CASE e.ConvEvent
                                              WHEN 'C' THEN 'Convention'
                                              WHEN 'P' THEN 'Pre-Convention'
@@ -58,12 +59,13 @@ $prevTime = "";
          //--------------------------------------------------------------------
          while ($row = mysql_fetch_assoc($results))
          {
-            $EventID   = $row['EventID'];
-            $EventName = $row['EventName'];
-            $ConvEvent = $row['ConvEvent'];
-            $EventType = $row['EventType'];
-            $EventTime = TimeToStr($row['StartTime']);
-            $SchedID   = $row['SchedID'];
+            $EventID     = $row['EventID'];
+            $EventName   = $row['EventName'];
+            $ConvEvent   = $row['ConvEvent'];
+            $EventType   = $row['EventType'];
+            $EventTime   = TimeToStr($row['StartTime']);
+            $SchedID     = $row['SchedID'];
+            $MaxWebSlots = $row['MaxWebSlots'];
 
             if ($EventType == 'Team')
             {
@@ -105,7 +107,7 @@ $prevTime = "";
             ?>
             <tr>
                <td width="35%"><?php  print $EventName; ?></td>
-               <td width="10%"><?php  print $numEvents; ?></td>
+               <td width="10%"><?php  if ($numEvents > $MaxWebSlots){print "<font color=\"red\">";} print "$numEvents of $MaxWebSlots"; if ($numEvents > $MaxWebSlots){print "</font>";}?></td>
                <td width="55%"><?php  print $EventType; ?></td>
             </tr>
          <?php

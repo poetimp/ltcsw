@@ -141,14 +141,14 @@ if (isset($_POST['Apply']))
     </head>
     <body style="background-color: rgb(217, 217, 255);">
         <form method="post" action="AdminSoloEvents.php?ID=<?php  print $ParticipantID; ?>">
-    	<table border="1" width="100%" id="table1">
-			<tr>
-				<td width="78" bgcolor="#000000"><font color="#FFFF00">Selected</font></td>
-				<td bgcolor="#000000"><font color="#FFFF00">Event Name</font></td>
-			</tr>
-			<?php
-//			print "<pre>
-//			select   EventID,
+           <table border="1" width="100%" id="table1">
+              <tr>
+                 <td width="78" bgcolor="#000000"><font color="#FFFF00">Selected</font></td>
+                 <td bgcolor="#000000"><font color="#FFFF00">Event Name</font></td>
+              </tr>
+              <?php
+//                      print "<pre>
+//                      select   EventID,
 //                                             EventName,
 //                                             Case ConvEvent
 //                                                When 'C' then 'Convention'
@@ -165,7 +165,7 @@ if (isset($_POST['Apply']))
 //                                          or Sex       = 'E'
 //                                         )
 //                                    order by EventName
-//			</pre>";
+//                      </pre>";
             $results = mysql_query("select   EventID,
                                              EventName,
                                              Case ConvEvent
@@ -205,7 +205,7 @@ if (isset($_POST['Apply']))
                $cntRow = mysql_fetch_assoc($cntResult);
                $selected = $cntRow['count'];
                ?>
-		       <tr>
+               <tr>
                   <td width="78">
                      <?php
                      if ($EventAttended == 'Y')
@@ -230,9 +230,9 @@ if (isset($_POST['Apply']))
                                                            s.StartTime,
                                                            (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
                                                            IF (RoomName REGEXP '-[a-z]$',
-														                     SUBSTR(RoomName,1,LENGTH(RoomName)-2),
-															                  RoomName)
-														                 as RoomName
+                                                              SUBSTR(RoomName,1,LENGTH(RoomName)-2),
+                                                              RoomName)
+                                                           as RoomName
                                                     from   $EventScheduleTable  s,
                                                            $EventsTable         e,
                                                            $RoomsTable          r
@@ -245,8 +245,7 @@ if (isset($_POST['Apply']))
                         $freeSlots = 0;
                         while ($SchedRow = mysql_fetch_assoc($SchedResult))
                         {
-
-                           $freeSlots    = (($MaxWebSlots - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or $freeSlots);
+                           $freeSlots    = (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or $freeSlots);
                         }
 
                         if ($selected == 0 and !$freeSlots)
