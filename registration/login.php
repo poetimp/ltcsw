@@ -27,8 +27,8 @@ function LoginHTML($p)
                }
                else
                {?>
-                  <b><font size="+1" color="Red"><p align="center">Registration is Open for 2015</p></font></b>
-<!--              <b><font size="+1" color="Red"><p align="center">Registration is Open for Reports Only</p></font></b> -->
+<!--              <b><font size="+1" color="Red"><p align="center">Registration is Open for 2015</p></font></b>  -->
+                  <b><font size="+1" color="Red"><p align="center">Registration is Open for Reports Only</p></font></b>
 <!--              <b><font size="+1" color="Red"><p align="center">2013 Registration Reports and Awards are Ready</p></font></b> -->
 <!--              <b><font size="+1" color="Red"><p align="center">See you in April of 2013!</p></font></b> -->
                <?php
