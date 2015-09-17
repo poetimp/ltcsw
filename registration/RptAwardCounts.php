@@ -78,18 +78,62 @@ $awardsBronze = 0;
         <h1 align="center">Award Counts By Team Event</h1>
     <hr>
     <?php
-         $results = mysql_query("select e.EventName,
-                                        r.Award,
-                                        count(*) as AwardCount
-                                 from   LTC_PHX_Events       e,
-                                        LTC_PHX_Registration r,
-                                        LTC_PHX_Teams        t,
-                                        LTC_PHX_TeamMembers  m
+         $results = mysql_query("select distinct
+                                        e.EventName,
+                                        e.IndividualAwards,
+                                        t.TeamID,
+                                        r.Award
+                                 from   $EventsTable         e,
+                                        $RegistrationTable   r,
+                                        $TeamsTable          t
                                  where  e.EventID=t.EventID
-                                 and    t.TeamID=m.TeamID
-                                 and    m.ParticipantID=r.ParticipantID
-                                 group by e.EventName,r.Award;")
-                    or die ("Unable to get award list:" . mysql_error());
+                                 and    r.EventID=t.EventID
+                                 and    t.TeamID=r.ParticipantID")
+                    or die ("Unable to get team list:" . mysql_error());
+
+         while ($team = mysql_fetch_assoc($results))
+         {
+
+            if ($team['IndividualAwards'] =='Y')
+            {
+               if (isset($teamAwards[$team['EventName']][$team['Award']]))
+                  $teamAwards[$team['EventName']][$team['Award']] ++;
+               else
+                  $teamAwards[$team['EventName']][$team['Award']]  = 1;
+
+               $memberQry = mysql_query("select m.Award,
+                                                count(*) as Count
+                                         from   $TeamMembersTable  m,
+                                                $TeamsTable        t
+                                         where  t.TeamID=m.TeamID
+                                         and    t.TeamID=".$team['TeamID']."
+                                         group by m.Award")
+                          or die ("Unable to get team member count:" . mysql_error());
+               while ($members = mysql_fetch_assoc($memberQry))
+               {
+                  if (isset($teamAwards[$team['EventName']][$members['Award']]))
+                     $teamAwards[$team['EventName']][$members['Award']] += $members['Count'];
+                  else
+                     $teamAwards[$team['EventName']][$members['Award']]  = $members['Count'];
+               }
+            }
+            else
+            {
+               $memberQry = mysql_query("select count(*) as Count
+                                         from   $TeamMembersTable  m,
+                                                $TeamsTable        t
+                                         where  t.TeamID=m.TeamID
+                                         and    t.TeamID=".$team['TeamID'])
+                          or die ("Unable to get team member count:" . mysql_error());
+               $members = mysql_fetch_assoc($memberQry);
+               if (isset($teamAwards[$team['EventName']][$team['Award']]))
+                  $teamAwards[$team['EventName']][$team['Award']] += $members['Count'];
+               else
+                  $teamAwards[$team['EventName']][$team['Award']]  = $members['Count'];
+            }
+
+         }
+         //print "<pre>";print_r($teamAwards); print "</pre>";
          ?>
          <table border="1" width="100%" id="table1">
             <tr>
@@ -99,31 +143,19 @@ $awardsBronze = 0;
                <td bgcolor="#000000"><font color="#FFFF00">Bronze</font></td>
             </tr>
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         foreach ($teamAwards as $EventName=>$Award)
          {
-            $EventName   = $row['EventName'];
-            $Award       = $row['Award'];
-            $AwardCount  = $row['AwardCount'];
-
-            if ($Award == 'Gold')
-               $GoldCount = $AwardCount;
-            else if ($Award == 'Bronze')
-               $BronzeCount = $AwardCount;
-            else if ($Award == 'Silver')
-            {
-               $SilverCount = $AwardCount;
-               $awardsGold   += $GoldCount;
-               $awardsSilver += $SilverCount;
-               $awardsBronze += $BronzeCount;
-               ?>
+            $awardsGold   += $Award['Gold'];
+            $awardsSilver += $Award['Silver'];
+            $awardsBronze += $Award['Bronze'];
+            ?>
                <tr>
                   <td><?php  print $EventName; ?></td>
-                  <td><?php  print $GoldCount; ?></td>
-                  <td><?php  print $SilverCount; ?></td>
-                  <td><?php  print $BronzeCount; ?></td>
+                  <td><?php  print isset($Award['Gold'])   ? $Award['Gold']   : ''; ?></td>
+                  <td><?php  print isset($Award['Silver']) ? $Award['Silver'] : ''; ?></td>
+                  <td><?php  print isset($Award['Bronze']) ? $Award['Bronze'] : ''; ?></td>
                </tr>
                <?php
-            }
          }
          ?>
          </table>
