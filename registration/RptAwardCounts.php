@@ -37,7 +37,9 @@ $awardsBronze = 0;
                                  group by e.EventName,
                                           r.Award")
                     or die ("Unable to get award list:" . mysql_error());
-         ?>
+          $numRows = mysql_num_rows($results);
+
+          ?>
          <table border="1" width="100%" id="table1">
             <tr>
                <td bgcolor="#000000"><font color="#FFFF00">Event Name</font></td>
@@ -46,36 +48,60 @@ $awardsBronze = 0;
                <td bgcolor="#000000"><font color="#FFFF00">Bronze</font></td>
             </tr>
          <?php
+         $currentEvent = '';
          while ($row = mysql_fetch_assoc($results))
          {
             $EventName   = $row['EventName'];
             $Award       = $row['Award'];
             $AwardCount  = $row['AwardCount'];
 
-            if ($Award == 'Gold')
-               $GoldCount = $AwardCount;
-            else if ($Award == 'Bronze')
-               $BronzeCount = $AwardCount;
-            else if ($Award == 'Silver')
+            if ($currentEvent == '')
+               $currentEvent = $EventName;
+
+            $numRows--;
+            if (($EventName != $currentEvent) or $numRows==0)
             {
-               $SilverCount   = $AwardCount;
-               $awardsGold   += $GoldCount;
-               $awardsSilver += $SilverCount;
-               $awardsBronze += $BronzeCount;
+               if ($numRows==0)
+               {
+                  if      ($Award == 'Gold')   $GoldCount   = $AwardCount;
+                  else if ($Award == 'Bronze') $BronzeCount = $AwardCount;
+                  else if ($Award == 'Silver') $SilverCount = $AwardCount;
+               }
                ?>
                <tr>
-                  <td><?php  print $EventName; ?></td>
-                  <td><?php  print $GoldCount; ?></td>
-                  <td><?php  print $SilverCount; ?></td>
-                  <td><?php  print $BronzeCount; ?></td>
+                  <td><?php  print $currentEvent; ?></td>
+                  <td><?php  print $GoldCount;    ?></td>
+                  <td><?php  print $SilverCount;  ?></td>
+                  <td><?php  print $BronzeCount;  ?></td>
                </tr>
                <?php
+
+               $currentEvent = $EventName;
+               $GoldCount    = '';
+               $BronzeCount  = '';
+               $SilverCount  = '';
+            }
+
+            if ($Award == 'Gold')
+            {
+               $GoldCount   = $AwardCount;
+               $awardsGold += $GoldCount;
+            }
+               else if ($Award == 'Bronze')
+            {
+               $BronzeCount   = $AwardCount;
+               $awardsSilver += $SilverCount;
+            }
+               else if ($Award == 'Silver')
+            {
+               $SilverCount   = $AwardCount;
+               $awardsBronze += $BronzeCount;
             }
          }
          ?>
          </table>
 
-        <h1 align="center">Award Counts By Team Event</h1>
+    <h1 align="center">Award Counts By Team Event</h1>
     <hr>
     <?php
          $results = mysql_query("select distinct
