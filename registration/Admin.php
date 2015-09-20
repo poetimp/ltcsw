@@ -137,6 +137,14 @@ $ChurchName = $row['ChurchName'];
                            <ul>
                               <li><a href="ChangePassword.php">Change your Password</a></li>
                               <li><a href="ChangeEmail.php">Change your Email Address</a></li>
+                              <?php
+                              if (!preg_match("/@/",$Email))
+                              {
+                              ?>
+                              <li><b><font color=red>Your email is not set. You should set it</font></b></li>
+                              <?php
+                              }
+                              ?>
                            </ul>
                         </td>
                      </tr>
