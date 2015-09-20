@@ -1,45 +1,8 @@
 <?php
+include 'include/config.php';
+
 include 'include/auth.inc.php';
 include 'include/MySql-connect.inc.php';
-$ChurchesTable        = GetTable('Churches');
-$ConventionsTable     = GetTable('Conventions');
-$EventsTable          = GetTable('Events');
-$ExtraOrdersTable     = GetTable('ExtraOrders');
-$JudgeAssignmentsTable= GetTable('JudgeAssignments');
-$JudgeEventsTable     = GetTable('JudgeEvents');
-$JudgeTimesTable      = GetTable('JudgeTimes');
-$JudgesTable          = GetTable('Judges');
-$LogTable             = GetTable('Log');
-$MoneyTable           = GetTable('Money');
-$NonParticipantsTable = GetTable('NonParticipants');
-$ParticipantsTable    = GetTable('Participants');
-$RegistrationTable    = GetTable('Registration');
-$RoomsTable           = GetTable('Rooms');
-$EventScheduleTable   = GetTable('EventSchedule');
-$TeamsTable           = GetTable('Teams');
-$UsersTable           = GetTable('Users');
-$TeamMembersTable     = GetTable('TeamMembers');
-$EventCoordTable      = GetTable('EventCoord');
-
-// print_r($_SESSION);
-// print "<br>ChruchTable: $ChurchesTable";
-// print "<br>ConventionTable: $ConventionsTable";
-// print "<br>EventsTable: $EventsTable";
-// print "<br>ExtraOrdersTable: $ExtraOrdersTable";
-// print "<br>JudgeEventsTable: $JudgeEventsTable";
-// print "<br>JudgeTimesTable: $JudgeTimesTable";
-// print "<br>JudgesTable: $JudgesTable";
-// print "<br>LogTable: $LogTable";
-// print "<br>MoneyTable: $MoneyTable";
-// print "<br>NonParticipantsTable: $NonParticipantsTable";
-// print "<br>ParticipantsTable: $ParticipantsTable";
-// print "<br>RegistrationTable: $RegistrationTable";
-// print "<br>RoomsTable: $RoomsTable";
-// print "<br>EventScheduleTable: $EventScheduleTable";
-// print "<br>TeamsTable: $TeamsTable";
-// print "<br>UsersTable: $UsersTable";
-// print "<br>TeamMembersTable: $TeamMembersTable";
-// print "<br>EventCoordTable: $EventCoordTable";
 
 //-----------------------------------------------------------------------------
 // Set Prices (Should be a database function, not hard coded as it is)
@@ -54,14 +17,6 @@ function GetPrices()
    return $price;
 }
 //-----------------------------------------------------------------------------
-// Translate Table Names
-//-----------------------------------------------------------------------------
-function GetTable($TableName)
-{
-   return(isset($_SESSION[$TableName]) ? $_SESSION[$TableName] : "<error>");
-}
-
-//-----------------------------------------------------------------------------
 // Format a dollar amount so that it is readable
 //-----------------------------------------------------------------------------
 function FormatMoney($Amount)
@@ -74,29 +29,10 @@ function FormatMoney($Amount)
 //-----------------------------------------------------------------------------
 // Make an entry in the log database
 //-----------------------------------------------------------------------------
-function WriteToGlobalLog($LogEntry)
-{
-   $Userid = $_SESSION['Userid'];
-
-   mysql_query("insert into LTC_ALL_Log
-                      (Date,
-                       UserID,
-                       Action
-                      )
-                values(Now(),
-                       '$Userid',
-                       '$LogEntry'
-                      )
-               ")
-   or die ("Unable to write to global log: ".mysql_error());
-}
-//-----------------------------------------------------------------------------
-// Make an entry in the log database
-//-----------------------------------------------------------------------------
 function WriteToLog($LogEntry)
 {
    $Userid = $_SESSION['Userid'];
-   $LogTable = GetTable('Log');
+   global $LogTable;
 
    mysql_query("insert into $LogTable
                       (Date,
@@ -132,7 +68,6 @@ function ChurchesDefined()
    natsort($ChurchIDs);
    return $ChurchIDs;
 }
-
 //-----------------------------------------------------------------------------
 // This function returns a list of churches that have at least one participant
 // registered in at least one event.
@@ -172,7 +107,6 @@ function ChurchesRegistered()
    natsort($ChurchIDs);
    return $ChurchIDs;
 }
-
 //-----------------------------------------------------------------------------
 // Given a ChurchID this function will return a list of participants that are
 // registered in at least one event.
@@ -264,7 +198,6 @@ function ParticipantEvents($ParticipantID)
    natsort($eventIDs);
    return $eventIDs;
 }
-
 //-----------------------------------------------------------------------------
 // Determine the award a participant received in a given event
 //-----------------------------------------------------------------------------
@@ -489,7 +422,6 @@ function ChurchExpenses($ChurchID)
 
    return($costDetails);
 }
-
 function footer($linkText, $linkURL)
 {
    print "<p align=\"center\">\n";
@@ -550,9 +482,9 @@ function getRoomName($RoomID)
    global $RoomsTable;
 
    $result = mysql_query("select   IF (RoomName REGEXP '-[a-z]$',
-										         SUBSTR(RoomName,1,LENGTH(RoomName)-2),
-													RoomName)
-			                          as RoomName
+                                   SUBSTR(RoomName,1,LENGTH(RoomName)-2),
+                                          RoomName)
+                                       as RoomName
                           from     $RoomsTable
                           where    RoomID      = $RoomID
                          ")
@@ -561,8 +493,6 @@ function getRoomName($RoomID)
    $row = mysql_fetch_assoc($result);
    return $row['RoomName'];
 }
-
-
 //-----------------------------------------------------------------------------
 // Get Schedule Start Time
 //-----------------------------------------------------------------------------
@@ -579,7 +509,6 @@ function getStartTime($SchedID)
    $row = mysql_fetch_assoc($result);
    return $row['StartTime'];
 }
-
 //-----------------------------------------------------------------------------
 // Schedule an event - Returns true for success and false for failure
 // StartYime = DHHMM  where Sunday is 1 and Saturday is 7
@@ -622,7 +551,6 @@ function ScheduleEventAdd($EventID,$StartTime,$RoomID)   //Returns Success or Fa
       return FALSE;
    }
 }
-
 //-----------------------------------------------------------------------------
 // Schedule an event - Returns true for success and false for failure
 // StartYime = DHHMM  where Sunday is 1 and Saturday is 7
@@ -685,7 +613,6 @@ function ScheduleEventGet($EventID)                             //Returns a list
 
    return $roomList;
 }
-
 //-----------------------------------------------------------------------------
 // Remove an event from the schedule
 // StartTime = DHHMM  where Sunday is 1 and Saturday is 7
@@ -721,7 +648,6 @@ function ScheduleEventDel($EventID,$StartTime,$RoomID)                          
    }
 
 }
-
 //-----------------------------------------------------------------------------
 // Returns True if time is available and False if it is not. A time slot
 // is only available if it does not overlap in any way with another even in the
@@ -787,7 +713,6 @@ function ScheduleEventTimeAvailable($EventID,$StartTime,$RoomID)
 
    return ($Count == 0);  // 0 = Time available !0 = Time not available
 }
-
 //-----------------------------------------------------------------------------
 // Returns the event name time is occupied otherwise returns ""
 // StartTime = DHHMM  where Sunday is 1 and Saturday is 7
@@ -898,7 +823,6 @@ function ScheduleGetEventName($checkSchedID,$ParticipantID)
    else
       return "";
 }
-
 //-----------------------------------------------------------------------------
 // Add minutes to a time value in the form DHHMM
 //-----------------------------------------------------------------------------
@@ -916,7 +840,6 @@ function AddTime($Time,$Minutes)
 
    return ($days*10000)+($hours*100)+$mins;
 }
-
 //-----------------------------------------------------------------------------
 // Represent Time value (DHHMM) in readable format
 //-----------------------------------------------------------------------------
@@ -930,7 +853,6 @@ function TimeToStr($Time)
 
    return $dayNames[$day-1]." ".($hour>12 ? $hour-12: $hour-0).":".$min.($hour>=12 ? "pm": "am");
 }
-
 //-----------------------------------------------------------------------------
 // Set the various "bits" in the priv string. This and the "has" function are the
 // only the only two functions that should ever have to deal with the specific
@@ -978,7 +900,7 @@ function setPrivs($privs)
    return($privString);
 }
 //-----------------------------------------------------------------------------
-// Check for a particular privilage. This and the set function are the
+// Check for a particular privilege. This and the set function are the
 // only the only two functions that should ever have to deal with the specific
 // locations of the various privileges.
 //-----------------------------------------------------------------------------
@@ -1003,7 +925,7 @@ function hasPriv($priv)
    }
 }
 //-----------------------------------------------------------------------------
-//  Because of the stupid ways we are manageing multiple events in the same room we have to use
+//  Because of the stupid ways we are managing multiple events in the same room we have to use
 //  this hack. It looks for all rooms that have the same name (minus the last two characters)  and
 //  counts the number of participants assigned. Then returns that count to the caller.
 //-----------------------------------------------------------------------------
@@ -1028,7 +950,6 @@ function slotsFilledInRoom($RoomName,$StartTime)
 //-----------------------------------------------------------------------------
 //  Dump all system variables in a table for debugging
 //-----------------------------------------------------------------------------
-
 function dumpSysVars()
 {
    if (isset($_POST))
@@ -1130,5 +1051,33 @@ function dumpSysVars()
       <br>
       <?php
    }
+}
+//-----------------------------------------------------------------------------
+// Verify valid password format
+// >= 7 Characters
+// <= 32 Characters
+// Mixed Case
+// At least one number
+// At least one special Character
+// No spaces
+//-----------------------------------------------------------------------------
+function verifyPasswordFormat($password)
+{
+   if (strlen($password) < 7)
+      return False;
+   if (strlen($password) > 32)
+      return False;
+   if(!preg_match("/[a-z]/",$password))
+      return False;
+   if(!preg_match("/[A-Z]/",$password))
+      return False;
+   if(!preg_match("/[0-9]/",$password))
+      return False;
+   if(!preg_match("/[`~!@#\$%^&*\(\)_+?\"';:,.<>\/\\\\[\]\{\}\|\-\=]/",$password)) // 123abc!@$XYZ
+      return False;
+   if(preg_match("/\s+/",$password))
+      return False;
+
+   return true;
 }
 ?>

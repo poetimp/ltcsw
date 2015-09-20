@@ -7,8 +7,6 @@ if ($Admin != 'Y')
    die();
 }
 
-$ConvCode    = $_SESSION['ConvCode'];
-
 if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'update')
 {
    $mode = 'update';
@@ -28,6 +26,7 @@ else #if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'add')
    $Status      = "";
    $NewUserid   = "";
    $NewChurchID = "";
+   $NewEmail    = "";
 }
 
 $ErrorMsg = "";
@@ -41,12 +40,16 @@ if ($mode == 'update' || $mode == 'view')
              or die ("Unable to get User information: ".mysql_error());
    $row = mysql_fetch_assoc($result);
 
-   $NewUserID    = isset($row['Userid'])    ? $row['Userid']    : "";
-   $NewChurchID  = isset($row['ChurchID'])  ? $row['ChurchID']  : "";
-   $Name         = isset($row['Name'])      ? $row['Name']      : "";
-   $Password     = isset($row['Password'])  ? $row['Password']  : "";
-   $IsAdmin      = isset($row['Admin'])     ? $row['Admin']     : "";
-   $Status       = isset($row['Status'])    ? $row['Status']    : "";
+   $NewUserID    = isset($row['Userid'])            ? $row['Userid']            : "";
+   $NewChurchID  = isset($row['ChurchID'])          ? $row['ChurchID']          : "";
+   $NewEmail     = isset($row['email'])             ? $row['email']             : "";
+   $Name         = isset($row['Name'])              ? $row['Name']              : "";
+   $Password     = isset($row['Password'])          ? $row['Password']          : "";
+   $IsAdmin      = isset($row['Admin'])             ? $row['Admin']             : "";
+   $Status       = isset($row['Status'])            ? $row['Status']            : "";
+   $loginCount   = isset($row['loginCount'])        ? $row['loginCount']        : "";
+   $lastLogin    = isset($row['lastLogin'])         ? $row['lastLogin']         : "";
+   $loginFalures = isset($row['failedLoginCount'])  ? $row['failedLoginCount']  : "";
 
 }
 
@@ -63,6 +66,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
    $NewUserid    = isset($_POST['Userid'])    ? $_POST['Userid']    : "";
    $NewChurchID  = isset($_POST['ChurchID'])  ? $_POST['ChurchID']  : "";
+   $NewEmail     = isset($_POST['Email'])     ? $_POST['Email']     : "";
    $Name         = isset($_POST['Name'])      ? $_POST['Name']      : "";
    $Password     = isset($_POST['Password'])  ? $_POST['Password']  : "";
    $IsAdmin      = isset($_POST['Admin'])     ? $_POST['Admin']     : "";
@@ -88,6 +92,10 @@ if (isset($_POST['add']) or isset($_POST['update']))
    {
       $ErrorMsg = "Please Indicate if person is an  Administrator or not";
    }
+   else if ($NewEmail == "")
+   {
+      $ErrorMsg = "Please Enter Email address";
+   }
    else if ($Status == "")
    {
       $ErrorMsg = "Please Indicate the status of the account";
@@ -102,6 +110,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       {
          $results = mysql_query("update $UsersTable
                                  set    ChurchID  = '$NewChurchID',
+                                        Email     = '$NewEmail',
                                         Name      = '$Name',
                                         Password  = '$Password',
                                         Admin     = '$IsAdmin',
@@ -124,18 +133,18 @@ if (isset($_POST['add']) or isset($_POST['update']))
             mysql_query("insert into $UsersTable
                                     (Userid   ,
                                      ChurchID ,
+                                     Email,
                                      Name     ,
                                      Password ,
                                      Admin    ,
-                                     Status   ,
-                                     ConvCode)
+                                     Status)
                              values ('$NewUserid'  ,
                                      '$NewChurchID',
+                                     '$NewEmail',
                                      '$Name'       ,
                                      '$Password'   ,
                                      '$IsAdmin'    ,
-                                     '$Status'     ,
-                                     '$ConvCode'
+                                     '$Status'
                                    )")
              or die ("Unable to process insert: " . mysql_error());
           }
@@ -239,13 +248,13 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
       <form method="post" action=AdminUser.php>
          <table border="1" width="100%" id="table1">
             <tr>
-               <td colspan="4" bgcolor="#000000">
+               <td colspan="6" bgcolor="#000000">
                <p align="center"><font color="#FFFF00">
                <span style="background-color: #000000">User Information</span></font></td>
             </tr>
             <tr>
                <td width="12%">Userid</td>
-               <td width="85%" colspan="3">
+               <td width="85%" colspan="5">
                <?php
                if ($mode == 'view' or $mode == 'update')
                {
@@ -261,7 +270,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </tr>
             <tr>
                <td width="12%">Name</td>
-               <td width="85%" colspan="3">
+               <td width="85%" colspan="5">
                <?php
                if ($mode == 'view')
                {
@@ -275,35 +284,41 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                }
                ?>
             </tr>
+            <?php
+            if ($mode != 'view')
+            {?>
             <tr>
                <td width="12%">Password</td>
-               <td width="85%" colspan="3">
+               <td width="85%" colspan="5">
+               <input type="text" name="Password" size="36"></td>
+            </tr>
+            <?php
+            }
+            ?>
+            <tr>
+               <td width="12%">Email</td>
+               <td width="85%" colspan="5">
                <?php
                if ($mode == 'view')
                {
-                  print $Password;
+                  print $NewEmail;
                }
                else
                {
                   ?>
-                  <input type="text" name="Password" size="36" <?php  print ($Password != "") ? "value=\"" . $Password . "\"" : ""; ?>></td>
+                  <input type="text" name="Email" size="36" <?php  print ($NewEmail != "") ? "value=\"" . $NewEmail . "\"" : ""; ?>></td>
                   <?php
                }
                ?>
+               </td>
             </tr>
             <tr>
                <td width="12%">Church</td>
-               <td width="85%" colspan="3">
+               <td width="85%" colspan="5">
                <?php
                if ($mode == 'view')
                {
-                  $chResult = mysql_query("select ChurchName
-                                          from   $ChurchesTable
-                                          where  ChurchID = ".$row['ChurchID']
-                                       )
-                              or die ("Not found:" . mysql_error());
-                  $chRow = mysql_fetch_assoc($chResult);
-                  $ChurchName = $chRow['ChurchName'];
+                  $ChurchName = ChurchName($row['ChurchID']);
                   print $ChurchName;
                }
                else
@@ -355,13 +370,16 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   {
                      $Status = 'Unknown';
                   }
-                  print "<td width=8%>$Status</td>";
-                  print "<td width=78%>&nbsp;</td>";
+                  print "<td width=10%>$Status</td>";
+                  print "<td width=10%>Login Count</td>";
+                  print "<td width=5%>$loginCount</td>";
+                  print "<td width=10%>Last Login</td>";
+                  print "<td width=53%>$lastLogin</td>";
                }
                else
                {
                   ?>
-                  <td width="8%" colspan=3>
+                  <td width="8%" colspan=5>
                      <select size="1" name="Status">
                         <option value="0" <?php  print $Status == ''  ? "selected" : "";?>>--- Choose ---</option>
                         <option value="C" <?php  print $Status == 'C' ? "selected" : "";?>>Closed</option>
@@ -379,15 +397,18 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                <?php
                if ($mode == 'view')
                {
-                  print "<td width=8%>" . (($IsAdmin == 'Y') ? "Yes" : "No") . "</td>";
-                  print "<td width=78%>&nbsp;</td>";
+                  print "<td>" . (($IsAdmin == 'Y') ? "Yes" : "No") . "</td>";
+                  print "<td>Bad Logins</td>";
+                  print "<td>$loginFalures</td>";
+                  print "<td>&nbsp;</td>";
+                  print "<td>&nbsp;</td>";
                }
                else
                {
                   ?>
                   <td width="8%"> <input type="radio" name="Admin" value="Y" <?php  print ($IsAdmin == 'Y') ? "checked" : ""; ?>>Yes</td>
                   <td width="8%"> <input type="radio" name="Admin" value="N" <?php  print ($IsAdmin == 'N') ? "checked" : ""; ?>>No</td>
-                  <td width="70%">&nbsp;</td>
+                  <td width="70%" colspan="4">&nbsp;</td>
                   <?php
                }
                ?>

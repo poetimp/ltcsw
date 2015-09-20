@@ -1,21 +1,6 @@
 <?php
-if ($_SERVER['SERVER_NAME'] == 'localhost')
-{
-   $host     = "localhost";
-   $user     = "***REMOVED***";
-   $database = "***REMOVED***";
-   $password = "***REMOVED***";
-}
-else
-{
-   $host     = "***REMOVED***";
-   $user     = "***REMOVED***";
-   $database = "***REMOVED***";
-   $password = "***REMOVED***";
-}
-
-   $db = mysql_connect($host,$user,$password) or die ("Unable to connect to database!");
-   mysql_select_db($database)                 or die ("Unable to select datbase!");
+   $db = mysql_connect($db_host,$db_user,$db_password) or die ("Unable to connect to database!");
+   mysql_select_db($db_database)                       or die ("Unable to select database!");
 
    $_SESSION['db'] = $db;
 ?>

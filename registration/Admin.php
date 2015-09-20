@@ -131,13 +131,13 @@ $ChurchName = $row['ChurchName'];
                            <h2>Judging information</h2>
                            <ul>
                               <li><a href="Judges.php">Enter Judges Info</a></li>
-                              <li>
-                                 <a href="AssignJudges.php">
-                                    Assign Judges to Events
-                                 </a>
-                              </li>
+                              <li><a href="AssignJudges.php">Assign Judges to Events</a></li>
                            </ul>
-
+                           <h2>Account Management</h2>
+                           <ul>
+                              <li><a href="ChangePassword.php">Change your Password</a></li>
+                              <li><a href="ChangeEmail.php">Change your Email Address</a></li>
+                           </ul>
                         </td>
                      </tr>
                   </table>

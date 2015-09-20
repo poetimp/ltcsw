@@ -6,7 +6,6 @@ if ($Admin != 'Y')
    header("refresh: 0; URL=Admin.php");
    die();
 }
-$ConvCode = $_SESSION['ConvCode'];
 
 if (isset($_POST['AddNew']))
 {
@@ -47,12 +46,13 @@ else
          $results = mysql_query("select   u.Userid,
                                           c.ChurchName,
                                           u.Name,
+                                          u.Email,
                                           u.Admin,
-                                          u.Status
+                                          u.Status,
+                                          u.Password
                                  from     $UsersTable    u,
                                           $ChurchesTable c
                                  where    c.ChurchID=u.ChurchID
-                                 and      u.ConvCode = '$ConvCode'
                                  Order by ".$sort." ".$order)
                     or die ("Unable to get user list:" . mysql_error());
 
@@ -84,6 +84,11 @@ else
                   </a>
                </td>
                <td bgcolor="#000000">
+                  <a href=Users.php?sort=Email&order=<?php print $order; ?>>
+                     <font color="#FFFF00">Email</font>
+                  </a>
+               </td>
+               <td bgcolor="#000000">
                   <a href=Users.php?sort=ChurchName&order=<?php print $order; ?>>
                      <font color="#FFFF00">Church Name</font>
                   </a>
@@ -102,7 +107,16 @@ else
          <?php
          while ($row = mysql_fetch_assoc($results))
          {
-            $ChurchName = $row['ChurchName'];
+            if (strlen($row['Password']) != 60)
+            {
+               $password = password_hash($row['Password'],PASSWORD_DEFAULT);
+               mysql_query("update $UsersTable set Password = '$password' where Userid='".$row['Userid']."'");
+            }
+            else
+            {
+               $password = $row['Password'];
+            }
+               $ChurchName = $row['ChurchName'];
             if ($row['Status'] == 'O')
             {
                $row['Status'] = 'Open';
@@ -130,6 +144,7 @@ else
                <td width="70" align="center"> [<a href="DelUser.php?action=del<?php  print "&Userid=".$row['Userid']; ?>">Delete</a>]</td>
                <td><?php  print $row['Userid']; ?></td>
                <td><?php  print $row['Name']; ?></td>
+               <td><?php  print $row['Email']; ?></td>
                <td><?php  print $ChurchName; ?></td>
                <td align=center><?php  print $row['Status']; ?></td>
                <td align=center><?php  print $row['Admin']; ?></td>
