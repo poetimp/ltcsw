@@ -66,8 +66,8 @@ if (isset($_POST['ChangeEmail']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
    <head>
-      <title>Change Password</title>
-      <h1 align=center>Change Password</h1>
+      <title>Change Email Address</title>
+      <h1 align=center>Change Email Address</h1>
    </head>
    <body style="background-color: rgb(217, 217, 255);">
       <form method="post" id="main" name="main">

@@ -32,6 +32,7 @@ if (isset($_POST['submit']))
          $_SESSION['ChurchID']  = $row['ChurchID'];
          $_SESSION['Name']      = $row['Name'];
          $_SESSION['Status']    = $row['Status'];
+         $_SESSION['email']     = $row['email'];
          $_SESSION['logged-in'] = 1;
 
          $UserID                = $row['Userid'];
@@ -152,8 +153,8 @@ if (isset($_POST['submit']))
             {
                ?>
                <p align="center">Please log in to enter registration</p>
-               <p align="center">Forgot Password or need to Register?<br/>
-                  <a href="ReqUserid.php">Click Here</a>
+               <p align="center">Forgot Password<br/>
+                  <a href="ForgotPassword.php">Click Here</a>
                </p>
                <?php
             }
