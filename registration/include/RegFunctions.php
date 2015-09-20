@@ -1065,18 +1065,25 @@ function verifyPasswordFormat($password)
 {
    if (strlen($password) < 7)
       return False;
+//   print "Pass min len<br>\n";
    if (strlen($password) > 32)
       return False;
+//   print "Pass max len<br>\n";
    if(!preg_match("/[a-z]/",$password))
       return False;
+//   print "Pass lower leters<br>\n";
    if(!preg_match("/[A-Z]/",$password))
       return False;
+//   print "Pass upper letters<br>\n";
    if(!preg_match("/[0-9]/",$password))
       return False;
+//   print "Pass number<br>\n";
    if(!preg_match("/[`~!@#\$%^&*\(\)_+?\"';:,.<>\/\\\\[\]\{\}\|\-\=]/",$password)) // 123abc!@$XYZ
       return False;
+//   print "Pass special chars<br>\n";
    if(preg_match("/\s+/",$password))
       return False;
+//   print "Pass no spaces<br>\n";
 
    return true;
 }

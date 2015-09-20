@@ -84,6 +84,10 @@ if (isset($_POST['add']) or isset($_POST['update']))
    {
       $ErrorMsg = "Please enter the required field: Password";
    }
+   elseif (!verifyPasswordFormat($Password))
+   {
+      $ErrorMsg="Sorry, chosen password is too easily hacked.<br>Must be:<br>7 or more characters long<br>Mixed Case<br>Include at least 1 number<br>Include at least 1 special Character";
+   }
    else if ($NewChurchID == "" or $NewChurchID == '0')
    {
       $ErrorMsg = "Please enter the required field: Church";
@@ -106,13 +110,14 @@ if (isset($_POST['add']) or isset($_POST['update']))
       ereg_replace("'","''",$Name);
       ereg_replace("'","''",$Password);
 
+      $newPassword = password_hash($Password,PASSWORD_DEFAULT);
       if ($mode == 'update')
       {
          $results = mysql_query("update $UsersTable
                                  set    ChurchID  = '$NewChurchID',
                                         Email     = '$NewEmail',
                                         Name      = '$Name',
-                                        Password  = '$Password',
+                                        Password  = '$newPassword',
                                         Admin     = '$IsAdmin',
                                         Status    = '$Status'
                                  where  Userid    = '$NewUserid'
@@ -142,7 +147,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                                      '$NewChurchID',
                                      '$NewEmail',
                                      '$Name'       ,
-                                     '$Password'   ,
+                                     '$newPassword'   ,
                                      '$IsAdmin'    ,
                                      '$Status'
                                    )")
