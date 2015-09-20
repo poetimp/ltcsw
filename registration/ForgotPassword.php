@@ -27,7 +27,7 @@ if (isset($_POST['reset']))
       else
       {
 
-         $newPass = bin2hex(openssl_random_pseudo_bytes(4)); // actually creates 8 characters
+         $newPass = bin2hex(openssl_random_pseudo_bytes(8)); // actually creates 16 characters
 
          $todayis = date("l, F j, Y, g:i a [T]") ;
 

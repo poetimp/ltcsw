@@ -30,7 +30,10 @@
  * TODO Change admin page to indicate how many judges needed over all
  * TODO Add to admin pages the number of chamrers needed
 
-Database Changes
+Database Changes:
+
+!!!backup database first!!!
+
 drop table LTC_ALL_Conventions;
 drop table LTC_ALL_LOG;
 rename table LTC_ALL_Users to LTC_PHX_Users;
@@ -41,6 +44,7 @@ alter table LTC_PHX_Users add column loginCount int(6) not null;
 alter table LTC_PHX_Users add column failedLloginCount int(6) not null;
 alter table LTC_PHX_Users add column verificationCode INT(6) ZEROFILL NULL Default null;
 
+Run a web user list to update all password then remove that code from the Users.php
 */
 
 ?>
