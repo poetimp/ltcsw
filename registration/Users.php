@@ -107,16 +107,9 @@ else
          <?php
          while ($row = mysql_fetch_assoc($results))
          {
-            if (strlen($row['Password']) != 60)
-            {
-               $password = password_hash($row['Password'],PASSWORD_DEFAULT);
-               mysql_query("update $UsersTable set Password = '$password' where Userid='".$row['Userid']."'");
-            }
-            else
-            {
-               $password = $row['Password'];
-            }
-               $ChurchName = $row['ChurchName'];
+            $password   = $row['Password'];
+            $ChurchName = $row['ChurchName'];
+
             if ($row['Status'] == 'O')
             {
                $row['Status'] = 'Open';

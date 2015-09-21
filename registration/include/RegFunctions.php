@@ -1,6 +1,5 @@
 <?php
 include 'include/config.php';
-
 include 'include/auth.inc.php';
 include 'include/MySql-connect.inc.php';
 

@@ -1,6 +1,6 @@
 <?php
 //===================================================================
-// Shuld be settable online but not there yet so have to set here
+// Should be settable online but not there yet so have to set here
 //===================================================================
 $systemDown = 0;
 

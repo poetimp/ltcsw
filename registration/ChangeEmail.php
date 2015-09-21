@@ -1,4 +1,3 @@
-
 <?php
 include 'include/RegFunctions.php';
 
@@ -40,9 +39,9 @@ if (isset($_POST['ChangeEmail']))
       $email  .= "   </body>\n";
       $email  .= "</html>\n";
 
-      $from      = 'MIME-Version: 1.0' . "\r\n";
-      $from     .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-      $from     .= "From: registration@ltcsw.org\r\n";
+      $from    = 'MIME-Version: 1.0' . "\r\n";
+      $from   .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+      $from   .= "From: registration@ltcsw.org\r\n";
 
       if (mysql_query("update $UsersTable set verificationCode=$code where Userid='$Userid'"))
       {

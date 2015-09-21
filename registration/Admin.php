@@ -1,12 +1,14 @@
 <?php
 include 'include/RegFunctions.php';
 
-$result     = mysql_query("select ChurchName
-                           from   $ChurchesTable
-                           where  ChurchID = $ChurchID")
-              or die ("Unable to obtain Church Name: " . mysql_error());
+$result     = mysql_query("select email
+                           from   $UsersTable
+                           where  Userid = '$Userid'")
+              or die ("Unable to obtain email adress Name: " . mysql_error());
 $row        = mysql_fetch_assoc($result);
-$ChurchName = $row['ChurchName'];
+$Email      = $row['email'];
+
+$ChurchName = ChurchName($ChurchID);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
