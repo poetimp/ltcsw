@@ -49,7 +49,6 @@ $ChurchName = ChurchName($ChurchID);
                         <li><a href="AdminSchedule.php">Manage Event Schedules</a></li>
                         <li><a href="LockRegistration.php">Open or Close Registration</a></li>
                         <li><a href="AdminMoney.php">Post funds to an account</a></li>
-                        <li><a href="Conventions.php">Add, delete or update conventions</a></li>
                         <li><a href="NewDatabase.php">Delete old registration data from database</a></li>
                      </ul>
                   </td>

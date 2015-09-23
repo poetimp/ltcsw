@@ -21,7 +21,7 @@ if ($Admin != 'Y')
    <h1 align="center">View Access Log</h1>
    <?php
       $results = mysql_query("select   *
-                              from     LTC_ALL_Log
+                              from     $LogTable
                               where    Date > date_sub(current_date(),interval 6 month)
                               order by Date Desc")
                  or die ("Unable to read the log:" . mysql_error());

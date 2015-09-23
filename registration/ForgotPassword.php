@@ -93,6 +93,11 @@ if (isset($_POST['reset']))
                <tr>
                   <td>
                      <p style="text-align: Left">
+                        This will only work if you have already updated your account information
+                        to include your email address. If it does not recognize your email address
+                        more than likely you have not done that yet and will need assistance with getting
+                        your password changed.
+
                         An Email will be sent to the email address you supplied below.
                         Go check your email and look for a subject line of "LTC Password Reset",
                         it will have further instructions.
