@@ -19,7 +19,7 @@ else if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'view')
 }
 else #if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'add')
 {
-   $mode = 'add';
+   $mode        = 'add';
    $Name        = "";
    $Password    = "";
    $IsAdmin     = "";
@@ -28,6 +28,8 @@ else #if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'add')
    $NewChurchID = "";
    $NewEmail    = "";
 }
+
+//if (isset($_POST[$controlID]) and $_POST[$controlID] == 'ON')
 
 $ErrorMsg = "";
 
@@ -44,7 +46,6 @@ if ($mode == 'update' || $mode == 'view')
    $NewChurchID  = isset($row['ChurchID'])          ? $row['ChurchID']          : "";
    $NewEmail     = isset($row['email'])             ? $row['email']             : "";
    $Name         = isset($row['Name'])              ? $row['Name']              : "";
-   $Password     = isset($row['Password'])          ? $row['Password']          : "";
    $IsAdmin      = isset($row['Admin'])             ? $row['Admin']             : "";
    $Status       = isset($row['Status'])            ? $row['Status']            : "";
    $loginCount   = isset($row['loginCount'])        ? $row['loginCount']        : "";
@@ -73,37 +74,32 @@ if (isset($_POST['add']) or isset($_POST['update']))
    $Status       = isset($_POST['Status'])    ? $_POST['Status']    : "";
 
    if ($NewUserid == "")
-   {
       $ErrorMsg = "Please enter the required field: Userid";
-   }
+
    else if ($Name == "")
-   {
       $ErrorMsg = "Please enter the required field: Name";
-   }
-   else if ($Password == "")
-   {
-      $ErrorMsg = "Please enter the required field: Password";
-   }
-   elseif (!verifyPasswordFormat($Password))
-   {
+
+   elseif ($Password == "" and ((isset($_POST['updPwd']) and $_POST['updPwd'] == 'on') or $mode=='add'))
+         $ErrorMsg = "Please enter the required field: Password";
+
+   elseif ($Password != "" and !verifyPasswordFormat($Password))
       $ErrorMsg="Sorry, chosen password is too easily hacked.<br>Must be:<br>7 or more characters long<br>Mixed Case<br>Include at least 1 number<br>Include at least 1 special Character";
-   }
-   else if ($NewChurchID == "" or $NewChurchID == '0')
-   {
+
+   elseif ($NewChurchID == "" or $NewChurchID == '0')
       $ErrorMsg = "Please enter the required field: Church";
-   }
-   else if ($IsAdmin == "")
-   {
+
+   elseif ($IsAdmin == "")
       $ErrorMsg = "Please Indicate if person is an  Administrator or not";
-   }
-   else if ($NewEmail == "")
-   {
-      $ErrorMsg = "Please Enter Email address";
-   }
-   else if ($Status == "")
-   {
+
+   elseif ($NewEmail == "" and ((isset($_POST['updEmail']) and $_POST['updEmail'] == 'on') or $mode=='add'))
+         $ErrorMsg = "Please Enter Email address";
+
+   elseif ($NewEmail != "" and !filter_var($NewEmail, FILTER_VALIDATE_EMAIL))
+      $ErrorMsg="Sorry, That does not appear to be a valid email address";
+
+   elseif ($Status == "")
       $ErrorMsg = "Please Indicate the status of the account";
-   }
+
 
    if ($ErrorMsg == "")
    {
@@ -113,11 +109,21 @@ if (isset($_POST['add']) or isset($_POST['update']))
       $newPassword = password_hash($Password,PASSWORD_DEFAULT);
       if ($mode == 'update')
       {
+         if (isset($_POST['updPwd']) and $_POST['updPwd'] == 'on')
+            $pwdSet = "Password  = '$newPassword',\n";
+         else
+            $pwdSet = '';
+
+         if (isset($_POST['updEmail']) and $_POST['updEmail'] == 'on')
+            $emailSet = "Email     = '$NewEmail',\n";
+         else
+            $emailSet = '';
+
          $results = mysql_query("update $UsersTable
                                  set    ChurchID  = '$NewChurchID',
-                                        Email     = '$NewEmail',
+                                        $pwdSet
+                                        $emailSet
                                         Name      = '$Name',
-                                        Password  = '$newPassword',
                                         Admin     = '$IsAdmin',
                                         Status    = '$Status'
                                  where  Userid    = '$NewUserid'
@@ -169,7 +175,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
               if ($mode == 'update')
               {
                 ?>
-                  <h1 align=center>
+                  <h1 align="center">
                      User <br>"<?php  print $Name; ?>"<br>Updated!
                   </h1>
                 <?php
@@ -177,7 +183,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
               else
               {
                 ?>
-                  <h1 align=center>
+                  <h1 align="center">
                      User<br>"<?php  print $Name; ?>"<br>Added!
                   </h1>
                 <?php
@@ -250,7 +256,16 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
       }
    ?>
 
-      <form method="post" action=AdminUser.php>
+      <?php
+         $requestString='';
+         if (isset($_REQUEST['action']))
+            $requestString="?action=".$_REQUEST['action'];
+         if (isset($_REQUEST['Userid']) and isset($_REQUEST['Userid']))
+            $requestString.="&Userid=".$_REQUEST['Userid'];
+         elseif (isset($_REQUEST['Userid']))
+            $requestString.="?Userid=".$_REQUEST['Userid'];
+         ?>
+      <form method="post" action=AdminUser.php<?php print $requestString?>>
          <table border="1" width="100%" id="table1">
             <tr>
                <td colspan="6" bgcolor="#000000">
@@ -295,7 +310,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             <tr>
                <td width="12%">Password</td>
                <td width="85%" colspan="5">
-               <input type="text" name="Password" size="36"></td>
+               <input type="text" name="Password" size="36">
+               <input type="checkbox" name="updPwd" <?php if (isset($_POST['updPwd']) and $_POST['updPwd'] == 'on') print 'checked'?>> Update Password</td>
             </tr>
             <?php
             }
@@ -311,7 +327,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                else
                {
                   ?>
-                  <input type="text" name="Email" size="36" <?php  print ($NewEmail != "") ? "value=\"" . $NewEmail . "\"" : ""; ?>></td>
+                  <input type="text" name="Email" size="36" <?php  print ($NewEmail != "") ? "value=\"" . $NewEmail . "\"" : ""; ?>>
+                  <input type="checkbox" name="updEmail" <?php if (isset($_POST['updEmail']) and $_POST['updEmail'] == 'on') print 'checked'?>> Update Email</td>
                   <?php
                }
                ?>
