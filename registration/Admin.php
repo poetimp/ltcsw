@@ -143,7 +143,8 @@ $ChurchName = ChurchName($ChurchID);
                            if (!preg_match("/@/",$Email))
                            {
                            ?>
-                              <b><font color="red">Your email is not set. You should set it</font></b>
+                              <b><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;Your email address is not set.<br>
+                                                   &nbsp;&nbsp;&nbsp;&nbsp;Please take a moment and set it using the link above</font></b><br><br>
                            <?php
                            }
                            else
