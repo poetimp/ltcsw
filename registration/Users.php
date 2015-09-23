@@ -49,7 +49,8 @@ else
                                           u.Email,
                                           u.Admin,
                                           u.Status,
-                                          u.Password
+                                          u.Password,
+                                          u.lastLogin
                                  from     $UsersTable    u,
                                           $ChurchesTable c
                                  where    c.ChurchID=u.ChurchID
@@ -93,17 +94,22 @@ else
                      <font color="#FFFF00">Church Name</font>
                   </a>
                </td>
-               <td bgcolor="#000000">
+               <td bgcolor="#000000" align="center">
                   <a href=Users.php?sort=Status&order=<?php print $order; ?>>
                      <font color="#FFFF00">Status</font>
                   </a>
                </td>
-               <td bgcolor="#000000">
+               <td bgcolor="#000000" align="center">
                   <a href=Users.php?sort=Admin&order=<?php print $order; ?>>
                      <font color="#FFFF00">Administrator</font>
                   </a>
                </td>
-            </tr>
+               <td bgcolor="#000000" align="center">
+                  <a href=Users.php?sort=lastLogin&order=<?php print $order; ?>>
+                     <font color="#FFFF00">Last Login</font>
+                  </a>
+               </td>
+                           </tr>
          <?php
          while ($row = mysql_fetch_assoc($results))
          {
@@ -139,9 +145,10 @@ else
                <td><?php  print $row['Name']; ?></td>
                <td><?php  print $row['Email']; ?></td>
                <td><?php  print $ChurchName; ?></td>
-               <td align=center><?php  print $row['Status']; ?></td>
-               <td align=center><?php  print $row['Admin']; ?></td>
-            </tr>
+               <td align="center"><?php  print $row['Status'];    ?></td>
+               <td align="center"><?php  print $row['Admin'];     ?></td>
+               <td align="center"><?php  print $row['lastLogin'] == '0000-00-00 00:00:00' ? 'Never' : $row['lastLogin']; ?></td>
+               </tr>
          <?php
          }
          ?>
