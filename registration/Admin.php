@@ -138,15 +138,19 @@ $ChurchName = ChurchName($ChurchID);
                            <ul>
                               <li><a href="ChangePassword.php">Change your Password</a></li>
                               <li><a href="ChangeEmail.php">Change your Email Address</a></li>
-                              <?php
-                              if (!preg_match("/@/",$Email))
-                              {
-                              ?>
-                              <li><b><font color=red>Your email is not set. You should set it</font></b></li>
-                              <?php
-                              }
-                              ?>
                            </ul>
+                           <?php
+                           if (!preg_match("/@/",$Email))
+                           {
+                           ?>
+                              <b><font color="red">Your email is not set. You should set it</font></b>
+                           <?php
+                           }
+                           else
+                           {
+                              print "<b>&nbsp;&nbsp;&nbsp;&nbsp;Your email address is : $Email</b><br><br>";
+                           }
+                           ?>
                         </td>
                      </tr>
                   </table>
