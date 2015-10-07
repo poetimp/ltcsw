@@ -34,7 +34,7 @@ $ChurchName = ChurchName($ChurchID);
             ?>
             <table border="1" width="100%">
                <tr>
-                  <TD colspan="2" align="center" bgcolor="#C0C0C0"><font size="+2"><b>Administration Functions</b></font></TD>
+                  <td colspan="2" align="center" bgcolor="#C0C0C0"><font size="+2"><b>Administration Functions</b></font></td>
                </tr>
                <tr>
                   <td width=50% valign=top>
@@ -83,7 +83,7 @@ $ChurchName = ChurchName($ChurchID);
 
             <table border="1" width="100%">
                <tr>
-                  <TD colspan="2" align="center" bgcolor="#C0C0C0"><font size="+2"><b>Tally Room Functions</b></font></TD>
+                  <td colspan="2" align="center" bgcolor="#C0C0C0"><font size="+2"><b>Tally Room Functions</b></font></td>
                </tr>
                <tr>
                   <td width=50% valign=top>
@@ -109,7 +109,7 @@ $ChurchName = ChurchName($ChurchID);
          ?>
          <table border="1" width="100%">
             <tr>
-                <TD colspan="2" align="center" bgcolor="#C0C0C0"><font size="+2"><b>Church Coordination Functions</b></font></TD>
+                <td colspan="2" align="center" bgcolor="#C0C0C0"><font size="+2"><b>Church Coordination Functions</b></font></td>
             </tr>
             <tr>
               <td width="50%" valign=top>
