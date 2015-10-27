@@ -164,11 +164,14 @@ if (isset($_POST['submit']))
             <div align="center" style="position: relative; font: 13px verdana, arial, helvetica, sans-serif; width: 500px; background-color: #ffffcc; padding: 15px 15px 15px 15px; border: 1px solid #c60130; text-align: left; color: black;">
                <h2 align="center">Can't Login?</h2>
                <p>
-                  There are a number of reasons that might cause you difficulty logging in. Most
-                  often it is either forgotten information or your account has not been unlocked
-                  from last year. In all cases, if you are having problems logging in, please
-                  click the link above and fill out as much information as you know and someone
-                  will correct the problem and get back to you.
+                  <b>IMPORTANT:</b> In order to improve security, a number of changes have been implemented in regards
+                  to passwords and password recovery. You may now manage your own password, changing it to something
+                  that is memorable to you. You can also reset your password should you ever forget it. To do that, though
+                  you will have to add your email to your profile. You are strongly encouraged to do that.
+               </p>
+               <p>
+                  Password complexity has also been improved. If you have a simple password, please take a moment and change it.
+                  Consider the information here that you are protecting with your password and choose a password wisely.
                </p>
             </div>
          </div>

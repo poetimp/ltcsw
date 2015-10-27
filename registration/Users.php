@@ -75,41 +75,41 @@ else
                   <font color="#FFFF00">Delete</font>
                </td>
                <td bgcolor="#000000">
-                  <a href=Users.php?sort=Userid&order=<?php print $order; ?>>
+                  <a href="Users.php?sort=Userid&order=<?php print $order; ?>">
                      <font color="#FFFF00">Userid</font>
                   </a>
                </td>
                <td bgcolor="#000000">
-                  <a href=Users.php?sort=Name&order=<?php print $order; ?>>
+                  <a href="Users.php?sort=Name&order=<?php print $order; ?>">
                      <font color="#FFFF00">User Name</font>
                   </a>
                </td>
                <td bgcolor="#000000">
-                  <a href=Users.php?sort=Email&order=<?php print $order; ?>>
+                  <a href="Users.php?sort=Email&order=<?php print $order; ?>">
                      <font color="#FFFF00">Email</font>
                   </a>
                </td>
                <td bgcolor="#000000">
-                  <a href=Users.php?sort=ChurchName&order=<?php print $order; ?>>
+                  <a href="Users.php?sort=ChurchName&order=<?php print $order; ?>">
                      <font color="#FFFF00">Church Name</font>
                   </a>
                </td>
                <td bgcolor="#000000" align="center">
-                  <a href=Users.php?sort=Status&order=<?php print $order; ?>>
+                  <a href="Users.php?sort=Status&order=<?php print $order; ?>">
                      <font color="#FFFF00">Status</font>
                   </a>
                </td>
                <td bgcolor="#000000" align="center">
-                  <a href=Users.php?sort=Admin&order=<?php print $order; ?>>
+                  <a href="Users.php?sort=Admin&order=<?php print $order; ?>">
                      <font color="#FFFF00">Administrator</font>
                   </a>
                </td>
                <td bgcolor="#000000" align="center">
-                  <a href=Users.php?sort=lastLogin&order=<?php print $order; ?>>
+                  <a href="Users.php?sort=lastLogin&order=<?php print $order; ?>">
                      <font color="#FFFF00">Last Login</font>
                   </a>
                </td>
-                           </tr>
+            </tr>
          <?php
          while ($row = mysql_fetch_assoc($results))
          {
@@ -140,7 +140,7 @@ else
             <tr>
                <td width="70" align="center">[<a href="AdminUser.php?action=view<?php  print "&Userid=".$row['Userid']; ?>">View</a>]</td>
                <td width="70" align="center">[<a href="AdminUser.php?action=update<?php  print "&Userid=".$row['Userid']; ?>">Update</a>]</td>
-               <td width="70" align="center"> [<a href="DelUser.php?action=del<?php  print "&Userid=".$row['Userid']; ?>">Delete</a>]</td>
+               <td width="70" align="center">[<a href="DelUser.php?action=del<?php  print "&Userid=".$row['Userid']; ?>">Delete</a>]</td>
                <td><?php  print $row['Userid']; ?></td>
                <td><?php  print $row['Name']; ?></td>
                <td><?php  print $row['Email']; ?></td>

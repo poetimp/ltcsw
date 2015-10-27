@@ -1086,4 +1086,20 @@ function verifyPasswordFormat($password)
 
    return true;
 }
+//-----------------------------------------------------------------------------
+// Generate a valid password
+//-----------------------------------------------------------------------------
+function generatePassword($size)
+{
+   if (($size % 2) == 0)
+      $size = int($size / 2);
+   else
+      $size = int(($size +1)/2);
+
+   $password = bin2hex(openssl_random_pseudo_bytes($size));
+   while(!verifyPasswordFormat($password))
+      $password = bin2hex(openssl_random_pseudo_bytes($size));
+
+   return $password;
+}
 ?>
