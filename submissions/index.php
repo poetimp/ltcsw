@@ -1,9 +1,19 @@
 <?php
 session_start();
-require '../ssl-registration/include/RegFunctions.php';
+//require '../ssl-registration/include/RegFunctions.php';
 require '../ssl-registration/include/config.php';
 require '../ssl-registration/include/MySql-connect.inc.php';
-require 'DropboxUploader.php';
+require 'dropbox-sdk/Dropbox/autoload.php';
+
+use \Dropbox as dbx;
+
+//your access token from the Dropbox App Panel: https://www.dropbox.com/developers/apps
+$accessToken = '***REMOVED***';
+
+// load the dropbox credentials
+$appInfo = dbx\AppInfo::loadFromJsonFile(__DIR__."/config.json");
+
+
 
 //===================================================================
 // Pickup and validate variables
@@ -14,13 +24,12 @@ $SubmitterCong   = isset($_POST['SubmitterCong'])  ? $_POST['SubmitterCong']  : 
 $SubmitterID     = isset($_POST['SubmitterID'])    ? $_POST['SubmitterID']    : '';
 $EventID         = isset($_POST['EventID'])        ? $_POST['EventID']        : '';
 
-$thisMonth = date('M');
+$thisMonth = date('m');
 $thisYear  = date('Y');
 
 if ($thisMonth > 5) $thisYear++;
-$dropboxDirectory = 'LTC-'.$thisYear;
-$dropboxAccount   = 'dropbox@ltcsw.org';
-$dropboxPass      = 'Pr3C0nvF!l3s';
+$dropboxDirectory = '/LTC-'.$thisYear;
+
 //===========================================================================================
 // Create the array with all of the Churches in it
 //===========================================================================================
@@ -434,16 +443,21 @@ if ($_POST)
                $dropboxDirectory = trim($dropboxDirectory);
    //          print "[$dropboxDirectory]<br>[$target_name]<br>\n";
 
-               $uploader = new DropboxUploader ( $dropboxAccount, $dropboxPass );
-               $uploader->upload ( $target_name, $dropboxDirectory );
 
+               //Login to dropbox
+               $dbxClient = new dbx\Client($accessToken, "LTCSW-Submit");
+
+               // Upload the file to dropbox
+               $f = fopen($target_name, "rb");
+               $result = $dbxClient->uploadFile("$dropboxDirectory/".$_FILES['File']['name'], dbx\WriteMode::force(), $f);
+               fclose($f);
                //============================
                // Send note to IS to process
                //============================
 
                $toWho   =  'mamasaidsew@cox.net';
                $toWho  .= ',paul.lemmons@gmail.com';
-               $toWho   = 'paul.lemmons@gmail.com';
+             //$toWho   = 'paul.lemmons@gmail.com';
 
                $from    = 'MIME-Version: 1.0' . "\r\n";
                $from   .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
