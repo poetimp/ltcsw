@@ -1,6 +1,5 @@
 <?php
 session_start();
-//require '../ssl-registration/include/RegFunctions.php';
 require '../ssl-registration/include/config.php';
 require '../ssl-registration/include/MySql-connect.inc.php';
 require 'dropbox-sdk/Dropbox/autoload.php';
@@ -12,8 +11,6 @@ $accessToken = '***REMOVED***';
 
 // load the dropbox credentials
 $appInfo = dbx\AppInfo::loadFromJsonFile(__DIR__."/config.json");
-
-
 
 //===================================================================
 // Pickup and validate variables
@@ -414,7 +411,7 @@ if ($_POST)
          }
          else
          {
-            if (preg_match('/html$|php$|htm$|shtm$|shtml$|cgi$|pl$|php5$/i',$_FILES['File']['name']))
+            if (preg_match('/html$|php$|htm$|shtm$|shtml$|cgi$|pl$|php5$|css$/i',$_FILES['File']['name']))
             {
                $errorMsg = "I am Sorry, you cannot upload that type file.";
             }
@@ -443,7 +440,6 @@ if ($_POST)
                $dropboxDirectory = trim($dropboxDirectory);
    //          print "[$dropboxDirectory]<br>[$target_name]<br>\n";
 
-
                //Login to dropbox
                $dbxClient = new dbx\Client($accessToken, "LTCSW-Submit");
 
@@ -451,6 +447,7 @@ if ($_POST)
                $f = fopen($target_name, "rb");
                $result = $dbxClient->uploadFile("$dropboxDirectory/".$_FILES['File']['name'], dbx\WriteMode::force(), $f);
                fclose($f);
+
                //============================
                // Send note to IS to process
                //============================
