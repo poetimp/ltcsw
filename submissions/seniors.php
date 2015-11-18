@@ -1,13 +1,16 @@
 <?php
-die "Submissions are closed"
-
-Before you reinstate this filter to acceptable files. Pecifically excluse html and php style files
-
-
 session_start();
-require '../registration/include/RegFunctions.php';
-require '../registration/include/MySql-connect.inc.php';
-require 'DropboxUploader.php';
+require '../ssl-registration/include/config.php';
+require '../ssl-registration/include/MySql-connect.inc.php';
+require 'dropbox-sdk/Dropbox/autoload.php';
+
+use \Dropbox as dbx;
+
+//your access token from the Dropbox App Panel: https://www.dropbox.com/developers/apps
+$accessToken = '***REMOVED***';
+
+// load the dropbox credentials
+$appInfo = dbx\AppInfo::loadFromJsonFile(__DIR__."/config.json");
 
 //===================================================================
 // Pickup and validate variables
@@ -17,9 +20,11 @@ $SubmitterEmail  = isset($_POST['SubmitterEmail']) ? $_POST['SubmitterEmail'] : 
 $SubmitterCong   = isset($_POST['SubmitterCong'])  ? $_POST['SubmitterCong']  : '';
 $SubmitterID     = isset($_POST['SubmitterID'])    ? $_POST['SubmitterID']    : '';
 
-$dropboxDirectory = 'LTC-'.date('Y');
-$dropboxAccount   = 'dropbox@ltcsw.org';
-$dropboxPass      = 'Pr3C0nvF!l3s';
+$thisMonth = date('m');
+$thisYear  = date('Y');
+
+if ($thisMonth > 5) $thisYear++;
+$dropboxDirectory = '/LTC-'.$thisYear;
 //===========================================================================================
 // Create the array with all of the Churches in it
 //===========================================================================================
@@ -359,75 +364,87 @@ if ($_POST)
          }
          else
          {
-            //============================
-            // Note upload in log
-            //============================
-            fwrite($fh, "Successfully uploaded " . $_FILES['File']['name']  .
-            "(" . $_FILES['File']['size'] . ")"                  .
-            "\n");
-
-            //============================
-            // Let user know of success
-            //============================
-            $errorMsg = "The file ".
-                  basename( $_FILES['File']['name']).
-                  "has been uploaded";
-
-            //============================
-            // Copy file to dropbox
-            //============================
-            $dropboxDirectory.= '/SeniorsFiles';
-            $dropboxDirectory.= '/'.trim($church[$SubmitterCong]);
-            $dropboxDirectory.= '/'.trim($participant[$SubmitterID]);
-            $dropboxDirectory = trim($dropboxDirectory);
-//          print "[$dropboxDirectory]<br>[$target_name]<br>\n";
-
-            $uploader = new DropboxUploader ( $dropboxAccount, $dropboxPass );
-            $uploader->upload ( $target_name, $dropboxDirectory );
-
-            //============================
-            // Send note to IS to process
-            //============================
-
-            $toWho   =  'mamasaidsew@cox.net';
-            $toWho  .= ',paul.lemmons@gmail.com';
-//          $toWho   = 'paul.lemmons@gmail.com';
-
-            $from    = 'MIME-Version: 1.0' . "\r\n";
-            $from   .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $from   .= "From: LTCSW Seniors Information Upload <webmaster@ltcsw.org>\r\n";
-
-            $subject = "LTC File Uploaded";
-
-            $message = "<html><body>\n"
-                      ."Hello, This note is to let you know that $SubmitterName has "
-                      ."uploaded the file:<br /><br />\n"
-                      ."<a href=\"http://ltcsw.org/files/".basename($target_name)."\">"
-                      . $_FILES['File']['name']
-                      . "</a><br /><br />\n"
-                      ."You can click on the link above to download this file right now. "
-                      ."However, The file can also be found any time on the ltc "
-                      ."<a href=\"https://www.dropbox.com/login\">dropbox</a> account."
-                      ."Where it will be filed by church and participant for easier "
-                      ."reconciliation.<br><br>"
-                      ."If you need to contact the submitter they can be reached at: "
-                      ."$SubmitterEmail <br>"
-                      ."<br>"
-                      ."Congregation: ".$church[$SubmitterCong]."<br>"
-                      ."Participant: ".$participant[$SubmitterID]."<br>"
-                      ."Event: SeniorsFiles<br>"
-                      ."</body></html>\n";
-
-            $ret= mail($toWho, $subject, $message, $from);
-
-            if ($ret=='' or $ret)
+            if (preg_match('/html$|php$|htm$|shtm$|shtml$|cgi$|pl$|php5$|css$/i',$_FILES['File']['name']))
             {
-               $errorMsg = "File successfully uploaded<br>";
+               $errorMsg = "I am Sorry, you cannot upload that type file.";
             }
             else
             {
-               $errorMsg = "Notification Message to coordinator was not sent<br>";
-               print "<pre>";print_r($ret);print "</pre>";
+               //============================
+               // Note upload in log
+               //============================
+               fwrite($fh, "Successfully uploaded " . $_FILES['File']['name']  .
+               "(" . $_FILES['File']['size'] . ")"                  .
+               "\n");
+
+               //============================
+               // Let user know of success
+               //============================
+               $errorMsg = "The file ".
+                     basename( $_FILES['File']['name']).
+                     "has been uploaded";
+
+               //============================
+               // Copy file to dropbox
+               //============================
+               $dropboxDirectory.= '/SeniorsFiles';
+               $dropboxDirectory.= '/'.trim($church[$SubmitterCong]);
+               $dropboxDirectory.= '/'.trim($participant[$SubmitterID]);
+               $dropboxDirectory = trim($dropboxDirectory);
+   //          print "[$dropboxDirectory]<br>[$target_name]<br>\n";
+
+               //Login to dropbox
+               $dbxClient = new dbx\Client($accessToken, "LTCSW-Submit");
+
+               // Upload the file to dropbox
+               $f = fopen($target_name, "rb");
+               $result = $dbxClient->uploadFile("$dropboxDirectory/".$_FILES['File']['name'], dbx\WriteMode::force(), $f);
+               fclose($f);
+
+               //============================
+               // Send note to IS to process
+               //============================
+
+               $toWho   =  'mamasaidsew@cox.net';
+               $toWho  .= ',paul.lemmons@gmail.com';
+   //          $toWho   = 'paul.lemmons@gmail.com';
+
+               $from    = 'MIME-Version: 1.0' . "\r\n";
+               $from   .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+               $from   .= "From: LTCSW Seniors Information Upload <webmaster@ltcsw.org>\r\n";
+
+               $subject = "LTC File Uploaded";
+
+               $message = "<html><body>\n"
+                         ."Hello, This note is to let you know that $SubmitterName has "
+                         ."uploaded the file:<br /><br />\n"
+                         ."<a href=\"http://ltcsw.org/files/".basename($target_name)."\">"
+                         . $_FILES['File']['name']
+                         . "</a><br /><br />\n"
+                         ."You can click on the link above to download this file right now. "
+                         ."However, The file can also be found any time on the ltc "
+                         ."<a href=\"https://www.dropbox.com/login\">dropbox</a> account."
+                         ."Where it will be filed by church and participant for easier "
+                         ."reconciliation.<br><br>"
+                         ."If you need to contact the submitter they can be reached at: "
+                         ."$SubmitterEmail <br>"
+                         ."<br>"
+                         ."Congregation: ".$church[$SubmitterCong]."<br>"
+                         ."Participant: ".$participant[$SubmitterID]."<br>"
+                         ."Event: SeniorsFiles<br>"
+                         ."</body></html>\n";
+
+               $ret= mail($toWho, $subject, $message, $from);
+
+               if ($ret=='' or $ret)
+               {
+                  $errorMsg = "File successfully uploaded<br>";
+               }
+               else
+               {
+                  $errorMsg = "Notification Message to coordinator was not sent<br>";
+                  print "<pre>";print_r($ret);print "</pre>";
+               }
             }
          }
       }
