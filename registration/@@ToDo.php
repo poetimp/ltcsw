@@ -1,19 +1,15 @@
 <?php
 
 /*
+ * TODO Convert DB access to PDO
  * TODO make sure every page has correct permissions applied to them
  * TODO Link Users with EventDirector Privs to EventDirectors table
  * TODO Update reports to show Event Directors owned Events
  * TODO Don't add "Event Director" to AddUser, Set the priv by selection in Event Directors
  * TODO When you delete or update an event director be sure to update user record
  * TODO When you delete a user that is an EventDirector update Event Director record
- * TODO Delete all old users
+ * TODO Delete all old users (Step one is complete, We now know when people last login)
  * TODO Add self registration page
- * TODO Add forgot password page
- * TODO Encrypt Password
- * TODO Allow people to change their password
- * TODO Allow people to change their email address
- * TODO Update last login in user record
  * TODO Lock user after 5 invalid attempts
  * TODO Update the Users and AdminUsers page to accept the new privs
  * TODO Add JavaScript to inactivate conflicting fields in add/update user
@@ -22,13 +18,19 @@
  * TODO Add ability to rename room
  * TODO Add ability to print a single event director's roster
  * TODO Add CSS Styles to everything
- * TODO Block ability to order extra stuff after reg closes
  * TODO Move reg status out of user record to convention record
- * TODO Limit room reg to min of event category
  * TODO Make confirmation pages timed
  * TODO Warn if leaving a page that has been updated without applying
  * TODO Change admin page to indicate how many judges needed over all
  * TODO Add to admin pages the number of chamrers needed
+
+ * DONE Block ability to order extra stuff after reg closes
+ * DONE Add forgot password page
+ * DONE Encrypt Password
+ * DONE Allow people to change their password
+ * DONE Allow people to change their email address
+ * DONE Update last login in user record
+ * DONE Limit room reg to min of event category
 
 Database Changes:
 
