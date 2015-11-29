@@ -4,15 +4,15 @@ include 'include/RegFunctions.php';
 $MaxRows = 20;
 $ErrorMsg = "";
 
-$result = mysql_query("select Name,
+$result = $db->query("select Name,
                               Phone,
                               Email
                        from   $NonParticipantsTable
                        where  ChurchID=$ChurchID")
-          or die ("Unable to read NonParticipants table: ".mysql_error());
+          or die ("Unable to read NonParticipants table: ".sqlError($db->errorInfo()));
 
 $i = 0;
-while ($row = mysql_fetch_assoc($result))
+while ($row = $result->fetch(PDO::FETCH_ASSOC))
 {
    $name[$i]  = $row['Name'];
    $phone[$i] = $row['Phone'];
@@ -51,8 +51,8 @@ if (isset($_POST['Update']))
 
    if ($ErrorMsg == "")
    {
-      mysql_query("delete from $NonParticipantsTable where ChurchID=$ChurchID")
-            or die ("Unable to clear NonParticipants table: ".mysql_error());
+      $db->query("delete from $NonParticipantsTable where ChurchID=$ChurchID")
+            or die ("Unable to clear NonParticipants table: ".sqlError($db->errorInfo()));
       for ($i=0; $i<$MaxRows and $ErrorMsg == ""; $i++)
       {
          if ($name[$i] != "")
@@ -61,7 +61,7 @@ if (isset($_POST['Update']))
             $Phone = $phone[$i];
             $Email = $email[$i];
 
-            mysql_query("insert into $NonParticipantsTable
+            $db->query("insert into $NonParticipantsTable
                                 (ChurchID,
                                  Name,
                                  Phone,
@@ -71,7 +71,7 @@ if (isset($_POST['Update']))
                                  '$Phone',
                                  '$Email'
                                  )
-                         ") or die ("Unable to insert into NonParticipants table: ".mysql_error());
+                         ") or die ("Unable to insert into NonParticipants table: ".sqlError($db->errorInfo()));
          }
       }
    }

@@ -7,7 +7,7 @@ if ($Admin != 'Y')
    die();
 }
 
-   $awards = mysql_query("SELECT  c.ChurchName,
+   $awards = $db->query("SELECT  c.ChurchName,
                                   e.EventName,
                                   IFNULL(r.Award,'Not Assigned') Award,
                                   count(*) AwardCount
@@ -20,12 +20,12 @@ if ($Admin != 'Y')
                          group by ChurchName,EventName,Award
                          order by ChurchName,EventName,field(Award,'Gold','Silver','Bronze','No Award','No Show')
                          ")
-   or die ("Unable to get Awards list:" . mysql_error());
+   or die ("Unable to get Awards list:" . sqlError($db->errorInfo()));
    
    $CurrentChurch = '';
    $CurrentEvent  = '';
    $pageBreak='';
-   while ($row = mysql_fetch_assoc($awards))
+   while ($row = $awards->fetch(PDO::FETCH_ASSOC))
    {
       $ChurchName = $row['ChurchName'];
       $EventName  = $row['EventName'];

@@ -1,23 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 include 'include/RegFunctions.php';
 
 if (isset($_POST['Confirm']))
 {
-   mysql_query("delete from $EventsTable        where EventID=".$_REQUEST['EventID']) or die ("Unable to delete event record: "        . mysql_error());
-   mysql_query("delete from $RegistrationTable  where EventID=".$_REQUEST['EventID']) or die ("Unable to delete registration record: " . mysql_error());
-   mysql_query("delete from $EventScheduleTable where EventID=".$_REQUEST['EventID']) or die ("Unable to delete schedule record: "     . mysql_error());
+   $db->query("delete from $EventsTable        where EventID=".$_REQUEST['EventID']) or die ("Unable to delete event record: "        . sqlError($db->errorInfo()));
+   $db->query("delete from $RegistrationTable  where EventID=".$_REQUEST['EventID']) or die ("Unable to delete registration record: " . sqlError($db->errorInfo()));
+   $db->query("delete from $EventScheduleTable where EventID=".$_REQUEST['EventID']) or die ("Unable to delete schedule record: "     . sqlError($db->errorInfo()));
 
-   $TeamList = mysql_query("select TeamID from $TeamsTable where EventID=".$_REQUEST['EventID']) or die ("Unable to delete Team records: "        . mysql_error());
-   while ($row = mysql_fetch_assoc($TeamList))
+   $TeamList = $db->query("select TeamID from $TeamsTable where EventID=".$_REQUEST['EventID']) or die ("Unable to delete Team records: "        . sqlError($db->errorInfo()));
+   while ($row = $TeamList->fetch(PDO::FETCH_ASSOC))
    {
-      mysql_query("delete from $TeamMembersTable where TeamID=".$row['TeamID']) or die ("Unable to delete Team Member record: "     . mysql_error());
+      $db->query("delete from $TeamMembersTable where TeamID=".$row['TeamID']) or die ("Unable to delete Team Member record: "     . sqlError($db->errorInfo()));
    }
-   mysql_query("delete from $TeamsTable        where EventID=".$_REQUEST['EventID']) or die ("Unable to delete Team records: "        . mysql_error());
+   $db->query("delete from $TeamsTable        where EventID=".$_REQUEST['EventID']) or die ("Unable to delete Team records: "        . sqlError($db->errorInfo()));
 
    WriteToLog("Event ".$_REQUEST['EventID']." was deleted");
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
       <head>
          <title>
             Event Deleted
@@ -39,9 +39,6 @@ else if (isset($_POST['Cancel']))
 else
 {
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
-
        <head>
           <title>
              Delete Event

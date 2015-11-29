@@ -23,7 +23,7 @@ if ($Admin != 'Y')
     //=========================================================================
     // This is the driver select. It will select all of the participants
     //=========================================================================
-         $results = mysql_query("select   ParticipantID,
+         $results = $db->query("select   ParticipantID,
                                           FirstName,
                                           LastName,
                                           Grade,
@@ -31,7 +31,7 @@ if ($Admin != 'Y')
                                  from     $ParticipantsTable
                                  order by LastName,
                                           FirstName")
-                    or die ("Unable to get participant List:" . mysql_error());
+                    or die ("Unable to get participant List:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="0" width="100%">
@@ -39,7 +39,7 @@ if ($Admin != 'Y')
        //======================================================================
        // For each participant in LTC ...
        //======================================================================
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $ParticipantID = $row['ParticipantID'];
             $Name          = $row['LastName'].", ".$row['FirstName'];
@@ -79,7 +79,7 @@ if ($Admin != 'Y')
             //======================================================================
             if ($SoloCount > 0)
             {
-               $SoloEvents = mysql_query("SELECT   distinct r.EventID
+               $SoloEvents = $db->query("SELECT   distinct r.EventID
                                           FROM     $RegistrationTable r,
                                                    $EventsTable       e
                                           WHERE    r.ChurchID    = $ChurchID
@@ -87,21 +87,21 @@ if ($Admin != 'Y')
                                           AND      e.TeamEvent   = 'N'
                                           AND      ParticipantID = $ParticipantID
                                           ORDER BY EventID")
-               or die ("Unable to get individual events:" . mysql_error());
+               or die ("Unable to get individual events:" . sqlError($db->errorInfo()));
 
                //======================================================================
                // List the individual events participant is in
                //======================================================================
-               while ($row = mysql_fetch_assoc($SoloEvents))
+               while ($row = $SoloEvents->fetch(PDO::FETCH_ASSOC))
                {
                  $EventID = $row['EventID'];
-                 $evnt = mysql_query("select EventName,
+                 $evnt = $db->query("select EventName,
                                              ConvEvent
                                       from   $EventsTable
                                       where  EventID = $EventID
                                      ")
-                         or die ("Unable to get Solo Event Name:" . mysql_error());
-                 $row = mysql_fetch_assoc($evnt);
+                         or die ("Unable to get Solo Event Name:" . sqlError($db->errorInfo()));
+                 $row = $evnt->fetch(PDO::FETCH_ASSOC);
                  $EventName = $row['EventName'];
                  $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
                  ?>
@@ -119,7 +119,7 @@ if ($Admin != 'Y')
             //======================================================================
             if ($TeamCount > 0)
             {
-                $TeamEvents = mysql_query("select distinct
+                $TeamEvents = $db->query("select distinct
                                                   t.EventID,
                                                   t.TeamID
                                           from   $TeamsTable       t,
@@ -128,23 +128,23 @@ if ($Admin != 'Y')
                                           and    t.ChurchID      = $ChurchID
                                           and    m.ParticipantID = $ParticipantID
                                           ")
-                              or die ("Unable to get Team events:" . mysql_error());
+                              or die ("Unable to get Team events:" . sqlError($db->errorInfo()));
 
                 //======================================================================
                 // List the Team events participant is in
                 //======================================================================
-                while ($row = mysql_fetch_assoc($TeamEvents))
+                while ($row = $TeamEvents->fetch(PDO::FETCH_ASSOC))
                 {
                   $EventID = $row['EventID'];
                   $TeamID  = $row['TeamID'];
 
-                  $evnt = mysql_query("select EventName,
+                  $evnt = $db->query("select EventName,
                                               ConvEvent
                                         from  $EventsTable
                                         where EventID = $EventID
                                       ")
-                          or die ("Unable to get Team Event Name:" . mysql_error());
-                  $row = mysql_fetch_assoc($evnt);
+                          or die ("Unable to get Team Event Name:" . sqlError($db->errorInfo()));
+                  $row = $evnt->fetch(PDO::FETCH_ASSOC);
                   $EventName = $row['EventName'];
                   $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
                   ?>

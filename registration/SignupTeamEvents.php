@@ -48,7 +48,7 @@ include 'include/RegFunctions.php';
 				   </td>
             </tr>
          <?php
-         $ChurchTeams = mysql_query("SELECT E.EventName,
+         $ChurchTeams = $db->query("SELECT E.EventName,
                                             E.EventID,
                                             E.MaxSize,
                                             E.MinSize,
@@ -57,15 +57,15 @@ include 'include/RegFunctions.php';
                                             $TeamsTable  T
                                      WHERE  E.EventID  = T.EventID
                                      AND    T.ChurchID = $ChurchID")
-                        or die ("Unable to retrieve Team List:" . mysql_error());
+                        or die ("Unable to retrieve Team List:" . sqlError($db->errorInfo()));
 
-         while ($row = mysql_fetch_assoc($ChurchTeams))
+         while ($row = $ChurchTeams->fetch(PDO::FETCH_ASSOC))
          {
-            $cntResult = mysql_query("select count(*) as count
+            $cntResult = $db->query("select count(*) as count
                                       from   $TeamMembersTable
                                       where  TeamID = ".$row['TeamID'])
-                         or die ("Can not determine team count:" . mysql_error());
-            $cntRow = mysql_fetch_assoc($cntResult);
+                         or die ("Can not determine team count:" . sqlError($db->errorInfo()));
+            $cntRow = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numMembers = $cntRow['count'];
             ?>
             <tr>

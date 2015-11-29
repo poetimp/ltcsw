@@ -16,15 +16,15 @@ function ScheduleEventGet($EventID)
    $schedList = array();
    global $EventSchedulesTable;
 
-   $result     = mysql_query("select   RoomID,
+   $result     = $db->query("select   RoomID,
                                        StartTime
                               from     $EventSchedulesTable
                               where    EventID = $EventID
                               order by RoomID, StartTime
                               ")
-               or die ("Unable to get schedule information for event: ".mysql_error());
+               or die ("Unable to get schedule information for event: ".sqlError($db->errorInfo()));
 
-   while ($row = mysql_fetch_assoc($result))
+   while ($row = $result->fetch(PDO::FETCH_ASSOC))
    {
       $schedList[TimeToStr($row['StartTime'])] = getRoomName(isset($row['RoomID']) ? $row['RoomID'] : "No Room");
    }
@@ -44,17 +44,17 @@ function ScheduleEventGet($EventID)
    <body style="background-color: rgb(217, 217, 255);">
       <h1 align="center">Schedule Convention Events</h1>
       <?php
-      $results = mysql_query("select   EventName,
+      $results = $db->query("select   EventName,
                                        EventID
                               from     $EventsTable
                               where    ConvEvent = 'C'
                               and      EventAttended='Y'
                               order by EventName")
-                 or die ("Unable to obtain convention event list:" . mysql_error());
+                 or die ("Unable to obtain convention event list:" . sqlError($db->errorInfo()));
       ?>
       <table border="1" width="100%">
       <?php
-      while ($row = mysql_fetch_assoc($results))
+      while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {
          $EventID   = $row['EventID'];
          $EventName = $row['EventName'];

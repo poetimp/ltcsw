@@ -25,12 +25,12 @@ if (isset($_POST['AddNew']))
 <h1 align="center">Conference Room Maintenance </h1>
 <form method="post">
       <?php
-         $results = mysql_query("select   RoomID,
+         $results = $db->query("select   RoomID,
                                           RoomName,
                                           RoomSeats
                                  from     $RoomsTable
                                  order by RoomName")
-                    or die ("Unable to obtain room list:" . mysql_error());
+                    or die ("Unable to obtain room list:" . sqlError($db->errorInfo()));
 
          $count = 0;
          ?>
@@ -53,7 +53,7 @@ if (isset($_POST['AddNew']))
                </td>
             </tr>
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             ?>
             <tr>

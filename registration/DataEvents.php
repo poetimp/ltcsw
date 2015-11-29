@@ -55,7 +55,7 @@ $IgnoreEvents = "117,118,119"; // Hack to remove bible Bowl
 //                                 order by e.EventName,
 //                                          s.StartTime
 //                                 </pre>";
-         $results = mysql_query("select   e.EventID,
+         $results = $db->query("select   e.EventID,
                                           e.EventName,
                                           e.ConvEvent,
                                           e.TeamEvent,
@@ -84,10 +84,10 @@ $IgnoreEvents = "117,118,119"; // Hack to remove bible Bowl
                                  and      e.EventID not in($IgnoreEvents)
                                  order by e.EventName,
                                           s.StartTime")
-                   or die ("Unable to get scheduled event list:" . mysql_error());
+                   or die ("Unable to get scheduled event list:" . sqlError($db->errorInfo()));
 
 
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $EventID   = $row['EventID'];
             $EventName = $row['EventName'];
@@ -130,9 +130,9 @@ $IgnoreEvents = "117,118,119"; // Hack to remove bible Bowl
             }
 
 
-            $cntResult = mysql_query($sql)
-                         or die ("Unable to get Registration count for event:" . mysql_error());
-            $cntRow    = mysql_fetch_assoc($cntResult);
+            $cntResult = $db->query($sql)
+                         or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));
+            $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numEvents = $cntRow['count'];
 
             if ($numEvents > 0)
@@ -176,9 +176,9 @@ $IgnoreEvents = "117,118,119"; // Hack to remove bible Bowl
                           order by p.LastName";
                }
 
-               $members = mysql_query($sql) or die ("Not found:" . mysql_error());
+               $members = $db->query($sql) or die ("Not found:" . sqlError($db->errorInfo()));
 
-               while ($row = mysql_fetch_assoc($members))
+               while ($row = $members->fetch(PDO::FETCH_ASSOC))
                {
                   $FirstName      = $row['FirstName'];
                   $LastName       = $row['LastName'];

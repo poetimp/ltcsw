@@ -43,7 +43,7 @@ if (isset($_POST['ChangeEmail']))
       $from   .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
       $from   .= "From: registration@ltcsw.org\r\n";
 
-      if (mysql_query("update $UsersTable set verificationCode=$code where Userid='$Userid'"))
+      if ($db->query("update $UsersTable set verificationCode=$code where Userid='$Userid'"))
       {
          if (mail($address, $subject, $email, $from))
          {
@@ -57,7 +57,7 @@ if (isset($_POST['ChangeEmail']))
       }
       else
       {
-         $message="Unable to generate verification code: ".mysql_error();
+         $message="Unable to generate verification code: ".sqlError($db->errorInfo());
       }
    }
 }

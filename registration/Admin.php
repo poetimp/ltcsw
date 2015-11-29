@@ -1,11 +1,11 @@
 <?php
 include 'include/RegFunctions.php';
 
-$result     = mysql_query("select email
+$result     = $db->query("select email
                            from   $UsersTable
                            where  Userid = '$Userid'")
-              or die ("Unable to obtain email adress Name: " . mysql_error());
-$row        = mysql_fetch_assoc($result);
+              or die ("Unable to obtain email adress Name: " . sqlError($db->errorInfo()));
+$row        = $result->fetch(PDO::FETCH_ASSOC);
 $Email      = $row['email'];
 
 $ChurchName = ChurchName($ChurchID);
@@ -19,10 +19,10 @@ $ChurchName = ChurchName($ChurchID);
       </title>
    </head>
    <body style="background-color: rgb(217, 217, 255);">
-      <h1 align=center>
-         LTC Registration<br>for
+      <h1 align="center">
+         LTC Registration<br />for
       </h1>
-      <h2 align=center>
+      <h2 align="center">
          <?php
          print "$ChurchName";
          ?>
@@ -37,7 +37,7 @@ $ChurchName = ChurchName($ChurchID);
                   <td colspan="2" align="center" bgcolor="#C0C0C0"><font size="+2"><b>Administration Functions</b></font></td>
                </tr>
                <tr>
-                  <td width=50% valign=top>
+                  <td width="50%" valign="top">
                      <h2>Administrative Tasks:</h2>
                      <ul>
                         <li><a href="ChangeChurch.php">Administer a different Church</a></li>
@@ -52,7 +52,7 @@ $ChurchName = ChurchName($ChurchID);
                         <li><a href="NewDatabase.php">Delete old registration data from database</a></li>
                      </ul>
                   </td>
-                  <td width=50% valign=top>
+                  <td width="50%" valign="top">
                      <h2>Administrative Reports:</h2>
                      <ul>
                         <li><a target="_blank" href="RptWhoByEvent.php?Admin=1">Who is in what</a> (By Event, All Churches)</li>
@@ -66,7 +66,7 @@ $ChurchName = ChurchName($ChurchID);
                         <li><a target="_blank" href="RptWhoComments.php">Participants with Comments</a></li>
                         <li><a target="_blank" href="RptSeniors.php">All Seniors with events</a></li>
                         <li><a target="_blank" href="RptWhoBySched.php?Admin=1">Roster by scheduled event (All Churches, By Event)</a></li>
-                        <li><a target="_blank" href="RptWhoBySched.php?Admin=1&byTime">Roster by scheduled event (All Churches, By Time)</a></li>
+                        <li><a target="_blank" href="RptWhoBySched.php?Admin=1&amp;byTime">Roster by scheduled event (All Churches, By Time)</a></li>
                         <li><a target="_blank" href="RptWhoInWhatAll.php">Participant list with events (All Churches)</a></li>
                         <li><a target="_blank" href="RptParticipants.php?Admin=1">Participant Lists</a></li>
                         <li><a target="_blank" href="RptCountEventBySched.php">Event Participation</a></li>
@@ -79,21 +79,21 @@ $ChurchName = ChurchName($ChurchID);
                   </td>
                </tr>
             </table>
-            <br>
+            <br />
 
             <table border="1" width="100%">
                <tr>
                   <td colspan="2" align="center" bgcolor="#C0C0C0"><font size="+2"><b>Tally Room Functions</b></font></td>
                </tr>
                <tr>
-                  <td width=50% valign=top>
+                  <td width="50%" valign="top">
                      <h2>Tally Room Tasks:</h2>
                      <ul>
                         <li><a href="TallyEventList.php">Select an Event to Tally</a></li>
                         <li><a href="DataMenu.php">Data Download Facilities</a></li>
                      </ul>
                   </td>
-                  <td width=50% valign=top>
+                  <td width="50%" valign="top">
                      <h2>Tally Room Reports:</h2>
                      <ul>
                         <li><a target="_blank" href="TallyAllAwards.php">All Participant Awards</a></li>
@@ -102,7 +102,7 @@ $ChurchName = ChurchName($ChurchID);
                   </td>
                </tr>
             </table>
-            <br>
+            <br />
             <?php
          }
 
@@ -112,7 +112,7 @@ $ChurchName = ChurchName($ChurchID);
                 <td colspan="2" align="center" bgcolor="#C0C0C0"><font size="+2"><b>Church Coordination Functions</b></font></td>
             </tr>
             <tr>
-              <td width="50%" valign=top>
+              <td width="50%" valign="top">
                   <table width="100%">
                      <tr>
                         <td width="100%">
@@ -143,8 +143,8 @@ $ChurchName = ChurchName($ChurchID);
                            if (!preg_match("/@/",$Email))
                            {
                            ?>
-                              <b><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;Your email address is not set.<br>
-                                                   &nbsp;&nbsp;&nbsp;&nbsp;Please take a moment and set it using the link above</font></b><br><br>
+                              <b><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;Your email address is not set.<br />
+                                                   &nbsp;&nbsp;&nbsp;&nbsp;Please take a moment and set it using the link above</font></b><br /><br />
                            <?php
                            }
                            else
@@ -157,7 +157,7 @@ $ChurchName = ChurchName($ChurchID);
                   </table>
                </td>
 
-               <td width=50% valign=top>
+               <td width="50%" valign="top">
                   <h2>Reports:</h2>
                   <ul>
                      <li><a target="_blank" href="RptWhoInWhat.php">Who is in what</a> (By Participant)</li>
@@ -179,7 +179,7 @@ $ChurchName = ChurchName($ChurchID);
             {
             ?>
             <tr>
-               <td width=50% valign=top>
+               <td width="50%" valign="top">
                   <h2>Miscellaneous:</h2>
                   <ul>
                      <li><a href="ExtraOrders.php">Order Extra T-Shirts and Meal Tickets</a></li>
@@ -188,7 +188,7 @@ $ChurchName = ChurchName($ChurchID);
                      <li><a href="mailto:paul@lemmons.name">Feedback: Comments or Report a problem</a></li>
                   </ul>
                </td>
-               <td width=50% valign=top><h2>&nbsp;</h2></td>
+               <td width="50%" valign="top"><h2>&nbsp;</h2></td>
             </tr>
             <?php
             }

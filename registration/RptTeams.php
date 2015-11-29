@@ -21,48 +21,50 @@ else
    </head>
    <body bgcolor="White">
    <?php
-   $pageBreak='';
+
    function PrintTeams($ChurchID)
    {
       global $ChurchesTable,
              $EventsTable,
              $RegistrationTable,
              $ParticipantsTable,
-             $TeamMembersTable;
-      $results = mysql_query("select ChurchName
+             $TeamMembersTable,
+             $db;
+      $pageBreak='';
+      $results = $db->query("select ChurchName
                               from   $ChurchesTable
                               where  ChurchID = '$ChurchID'")
-                 or die ("Unable to get church name:" . mysql_error());
-      $row = mysql_fetch_assoc($results);
+                 or die ("Unable to get church name:" . sqlError($db->errorInfo()));
+      $row = $results->fetch(PDO::FETCH_ASSOC);
       $ChurchName = $row['ChurchName'];
       ?>
          <h1 align="center" <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>>Team Rosters</h1>
          <h1 align="center"><?php  print "$ChurchName";?></h1>
          <hr>
       <?php
-      $results = mysql_query("select   EventID,
+      $results = $db->query("select   EventID,
                                        EventName,
                                        ConvEvent
                               from     $EventsTable
                               where    TeamEvent = 'Y'
                               order by EventName")
-                 or die ("Not found:" . mysql_error());
+                 or die ("Not found:" . sqlError($db->errorInfo()));
       $first = 1;
       ?>
       <table border="0" width="100%" id="table1">
       <?php
-      while ($row = mysql_fetch_assoc($results))
+      while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {
          $EventID   = $row['EventID'];
          $EventName = $row['EventName'];
          $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
 
-         $cntResult = mysql_query("select count(*) as count
+         $cntResult = $db->query("select count(*) as count
                                    from   $RegistrationTable
                                    where  ChurchID = '$ChurchID'
                                    and    EventID = '$EventID'")
-                      or die ("Not found:" . mysql_error());
-         $cntRow = mysql_fetch_assoc($cntResult);
+                      or die ("Not found:" . sqlError($db->errorInfo()));
+         $cntRow = $cntResult->fetch(PDO::FETCH_ASSOC);
          $numEvents = $cntRow['count'];
 
          if ($numEvents > 0)
@@ -85,7 +87,7 @@ else
                <td bgcolor="Silver" colspan="2"><b><?php  print $ConvEvent; ?></b></td>
             </tr>
             <?php
-            $members = mysql_query("SELECT p.FirstName,
+            $members = $db->query("SELECT p.FirstName,
                                            p.LastName,
                                            p.Phone,
                                            p.Email,
@@ -100,10 +102,10 @@ else
                                     AND    r.EventID  = $EventID
                                     AND    r.ChurchID = $ChurchID
                                     order by t.TeamID,p.LastName")
-                       or die ("Not found:" . mysql_error());
+                       or die ("Not found:" . sqlError($db->errorInfo()));
 
             $prevTeamID='';
-            while ($row = mysql_fetch_assoc($members))
+            while ($row = $members->fetch(PDO::FETCH_ASSOC))
             {
                $Name   = $row['LastName'].", ".$row['FirstName'];
                $Email  = $row['Email'];
@@ -134,22 +136,22 @@ else
    }
    if ($AdminReport)
    {
-      $churches = mysql_query("select   ChurchID
+      $churches = $db->query("select   ChurchID
                                from     $ChurchesTable
                                order by ChurchName")
-                  or die ("Not found:" . mysql_error());
+                  or die ("Not found:" . sqlError($db->errorInfo()));
 
-      while ($row = mysql_fetch_assoc($churches))
+      while ($row = $churches->fetch(PDO::FETCH_ASSOC))
       {
          $ChurchID = $row['ChurchID'];
-         $count = mysql_query("select count(*) as count
+         $count = $db->query("select count(*) as count
                                from   $RegistrationTable r,
                                       $EventsTable       e
                                where  r.EventID = e.EventID
                                and    e.TeamEvent = 'Y'
                                and    r.ChurchID = $ChurchID")
-                  or die ("Not found:" . mysql_error());
-         $cntRow = mysql_fetch_assoc($count);
+                  or die ("Not found:" . sqlError($db->errorInfo()));
+         $cntRow = $count->fetch(PDO::FETCH_ASSOC);
          if ($cntRow['count'] > 0)
          {
             PrintTeams($ChurchID);

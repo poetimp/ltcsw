@@ -43,7 +43,7 @@ else
 <h1 align="center">User Maintenance </h1>
 <form method="post" action=Users.php>
       <?php
-         $results = mysql_query("select   u.Userid,
+         $results = $db->query("select   u.Userid,
                                           c.ChurchName,
                                           u.Name,
                                           u.Email,
@@ -55,7 +55,7 @@ else
                                           $ChurchesTable c
                                  where    c.ChurchID=u.ChurchID
                                  Order by ".$sort." ".$order)
-                    or die ("Unable to get user list:" . mysql_error());
+                    or die ("Unable to get user list:" . sqlError($db->errorInfo()));
 
          if ($order == "asc")
             $order = "desc";
@@ -111,7 +111,7 @@ else
                </td>
             </tr>
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $password   = $row['Password'];
             $ChurchName = $row['ChurchName'];

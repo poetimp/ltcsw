@@ -31,7 +31,7 @@ if ($Admin != 'Y')
          print "\"ChurchID\",";
          print "\"Email\"";
          print "<br>\n";
-         $results = mysql_query("select   JudgeID,
+         $results = $db->query("select   JudgeID,
                                           FirstName,
                                           LastName,
                                           Address,
@@ -43,10 +43,10 @@ if ($Admin != 'Y')
                                           Email
                                  from     $JudgesTable
                                  order by JudgeID")
-                   or die ("Unable to get Judge list:" . mysql_error());
+                   or die ("Unable to get Judge list:" . sqlError($db->errorInfo()));
 
 
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $JudgeID    = $row['JudgeID'];
             $FirstName  = $row['FirstName'];

@@ -15,7 +15,7 @@ include 'include/RegFunctions.php';
     <h1 align="center">LTC Participation</h1>
     <hr>
     <?php
-         $results = mysql_query("select   ParticipantID,
+         $results = $db->query("select   ParticipantID,
                                           FirstName,
                                           LastName,
                                           Email,
@@ -25,12 +25,12 @@ include 'include/RegFunctions.php';
                                  where    ChurchID = '$ChurchID'
                                  order by LastName,
                                           FirstName")
-                    or die ("Not found:" . mysql_error());
+                    or die ("Not found:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="0" width="100%" id="table1">
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $ParticipantID = $row['ParticipantID'];
             $Name        = $row['LastName'].", ".$row['FirstName'];
@@ -64,7 +64,7 @@ include 'include/RegFunctions.php';
             <?php
             if ($SoloCount > 0)
             {
-              $SoloEvents = mysql_query("SELECT   distinct r.EventID
+              $SoloEvents = $db->query("SELECT   distinct r.EventID
                                          FROM     $RegistrationTable r,
                                                   $EventsTable       e
                                          WHERE    r.ChurchID    = $ChurchID
@@ -72,17 +72,17 @@ include 'include/RegFunctions.php';
                                          AND      e.TeamEvent   = 'N'
                                          AND      ParticipantID = $ParticipantID
                                          ORDER BY EventID")
-                            or die ("Unable to get individual events:" . mysql_error());
+                            or die ("Unable to get individual events:" . sqlError($db->errorInfo()));
 
-              while ($row = mysql_fetch_assoc($SoloEvents))
+              while ($row = $SoloEvents->fetch(PDO::FETCH_ASSOC))
               {
                 $EventID = $row['EventID'];
-                $evnt = mysql_query("select EventName,
+                $evnt = $db->query("select EventName,
                                             ConvEvent
                                      from   $EventsTable
                                      where  EventID = $EventID")
-                        or die ("Not found:" . mysql_error());
-                $row = mysql_fetch_assoc($evnt);
+                        or die ("Not found:" . sqlError($db->errorInfo()));
+                $row = $evnt->fetch(PDO::FETCH_ASSOC);
                 $EventName = $row['EventName'];
                 $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
                 ?>
@@ -99,7 +99,7 @@ include 'include/RegFunctions.php';
 
             if ($TeamCount > 0)
             {
-              $TeamEvents = mysql_query("select distinct
+              $TeamEvents = $db->query("select distinct
                                                 t.EventID,
                                                 t.TeamID
                                         from    $TeamsTable       t,
@@ -108,19 +108,19 @@ include 'include/RegFunctions.php';
                                         and     t.ChurchID      = $ChurchID
                                         and     m.ParticipantID = $ParticipantID
                                         ")
-                            or die ("Unable to get Team events:" . mysql_error());
+                            or die ("Unable to get Team events:" . sqlError($db->errorInfo()));
 
-              while ($row = mysql_fetch_assoc($TeamEvents))
+              while ($row = $TeamEvents->fetch(PDO::FETCH_ASSOC))
               {
                 $EventID = $row['EventID'];
                 $TeamID  = $row['TeamID'];
 
-                $evnt = mysql_query("select EventName,
+                $evnt = $db->query("select EventName,
                                             ConvEvent
                                      from   $EventsTable
                                      where  EventID = $EventID")
-                        or die ("Not able to get events list:" . mysql_error());
-                $row = mysql_fetch_assoc($evnt);
+                        or die ("Not able to get events list:" . sqlError($db->errorInfo()));
+                $row = $evnt->fetch(PDO::FETCH_ASSOC);
                 $EventName = $row['EventName'];
                 $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
                 ?>

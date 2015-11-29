@@ -9,46 +9,46 @@ if ($Admin != 'Y')
 
 if (isset($_POST['Reports']))
 {
-   mysql_query("update $UsersTable
+   $db->query("update $UsersTable
                 set    Status  = 'R'
                 where  Admin   = 'N'
                 and    Status != 'L'
                 ")
-   or die ("Unable to lock users".mysql_error());
+   or die ("Unable to lock users".sqlError($db->errorInfo()));
 }
 else if (isset($_POST['Lock']))
 {
-   mysql_query("update $UsersTable
+   $db->query("update $UsersTable
                 set    Status = 'L'
                 where  Admin  = 'N'
                 ")
-   or die ("Unable to lock users".mysql_error());
+   or die ("Unable to lock users".sqlError($db->errorInfo()));
 }
 else if (isset($_POST['Unlock']))
 {
-   mysql_query("update $UsersTable
+   $db->query("update $UsersTable
                 set    Status = 'O'
                 where  Admin  = 'N'
                 ")
-   or die ("Unable to lock users".mysql_error());
+   or die ("Unable to lock users".sqlError($db->errorInfo()));
 }
 else if (isset($_POST['Open']))
 {
-   mysql_query("update $UsersTable
+   $db->query("update $UsersTable
                 set    Status  = 'O'
                 where  Admin   = 'N'
                 and    Status != 'L'
                ")
-   or die ("Unable to lock users".mysql_error());
+   or die ("Unable to lock users".sqlError($db->errorInfo()));
 }
 else if (isset($_POST['Close']))
 {
-   mysql_query("update $UsersTable
+   $db->query("update $UsersTable
                 set    Status  = 'C'
                 where  Admin   = 'N'
                 and    Status != 'L'
                 ")
-   or die ("Unable to lock users".mysql_error());
+   or die ("Unable to lock users".sqlError($db->errorInfo()));
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -83,7 +83,7 @@ else if (isset($_POST['Close']))
 ?>
 <form method="post" action=LockRegistration.php>
       <?php
-         $results = mysql_query("select   Userid,
+         $results = $db->query("select   Userid,
                                           ChurchID,
                                           Name,
                                           Admin,
@@ -91,7 +91,7 @@ else if (isset($_POST['Close']))
                                  from     $UsersTable
                                  Order by ChurchID,
                                           Userid")
-                    or die ("Unable to get user list:" . mysql_error());
+                    or die ("Unable to get user list:" . sqlError($db->errorInfo()));
 
          ?>
          <table border="1" width="100%">
@@ -103,14 +103,14 @@ else if (isset($_POST['Close']))
                <td bgcolor="#000000"><font color="#FFFF00">Status</font></td>
             </tr>
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
-            $chResult = mysql_query("select ChurchName
+            $chResult = $db->query("select ChurchName
                                      from   $ChurchesTable
                                      where  ChurchID = ".$row['ChurchID']
                                     )
-                        or die ("Unable to get Church Name:" . mysql_error());
-            $chRow      = mysql_fetch_assoc($chResult);
+                        or die ("Unable to get Church Name:" . sqlError($db->errorInfo()));
+            $chRow      = $chResult->fetch(PDO::FETCH_ASSOC);
             $ChurchName = $chRow['ChurchName'];
 
             if ($row['Status'] == 'O')

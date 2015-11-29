@@ -1,3 +1,5 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 //    header("refresh: 5; URL=Admin.php");
 //    print ("Can not clear database. It has already been done.");
@@ -33,13 +35,13 @@ if (isset($_POST['Confirm']))
    //=========================================================================================
    // Clear all accounting from last year
    //=========================================================================================
-   mysql_query("delete from $MoneyTable") or die ("Unable to clear MoneyTable " . mysql_error());
+   $db->query("delete from $MoneyTable") or die ("Unable to clear MoneyTable " . sqlError($db->errorInfo()));
    //=========================================================================================
    // Restore non-zero balances
    //=========================================================================================
    foreach ($balanceCaryForward as $ChurchID=>$Amount)
    {
-         mysql_query("insert into $MoneyTable
+         $db->query("insert into $MoneyTable
                            (Date,
                            Amount,
                            Annotation,
@@ -49,7 +51,7 @@ if (isset($_POST['Confirm']))
                            'Balance carried forward',
                            $ChurchID)
                   ")
-         or die ("Unable to insert into Money table: " . mysql_error());
+         or die ("Unable to insert into Money table: " . sqlError($db->errorInfo()));
          /*print "insert into $MoneyTable
                            (Date,
                            Amount,
@@ -65,40 +67,40 @@ if (isset($_POST['Confirm']))
    //=========================================================================================
    // First clear out various registration tables that contain only information for a given year
    //=========================================================================================
-   mysql_query("delete from $ExtraOrdersTable"     ) or die ("Unable to clear ExtraOrders "          . mysql_error());
-   mysql_query("delete from $NonParticipantsTable" ) or die ("Unable to clear NonParticipantsTable " . mysql_error());
-   mysql_query("delete from $RegistrationTable"    ) or die ("Unable to clear RegistrationTabl "     . mysql_error());
-   mysql_query("delete from $TeamMembersTable"     ) or die ("Unable to clear TeamMembersTable "     . mysql_error());
-   mysql_query("delete from $LogTable"             ) or die ("Unable to clear LogTable "             . mysql_error());
-   mysql_query("delete from $TeamsTable"           ) or die ("Unable to clear TeamsTable "           . mysql_error());
-   mysql_query("delete from $JudgeAssignmentsTable") or die ("Unable to clear JudgeAssignmentsTable" . mysql_error());
+   $db->query("delete from $ExtraOrdersTable"     ) or die ("Unable to clear ExtraOrders "          . sqlError($db->errorInfo()));
+   $db->query("delete from $NonParticipantsTable" ) or die ("Unable to clear NonParticipantsTable " . sqlError($db->errorInfo()));
+   $db->query("delete from $RegistrationTable"    ) or die ("Unable to clear RegistrationTabl "     . sqlError($db->errorInfo()));
+   $db->query("delete from $TeamMembersTable"     ) or die ("Unable to clear TeamMembersTable "     . sqlError($db->errorInfo()));
+   $db->query("delete from $LogTable"             ) or die ("Unable to clear LogTable "             . sqlError($db->errorInfo()));
+   $db->query("delete from $TeamsTable"           ) or die ("Unable to clear TeamsTable "           . sqlError($db->errorInfo()));
+   $db->query("delete from $JudgeAssignmentsTable") or die ("Unable to clear JudgeAssignmentsTable" . sqlError($db->errorInfo()));
 
    //=========================================================================================
    // Set the team number to start at 100000 again
    //=========================================================================================
-   mysql_query("alter table $TeamsTable auto_increment = 100000")
-         or die ("Unable to set starting Team Number ". mysql_error());
+   $db->query("alter table $TeamsTable auto_increment = 100000")
+         or die ("Unable to set starting Team Number ". sqlError($db->errorInfo()));
 
    //=========================================================================================
    // Age up or out all of the particpants
    //=========================================================================================
-   $ParticipantList = mysql_query("select ParticipantID,
+   $ParticipantList = $db->query("select ParticipantID,
                                           Grade
                                    from   $ParticipantsTable")
-                      or die ("Unable to obtain participant List". mysql_error());
-   while ($row = mysql_fetch_assoc($ParticipantList))
+                      or die ("Unable to obtain participant List". sqlError($db->errorInfo()));
+   while ($row = $ParticipantList->fetch(PDO::FETCH_ASSOC))
    {
       $grade = $row['Grade'] + 1;
       $PID   = $row['ParticipantID'];
       if ($grade > 12)
       {
-         mysql_query("delete from $ParticipantsTable where ParticipantID=$PID")
-               or die  ("Unable to delete aged out participant: $PID: ". mysql_error());
+         $db->query("delete from $ParticipantsTable where ParticipantID=$PID")
+               or die  ("Unable to delete aged out participant: $PID: ". sqlError($db->errorInfo()));
       }
       else
       {
-         mysql_query("update $ParticipantsTable set Grade=$grade,Comments='' where ParticipantID=$PID")
-               or die  ("Unable to age up participant: $PID: ". mysql_error());
+         $db->query("update $ParticipantsTable set Grade=$grade,Comments='' where ParticipantID=$PID")
+               or die  ("Unable to age up participant: $PID: ". sqlError($db->errorInfo()));
       }
    }
 
@@ -107,8 +109,6 @@ if (isset($_POST['Confirm']))
    //=========================================================================================
    WriteToLog("Database reinitalized");
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
       <head>
          <title>
             Database prepared
@@ -130,9 +130,6 @@ else if (isset($_POST['Cancel']))
 else
 {
 ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
 
        <head>
           <title>

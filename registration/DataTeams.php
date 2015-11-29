@@ -27,7 +27,7 @@ if ($Admin != 'Y')
          print "\"ChurchID\",";
          print "\"Comments\"";
          print "<br>\n";
-         $results = mysql_query("select   t.TeamID,
+         $results = $db->query("select   t.TeamID,
                                           e.EventName,
                                           e.MinGrade,
                                           e.MaxGrade,
@@ -37,10 +37,10 @@ if ($Admin != 'Y')
                                           $EventsTable e
                                  where    t.EventID = e.EventID
                                  order by ChurchID")
-                   or die ("Unable to get team list:" . mysql_error());
+                   or die ("Unable to get team list:" . sqlError($db->errorInfo()));
 
 
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $TeamID    = $row['TeamID'];
             $EventName = $row['EventName'];

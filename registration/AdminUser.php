@@ -1,3 +1,5 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 require 'include/RegFunctions.php';
 
@@ -35,12 +37,12 @@ $ErrorMsg = "";
 
 if ($mode == 'update' || $mode == 'view')
 {
-   $result = mysql_query("select *
+   $result = $db->query("select *
                           from   $UsersTable
                           where  Userid='$NewUserid'
                          ")
-             or die ("Unable to get User information: ".mysql_error());
-   $row = mysql_fetch_assoc($result);
+             or die ("Unable to get User information: ".sqlError($db->errorInfo()));
+   $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $NewUserID    = isset($row['Userid'])            ? $row['Userid']            : "";
    $NewChurchID  = isset($row['ChurchID'])          ? $row['ChurchID']          : "";
@@ -119,7 +121,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
          else
             $emailSet = '';
 
-         $results = mysql_query("update $UsersTable
+         $results = $db->query("update $UsersTable
                                  set    ChurchID  = '$NewChurchID',
                                         $pwdSet
                                         $emailSet
@@ -128,20 +130,20 @@ if (isset($_POST['add']) or isset($_POST['update']))
                                         Status    = '$Status'
                                  where  Userid    = '$NewUserid'
                                 ")
-                    or die ("Unable to process update: " . mysql_error());
+                    or die ("Unable to process update: " . sqlError($db->errorInfo()));
       }
       else
       {
-         $results = mysql_query("select count(*) as count
+         $results = $db->query("select count(*) as count
                                  from   $UsersTable
                                  where  Userid = '$NewUserid'
                                 ")
-                    or die ("Unable to process update: " . mysql_error());
-         $row = mysql_fetch_assoc($results);
+                    or die ("Unable to process update: " . sqlError($db->errorInfo()));
+         $row = $results->fetch(PDO::FETCH_ASSOC);
          $count = $row['count'];
          if ($count == 0)
          {
-            mysql_query("insert into $UsersTable
+            $db->query("insert into $UsersTable
                                     (Userid   ,
                                      ChurchID ,
                                      Email,
@@ -157,7 +159,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                                      '$IsAdmin'    ,
                                      '$Status'
                                    )")
-             or die ("Unable to process insert: " . mysql_error());
+             or die ("Unable to process insert: " . sqlError($db->errorInfo()));
           }
           else
           {
@@ -168,8 +170,6 @@ if (isset($_POST['add']) or isset($_POST['update']))
       if ($ErrorMsg == "")
       {
       ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
          <body style="background-color: rgb(217, 217, 255);">
          <?php
               if ($mode == 'update')
@@ -202,9 +202,6 @@ if (isset($_POST['add']) or isset($_POST['update']))
 if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
-
    <head>
    <meta http-equiv="Content-Language" content="en-us">
    <?php
@@ -349,13 +346,13 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   <select size="1" name="ChurchID">
                   <option value="0">Select Church</option>
                   <?php
-                     $results = mysql_query("select   ChurchName,
+                     $results = $db->query("select   ChurchName,
                                                       ChurchID
                                              from     $ChurchesTable
                                              order by ChurchName
                                           ")
-                              or die ("Not found:" . mysql_error());
-                     while ($row = mysql_fetch_assoc($results))
+                              or die ("Not found:" . sqlError($db->errorInfo()));
+                     while ($row = $results->fetch(PDO::FETCH_ASSOC))
                      {
                         $selected = ($NewChurchID == $row['ChurchID']) ? "selected" : "";
                         print "<option value=\"".$row['ChurchID']."\" ".$selected.">".$row['ChurchName']."</option>";

@@ -22,7 +22,7 @@ else
     <body bgcolor="White">
     <?php
       $pageBreak='';
-    
+
       function PrintRoster($ChurchID,$ChurchName)
       {
          global $EventScheduleTable;
@@ -33,47 +33,57 @@ else
          global $allTimes;
          global $allRooms;
          global $pageBreak;
+         global $db;
 
-
-         $result = mysql_query("select  distinct
-                                        a.JudgeID,
-                                        j.FirstName,
-                                        j.LastName
+         $result = $db->query("select   count(distinct a.JudgeID,
+                                                       j.FirstName,
+                                                       j.LastName) count
                                 from    $JudgeAssignmentsTable a,
                                         $JudgesTable           j
                                 where   a.JudgeID     = j.JudgeID
                                 and     a.ChurchID    = $ChurchID
-                                order by j.LastName
                               ")
-         or die ("Unable to obtain Judge List:" . mysql_error());
+         or die ("Unable to obtain Judge List:" . sqlError($db->errorInfo()));
+         $row = $result->fetch(PDO::FETCH_ASSOC);
+         $numRows = $row['count'];
 
          ?>
-         <h1 align="center" <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>>
+         <h1 align="center" <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>="<?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>">
             <?php print $ChurchName; ?>
          </h1>
-         <hr>
+         <hr />
          <?php
-         
-         if (mysql_num_rows($result) > 0)
+         if ($numRows > 0)
          {
+            $result = $db->query("select   distinct
+                                           a.JudgeID,
+                                           j.FirstName,
+                                           j.LastName
+                                   from    $JudgeAssignmentsTable a,
+                                           $JudgesTable           j
+                                   where   a.JudgeID     = j.JudgeID
+                                   and     a.ChurchID    = $ChurchID
+                                   order by j.LastName
+                                 ")
+            or die ("Unable to obtain Judge List:" . sqlError($db->errorInfo()));
             ?>
             <table border="1" width="100%">
                <tr>
                </tr>
             <?php
 
-            while ($row = mysql_fetch_assoc($result))
+            while ($row = $result->fetch(PDO::FETCH_ASSOC))
             {
                $FirstName = $row['FirstName'];
                $LastName  = $row['LastName'];
                $JudgeID   = $row['JudgeID'];
                ?>
                <tr>
-                  <td width=10% bgcolor="#CCCCCC" colspan="4"><?php print "$LastName, $FirstName"?></td>
+                  <td width="10%" bgcolor="#CCCCCC" colspan="4"><?php print "$LastName, $FirstName"?></td>
                </tr>
                <?php
 
-               $details = mysql_query("SELECT   r.RoomName,
+               $details = $db->query("SELECT    r.RoomName,
                                                 s.StartTime,
                                                 e.EventName
                                        FROM     $JudgeAssignmentsTable  a,
@@ -87,8 +97,8 @@ else
                                        and      e.EventID = s.EventID
                                        order by s.StartTime
                                  ")
-               or die ("Unable to obtain Judging Details:" . mysql_error());
-               while ($judgeDtails = mysql_fetch_assoc($details))
+               or die ("Unable to obtain Judging Details:" . sqlError($db->errorInfo()));
+               while ($judgeDtails = $details->fetch(PDO::FETCH_ASSOC))
                {
                   $RoomName  = $judgeDtails['RoomName'];
                   $SchedTime = TimeToStr($judgeDtails['StartTime']);
@@ -105,12 +115,12 @@ else
             }
             ?>
             </table>
-            <?
+            <?php
          }
          else
          {
             ?>
-               <p align=center><i>No Judges Assigned</i></p>
+               <p align="center"><i>No Judges Assigned</i></p>
             <?php
          }
       }
@@ -129,8 +139,8 @@ else
          {
             ?>
                <center>
-               <h1>No churches with participating registrants have been defined</h1>
-               <h2>Judges report is empty</h2>
+                  <h1>No churches with participating registrants have been defined</h1>
+                  <h2>Judges report is empty</h2>
                </center>
             <?php
          }

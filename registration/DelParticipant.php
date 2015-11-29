@@ -1,3 +1,5 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 include 'include/RegFunctions.php';
 
@@ -5,30 +7,28 @@ if (isset($_POST['Confirm']))
 {
    $ParticipantID = $_REQUEST['ParticipantID'];
 
-   mysql_query("delete from $ParticipantsTable where ParticipantID=$ParticipantID") or die ("Unable to delete participant record: "     . mysql_error());
-   mysql_query("delete from $TeamMembersTable  where ParticipantID=$ParticipantID") or die ("Unable to delete team membership record: " . mysql_error());
+   $db->query("delete from $ParticipantsTable where ParticipantID=$ParticipantID") or die ("Unable to delete participant record: "     . sqlError($db->errorInfo()));
+   $db->query("delete from $TeamMembersTable  where ParticipantID=$ParticipantID") or die ("Unable to delete team membership record: " . sqlError($db->errorInfo()));
 
-   $RegList = mysql_query("select r.EventID
+   $RegList = $db->query("select r.EventID
                            from   $RegistrationTable r,
                                   $EventsTable       e
                            where  r.EventID       = e.EventID
                            and    r.ParticipantID = $ParticipantID
                            and    e.TeamEvent     = 'N'
                           ")
-              or die ("Unable to get Registration List".mysql_error());
-   while ($Row = mysql_fetch_assoc($RegList))
+              or die ("Unable to get Registration List".sqlError($db->errorInfo()));
+   while ($Row = $RegList->fetch(PDO::FETCH_ASSOC))
    {
       $EventID=$Row['EventID'];
-      mysql_query("delete
+      $db->query("delete
                    from   $RegistrationTable
                    where  ParticipantID = $ParticipantID
                    and    EventID       = $EventID
                   ")
-      or die ("Unable to delete registration record: " . mysql_error());
+      or die ("Unable to delete registration record: " . sqlError($db->errorInfo()));
    }
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
       <head>
          <title>
             Participant Deleted
@@ -50,8 +50,6 @@ else if (isset($_POST['Cancel']))
 else
 {
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
 
        <head>
           <title>

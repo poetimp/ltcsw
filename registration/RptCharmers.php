@@ -21,7 +21,7 @@ if ($Admin != 'Y')
     <h1 align="center">LTC Participants With Comments</h1>
     <hr>
     <?php
-         $results = mysql_query("select   p.Name,
+         $results = $db->query("select   p.Name,
                                           p.Phone,
                                           p.Email,
                                           c.ChurchName
@@ -30,7 +30,7 @@ if ($Admin != 'Y')
                                  where    p.ChurchID = c.ChurchID
                                  order by c.ChurchName,
                                           p.Name")
-                    or die ("Unable to get Charmer information:" . mysql_error());
+                    or die ("Unable to get Charmer information:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="1" width="100%" id="table1">
@@ -41,7 +41,7 @@ if ($Admin != 'Y')
                <td width=10% bgcolor=#CCCCCC><b>Email</b></td>
             </tr>
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $Name    = $row['Name'];
             $Email   = $row['Email'];

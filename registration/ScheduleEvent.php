@@ -11,11 +11,11 @@ if ($Admin != 'Y')
 //------------------------------------------------------------------------------
 $EventID = $_REQUEST['EventID'];
 
-$result     = mysql_query("select EventName
+$result     = $db->query("select EventName
                            from   $EventsTable
                            where EventID='$EventID'")
-              or die ("Unable to get event information: ".mysql_error());
-$row        = mysql_fetch_assoc($result);
+              or die ("Unable to get event information: ".sqlError($db->errorInfo()));
+$row        = $result->fetch(PDO::FETCH_ASSOC);
 $EventName  = isset($row['EventName'])  ? $row['EventName']  : "";
 
 //------------------------------------------------------------------------------
@@ -24,8 +24,8 @@ $EventName  = isset($row['EventName'])  ? $row['EventName']  : "";
 
 if (isset($_POST['Reset']))
 {
-   mysql_query("delete from $ScheduleTable where EventID='$EventID'")
-         or die ("Unable to delete existing schedule: ".mysql_error());
+   $db->query("delete from $ScheduleTable where EventID='$EventID'")
+         or die ("Unable to delete existing schedule: ".sqlError($db->errorInfo()));
    $message    = "Schedule Reset";
 }
 //------------------------------------------------------------------------------
@@ -33,8 +33,8 @@ if (isset($_POST['Reset']))
 //------------------------------------------------------------------------------
 else if (isset($_POST['Update']))
 {
-   mysql_query("delete from $ScheduleTable where EventID='$EventID'")
-         or die ("Unable to delete existing schedule: ".mysql_error());
+   $db->query("delete from $ScheduleTable where EventID='$EventID'")
+         or die ("Unable to delete existing schedule: ".sqlError($db->errorInfo()));
 
    foreach (array_keys($_POST) as $keyValue)
    {
@@ -44,7 +44,7 @@ else if (isset($_POST['Update']))
          $SchedID           = $keyValue.substr($_POST[$keyValue],0,2);
          $RoomID            = implode(',',$_POST['Room_'.$keyValue]);
          $checked[$SchedID] = 1;
-         mysql_query("insert into $ScheduleTable
+         $db->query("insert into $ScheduleTable
                             (EventId    ,
                              SchedID    ,
                              DisplayText,
@@ -56,7 +56,7 @@ else if (isset($_POST['Update']))
                              '$RoomID'
                              )
                      ")
-         or die ("Unable to Add Schedule: ".mysql_error());
+         or die ("Unable to Add Schedule: ".sqlError($db->errorInfo()));
       }
    }
    $message = "Updated";
@@ -66,12 +66,12 @@ else if (isset($_POST['Update']))
 //------------------------------------------------------------------------------
 else
 {
-   $result     = mysql_query("select SchedID,
+   $result     = $db->query("select SchedID,
                                      RoomID
                               from   $ScheduleTable
                               where EventID='$EventID'")
-                 or die ("Unable to get event information: ".mysql_error());
-   while ($row = mysql_fetch_assoc($result))
+                 or die ("Unable to get event information: ".sqlError($db->errorInfo()));
+   while ($row = $result->fetch(PDO::FETCH_ASSOC))
    {
       $checked[$row['SchedID']] = 1;
    }
@@ -91,16 +91,16 @@ function selectRoom($SchedID)
    // Check to see if scheduled event has room assigned
    //-----------------------------------------------------------------------------
    $roomKey   = substr($SchedID,0,3).'%';
-   $result    = mysql_query("select RoomID
+   $result    = $db->query("select RoomID
                              from   $ScheduleTable
                              where  SchedID like '$roomKey'
                              and    EventID = $EventID
                             ")
-              or die ("Unable to get room ID: ".mysql_error());
+              or die ("Unable to get room ID: ".sqlError($db->errorInfo()));
 
-   if (mysql_num_rows($result) > 0)
+   $row    = $result->fetch(PDO::FETCH_ASSOC);
+   if (!empty($row))
    {
-      $row    = mysql_fetch_assoc($result);
       $roomIDList = explode(',',$row['RoomID']);
    }
    else

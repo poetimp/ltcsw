@@ -19,7 +19,7 @@ if (isset($_POST['Add']))
 
    <head>
       <title>Add New Team</title>
-      <h1 align=center>Add New Team</h1>
+      <h1 align="center">Add New Team</h1>
       <?php
       if (isset($message) and $message != "")
       {
@@ -31,28 +31,28 @@ if (isset($_POST['Add']))
       <form method="post" action="AddTeam.php">
          <table border="1" width="100%">
             <tr>
-               <td width=25% bgcolor="#000000">
+               <td width="25%" bgcolor="#000000">
                   <select size="1" name="EventID">
                      <option value="0">-- Please select event --</option>
                      <?php
-                     $TeamList = mysql_query("select   EventID,
+                     $TeamList = $db->query("select   EventID,
                                                        EventName
                                               from     $EventsTable
                                               where    TeamEvent = 'Y'
                                               order by EventName")
-                     or die ("Unable to get team list:" . mysql_error());
-                     while ($Row = mysql_fetch_assoc($TeamList))
+                     or die ("Unable to get team list:" . sqlError($db->errorInfo()));
+                     while ($Row = $TeamList->fetch(PDO::FETCH_ASSOC))
                      {
                        print "<option value=\"".$Row['EventID']."\">".$Row['EventName']."</option>\n";
                      }
                      ?>
                   </select></td>
-               <td width=50% bgcolor="#000000">
+               <td width="50%" bgcolor="#000000">
                   <p align="center"><font color="#FFFF00"> &lt;--- Select the type of
                   event to add, then press Add ---&gt; </font>
-               </td>
-               <td width=25% bgcolor="#000000">
-                  <p align="center"><input type="submit" value="Add" name="Add"></p>
+               </p></td>
+               <td width="25%" bgcolor="#000000">
+                  <p align="center"><input type="submit" value="Add" name="Add" /></p>
                </td>
             </tr>
          </table>

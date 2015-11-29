@@ -49,7 +49,8 @@ if ($Admin != 'Y')
                 $RegistrationTable,
                 $ParticipantsTable,
                 $TeamMembersTable,
-                $ExtraOrdersTable;
+                $ExtraOrdersTable,
+                $db;
          //====================================================================
          // Generate a sql "in" clause from the list of active participants
          //====================================================================
@@ -69,7 +70,7 @@ if ($Admin != 'Y')
  //                               and      p.ParticipantID in $inClause
  //                               group by p.ShirtSize
  //                              </pre>";
-         $shirts = mysql_query("select   distinct
+         $shirts = $db->query("select   distinct
                                          p.ShirtSize,
                                          count(p.ShirtSize) ShirtCount
                                 from     $ParticipantsTable p
@@ -77,7 +78,7 @@ if ($Admin != 'Y')
                                 and      p.ParticipantID in $inClause
                                 group by p.ShirtSize
                                ")
-                   or die ("Unable to obtain Shirt List:" . mysql_error());
+                   or die ("Unable to obtain Shirt List:" . sqlError($db->errorInfo()));
 
          //====================================================================
          // Start with zero counts
@@ -93,7 +94,7 @@ if ($Admin != 'Y')
          //====================================================================
          // Capture counts for shirts and sum the total
          //====================================================================
-         while ($row = mysql_fetch_assoc($shirts))
+         while ($row = $shirts->fetch(PDO::FETCH_ASSOC))
          {
             $shirt[$row['ShirtSize']]  = $row['ShirtCount'];
             $total[$row['ShirtSize']] += $row['ShirtCount'];
@@ -104,15 +105,15 @@ if ($Admin != 'Y')
          //====================================================================
          // Add in the counts for extra orders for shirts and sum the total
          //====================================================================
-         $extraOrders = mysql_query("select   ItemType,
+         $extraOrders = $db->query("select   ItemType,
                                               ItemCount
                                      from     $ExtraOrdersTable
                                      where    ChurchID = $ChurchID
                                      and      ItemType in ('YM','YL','S','M','LG','XL','XX')
                                      ")
-                        or die ("Unable to Read Extra Orders Table" . mysql_error());
+                        or die ("Unable to Read Extra Orders Table" . sqlError($db->errorInfo()));
 
-         while ($row = mysql_fetch_assoc($extraOrders))
+         while ($row = $extraOrders->fetch(PDO::FETCH_ASSOC))
          {
             $shirt[$row['ItemType']] += $row['ItemCount'];
             $total[$row['ItemType']] += $row['ItemCount'];

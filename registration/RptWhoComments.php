@@ -21,7 +21,7 @@ if ($Admin != 'Y')
     <h1 align="center">LTC Participants With Comments</h1>
     <hr>
     <?php
-         $results = mysql_query("select   p.ParticipantID,
+         $results = $db->query("select   p.ParticipantID,
                                           p.FirstName,
                                           p.LastName,
                                           p.Email,
@@ -35,12 +35,12 @@ if ($Admin != 'Y')
                                  and      Comments != ''
                                  order by LastName,
                                           FirstName")
-                    or die ("Unable to get participant information:" . mysql_error());
+                    or die ("Unable to get participant information:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="1" width="100%" id="table1">
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $ParticipantID = $row['ParticipantID'];
             $Name    = $row['LastName'].", ".$row['FirstName'];

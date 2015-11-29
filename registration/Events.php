@@ -19,17 +19,17 @@ if (isset($_POST['AddNew']))
 <h1 align="center">Event Maintenance </h1>
 <form method="post" action=Events.php>
       <?php
-         $results = mysql_query("select   EventName,
+         $results = $db->query("select   EventName,
                                           EventID
                                  from     $EventsTable
                                  order by EventName")
-                    or die ("Unable to get events list:" . mysql_error());
+                    or die ("Unable to get events list:" . sqlError($db->errorInfo()));
 
          $count = 0;
          ?>
          <table border="1" width="100%">
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             ?>
             <tr>

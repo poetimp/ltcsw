@@ -30,13 +30,14 @@ else
                 $ParticipantsTable,
                 $TeamMembersTable,
                 $ExtraOrdersTable,
-                $pageBreak;
+                $pageBreak,
+                $db;
 
          $participantList = ActiveParticipants($ChurchID);
          $first = 1;
          foreach ($participantList as $participantID=>$participantName)
          {
-            $results = mysql_query("select   p.Grade,
+            $results = $db->query("select   p.Grade,
                                              CASE p.ShirtSize
                                                 WHEN 'S'  THEN 'Small'
                                                 WHEN 'M'  THEN 'Medium'
@@ -65,10 +66,10 @@ else
                                     order by p.LastName,
                                              p.FirstName"
                                  )
-                     or die ("Unable to get participant information:" . mysql_error());
+                     or die ("Unable to get participant information:" . sqlError($db->errorInfo()));
             ?>
             <?php
-            $row = mysql_fetch_assoc($results);
+            $row = $results->fetch(PDO::FETCH_ASSOC);
 
             $ShirtSize     = $row['ShirtSize'];
             $MealTicket    = $row['MealTicket'];
@@ -78,15 +79,15 @@ else
             {
                $first = 0;
                ?>
-               <h1 align="center" <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>><?php print $Church; ?></h1>
-               <hr>
+               <h1 align="center" <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>="<?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>"><?php print $Church; ?></h1>
+               <hr />
                <table border="0" width="100%">
                   <tr>
-                     <td width=10% bgcolor="#CCCCCC">ID</td>
-                     <td width=10% bgcolor="#CCCCCC">Grade</td>
-                     <td width=25% bgcolor="#CCCCCC">T-Shirt Size</td>
-                     <td width=25% bgcolor="#CCCCCC">Meal Ticket</td>
-                     <td width=30% bgcolor="#CCCCCC">Name</td>
+                     <td width="10%" bgcolor="#CCCCCC">ID</td>
+                     <td width="10%" bgcolor="#CCCCCC">Grade</td>
+                     <td width="25%" bgcolor="#CCCCCC">T-Shirt Size</td>
+                     <td width="25%" bgcolor="#CCCCCC">Meal Ticket</td>
+                     <td width="30%" bgcolor="#CCCCCC">Name</td>
                   </tr>
                <?php
             }

@@ -26,7 +26,7 @@ $prevTime = "";
          //--------------------------------------------------------------------
          // First get a list of all scheduled events
          //--------------------------------------------------------------------
-         $results = mysql_query("select   e.EventID,
+         $results = $db->query("select   e.EventID,
                                           e.EventName,
                                           (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
                                           CASE e.ConvEvent
@@ -49,7 +49,7 @@ $prevTime = "";
                                  and      e.EventAttended = 'Y'
                                  order by s.StartTime,
                                           e.EventName")
-                   or die ("Unable to get scheduled event list:" . mysql_error());
+                   or die ("Unable to get scheduled event list:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="1" width="100%">
@@ -57,7 +57,7 @@ $prevTime = "";
          //--------------------------------------------------------------------
          // No loop through the events reporting on the details
          //--------------------------------------------------------------------
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $EventID     = $row['EventID'];
             $EventName   = $row['EventName'];
@@ -90,9 +90,9 @@ $prevTime = "";
                       ";
             }
 
-            $cntResult = mysql_query($sql)
-                         or die ("Unable to get Registration count for event:" . mysql_error());
-            $cntRow    = mysql_fetch_assoc($cntResult);
+            $cntResult = $db->query($sql)
+                         or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));
+            $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numEvents = $cntRow['count'];
 
             if ($prevTime != $EventTime)
@@ -121,7 +121,7 @@ $prevTime = "";
          //--------------------------------------------------------------------
          // First get a list of all Unscheduled events
          //--------------------------------------------------------------------
-         $results = mysql_query("select   e.EventID,
+         $results = $db->query("select   e.EventID,
                                           e.EventName,
                                           CASE e.ConvEvent
                                              WHEN 'C' THEN 'Convention'
@@ -139,7 +139,7 @@ $prevTime = "";
                                  where    e.EventAttended = 'N'
                                  order by e.ConvEvent,
                                           e.EventName")
-                   or die ("Unable to get Unscheduled event list:" . mysql_error());
+                   or die ("Unable to get Unscheduled event list:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="1" width="100%">
@@ -147,7 +147,7 @@ $prevTime = "";
          //--------------------------------------------------------------------
          // No loop through the events reporting on the details
          //--------------------------------------------------------------------
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $EventID   = $row['EventID'];
             $EventName = $row['EventName'];
@@ -175,9 +175,9 @@ $prevTime = "";
                       ";
             }
 
-            $cntResult = mysql_query($sql)
-                         or die ("Unable to get Registration count for event:" . mysql_error());
-            $cntRow    = mysql_fetch_assoc($cntResult);
+            $cntResult = $db->query($sql)
+                         or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));
+            $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numEvents = $cntRow['count'];
 
             if ($prevTime != $ConvEvent)

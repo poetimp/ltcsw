@@ -1,14 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 include 'include/RegFunctions.php';
 
 if (isset($_POST['Confirm']))
 {
-   mysql_query("delete from $UsersTable where Userid='".$_REQUEST['Userid']."'")
-   or die ("Unable to delete userid record: ".mysql_error());
+   $db->query("delete from $UsersTable where Userid='".$_REQUEST['Userid']."'")
+   or die ("Unable to delete userid record: ".sqlError($db->errorInfo()));
    WriteToLog("User ".$_REQUEST['Userid']." Deleted");
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
       <head>
          <title>
             Userid Deleted
@@ -31,8 +31,6 @@ else
 {
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
 
        <head>
           <title>

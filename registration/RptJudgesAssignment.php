@@ -1,21 +1,20 @@
 <?php
 include 'include/RegFunctions.php';
 
-
 //========================================================================
 // Collect a list of all of the distinct times that events start
 //========================================================================
-$TimesList = mysql_query("select distinct
+$TimesList = $db->query("select distinct
                                     SchedID,
                                     StartTime
                            from     $EventScheduleTable
                            order by StartTime")
-or die ("Unable to obtain Times List:" . mysql_error());
+or die ("Unable to obtain Times List:" . sqlError($db->errorInfo()));
 
 $times         = array();
 $fridayTimes   = 1;
 $saturdayTimes = 1;
-while ($row = mysql_fetch_assoc($TimesList))
+while ($row = $TimesList->fetch(PDO::FETCH_ASSOC))
 {
    $day    = substr($row['StartTime'],0,1);
    $hour   = substr($row['StartTime'],1,2);
@@ -46,15 +45,15 @@ while ($row = mysql_fetch_assoc($TimesList))
 //========================================================================
 // Get a list of all of the rooms that have been defined
 //========================================================================
-$RoomList = mysql_query("select   distinct
+$RoomList = $db->query("select   distinct
                                     RoomID,
                                     RoomName
                            from    $RoomsTable
                            order by RoomName")
-or die ("Unable to obtain Rooms List:" . mysql_error());
+or die ("Unable to obtain Rooms List:" . sqlError($db->errorInfo()));
 
 $rooms=array();
-while ($row = mysql_fetch_assoc($RoomList))
+while ($row = $RoomList->fetch(PDO::FETCH_ASSOC))
 {
    $allRooms[$row['RoomID']]=$row['RoomName'];
 }
@@ -71,16 +70,17 @@ function constructJudgesTable($dayTimes,$day)
    global $JudgesTable;
    global $allTimes;
    global $allRooms;
+   global $db;
 
    $dayInitial = substr($day,0,1) == "F" ? 6 : 7;
    ?>
-   <TABLE width="100%" border="1">
-      <TR>
-         <TD colspan="<?php print $dayTimes?>" align="center" bgcolor="Black">
-            <FONT color="Yellow"><B><?php print $day;?></B></FONT>
-         </TD>
-      </TR>
-      <TR>
+   <table width="100%" border="1">
+      <tr>
+         <td colspan="<?php print $dayTimes?>" align="center" bgcolor="Black">
+            <font color="Yellow"><b><?php print $day;?></b></font>
+         </td>
+      </tr>
+      <tr>
       <?php
          print "<TD bgcolor=\"#6699FF\" width=\"15%\">&nbsp;</TD>\n";
          foreach ($allTimes as $StartTime => $displayTime)
@@ -93,18 +93,18 @@ function constructJudgesTable($dayTimes,$day)
             }
          }
       ?>
-      </TR>
+      </tr>
       <?php
          foreach ($allRooms as $RoomID => $RoomName)
          {
-            $Event = mysql_query("select  count(*) as Count
+            $Event = $db->query("select  count(*) as Count
                                   from    $EventScheduleTable
                                   where   StartTime like '$dayInitial%'
                                   and     RoomID    =     $RoomID
                                  ")
-            or die ("Unable to obtain Events in room on $day:" . mysql_error());
+            or die ("Unable to obtain Events in room on $day:" . sqlError($db->errorInfo()));
 
-            $row   = mysql_fetch_assoc($Event);
+            $row   = $Event->fetch(PDO::FETCH_ASSOC);
             $count = $row['Count'];
             if ($count > 0)
             {
@@ -124,7 +124,7 @@ function constructJudgesTable($dayTimes,$day)
 //                                          and     s.RoomID  = $RoomID
 //                                          and     s.EventID = e.EventID
 //                                          </pre>";
-                     $Event = mysql_query("select  s.EventID,
+                     $Event = $db->query("select  s.EventID,
                                                    s.SchedID,
                                                    e.EventName,
                                                    e.JudgesNeeded
@@ -134,11 +134,11 @@ function constructJudgesTable($dayTimes,$day)
                                           and     s.RoomID  = $RoomID
                                           and     s.EventID = e.EventID
                                           ")
-                     or die ("Unable to obtain Event Name:" . mysql_error());
+                     or die ("Unable to obtain Event Name:" . sqlError($db->errorInfo()));
 
-                     if (mysql_num_rows($Event) > 0)
+                     $row = $Event->fetch(PDO::FETCH_ASSOC);
+                     if (!empty($row))
                      {
-                        $row = mysql_fetch_assoc($Event);
                         $EventName    = $row['EventName'];
                         $JudgesNeeded = $row['JudgesNeeded'];
                         $SchedID      = $row['SchedID'];
@@ -148,7 +148,7 @@ function constructJudgesTable($dayTimes,$day)
                            print "<TABLE width=100% border=0>\n";
                            for ($i=0;$i<$JudgesNeeded;$i++)
                            {
-                              $result = mysql_query("select  a.JudgeID,
+                              $result = $db->query("select  a.JudgeID,
                                                              j.FirstName,
                                                              j.LastName
                                                      from    $JudgeAssignmentsTable a,
@@ -158,10 +158,10 @@ function constructJudgesTable($dayTimes,$day)
                                                      and     a.JudgeNumber = $i
                                                      and     a.JudgeID     = j.JudgeID
                                           ")
-                                          or die ("Unable to obtain Judge Name:" . mysql_error());
-                              if (mysql_num_rows($result) > 0)
+                                          or die ("Unable to obtain Judge Name:" . sqlError($db->errorInfo()));
+                              $row       = $result->fetch(PDO::FETCH_ASSOC);
+                              if (!empty($row))
                               {
-                                 $row       = mysql_fetch_assoc($result);
                                  $JudgeName = $row['LastName'].", ".$row['FirstName'];
                               }
                               else
@@ -187,8 +187,8 @@ function constructJudgesTable($dayTimes,$day)
             }
          }
       ?>
-   </TABLE>
-   <br>
+   </table>
+   <br />
 <?php
 }
 ?>

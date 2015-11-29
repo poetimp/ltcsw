@@ -17,14 +17,14 @@ if ($SchedID == "" or $EventID == "")
    die();
 }
 
-$results = mysql_query("Select  TeamEvent,
+$results = $db->query("Select  TeamEvent,
                                 IndividualAwards,
                                 EventName
                         from    $EventsTable
                         where   EventID = $EventID
                        ")
-           or die ("Unable to determine event type:" . mysql_error());
-$row = mysql_fetch_assoc($results);
+           or die ("Unable to determine event type:" . sqlError($db->errorInfo()));
+$row = $results->fetch(PDO::FETCH_ASSOC);
 $EventName        = $row['EventName'];
 $TeamEvent        = ($row['TeamEvent'] == 'Y');
 $IndividualAwards = ($row['IndividualAwards'] == 'Y');
@@ -32,7 +32,7 @@ $IndividualAwards = ($row['IndividualAwards'] == 'Y');
 if ($TeamEvent)
 {
 
-   $results = mysql_query("Select  c.ChurchName,
+   $results = $db->query("Select  c.ChurchName,
                                    c.ChurchID,
                                    concat('Team No: ',t.TeamID) Name,
                                    IFNULL(r.Award,'Not Assigned') Award,
@@ -49,11 +49,11 @@ if ($TeamEvent)
                            and   e.TeamEvent     = 'Y'
                            order by c.ChurchName,t.TeamID
                           ")
-              or die ("Unable to get event Member list:" . mysql_error());
+              or die ("Unable to get event Member list:" . sqlError($db->errorInfo()));
 }
 else
 {
-   $results = mysql_query("Select  p.ParticipantID,
+   $results = $db->query("Select  p.ParticipantID,
                                    c.ChurchName,
                                    c.ChurchID,
                                    concat(p.FirstName,' ',p.LastName) Name,
@@ -67,7 +67,7 @@ else
                            and     c.ChurchID      = r.ChurchID
                            order by c.ChurchName,p.LastName,p.FirstName
                           ")
-              or die ("Unable to get event Member list:" . mysql_error());
+              or die ("Unable to get event Member list:" . sqlError($db->errorInfo()));
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -134,7 +134,7 @@ else
            // No loop through the events reporting on the details
            //--------------------------------------------------------------------
            $Stripe = '"#D9D9FF"';
-           while ($row = mysql_fetch_assoc($results))
+           while ($row = $results->fetch(PDO::FETCH_ASSOC))
            {
                $ChurchName      = $row['ChurchName'];
                $ChurchID        = $row['ChurchID'];
@@ -144,12 +144,12 @@ else
 
                if ($TeamEvent)
                {
-                  $memberCnt = mysql_query("select count(*) count
+                  $memberCnt = $db->query("select count(*) count
                                             from   $TeamMembersTable  m
                                             where  m.TeamID = $ParticipantID
                                             ")
-                  or die ("Unable to get event Team Member list:" . mysql_error());
-                  $row = mysql_fetch_assoc($memberCnt);
+                  or die ("Unable to get event Team Member list:" . sqlError($db->errorInfo()));
+                  $row = $memberCnt->fetch(PDO::FETCH_ASSOC);
                   $MemberCount      = $row['count'];
                }
                else
@@ -172,13 +172,13 @@ else
                       {
                         $Award = $_POST[$RadioName];
 
-                        mysql_query("update  $RegistrationTable
+                        $db->query("update  $RegistrationTable
                                      set     Award         = '$Award'
                                      where   EventID       = $EventID
                                      and     SchedID       = $SchedID
                                      and     ParticipantID = $ParticipantID
                                     ")
-                        or die ("Unable to Update Award Value:" . mysql_error());
+                        or die ("Unable to Update Award Value:" . sqlError($db->errorInfo()));
                       }
                   }
 
@@ -259,7 +259,7 @@ else
 //                  if ($IndividualAwards or ($TeamEvent and isset($_REQUEST['View']) and $_REQUEST['View'] == $ParticipantID))
 //                  {
                       $ExpandTeam = $ParticipantID;
-                      $memberList = mysql_query("select concat(p.FirstName,' ',p.LastName) MemberName,
+                      $memberList = $db->query("select concat(p.FirstName,' ',p.LastName) MemberName,
                                                         m.ParticipantID MemberID,
                                                         m.Award
                                                  from   $ParticipantsTable p,
@@ -268,9 +268,9 @@ else
                                                  and    p.ParticipantID = m.ParticipantID
                                                  order by p.LastName
                                                 ")
-                                    or die ("Unable to get event Team Member list:" . mysql_error());
+                                    or die ("Unable to get event Team Member list:" . sqlError($db->errorInfo()));
                       $MemberIndex=0;
-                      while ($row = mysql_fetch_assoc($memberList))
+                      while ($row = $memberList->fetch(PDO::FETCH_ASSOC))
                       {
                         $MemberName      = $row['MemberName'];
                         $MemberID        = $row['MemberID'];
@@ -315,12 +315,12 @@ else
                              {
                                 $Solo_Award = $_POST[$RadioSolo];
 
-                                mysql_query("update  $TeamMembersTable
+                                $db->query("update  $TeamMembersTable
                                              set     Award         = '$Solo_Award'
                                              where   TeamID        = $TeamID
                                              and     ParticipantID = $MemberID
                                             ")
-                                or die ("Unable to Update Team Individual Award Value:" . mysql_error());
+                                or die ("Unable to Update Team Individual Award Value:" . sqlError($db->errorInfo()));
                                }
 
                               if ($Solo_Award == 'Gold')

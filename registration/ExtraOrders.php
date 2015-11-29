@@ -44,16 +44,16 @@ else
    //----------------------------------------------------------------------------------
    // Populate the t-shirt information from data in the database
    //----------------------------------------------------------------------------------
-   $shirts = mysql_query("select   ShirtSize,
+   $shirts = $db->query("select   ShirtSize,
                                  count(*) Count
                         from     $ParticipantsTable
                         where    ChurchID = $ChurchID
                         and      ParticipantID in $inClause
                         group by ShirtSize")
-            or die ("Unable to read participant table" . mysql_error());
+            or die ("Unable to read participant table" . sqlError($db->errorInfo()));
 
    $ParticipantTotal = 0;
-   while ($row = mysql_fetch_assoc($shirts))
+   while ($row = $shirts->fetch(PDO::FETCH_ASSOC))
    {
       $shirt[$row['ShirtSize']] = $row['Count'];
       $ParticipantTotal        += $row['Count'];
@@ -66,7 +66,7 @@ else
 //   // Populate the Meal Ticket information for participante from data in the database
 //   // Note: righ tnow participants meals are included in registration
 //   //----------------------------------------------------------------------------------
-//   $meals = mysql_query("select   MealTicket,
+//   $meals = $db->query("select   MealTicket,
 //                                 count(*) Count
 //                        from     $ParticipantsTable
 //                        where    ChurchID   = $ChurchID
@@ -74,10 +74,10 @@ else
 //                        and      (MealTicket = '3'
 //                        or        MealTicket = '5')
 //                        group by MealTicket")
-//            or die ("Unable to read participant table" . mysql_error());
+//            or die ("Unable to read participant table" . sqlError($db->errorInfo()));
 //
 //   $ParticipantMealTotal=0;
-//   while ($row = mysql_fetch_assoc($meals))
+//   while ($row = $meals->fetch(PDO::FETCH_ASSOC))
 //   {
 //      if ($row['MealTicket'] == '3')
 //         $row['MealTicket'] = '3MealTicket';
@@ -138,8 +138,8 @@ if (isset($_POST['Update']))
       // No errors in validation so lets update the database. First clear all
       // existing extra order data for this church.
       //----------------------------------------------------------------------------
-      mysql_query("delete from $ExtraOrdersTable where ChurchID=$ChurchID")
-            or die ("Unable to clear ExtraOrder Table: ".mysql_error());
+      $db->query("delete from $ExtraOrdersTable where ChurchID=$ChurchID")
+            or die ("Unable to clear ExtraOrder Table: ".sqlError($db->errorInfo()));
 
       //----------------------------------------------------------------------------
       // Add all of the shirt data
@@ -148,7 +148,7 @@ if (isset($_POST['Update']))
          $ShirtCount = $extraShirt[$shirtSize];
          if ($ShirtCount > 0)
          {
-            mysql_query("insert into $ExtraOrdersTable
+            $db->query("insert into $ExtraOrdersTable
                                (ChurchID,
                                 ItemType,
                                 ItemCount)
@@ -156,7 +156,7 @@ if (isset($_POST['Update']))
                                 '$shirtSize',
                                 '$ShirtCount')
                         ")
-            or die ("Unable to insert extra shirts into ExtraOrders table: ".mysql_error());
+            or die ("Unable to insert extra shirts into ExtraOrders table: ".sqlError($db->errorInfo()));
          }
       }
 
@@ -167,7 +167,7 @@ if (isset($_POST['Update']))
          $MealCount = $extraMeal[$mealType];
          if ($MealCount > 0)
          {
-            mysql_query("insert into $ExtraOrdersTable
+            $db->query("insert into $ExtraOrdersTable
                                (ChurchID,
                                 ItemType,
                                 ItemCount)
@@ -175,7 +175,7 @@ if (isset($_POST['Update']))
                                 '$mealType',
                                 '$MealCount')
                         ")
-            or die ("Unable to insert extra meal ticket into ExtraOrders table: ".mysql_error());
+            or die ("Unable to insert extra meal ticket into ExtraOrders table: ".sqlError($db->errorInfo()));
          }
       }
    }
@@ -186,16 +186,16 @@ else
 // Not updating so must be displaying form in prep for updating
 //----------------------------------------------------------------------------------
 
-   $extraShirts = mysql_query("select   ItemType,
+   $extraShirts = $db->query("select   ItemType,
                                         ItemCount
                                from     $ExtraOrdersTable
                                where    ChurchID = $ChurchID")
-                  or die ("Unable to Read Extra Orders Table" . mysql_error());
+                  or die ("Unable to Read Extra Orders Table" . sqlError($db->errorInfo()));
 
    //-------------------------------------------------------------------------------
    // Load data from the database into a local array to parse
    //-------------------------------------------------------------------------------
-   while ($row = mysql_fetch_assoc($extraShirts))
+   while ($row = $extraShirts->fetch(PDO::FETCH_ASSOC))
    {
       $extra[$row['ItemType']] = $row['ItemCount'];
    }

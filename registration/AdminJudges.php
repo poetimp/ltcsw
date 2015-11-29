@@ -1,3 +1,5 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 include 'include/RegFunctions.php';
 
@@ -30,12 +32,12 @@ $ErrorMsg = "";
 
 if ($mode == 'update' || $mode == 'view')
 {
-   $result = mysql_query("select *
+   $result = $db->query("select *
                           from   $JudgesTable
                           where  JudgeID = $JudgeID
                           and    ChurchID = $ChurchID")
-             or die ("Unable to get Judge information: ".mysql_error());
-   $row = mysql_fetch_assoc($result);
+             or die ("Unable to get Judge information: ".sqlError($db->errorInfo()));
+   $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $JudgeID       = isset($row['JudgeID'])       ? $row['JudgeID']       : "";
    $FirstName     = isset($row['FirstName'])     ? $row['FirstName']     : "";
@@ -161,16 +163,14 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
       }
 
-      $results = mysql_query($sql) or die ("Unable to process update: " . mysql_error());
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError($db->errorInfo()));
 
       if ($mode != 'update')
       {
-         $JudgeID = mysql_insert_id();
+         $JudgeID = $db->lastInsertId();
       }
 
       ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
          <body style="background-color: rgb(217, 217, 255);">
          <?php
               if ($mode == 'update')
@@ -202,9 +202,6 @@ if (isset($_POST['add']) or isset($_POST['update']))
 if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
-
    <head>
    <meta http-equiv="Content-Language" content="en-us">
    <?php

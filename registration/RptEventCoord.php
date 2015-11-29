@@ -15,7 +15,7 @@ include 'include/RegFunctions.php';
     <h1 align="center">Event Coordinators</h1>
     <hr>
     <?php
-         $results = mysql_query("select   c.Name,
+         $results = $db->query("select   c.Name,
                                           c.Phone,
                                           c.Email,
                                           c.Address,
@@ -27,12 +27,12 @@ include 'include/RegFunctions.php';
                                           $EventCoordTable c
                                  where    e.CoordID = c.CoordID
                                  order by EventName")
-                    or die ("Not found:" . mysql_error());
+                    or die ("Not found:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="0" width="100%" id="table1">
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $CoordName    = $row['Name'];
             $CoordPhone   = $row['Phone'];

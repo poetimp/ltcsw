@@ -25,17 +25,17 @@ if (isset($_POST['AddNew']))
 <h1 align="center">Coordinator Maintenance </h1>
 <form method="post" action=Coordinators.php>
       <?php
-         $results = mysql_query("select   Name,
+         $results = $db->query("select   Name,
                                           CoordID
                                  from     $EventCoordTable
                                  order by Name")
-                    or die ("Unable to get coordinator list:" . mysql_error());
+                    or die ("Unable to get coordinator list:" . sqlError($db->errorInfo()));
 
          $count = 0;
          ?>
          <table border="1" width="100%">
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             ?>
             <tr>

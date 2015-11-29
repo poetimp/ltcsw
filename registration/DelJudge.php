@@ -1,15 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 include 'include/RegFunctions.php';
 
 if (isset($_POST['Confirm']))
 {
-   mysql_query("delete from $JudgesTable             where JudgeID=".$_REQUEST['JudgeID'])
-      or die ("Unable to delete Judge record: "        . mysql_error());
-   mysql_query("delete from $JudgeAssignmentsTable   where JudgeID=".$_REQUEST['JudgeID'])
-      or die ("Unable to delete Judge Assignment records: "  . mysql_error());
+   $db->query("delete from $JudgesTable             where JudgeID=".$_REQUEST['JudgeID'])
+      or die ("Unable to delete Judge record: "        . sqlError($db->errorInfo()));
+   $db->query("delete from $JudgeAssignmentsTable   where JudgeID=".$_REQUEST['JudgeID'])
+      or die ("Unable to delete Judge Assignment records: "  . sqlError($db->errorInfo()));
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
       <head>
          <title>
             Judge Deleted
@@ -32,8 +32,6 @@ else
 {
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
 
        <head>
           <title>

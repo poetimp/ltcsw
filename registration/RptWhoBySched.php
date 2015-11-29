@@ -36,7 +36,7 @@ $roomList  = getRoomList();
          else
             $sortBy="e.EventName,s.StartTime";
 
-         $results = mysql_query("select   e.EventID,
+         $results = $db->query("select   e.EventID,
                                           e.EventName,
                                           e.ConvEvent,
                                           e.TeamEvent,
@@ -52,12 +52,12 @@ $roomList  = getRoomList();
                                           $EventScheduleTable s
                                  where    e.EventID = s.EventID
                                  order by $sortBy")
-                   or die ("Unable to get scheduled event list:" . mysql_error());
+                   or die ("Unable to get scheduled event list:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="0" width="100%" id="table1">
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $EventID   = $row['EventID'];
             $EventName = $row['EventName'];
@@ -142,9 +142,9 @@ $roomList  = getRoomList();
                }
             }
 
-            $cntResult = mysql_query($sql)
-                         or die ("Unable to get Registration count for event:" . mysql_error());
-            $cntRow    = mysql_fetch_assoc($cntResult);
+            $cntResult = $db->query($sql)
+                         or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));
+            $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numEvents = $cntRow['count'];
 
             if ($numEvents > 0)
@@ -268,10 +268,10 @@ $roomList  = getRoomList();
                              order by p.LastName";
                   }
                }
-               $members = mysql_query($sql) or die ("Not found:" . mysql_error());
+               $members = $db->query($sql) or die ("Not found:" . sqlError($db->errorInfo()));
 
                $prevTeamID="";
-               while ($row = mysql_fetch_assoc($members))
+               while ($row = $members->fetch(PDO::FETCH_ASSOC))
                {
                   $Name   = $row['LastName'].", ".$row['FirstName'];
                   $Email  = $row['Email'];

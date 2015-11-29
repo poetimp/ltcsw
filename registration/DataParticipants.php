@@ -41,7 +41,7 @@ if ($Admin != 'Y')
             $ParticipantIDs = ActiveParticipants($ChurchID);
             foreach ($ParticipantIDs as $ParticipantID=>$ParticipantName)
             {
-               $results = mysql_query("select   ParticipantID,
+               $results = $db->query("select   ParticipantID,
                                                 FirstName,
                                                 LastName,
                                                 Address,
@@ -62,9 +62,9 @@ if ($Admin != 'Y')
                                        from     $ParticipantsTable
                                        where    ParticipantID = $ParticipantID
                                       ")
-                        or die ("Unable to get Participant Info:" . mysql_error());
+                        or die ("Unable to get Participant Info:" . sqlError($db->errorInfo()));
 
-               $row = mysql_fetch_assoc($results);
+               $row = $results->fetch(PDO::FETCH_ASSOC);
 
                $ParticipantID = $row['ParticipantID'];
                $FirstName     = $row['FirstName'];

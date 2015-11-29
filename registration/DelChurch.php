@@ -1,3 +1,5 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 require 'include/RegFunctions.php';
 
@@ -11,32 +13,30 @@ if (isset($_POST['Confirm']))
 {
    $ChurchID=$_REQUEST['ChurchID'];
 
-   mysql_query("delete from $ChurchesTable         where ChurchID=$ChurchID")
-         or die ("Unable to delete church record: "           . mysql_error());
-   mysql_query("delete from $UsersTable            where ChurchID=$ChurchID")
-         or die ("Unable to delete user records: "           . mysql_error());
-   mysql_query("delete from $RegistrationTable     where ChurchID=$ChurchID")
-         or die ("Unable to delete registration records: "    . mysql_error());
-   mysql_query("delete from $ParticipantsTable     where ChurchID=$ChurchID")
-         or die ("Unable to delete participants records: "    . mysql_error());
-   mysql_query("delete from $TeamsTable            where ChurchID=$ChurchID")
-         or die ("Unable to delete team records: "            . mysql_error());
-   mysql_query("delete from $TeamMembersTable      where ChurchID=$ChurchID")
-         or die ("Unable to delete team members records: "    . mysql_error());
-   mysql_query("delete from $ExtraOrdersTable      where ChurchID=$ChurchID")
-         or die ("Unable to delete extra orders records: "    . mysql_error());
-   mysql_query("delete from $NonParticipantsTable  where ChurchID=$ChurchID")
-         or die ("Unable to delete Non-Participant records: " . mysql_error());
-   mysql_query("delete from $JudgeAssignmentsTable where ChurchID=$ChurchID")
-         or die ("Unable to delete Judging Assignmrnts records: " . mysql_error());
-   mysql_query("delete from $JudgesTable           where ChurchID=$ChurchID")
-         or die ("Unable to delete Judges records: " . mysql_error());
+   $db->query("delete from $ChurchesTable         where ChurchID=$ChurchID")
+         or die ("Unable to delete church record: "           . sqlError($db->errorInfo()));
+   $db->query("delete from $UsersTable            where ChurchID=$ChurchID")
+         or die ("Unable to delete user records: "           . sqlError($db->errorInfo()));
+   $db->query("delete from $RegistrationTable     where ChurchID=$ChurchID")
+         or die ("Unable to delete registration records: "    . sqlError($db->errorInfo()));
+   $db->query("delete from $ParticipantsTable     where ChurchID=$ChurchID")
+         or die ("Unable to delete participants records: "    . sqlError($db->errorInfo()));
+   $db->query("delete from $TeamsTable            where ChurchID=$ChurchID")
+         or die ("Unable to delete team records: "            . sqlError($db->errorInfo()));
+   $db->query("delete from $TeamMembersTable      where ChurchID=$ChurchID")
+         or die ("Unable to delete team members records: "    . sqlError($db->errorInfo()));
+   $db->query("delete from $ExtraOrdersTable      where ChurchID=$ChurchID")
+         or die ("Unable to delete extra orders records: "    . sqlError($db->errorInfo()));
+   $db->query("delete from $NonParticipantsTable  where ChurchID=$ChurchID")
+         or die ("Unable to delete Non-Participant records: " . sqlError($db->errorInfo()));
+   $db->query("delete from $JudgeAssignmentsTable where ChurchID=$ChurchID")
+         or die ("Unable to delete Judging Assignmrnts records: " . sqlError($db->errorInfo()));
+   $db->query("delete from $JudgesTable           where ChurchID=$ChurchID")
+         or die ("Unable to delete Judges records: " . sqlError($db->errorInfo()));
 
 
    WriteToLog("Church ".$_REQUEST['ChurchID']." was deleted");
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
       <head>
          <title>
             Church Deleted
@@ -58,9 +58,6 @@ else if (isset($_POST['Cancel']))
 else
 {
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
-
        <head>
           <title>
              Delete Church

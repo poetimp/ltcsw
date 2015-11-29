@@ -23,7 +23,7 @@ if ($Admin != 'Y')
          print "\"Name\",";
          print "\"Church\",";
          print "\"Location\"<br>";
-         $results = mysql_query("
+         $results = $db->query("
                                   SELECT DISTINCT
                                           j.LastName,
                                           j.FirstName,
@@ -37,10 +37,10 @@ if ($Admin != 'Y')
                                   and      j.JudgeID=a.JudgeID
                                   order by j.LastName
                                   ")
-                   or die ("Unable to get Judge list:" . mysql_error());
+                   or die ("Unable to get Judge list:" . sqlError($db->errorInfo()));
 
 
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $FirstName  = $row['FirstName'];
             $LastName   = $row['LastName'];

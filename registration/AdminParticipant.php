@@ -1,3 +1,5 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 include 'include/RegFunctions.php';
 
@@ -36,13 +38,13 @@ $ErrorMsg = "";
 
 if ($mode == 'update' || $mode == 'view')
 {
-   $result = mysql_query("select  *
+   $result = $db->query("select  *
                           from    $ParticipantsTable
                           where   ParticipantID='$ParticipantID'
                           and     ChurchID     ='$ChurchID'
                          ")
-             or die ("Unable to get participant information: ".mysql_error());
-   $row = mysql_fetch_assoc($result);
+             or die ("Unable to get participant information: ".sqlError($db->errorInfo()));
+   $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $ParticipantID = isset($row['ParticipantID']) ? $row['ParticipantID'] : "";
    $FirstName     = isset($row['FirstName'])     ? $row['FirstName']     : "";
@@ -172,7 +174,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       $Phone     = addslashes($Phone);
       $Email     = addslashes($Email);
       $Comments  = addslashes($Comments);
-      
+
 
       if ($mode == 'update')
       {
@@ -196,7 +198,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 //                  where ParticipantId  = '$ParticipantID'
 //                  and   ChurchId       = '$ChurchID'
 //      	       </pre>";
-//      	
+//
          $sql = "update $ParticipantsTable
                     set FirstName      = '$FirstName'  ,
                         LastName       = '$LastName'   ,
@@ -255,10 +257,8 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          )";
       }
 
-      $results = mysql_query($sql) or die ("Unable to process update: " . mysql_error());
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError($db->errorInfo()));
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
          <body style="background-color: rgb(217, 217, 255);">
          <?php
               if ($mode == 'update')
@@ -290,9 +290,6 @@ if (isset($_POST['add']) or isset($_POST['update']))
 if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
-
    <head>
    <meta http-equiv="Content-Language" content="en-us">
    <?php

@@ -20,11 +20,11 @@ if ($Admin != 'Y')
 <body style="background-color: rgb(217, 217, 255);">
    <h1 align="center">View Access Log</h1>
    <?php
-      $results = mysql_query("select   *
+      $results = $db->query("select   *
                               from     $LogTable
                               where    Date > date_sub(current_date(),interval 6 month)
                               order by Date Desc")
-                 or die ("Unable to read the log:" . mysql_error());
+                 or die ("Unable to read the log:" . sqlError($db->errorInfo()));
 
       ?>
       <div align="center">
@@ -35,7 +35,7 @@ if ($Admin != 'Y')
             <td width="250" align="left" bgcolor="#000000"><font color="yellow">Log Entry</font></td>
          </tr>
       <?php
-      while ($row = mysql_fetch_assoc($results))
+      while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {
          $Date = $row['Date'];
          $User = $row['UserID'];
@@ -52,11 +52,11 @@ if ($Admin != 'Y')
       </table>
       </div>
       <?php
-      $results = mysql_query("select   *
+      $results = $db->query("select   *
                               from     $LogTable
                               where    Date > date_sub(current_date(),interval 6 month)
                               order by Date Desc")
-                 or die ("Unable to read the log:" . mysql_error());
+                 or die ("Unable to read the log:" . sqlError($db->errorInfo()));
 
       ?>
       <div align="center">
@@ -68,7 +68,7 @@ if ($Admin != 'Y')
             <td align="left" bgcolor="#000000"><font color="yellow">Log Entry</font></td>
          </tr>
       <?php
-      while ($row = mysql_fetch_assoc($results))
+      while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {
          $Date = $row['Date'];
          $User = $row['UserID'];

@@ -1,6 +1,5 @@
 <?php
-   $db = mysql_connect($db_host,$db_user,$db_password) or die ("Unable to connect to database!");
-   mysql_select_db($db_database)                       or die ("Unable to select database!");
+   $db = new PDO("mysql:host=$db_host;dbname=$db_database", $db_user,$db_password);
 
-   $_SESSION['db'] = $db;
+   //$_SESSION['db'] = $db;
 ?>

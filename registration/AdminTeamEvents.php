@@ -23,7 +23,7 @@ $TeamComment = isset($_POST['TeamComment']) ? $_POST['TeamComment'] : "";
 // print "<pre>";print_r($_POST);"</pre>";
 // print "<pre>";print_r($_REQUEST);"</pre>";
 
-$EventInfo   = mysql_query("select EventName,
+$EventInfo   = $db->query("select EventName,
                                    EventID,
                                    MinGrade,
                                    MaxGrade,
@@ -32,8 +32,8 @@ $EventInfo   = mysql_query("select EventName,
                                    TeenCoord
                               from $EventsTable
                              where EventID = $EventID")
-               or die ("Unable to get event info:" . mysql_error());
-$Row         = mysql_fetch_assoc($EventInfo);
+               or die ("Unable to get event info:" . sqlError($db->errorInfo()));
+$Row         = $EventInfo->fetch(PDO::FETCH_ASSOC);
 
 $EventName   = $Row['EventName'];
 $MinGrade    = $Row['MinGrade'];
@@ -61,12 +61,12 @@ if (isset($_REQUEST['Add']))
    // We do different things whether the even is attended (i.e. drama) or
    // not (i.e. art)
    //=======================================================================
-   $EventResult = mysql_query("select EventAttended
+   $EventResult = $db->query("select EventAttended
                                from   $EventsTable
                                where  EventID = $EventID
                               ")
-                 or die ("Unable to see if event is attended:" . mysql_error());
-   $row         = mysql_fetch_assoc($EventResult);
+                 or die ("Unable to see if event is attended:" . sqlError($db->errorInfo()));
+   $row         = $EventResult->fetch(PDO::FETCH_ASSOC);
 
    //=======================================================================
    // If it not attended simply add the team. No check are needed for
@@ -74,11 +74,11 @@ if (isset($_REQUEST['Add']))
    //=======================================================================
    if ($row['EventAttended'] != 'Y')
    {
-      mysql_query("insert into $TeamsTable
+      $db->query("insert into $TeamsTable
                         (ChurchID, EventID, Comment)
                          values($ChurchID,$EventID,'$TeamComment')")
-      or die ("Unable to create team: " . mysql_error());
-      $TeamID = mysql_insert_id();
+      or die ("Unable to create team: " . sqlError($db->errorInfo()));
+      $TeamID = $db->lastInsertId();
    }
    else
    {
@@ -106,7 +106,7 @@ if (isset($_REQUEST['Add']))
    // unscheduled. Otherwise we say we can't because there are no time splts
    // available
    //=======================================================================
-      $RegInfo   = mysql_query("select distinct
+      $RegInfo   = $db->query("select distinct
                                        s.StartTime,
                                        IF (RoomName REGEXP '-[a-z]$',
                                            SUBSTR(RoomName,1,LENGTH(RoomName)-2),
@@ -119,10 +119,10 @@ if (isset($_REQUEST['Add']))
                                 and    e.EventID = s.EventID
                                 and    s.RoomID  = r.RoomID
                              ")
-      or die ("Unable to get start times:" . mysql_error());
+      or die ("Unable to get start times:" . sqlError($db->errorInfo()));
 
       $allFull=1; // Guilty until proven innocent
-      while (($rowCount = 0 or $allFull == 1) or ($allFull and $Row = mysql_fetch_assoc($RegInfo)))
+      while (($rowCount = 0 or $allFull == 1) or ($allFull and $Row = $RegInfo)->fetch(PDO::FETCH_ASSOC))
       {
          $StartTime    = $SchedRow['StartTime'];
          $RoomName     = $SchedRow['RoomName'];
@@ -130,11 +130,11 @@ if (isset($_REQUEST['Add']))
 
          if ($RegCount < $MaxWebSlots)
          {
-            mysql_query("insert into $TeamsTable
+            $db->query("insert into $TeamsTable
                                 (ChurchID, EventID, Comment)
                          values($ChurchID,$EventID,'$TeamComment')")
-            or die ("Unable to create team: " . mysql_error());
-            $TeamID = mysql_insert_id();
+            or die ("Unable to create team: " . sqlError($db->errorInfo()));
+            $TeamID = $db->lastInsertId();
             $allFull=0; // Cleared of all charged
          }
       }
@@ -151,11 +151,11 @@ else
    $TeamID      = $_REQUEST['TeamID'];
    if (!isset($_POST['Apply']))
    {
-      $TeamInfo    = mysql_query("select Comment
+      $TeamInfo    = $db->query("select Comment
                                   from   $TeamsTable
                                   where  TeamID = $TeamID")
-                    or die ("Unable to obtain team comments:" . mysql_error());
-      $Row         = mysql_fetch_assoc($TeamInfo);
+                    or die ("Unable to obtain team comments:" . sqlError($db->errorInfo()));
+      $Row         = $TeamInfo->fetch(PDO::FETCH_ASSOC);
       $TeamComment = $Row['Comment'];
    }
 }
@@ -165,12 +165,12 @@ else
 //=======================================================================
 if (isset($_POST['Apply']))
 {
-   $EventResult = mysql_query("select EventAttended
+   $EventResult = $db->query("select EventAttended
                                from   $EventsTable
                                where  EventID = $EventID
                                ")
-                  or die ("Unable to see if event is attended:" . mysql_error());
-   $row           = mysql_fetch_assoc($EventResult);
+                  or die ("Unable to see if event is attended:" . sqlError($db->errorInfo()));
+   $row           = $EventResult->fetch(PDO::FETCH_ASSOC);
    $EventAttended = $row['EventAttended'];
    $SchedID = isset($_POST['SchedID']) ? $_POST['SchedID'] : "0000";
    //print "EventAttended: $EventAttended, SchedID: $SchedID<br>";
@@ -188,59 +188,59 @@ if (isset($_POST['Apply']))
       // Before we loose it in the deletes below, capture any awards that may
       // have been assigned to any of these people or the team
       //=======================================================================
-      $results = mysql_query("select ParticipantID,
+      $results = $db->query("select ParticipantID,
                                      Award
                               from   $TeamMembersTable
                               where  TeamID = $TeamID
                              ")
-                 or die ("Unable to retireve current member List:" . mysql_error());
+                 or die ("Unable to retireve current member List:" . sqlError($db->errorInfo()));
 
-      while ($row = mysql_fetch_assoc($results))
+      while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {
          $ParticipantID           = $row['ParticipantID'];
          $Award[$ParticipantID]   = isset($row['Award']) ? "'".$row['Award']."'" : "null";
       }
 
-      $results = mysql_query("select Award
+      $results = $db->query("select Award
                               from   $RegistrationTable
                               where  ParticipantID = $TeamID
                              ")
-                 or die ("Unable to retireve current team award:" . mysql_error());
+                 or die ("Unable to retireve current team award:" . sqlError($db->errorInfo()));
 
-      $row = mysql_fetch_assoc($results);
+      $row = $results->fetch(PDO::FETCH_ASSOC);
       $Award['Team'] = isset($row['Award']) ? "'".$row['Award']."'" : "null";
 
       //=======================================================================
       // Remove all members from the team
       //=======================================================================
-      mysql_query("delete from $TeamMembersTable
+      $db->query("delete from $TeamMembersTable
                    where  TeamID=$TeamID")
-      or die ("Unable to delete Team Members: ". mysql_error());
+      or die ("Unable to delete Team Members: ". sqlError($db->errorInfo()));
 
       //=======================================================================
       // Remove the team from registration so that we start with a clean slate
       //=======================================================================
-      mysql_query("delete from  $RegistrationTable
+      $db->query("delete from  $RegistrationTable
                           where ParticipantID=$TeamID
                           and   EventID=$EventID
                           and   SchedID=$SchedID")
-      or die ("Unable to delete Team Registration: " . mysql_error());
+      or die ("Unable to delete Team Registration: " . sqlError($db->errorInfo()));
 
       //=======================================================================
       // Update a possibly changed Team Comment
       //=======================================================================
-      mysql_query("update $TeamsTable
+      $db->query("update $TeamsTable
                    set    Comment='$TeamComment'
                    where  TeamID=$TeamID")
-      or die ("Unable to update team comment: " .mysql_error());
+      or die ("Unable to update team comment: " .sqlError($db->errorInfo()));
 
       //=======================================================================
       // Re insert the registration of the team in the registration table
       //=======================================================================
-      mysql_query("replace into $RegistrationTable
+      $db->query("replace into $RegistrationTable
                                  ( ChurchID , ParticipantID ,  EventID , SchedID,  Award)
                           values ($ChurchID , $TeamID       , $EventID ,$SchedID,".$Award['Team'].")")
-                  or die ("Unable to add registration information: ".mysql_error());
+                  or die ("Unable to add registration information: ".sqlError($db->errorInfo()));
 
       //=======================================================================
       // Get list of possible participants for this team event
@@ -268,10 +268,10 @@ if (isset($_POST['Apply']))
                     order by LastName,
                              FirstName";
       }
-      $results = mysql_query($select) or die ("Unable to retrieve Participant List:" . mysql_error());
+      $results = $db->query($select) or die ("Unable to retrieve Participant List:" . sqlError($db->errorInfo()));
 
       $teamSize=0;
-      while ($row = mysql_fetch_assoc($results))
+      while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {
          $ParticipantID   = $row['ParticipantID'];
          $grade           = $row['Grade'];
@@ -309,7 +309,7 @@ if (isset($_POST['Apply']))
                   //print "<br>Award: "; print_r($Award); print "<br>";
                   $AwardStr = isset($Award[$ParticipantID]) ? $Award[$ParticipantID] : "null";
                   //print "<br>ParticipantID: $ParticipantID, AwardStr: $AwardStr<br><hr>";
-                  mysql_query("insert into $TeamMembersTable
+                  $db->query("insert into $TeamMembersTable
                                       ( TeamID , ParticipantID,  ChurchID,  Award)
                                values ($TeamID ,$ParticipantID, $ChurchID, $AwardStr)");
                }
@@ -367,22 +367,22 @@ if (isset($_POST['Apply']))
         <form method="post" action="AdminTeamEvents.php?EventID=<?php  print $EventID; ?>&TeamID=<?php  print $TeamID; ?><?php  if ($Admin == 'Y' and isset($_REQUEST['ChurchID'])) print "&ChurchID=$ChurchID"; if (isset($_REQUEST['Return'])) print '&Return='.$_REQUEST['Return']?>">
           <table border="1" width="100%">
           <?php
-         $EventResult = mysql_query("select EventAttended
+         $EventResult = $db->query("select EventAttended
                                      from   $EventsTable
                                      where  EventID = $EventID
                                      ")
-                        or die ("Unable to see if event is attended:" . mysql_error());
-         $row           = mysql_fetch_assoc($EventResult);
+                        or die ("Unable to see if event is attended:" . sqlError($db->errorInfo()));
+         $row           = $EventResult->fetch(PDO::FETCH_ASSOC);
          $EventAttended = $row['EventAttended'];
 
          if ($EventAttended == 'Y')
          {
-            $cntResult = mysql_query("select count(*) as count
+            $cntResult = $db->query("select count(*) as count
                                       from   $EventScheduleTable
                                       where  EventID = $EventID
                                       ")
-                         or die ("Not found:" . mysql_error());
-            $cntRow    = mysql_fetch_assoc($cntResult);
+                         or die ("Not found:" . sqlError($db->errorInfo()));
+            $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
             $scheduled = ($count = $cntRow['count']);
          }
          else
@@ -398,7 +398,7 @@ if (isset($_POST['Apply']))
                <?php
                if ($Action == "View")
                {
-                  $result = mysql_query("select s.StartTime
+                  $result = $db->query("select s.StartTime
                                          from   $RegistrationTable r,
                                                 $EventScheduleTable     s
                                          where  r.ChurchID      = $ChurchID
@@ -406,8 +406,8 @@ if (isset($_POST['Apply']))
                                          and    r.ParticipantID = $TeamID
                                          and    s.SchedID       = r.SchedID
                                          and    s.EventID       = r.EventID")
-                           or die("Unable to determing event time: ".mysql_error());
-                  $row    = mysql_fetch_assoc($result);
+                           or die("Unable to determing event time: ".sqlError($db->errorInfo()));
+                  $row    = $result->fetch(PDO::FETCH_ASSOC);
                   print "<font color=#FFFF00>".TimeToStr($row['StartTime'])."</font>";
                }
                else
@@ -420,8 +420,8 @@ if (isset($_POST['Apply']))
                                 where  ChurchID      = $ChurchID
                                 and    EventID       = $EventID
                                 and    ParticipantID = $TeamID";
-                     $cntResult = mysql_query($select) or die ("Unable to determine if event is selected:" . mysql_error());
-                     $cntRow    = mysql_fetch_assoc($cntResult);
+                     $cntResult = $db->query($select) or die ("Unable to determine if event is selected:" . sqlError($db->errorInfo()));
+                     $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
                      $selected  = $cntRow['count'];
 
                      $sel = $selected == 0 ? "selected" : "";
@@ -435,12 +435,12 @@ if (isset($_POST['Apply']))
                                 where  ChurchID      = $ChurchID
                                 and    EventID       = $EventID
                                 and    ParticipantID = $TeamID";
-                     $cntResult = mysql_query($select) or die ("Not found:" . mysql_error());
-                     $cntRow    = mysql_fetch_assoc($cntResult);
+                     $cntResult = $db->query($select) or die ("Not found:" . sqlError($db->errorInfo()));
+                     $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
                      $SchedID   = $cntRow['SchedID'];
 
                   }
-                  $SchedResult = mysql_query("select distinct
+                  $SchedResult = $db->query("select distinct
                                                      s.SchedID,
                                                      s.StartTime,
                                                      (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
@@ -455,10 +455,10 @@ if (isset($_POST['Apply']))
                                               and    e.EventID = s.EventID
                                               and    s.RoomID  = r.RoomID
                                              ")
-                                  or die ("Unable to Get scheduled slots for each scheduled event:" . mysql_error());
+                                  or die ("Unable to Get scheduled slots for each scheduled event:" . sqlError($db->errorInfo()));
 
                   $freeSlots = 0;
-                  while ($SchedRow = mysql_fetch_assoc($SchedResult))
+                  while ($SchedRow = $SchedResult->fetch(PDO::FETCH_ASSOC))
                   {
                      $freeSlots    = (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or $freeSlots);
                   }
@@ -470,7 +470,7 @@ if (isset($_POST['Apply']))
                   else
                   {
 
-                     $SchedResult = mysql_query("select distinct
+                     $SchedResult = $db->query("select distinct
                                                         s.SchedID,
                                                         s.StartTime,
                                                         (e.MaxWebSlots * e.MaxRooms) MaxWebSlots,
@@ -486,10 +486,10 @@ if (isset($_POST['Apply']))
                                                  and    s.RoomID  = r.RoomID
                                                  order by s.StartTime
                                                 ")
-                                     or die ("Unable to Get scheduled slots for each scheduled event:" . mysql_error());
+                                     or die ("Unable to Get scheduled slots for each scheduled event:" . sqlError($db->errorInfo()));
 
                      $freeSlots = 0;
-                     while ($SchedRow = mysql_fetch_assoc($SchedResult))
+                     while ($SchedRow = $SchedResult->fetch(PDO::FETCH_ASSOC))
                      {
                         if (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime'])) > 0 or ($SchedID == $SchedRow['SchedID']))
                         {
@@ -584,20 +584,20 @@ if (isset($_POST['Apply']))
                           order by LastName,
                                    FirstName";
             }
-            $results = mysql_query($select) or die ("Unable to obtain participant list:" . mysql_error());
+            $results = $db->query($select) or die ("Unable to obtain participant list:" . sqlError($db->errorInfo()));
 
-            while ($row = mysql_fetch_assoc($results))
+            while ($row = $results->fetch(PDO::FETCH_ASSOC))
             {
                $ParticipantID    = $row['ParticipantID'];
                $ParticipantName  = $row['LastName'].", ".$row['FirstName'];
                $ParticipantGrade = $row['Grade'];
 
-               $cntResult = mysql_query("select count(*) as count
+               $cntResult = $db->query("select count(*) as count
                                          from   $TeamMembersTable
                                          where  TeamID        = $TeamID
                                          and    ParticipantID = $ParticipantID")
-                            or die ("Unable to determine team membership:" . mysql_error());
-               $cntRow = mysql_fetch_assoc($cntResult);
+                            or die ("Unable to determine team membership:" . sqlError($db->errorInfo()));
+               $cntRow = $cntResult->fetch(PDO::FETCH_ASSOC);
                $selected = $cntRow['count'];
                ?>
                 <?php

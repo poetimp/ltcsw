@@ -27,16 +27,16 @@ if (isset($_POST['Update']))
 <h1 align="center">Change Church</h1>
 <form method="post" action=ChangeChurch.php>
       <?php
-         $results = mysql_query("select   ChurchName,
+         $results = $db->query("select   ChurchName,
                                           ChurchID
                                  from     $ChurchesTable
                                  order by ChurchName")
-                    or die ("Unable to obtain church list:" . mysql_error());
+                    or die ("Unable to obtain church list:" . sqlError($db->errorInfo()));
          ?>
          <center>
          <select name=ChurchID>
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             ?>
                <option value=<?php  print $row['ChurchID']; ?>><?php  print $row['ChurchName']; ?></option>

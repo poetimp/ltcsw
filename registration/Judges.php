@@ -19,13 +19,13 @@ if (isset($_POST['AddNew']))
 <h1 align="center">Judges Maintenance </h1>
 <form method="post" action=Judges.php>
       <?php
-         $JudgeList = mysql_query("select   FirstName,
+         $JudgeList = $db->query("select   FirstName,
                                             LastName,
                                             JudgeID
                                    from     $JudgesTable
                                    where    ChurchID = $ChurchID
                                    order by LastName, FirstName")
-         or die ("Unable to obtain Judges List:" . mysql_error());
+         or die ("Unable to obtain Judges List:" . sqlError($db->errorInfo()));
 
          $count = 0;
          ?>
@@ -36,7 +36,7 @@ if (isset($_POST['AddNew']))
                <TD bgcolor="Black"><font color="Yellow"><b>[ID]: Name</b></font></TD>
             </tr>
          <?php
-         while ($row = mysql_fetch_assoc($JudgeList))
+         while ($row = $JudgeList->fetch(PDO::FETCH_ASSOC))
          {
             ?>
             <tr>
@@ -45,12 +45,12 @@ if (isset($_POST['AddNew']))
                <td width="5%" align="center"> [<a href="DelJudge.php?action=del<?php  print "&JudgeID=".$row['JudgeID']."&Name=".urlencode($row['LastName'].", ".$row['FirstName']); ?>">Delete</a>]</td>
                <td width="5%" align="center">
                   <?php
-                     $TimesList = mysql_query("select   count(*) Count
+                     $TimesList = $db->query("select   count(*) Count
                                              from     $JudgeAssignmentsTable
                                              where    JudgeID = " .$row['JudgeID'])
-                     or die ("Unable to obtain Judges Times Count:" . mysql_error());
+                     or die ("Unable to obtain Judges Times Count:" . sqlError($db->errorInfo()));
 
-                     $TimeRow = mysql_fetch_assoc($TimesList);
+                     $TimeRow = $TimesList->fetch(PDO::FETCH_ASSOC);
                      print $TimeRow['Count'];
                   ?>
                </td>

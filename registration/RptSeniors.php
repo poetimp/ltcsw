@@ -20,7 +20,7 @@ if ($Admin != 'Y')
     <h1 align="center">All Seniors</h1>
     <hr>
     <?php
-         $results = mysql_query("select   p.ParticipantID,
+         $results = $db->query("select   p.ParticipantID,
                                           p.FirstName,
                                           p.LastName,
                                           p.Email,
@@ -38,12 +38,12 @@ if ($Admin != 'Y')
                                  and      p.Grade    = 12
                                  order by LastName,
                                           FirstName")
-                    or die ("Not found:" . mysql_error());
+                    or die ("Not found:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="1" width="100%">
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $ParticipantID = $row['ParticipantID'];
             $eventTypeCount=EventCounts($ParticipantID);

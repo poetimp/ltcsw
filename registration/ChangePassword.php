@@ -19,13 +19,13 @@ if (isset($_POST['ChangePwd']))
    }
    else
    {
-      $results = mysql_query("select Password,count(*) as Count
+      $results = $db->query("select Password,count(*) as Count
                               from   $UsersTable
                               where  Userid   = '$Userid'
                               and    Status  != 'L'
                              ")
-              or die ("Unable to validate Userid and Password!". mysql_error());
-      $row     = mysql_fetch_assoc($results);
+              or die ("Unable to validate Userid and Password!". sqlError($db->errorInfo()));
+      $row     = $results->fetch(PDO::FETCH_ASSOC);
 
       if ($row['Count'] != 1 or !password_verify($oldPassword,$row['Password']))
       {
@@ -34,10 +34,10 @@ if (isset($_POST['ChangePwd']))
       else
       {
          $newPassword = password_hash($newPassword1,PASSWORD_DEFAULT);
-         if (mysql_query("update $UsersTable set Password = '$newPassword' where Userid='$Userid'"))
+         if ($db->query("update $UsersTable set Password = '$newPassword' where Userid='$Userid'"))
             $message="Your password has been successfully updated";
          else
-            $message="Unable to update Password!". mysql_error();
+            $message="Unable to update Password!". sqlError($db->errorInfo());
       }
    }
 }

@@ -14,7 +14,7 @@ include 'include/RegFunctions.php';
 <body style="background-color: rgb(217, 217, 255);">
 <h1 align="center">Assign Individual Events</h1>
       <?php
-         $results = mysql_query("select FirstName,
+         $results = $db->query("select FirstName,
                                         LastName,
                                         ParticipantID,
                                         Grade
@@ -22,7 +22,7 @@ include 'include/RegFunctions.php';
                                  where  ChurchID = $ChurchID
                                  order  by LastName
                                 ")
-                    or die ("Can not get Participant List:" . mysql_error());
+                    or die ("Can not get Participant List:" . sqlError($db->errorInfo()));
 
          $count = 0;
          ?>
@@ -35,7 +35,7 @@ include 'include/RegFunctions.php';
                <td align="left" bgcolor="#000000"><font color="#FFFF00">Participant</font></td>
             </tr>
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $ParticipantID = $row['ParticipantID'];
             $EventCounts   = EventCounts($ParticipantID);

@@ -23,7 +23,7 @@ if ($Admin != 'Y')
     <h1 align="center">Empty Teams</h1>
     <hr>
     <?php
-         $results = mysql_query("select t.TeamID,
+         $results = $db->query("select t.TeamID,
                                         e.EventName,
                                         c.ChurchName,
                                         s.StartTime
@@ -46,7 +46,7 @@ if ($Admin != 'Y')
                                  order by EventName,
                                           StartTime,
                                           ChurchName")
-                    or die (":" . mysql_error());
+                    or die (":" . sqlError($db->errorInfo()));
          ?>
          <table border="1" width="100%" id="table1">
             <tr>
@@ -56,7 +56,7 @@ if ($Admin != 'Y')
                <td bgcolor="#000000"><font color="#FFFF00">Church Name</font></td>
             </tr>
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $TeamID      = $row['TeamID'];
             $EventName   = $row['EventName'];

@@ -1,15 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 include 'include/RegFunctions.php';
 
 if (isset($_POST['Confirm']))
 {
-   mysql_query("delete from $EventCoordTable          where CoordID=".$_REQUEST['CoordID']) or die ("Unable to delete Coordinator record: "        . mysql_error());
-   mysql_query("update $EventsTable  set CoordID=NULL where CoordID=".$_REQUEST['CoordID']) or die ("Unable to delete registration record: " . mysql_error());
+   $db->query("delete from $EventCoordTable          where CoordID=".$_REQUEST['CoordID']) or die ("Unable to delete Coordinator record: "        . sqlError($db->errorInfo()));
+   $db->query("update $EventsTable  set CoordID=NULL where CoordID=".$_REQUEST['CoordID']) or die ("Unable to delete registration record: " . sqlError($db->errorInfo()));
 
    WriteToLog("Coordinator ".$_REQUEST['CoordID']." was deleted");
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
       <head>
          <title>
             Coordinator Deleted
@@ -31,10 +31,6 @@ else if (isset($_POST['Cancel']))
 else
 {
 ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
-
        <head>
           <title>
              Delete Coordinator

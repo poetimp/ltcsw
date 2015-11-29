@@ -7,23 +7,23 @@ if (isset($_POST['submit']))
 {
    // First does the userid esist>
 
-   $results = mysql_query("select Password,count(*) as Count
+   $results = $db->query("select Password,count(*) as Count
                            from   $UsersTable
                            where  Userid   = '" . $_POST['userid'] . "'
                            and    Status  != 'L'
                           ")
-              or die ("Unable to validate Userid and Password!". mysql_error());
-   $row     = mysql_fetch_assoc($results);
+              or die ("Unable to validate Userid and Password!". sqlError($db->errorInfo()));
+   $row     = $results->fetch(PDO::FETCH_ASSOC);
 
 // Yep ... continue
    if ($row['Count'] == 1 and password_verify($_POST['pwd'],$row['Password']))
    {
-      $results = mysql_query("select *
+      $results = $db->query("select *
                               from $UsersTable
                               where Userid = '" .$_POST['userid'] ."'
                              ")
-                 or die ("Unable to read Users information!". mysql_error());
-      $row     = mysql_fetch_assoc($results);
+                 or die ("Unable to read Users information!". sqlError($db->errorInfo()));
+      $row     = $results->fetch(PDO::FETCH_ASSOC);
 
       $_SESSION['Admin']     = $row['Admin'];
       if (!$systemDown or $_SESSION['Admin'] == 'Y')
@@ -39,12 +39,12 @@ if (isset($_POST['submit']))
 
          WriteToLog("Successful Login");
 
-         $results = mysql_query("update $UsersTable
+         $results = $db->query("update $UsersTable
                                 set lastLogin  = now(),
                                     loginCount = loginCount+1
                                 where Userid   = '$UserID'
                                 ")
-                 or die ("Unable to update Users information!". mysql_error());
+                 or die ("Unable to update Users information!". sqlError($db->errorInfo()));
          if (isset($_POST['redirect']))
          {
             header ("Refresh: 0; URL=" . $_POST['redirect'] . "");
@@ -65,20 +65,20 @@ if (isset($_POST['submit']))
       $_SESSION['Userid']    = $_POST['userid'];
       WriteToLog("Login Failed");
       $badPass = 1;
-      $results = mysql_query("select count(*) as Count
+      $results = $db->query("select count(*) as Count
                               from   $UsersTable
                               where  Userid   = '" . $_POST['userid'] . "'
                              ")
-                 or die ("Unable to validate Userid and Password!". mysql_error());
-      $row     = mysql_fetch_assoc($results);
+                 or die ("Unable to validate Userid and Password!". sqlError($db->errorInfo()));
+      $row     = $results->fetch(PDO::FETCH_ASSOC);
 
       if ($row['Count'] == 1)
       {
-         $results = mysql_query("update $UsersTable
+         $results = $db->query("update $UsersTable
                                  set failedLoginCount = failedLoginCount+1
                                  where Userid   = '".$_POST['userid']."'
                                 ")
-                 or die ("Unable to update Users information!". mysql_error());
+                 or die ("Unable to update Users information!". sqlError($db->errorInfo()));
       }
    }
 }

@@ -204,17 +204,17 @@ function selectTime($Timestr = '')
       <h1 align="center">Schedule Convention Events</h1>
       <?php
       //dumpSysVars();
-      $results = mysql_query("select   EventName,
+      $results = $db->query("select   EventName,
                                        EventID
                               from     $EventsTable
                               where    ConvEvent = 'C'
                               order by EventName")
-                 or die ("Unable to obtain convention event list:" . mysql_error());
+                 or die ("Unable to obtain convention event list:" . sqlError($db->errorInfo()));
       ?>
       <form method="post">
       <table border="1" width="100%">
       <?php
-      while ($row = mysql_fetch_assoc($results))
+      while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {
          $EventID   = $row['EventID'];
          $EventName = $row['EventName'];
@@ -255,20 +255,27 @@ function selectTime($Timestr = '')
          <?php
          }
 
-            $cntResult = mysql_query("select   s.StartTime,
-                                               s.EndTime,
-                                               r.RoomName,
-                                               s.RoomID,
-                                               s.SchedID
+            $cntResult = $db->query("select    count(*)
                                       from     $EventScheduleTable s,
                                                $RoomsTable         r
                                       where    s.EventID = '$EventID'
                                       and      s.RoomID  = r.RoomID
                                       order by StartTime")
-                         or die ("Unable to get schedule information for event:" . mysql_error());
-            if (mysql_num_rows($cntResult) != 0)
+                         or die ("Unable to get schedule information for event:" . sqlError($db->errorInfo()));
+            if ($cntResult->fetchColumn() > 0)
             {
-               while ($cntRow = mysql_fetch_assoc($cntResult))
+               $cntResult = $db->query("select    s.StartTime,
+                                                  s.EndTime,
+                                                  r.RoomName,
+                                                  s.RoomID,
+                                                  s.SchedID
+                                         from     $EventScheduleTable s,
+                                                  $RoomsTable         r
+                                         where    s.EventID = '$EventID'
+                                         and      s.RoomID  = r.RoomID
+                                         order by StartTime")
+                            or die ("Unable to get schedule information for event:" . sqlError($db->errorInfo()));
+               while ($cntRow = $cntResult->fetch(PDO::FETCH_ASSOC))
                {// $moveSuccessful or
                 // $_REQUEST['MoveEventID'] != $EventID
                 // $_REQUEST['StartTime'] != $cntRow['StartTime']

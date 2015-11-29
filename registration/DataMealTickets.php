@@ -34,7 +34,7 @@ if ($Admin != 'Y')
             $ParticipantIDs = ActiveParticipants($ChurchID);
             foreach ($ParticipantIDs as $ParticipantID=>$ParticipantName)
             {
-               $results = mysql_query("select   p.ParticipantID,
+               $results = $db->query("select   p.ParticipantID,
                                                 p.FirstName,
                                                 p.LastName,
                                                 Case p.MealTicket
@@ -47,10 +47,10 @@ if ($Admin != 'Y')
                                        from     $ParticipantsTable p
                                        where    p.ParticipantID=$ParticipantID
                                       ")
-                        or die ("Unable to get Participant info:" . mysql_error());
+                        or die ("Unable to get Participant info:" . sqlError($db->errorInfo()));
 
 
-               $row = mysql_fetch_assoc($results);
+               $row = $results->fetch(PDO::FETCH_ASSOC);
 
                $ParticipantID = $row['ParticipantID'];
                $FirstName     = $row['FirstName'];
@@ -66,14 +66,14 @@ if ($Admin != 'Y')
             }
          }
 
-         $results = mysql_query("select   distinct
+         $results = $db->query("select   distinct
                                           e.CoordName
                                  from     $EventsTable e
                                  order by CoordName")
-                   or die ("Unable to get Coordinator list:" . mysql_error());
+                   or die ("Unable to get Coordinator list:" . sqlError($db->errorInfo()));
 
 
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $CoordName = $row['CoordName'];
 

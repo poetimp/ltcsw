@@ -32,17 +32,17 @@ if ($Admin != 'Y')
          foreach ($church_list as $ChurchID=>$ChurchName)
          {
 
-            $results = mysql_query("select   ChurchAddr,
+            $results = $db->query("select   ChurchAddr,
                                              ChurchCity,
                                              ChurchState,
                                              ChurchZip,
                                              ChurchPhone
                                     from     $ChurchesTable
                                     where    ChurchID=$ChurchID")
-                     or die ("Unable to get Church Info:" . mysql_error());
+                     or die ("Unable to get Church Info:" . sqlError($db->errorInfo()));
 
 
-            $row = mysql_fetch_assoc($results);
+            $row = $results->fetch(PDO::FETCH_ASSOC);
 
             $ChurchAddr  = $row['ChurchAddr'];
             $ChurchCity  = $row['ChurchCity'];

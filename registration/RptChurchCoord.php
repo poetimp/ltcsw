@@ -23,7 +23,7 @@ if ($Admin != 'Y')
     <h1 align="center">Church Coordinators</h1>
     <hr>
     <?php
-         $results = mysql_query("select   CoordName,
+         $results = $db->query("select   CoordName,
                                           CoordPhone,
                                           CoordEmail,
                                           CoordAddr,
@@ -33,12 +33,12 @@ if ($Admin != 'Y')
                                           ChurchName
                                  from     $ChurchesTable
                                  order by CoordName")
-                     or die ("Unable to obtain coordinator list:" . mysql_error());
+                     or die ("Unable to obtain coordinator list:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="1" width="100%" id="table1">
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $CoordName    = $row['CoordName'];
             $CoordPhone   = $row['CoordPhone'];

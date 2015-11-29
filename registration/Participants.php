@@ -19,14 +19,14 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
 <h1 align="center">Participant Maintenance </h1>
 <form method="post" action=Participants.php>
       <?php
-         $results = mysql_query("select   FirstName,
+         $results = $db->query("select   FirstName,
                                           LastName,
                                           ParticipantID
                                  from     $ParticipantsTable
                                  where    ChurchID = '$ChurchID'
                                  order by LastName,
                                           FirstName")
-                    or die ("Participant Not found:" . mysql_error());
+                    or die ("Participant Not found:" . sqlError($db->errorInfo()));
 
          $count = 0;
          ?>
@@ -56,7 +56,7 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
 				   </td>
             </tr>
          <?php
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             ?>
             <tr>

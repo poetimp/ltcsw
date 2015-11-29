@@ -27,7 +27,7 @@ if ($Admin != 'Y')
          print "\"StartTime\",";
          print "\"StopTime\"";
          print "<br>\n";
-         $results = mysql_query("select   e.JudgeID,
+         $results = $db->query("select   e.JudgeID,
                                           e.JudgingCatagory,
                                           Case
                                              when substring(s.StartTime,1,1) = '1' then 'Sunday'
@@ -48,10 +48,10 @@ if ($Admin != 'Y')
                                  where    t.JudgeID = e.JudgeID
                                  and      s.SchedID = t.SchedID
                                  order by JudgeID")
-                   or die ("Unable to get Judge Preference list:" . mysql_error());
+                   or die ("Unable to get Judge Preference list:" . sqlError($db->errorInfo()));
 
 
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $JudgeID   = $row['JudgeID'];
             $Catagory  = $row['JudgingCatagory'];

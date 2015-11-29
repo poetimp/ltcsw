@@ -27,7 +27,7 @@ $prevTime = "";
          //--------------------------------------------------------------------
          // First get a list of all scheduled events
          //--------------------------------------------------------------------
-         $results = mysql_query("select   e.EventID,
+         $results = $db->query("select    e.EventID,
                                           e.EventName,
                                           CASE e.ConvEvent
                                              WHEN 'C' THEN 'Convention'
@@ -50,7 +50,7 @@ $prevTime = "";
                                  and      e.EventAttended = 'Y'
                                  order by s.StartTime,
                                           e.EventName")
-                   or die ("Unable to get scheduled event list:" . mysql_error());
+                   or die ("Unable to get scheduled event list:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="1"
@@ -62,7 +62,7 @@ $prevTime = "";
          //--------------------------------------------------------------------
          // No loop through the events reporting on the details
          //--------------------------------------------------------------------
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $EventID          = $row['EventID'];
             $EventName        = $row['EventName'];
@@ -74,9 +74,8 @@ $prevTime = "";
 
             if ($EventType == 'Team')
             {
-               $cntResult = mysql_query("SELECT distinct
-                                                r.ParticipantID,
-                                                r.EventID
+               $cntResult = $db->query("SELECT  count(distinct r.ParticipantID,
+                                                               r.EventID)
                                          FROM   $RegistrationTable r,
                                                 $EventsTable       e,
                                                 $TeamMembersTable  m
@@ -86,27 +85,25 @@ $prevTime = "";
                                          AND    e.TeamEvent = 'Y'
                                          AND    m.TeamID    = r.ParticipantID
                                         ")
-                            or die ("Unable to get Registration count for event:" . mysql_error());;
-               $numEvents = mysql_num_rows($cntResult);
+                            or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+               $numEvents = $cntResult->fetchColumn();
 
                if ($IndividualAwards)
                {
-                  $cntResult = mysql_query("SELECT distinct
-                                                   m.ParticipantID
+                  $cntResult = $db->query("SELECT  count(distinct m.ParticipantID)
                                              FROM  $TeamMembersTable m,
                                                    $TeamsTable       t
                                              WHERE m.TeamID  = t.TeamID
                                              and   t.EventID = $EventID
                                             ")
-                                 or die ("Unable to get Registration count for teams members:" . mysql_error());;
-                  $numEvents += mysql_num_rows($cntResult);
+                                 or die ("Unable to get Registration count for teams members:" . sqlError($db->errorInfo()));;
+                  $numEvents += $cntResult->fetchColumn();
                }
             }
             else
             {
-              $cntResult = mysql_query("SELECT distinct
-                                               r.ParticipantID,
-                                               r.EventID
+              $cntResult = $db->query("SELECT  count(distinct r.ParticipantID,
+                                                              r.EventID)
                                         FROM   $RegistrationTable r,
                                                $EventsTable       e
                                         WHERE  r.SchedID   = $SchedID
@@ -114,8 +111,8 @@ $prevTime = "";
                                         AND    r.EventID   = e.EventID
                                         AND    e.TeamEvent = 'N'
                                        ")
-                           or die ("Unable to get Registration count for event:" . mysql_error());;
-               $numEvents    = mysql_num_rows($cntResult);
+                           or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+               $numEvents    = $cntResult->fetchColumn();
             }
 
             if ($numEvents == 0)
@@ -124,9 +121,8 @@ $prevTime = "";
             {
                if ($EventType == 'Team')
                {
-                 $cntResult = mysql_query("SELECT distinct
-                                                  r.ParticipantID,
-                                                  r.EventID
+                 $cntResult = $db->query("SELECT  count(distinct r.ParticipantID,
+                                                                 r.EventID)
                                            FROM   $RegistrationTable r,
                                                   $EventsTable       e,
                                                   $TeamMembersTable  m
@@ -137,28 +133,26 @@ $prevTime = "";
                                            AND    m.TeamID    = r.ParticipantID
                                            AND    r.Award Is Not Null
                                          ")
-                             or die ("Unable to get Registration count for event:" . mysql_error());;
-                  $numAwards = mysql_num_rows($cntResult);
+                             or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+                  $numAwards = $cntResult->fetchColumn();
 
                   if ($IndividualAwards)
                   {
-                     $cntResult = mysql_query("SELECT distinct
-                                                      m.ParticipantID
+                     $cntResult = $db->query("SELECT count(distinct m.ParticipantID)
                                                 FROM  $TeamMembersTable m,
                                                       $TeamsTable       t
                                                 WHERE m.TeamID  = t.TeamID
                                                 and   t.EventID = $EventID
                                                 and   m.Award is not null
                                              ")
-                                    or die ("Unable to get Registration count for teams members:" . mysql_error());;
-                     $numAwards += mysql_num_rows($cntResult);
+                                    or die ("Unable to get Registration count for teams members:" . sqlError($db->errorInfo()));;
+                     $numAwards += $cntResult->fetchColumn();
                   }
                }
                else
                {
-                 $cntResult = mysql_query("SELECT distinct
-                                                  r.ParticipantID,
-                                                  r.EventID
+                 $cntResult = $db->query("SELECT  count(distinct r.ParticipantID,
+                                                                 r.EventID)
                                            FROM   $RegistrationTable r,
                                                   $EventsTable       e
                                            WHERE  r.SchedID   = $SchedID
@@ -167,8 +161,8 @@ $prevTime = "";
                                            AND    e.TeamEvent = 'N'
                                            AND    r.Award Is Not Null
                                          ")
-                             or die ("Unable to get Registration count for event:" . mysql_error());;
-                  $numAwards = mysql_num_rows($cntResult);
+                             or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+                  $numAwards = $cntResult->fetchColumn();
                }
             }
 
@@ -217,7 +211,7 @@ $prevTime = "";
          //--------------------------------------------------------------------
          // First get a list of all Unscheduled events
          //--------------------------------------------------------------------
-         $results = mysql_query("select   e.EventID,
+         $results = $db->query("select    e.EventID,
                                           e.EventName,
                                           CASE e.ConvEvent
                                              WHEN 'C' THEN 'Convention'
@@ -235,7 +229,7 @@ $prevTime = "";
                                  where    e.EventAttended = 'N'
                                  order by e.ConvEvent,
                                           e.EventName")
-                   or die ("Unable to get Unscheduled event list:" . mysql_error());
+                   or die ("Unable to get Unscheduled event list:" . sqlError($db->errorInfo()));
          $first = 1;
          ?>
          <table border="1"
@@ -247,7 +241,7 @@ $prevTime = "";
          //--------------------------------------------------------------------
          // No loop through the events reporting on the details
          //--------------------------------------------------------------------
-         while ($row = mysql_fetch_assoc($results))
+         while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             $EventID   = $row['EventID'];
             $EventName = $row['EventName'];
@@ -256,9 +250,9 @@ $prevTime = "";
 
             if ($EventType == 'Team')
             {
-              $cntResult = mysql_query("SELECT distinct
+              $cntResult = $db->query("SELECT  count(distinct
                                                r.ParticipantID,
-                                               r.EventID
+                                               r.EventID)
                                         FROM   $RegistrationTable r,
                                                $EventsTable       e,
                                                $TeamMembersTable  m
@@ -268,13 +262,12 @@ $prevTime = "";
                                         AND    e.TeamEvent = 'Y'
                                         AND    m.TeamID    = r.ParticipantID
                                        ")
-                           or die ("Unable to get Registration count for event:" . mysql_error());;
+                           or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
             }
             else
             {
-              $cntResult = mysql_query("SELECT distinct
-                                               r.ParticipantID,
-                                               r.EventID
+              $cntResult = $db->query("SELECT  count(distinct r.ParticipantID,
+                                                              r.EventID)
                                         FROM   $RegistrationTable r,
                                                $EventsTable       e
                                         WHERE  r.SchedID   = '0000'
@@ -282,9 +275,9 @@ $prevTime = "";
                                         AND    r.EventID   = e.EventID
                                         AND    e.TeamEvent = 'N'
                                        ")
-                           or die ("Unable to get Registration count for event:" . mysql_error());;
+                           or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
             }
-            $numEvents = mysql_num_rows($cntResult);
+            $numEvents = $cntResult->fetchColumn();
 
             if ($numEvents == 0)
                $numAwards = 0;
@@ -292,9 +285,9 @@ $prevTime = "";
             {
                if ($EventType == 'Team')
                {
-                 $cntResult = mysql_query("SELECT distinct
+                 $cntResult = $db->query("SELECT  count(distinct
                                                   r.ParticipantID,
-                                                  r.EventID
+                                                  r.EventID)
                                            FROM   $RegistrationTable r,
                                                   $EventsTable       e,
                                                   $TeamMembersTable  m
@@ -305,13 +298,12 @@ $prevTime = "";
                                            AND    m.TeamID    = r.ParticipantID
                                            AND    r.Award Is Not Null
                                          ")
-                             or die ("Unable to get Registration count for event:" . mysql_error());;
+                             or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
                }
                else
                {
-                 $cntResult = mysql_query("SELECT distinct
-                                                  r.ParticipantID,
-                                                  r.EventID
+                 $cntResult = $db->query("SELECT  count(distinct r.ParticipantID,
+                                                                 r.EventID)
                                            FROM   $RegistrationTable r,
                                                   $EventsTable       e
                                            WHERE  r.SchedID   = '0000'
@@ -320,9 +312,9 @@ $prevTime = "";
                                            AND    e.TeamEvent = 'N'
                                            AND    r.Award Is Not Null
                                          ")
-                             or die ("Unable to get Registration count for event:" . mysql_error());;
+                             or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
                }
-               $numAwards = mysql_num_rows($cntResult);
+               $numAwards = $cntResult->fetchColumn();
             }
 
             if ($numAwards == $numEvents)

@@ -28,7 +28,7 @@ $pageBreak='';
        //--------------------------------------------------------------------
        // First collect a list of all of the events
        //--------------------------------------------------------------------
-       $eventList = mysql_query("select   EventID,
+       $eventList = $db->query("select   EventID,
                                           EventName,
                                           CASE ConvEvent
                                              WHEN 'C' THEN 'Convention'
@@ -45,12 +45,12 @@ $pageBreak='';
                                  from     $EventsTable
                                  order by EventName
                                 ")
-                    or die ("Unable to get event list:" . mysql_error());
+                    or die ("Unable to get event list:" . sqlError($db->errorInfo()));
        $first = 1;
        ?>
        <table border="0" width="100%" id="table1">
        <?php
-       while ($row = mysql_fetch_assoc($eventList))
+       while ($row = $eventList->fetch(PDO::FETCH_ASSOC))
        {
           $EventID   = $row['EventID'];
           $EventName = $row['EventName'];
@@ -75,8 +75,8 @@ $pageBreak='';
                         and    EventID  = '$EventID'";
           }
 
-          $cntResult = mysql_query($select) or die ("Unable to get registration count for event:" . mysql_error());
-          $cntRow    = mysql_fetch_assoc($cntResult);
+          $cntResult = $db->query($select) or die ("Unable to get registration count for event:" . sqlError($db->errorInfo()));
+          $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
           $numEvents = $cntRow['count'];
 
           //-------------------------------------------------------------------
@@ -206,13 +206,13 @@ $pageBreak='';
                              order by p.LastName";
                   }
                }
-               $members = mysql_query($sql) or die ("Unable to obtain event participant list:" . mysql_error());
+               $members = $db->query($sql) or die ("Unable to obtain event participant list:" . sqlError($db->errorInfo()));
 
                //--------------------------------------------------------------
                // Now print the details of each participant in the event
                //--------------------------------------------------------------
                $prevTeamID="";
-               while ($row = mysql_fetch_assoc($members))
+               while ($row = $members->fetch(PDO::FETCH_ASSOC))
                {
                   $ParticipantID = $row['ParticipantID'];
                   $Name   = $row['LastName'].", ".$row['FirstName'];

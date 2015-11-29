@@ -13,11 +13,11 @@ if (isset($_POST['reset']))
    }
    else
    {
-      $result     = mysql_query("select Userid
+      $result     = $db->query("select Userid
                                  from   $UsersTable
                                  where  email = '$address'")
-                    or die ("Unable to get user information: " . mysql_error());
-      $row        = mysql_fetch_assoc($result);
+                    or die ("Unable to get user information: " . sqlError($db->errorInfo()));
+      $row        = $result->fetch(PDO::FETCH_ASSOC);
       $Userid = isset($row['Userid']) ? $row['Userid'] : '';
 
       if ($Userid == '')
@@ -60,7 +60,7 @@ if (isset($_POST['reset']))
          $from     .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
          $from     .= "From: registration@ltcsw.org\r\n";
 
-         if (mysql_query("update $UsersTable set Password='$newPass' where Userid='$Userid'"))
+         if ($db->query("update $UsersTable set Password='$newPass' where Userid='$Userid'"))
          {
             if (mail($address, $subject, $email, $from))
             {
@@ -74,7 +74,7 @@ if (isset($_POST['reset']))
          }
          else
          {
-            $message="Unable to set your new password: ".mysql_error();
+            $message="Unable to set your new password: ".sqlError($db->errorInfo());
          }
       }
    }

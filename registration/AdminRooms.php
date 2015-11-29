@@ -33,11 +33,11 @@ $ErrorMsg = "";
 
 if ($mode == 'update' || $mode == 'view')
 {
-   $result = mysql_query("select RoomName,
+   $result = $db->query("select RoomName,
                                  RoomSeats
                          from $RoomsTable where RoomID = '$RoomID'")
-             or die ("Unable to get Room information: ".mysql_error());
-   $row = mysql_fetch_assoc($result);
+             or die ("Unable to get Room information: ".sqlError($db->errorInfo()));
+   $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $RoomName  = $row['RoomName'];
    $RoomSeats = $row['RoomSeats'];
@@ -95,10 +95,10 @@ if (isset($_POST['add']) or isset($_POST['update']))
       }
 
       //print "<pre>";print_r($sql);print "</pre>\n";
-      $results = mysql_query($sql) or die ("Unable to process update: " . mysql_error());
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError($db->errorInfo()));
 
       if ($mode == 'add')
-         $RoomID = mysql_insert_id();
+         $RoomID = $db->lastInsertId();
 
       ?>
          <body style="background-color: rgb(217, 217, 255);">

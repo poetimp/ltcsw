@@ -1,3 +1,5 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
 <?php
 include 'include/RegFunctions.php';
 
@@ -34,12 +36,12 @@ $ErrorMsg = "";
 
 if ($mode == 'update' || $mode == 'view')
 {
-   $result = mysql_query("select *
+   $result = $db->query("select *
                           from   $EventCoordTable
                           where  CoordID ='$CoordID'
                          ")
-             or die ("Unable to get coordinator information: ".mysql_error());
-   $row = mysql_fetch_assoc($result);
+             or die ("Unable to get coordinator information: ".sqlError($db->errorInfo()));
+   $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $CoordID          = isset($row['CoordID'])     ? $row['CoordID']     : "";
    $CoordName        = isset($row['Name'])        ? $row['Name']        : "";
@@ -153,11 +155,8 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          )";
          WriteToLog("Coordinator $CoordName Added");
       }
-      $results = mysql_query($sql) or die ("Unable to process update: " . mysql_error());
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError($db->errorInfo()));
    ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
-
    <body style="background-color: rgb(217, 217, 255);">
 
    <?php
@@ -197,9 +196,6 @@ if (isset($_POST['add']) or isset($_POST['update']))
    if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    {
       ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
-
       <head>
       <meta http-equiv="Content-Language" content="en-us">
       <?php

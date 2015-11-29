@@ -24,17 +24,17 @@ if (isset($_POST['AddNew']))
       <h1 align="center">Church Maintenance </h1>
       <form method="post" action=Churches.php>
          <?php
-            $results = mysql_query("select   ChurchName,
+            $results = $db->query("select   ChurchName,
                                              ChurchID
                                     from     $ChurchesTable
                                     order by ChurchName")
-                     or die ("Unable to obtain church list:" . mysql_error());
+                     or die ("Unable to obtain church list:" . sqlError($db->errorInfo()));
 
             $count = 0;
             ?>
             <table border="1" width="100%">
             <?php
-            while ($row = mysql_fetch_assoc($results))
+            while ($row = $results->fetch(PDO::FETCH_ASSOC))
             {
                ?>
                <tr>

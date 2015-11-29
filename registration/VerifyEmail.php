@@ -5,26 +5,26 @@ include 'include/RegFunctions.php';
 $message='';
 if (isset($_POST['verify']))
 {
-      $results = mysql_query("select verificationCode
+      $results = $db->query("select verificationCode
                               from   $UsersTable
                               where  Userid   = '$Userid'
                              ")
-              or die ("Unable to obtain verification code!". mysql_error());
-      $row     = mysql_fetch_assoc($results);
+              or die ("Unable to obtain verification code!". sqlError($db->errorInfo()));
+      $row     = $results->fetch(PDO::FETCH_ASSOC);
 
       if ($row['verificationCode'] == $_POST['code'])
       {
          $address = $_SESSION['newemail'];
          $_SESSION['newemail'] = undef;
 
-         if (mysql_query("update $UsersTable set email='$address' where Userid='$Userid'"))
+         if ($db->query("update $UsersTable set email='$address' where Userid='$Userid'"))
          {
             $message = "Email address updated";
-            mysql_query("update $UsersTable set verificationCode=null where Userid='$Userid'");
+            $db->query("update $UsersTable set verificationCode=null where Userid='$Userid'");
          }
          else
          {
-            $message="Unable to update email address: ".mysql_error();
+            $message="Unable to update email address: ".sqlError($db->errorInfo());
          }
 
       }

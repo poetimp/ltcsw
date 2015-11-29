@@ -51,7 +51,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
          $Amount*=-1;
       }
 
-      mysql_query("insert into $MoneyTable
+      $db->query("insert into $MoneyTable
                          (Date,
                           Amount,
                           Annotation,
@@ -61,7 +61,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
                           '$Annotation',
                           $ChurchID)
                  ")
-      or die ("Unable to insert into Money table: " . mysql_error());
+      or die ("Unable to insert into Money table: " . sqlError($db->errorInfo()));
       WriteToLog(ChurchName($ChurchID) . " account updated by: \$$Amount");
       unset($_POST['Amount']);     unset($Amount);
       unset($_POST['Annotation']); unset($Annotation);
@@ -127,14 +127,14 @@ if ($ChurchID != "" and isset($_POST['TxType']))
                </tr>
                <?php
 
-               $result = mysql_query("select date_format(Date,'%m-%d-%y') as Date,
+               $result = $db->query("select date_format(Date,'%m-%d-%y') as Date,
                                              Amount,
                                              Annotation
                                       from   $MoneyTable
                                       where  ChurchID=$ChurchID
                                       ")
-                         or die ("Unable to get accounting history: ".mysql_error());
-               while ($row = mysql_fetch_assoc($result))
+                         or die ("Unable to get accounting history: ".sqlError($db->errorInfo()));
+               while ($row = $result->fetch(PDO::FETCH_ASSOC))
                {
                   $Date       = $row['Date'];
                   $Amount     = $row['Amount'];
