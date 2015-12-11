@@ -24,7 +24,7 @@ $thisMonth = date('m');
 $thisYear  = date('Y');
 
 if ($thisMonth > 5) $thisYear++;
-$dropboxDirectory = '/LTC-'.$thisYear;
+$dropboxDirectory = '/Seniors';
 //===========================================================================================
 // Create the array with all of the Churches in it
 //===========================================================================================
@@ -387,7 +387,7 @@ if ($_POST)
                //============================
                // Copy file to dropbox
                //============================
-               $dropboxDirectory.= '/SeniorsFiles';
+               $dropboxDirectory.= '/LTC-'.$thisYear;
                $dropboxDirectory.= '/'.trim($church[$SubmitterCong]);
                $dropboxDirectory.= '/'.trim($participant[$SubmitterID]);
                $dropboxDirectory = trim($dropboxDirectory);
