@@ -42,7 +42,7 @@ if (isset($_POST['Update']))
          {
             $ErrorMsg = "Please enter email address for: ".$name[$i]." or enter \"None\"";;
          }
-         else if ($phone[$i] != "" and !ereg("^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$",$phone[$i]))
+         else if ($phone[$i] != "" and !preg_match("/^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/",$phone[$i]))
          {
             $ErrorMsg = "Invalid Phone number format. Should be: (###) ###-####";
          }

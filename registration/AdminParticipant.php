@@ -146,15 +146,15 @@ if (isset($_POST['add']) or isset($_POST['update']))
 //   {
 //      $ErrorMsg = "Please enter the required field: Meal Ticket";
 //   }
-   else if ($Grade == 12 and ereg("^\s*$",$Comments))
+   else if ($Grade == 12 and preg_match("/^\s*$/",$Comments))
    {
       $ErrorMsg = "Comments required for Seniors.<br>Please indicate how many years they have been in LTC and what their college plans are.<br>Thank you!";
    }
-   else if (!ereg("^[0-9]{5}$",$Zip) and !ereg("^[0-9]{5}-[0-9]{4}$",$Zip))
+   else if (!preg_match("/^[0-9]{5}$/",$Zip) and !preg_match("/^[0-9]{5}-[0-9]{4}$/",$Zip))
    {
       $ErrorMsg = "Invalid Zip Code specified. Must be in the format: ##### or #####-####";
    }
-   else if (!ereg("^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$",$Phone))
+   else if (!preg_match("/^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/",$Phone))
    {
       $ErrorMsg = "Invalid Phone number specified. Must be in the format: (###) ###-####";
    }
