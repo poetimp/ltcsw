@@ -40,8 +40,8 @@ $query = "select   distinct
              and      r.ParticipantID=p.ParticipantID
              and      p.Grade=12
              order    by ChurchName";
-$result = mysql_query($query)or die ("Unable to obtain church list:" . mysql_error());
-while($row = mysql_fetch_assoc($result)){
+$result = $db->query($query)or die ("Unable to obtain church list:" . mysql_error());
+while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $churches[] = array("id" => $row['ChurchID'], "val" => $row['ChurchName']);
    $church[$row['ChurchID']] = $row['ChurchName'];
 }
@@ -59,8 +59,8 @@ $query   = "SELECT distinct
                and   r.ChurchID=p.ChurchID
                and   p.Grade=12
                order by ParticipantName";
-$result = mysql_query($query)or die ("Unable to obtain participant list:" . mysql_error());
-while($row = mysql_fetch_assoc($result)){
+$result = $db->query($query)or die ("Unable to obtain participant list:" . mysql_error());
+while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $participants[$row['ChurchID']][] = array("id" => $row['ParticipantID'], "val" => $row['ParticipantName']);
    $participant[$row['ParticipantID']] = $row['ParticipantName'];
 }

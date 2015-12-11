@@ -41,8 +41,8 @@ $query = "select   distinct
              and      r.EventID=e.EventID
              and      e.ConvEvent='P'
              order    by ChurchName";
-$result = mysql_query($query)or die ("Unable to obtain church list:" . mysql_error());
-while($row = mysql_fetch_assoc($result)){
+$result = $db->query($query)or die ("Unable to obtain church list:" . mysql_error());
+while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $churches[] = array("id" => $row['ChurchID'], "val" => $row['ChurchName']);
    $church[$row['ChurchID']] = $row['ChurchName'];
 }
@@ -62,8 +62,8 @@ $query   = "SELECT distinct
                and   r.EventID=e.EventID
                and   e.ConvEvent='P'
                order by ParticipantName";
-$result = mysql_query($query)or die ("Unable to obtain participant list:" . mysql_error());
-while($row = mysql_fetch_assoc($result)){
+$result = $db->query($query)or die ("Unable to obtain participant list:" . mysql_error());
+while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $participants[$row['ChurchID']][] = array("id" => $row['ParticipantID'], "val" => $row['ParticipantName']);
    $participant[$row['ParticipantID']] = $row['ParticipantName'];
 }
@@ -83,8 +83,8 @@ $query   = "SELECT distinct
             and   e.ConvEvent='P'
             and   e.EventID=t.EventID
             order by e.EventName,t.TeamID;";
-$result = mysql_query($query)or die ("Unable to obtain team list:" . mysql_error());
-while($row = mysql_fetch_assoc($result)){
+$result = $db->query($query)or die ("Unable to obtain team list:" . mysql_error());
+while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $participants[$row['ChurchID']][] = array("id" => ltrim($row['TeamID'],'0'), "val" => $row['TeamName']);
    $participant[ltrim($row['TeamID'],'0')] = $row['TeamName'];
 }
@@ -101,8 +101,8 @@ $query   = "SELECT distinct
               where   r.EventID=e.EventID
               and     e.ConvEvent = 'P'
               order   by EventName";
-$result = mysql_query($query)or die ("Unable to obtain events list:" . mysql_error());
-while($row = mysql_fetch_assoc($result)){
+$result = $db->query($query)or die ("Unable to obtain events list:" . mysql_error());
+while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $events[$row['ParticipantID']][] = array("id" => $row['EventID'], "val" => $row['EventName']);
    $event[$row['EventID']] = $row['EventName'];
 }
