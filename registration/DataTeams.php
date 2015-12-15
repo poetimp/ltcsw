@@ -37,7 +37,7 @@ if ($Admin != 'Y')
                                           $EventsTable e
                                  where    t.EventID = e.EventID
                                  order by ChurchID")
-                   or die ("Unable to get team list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get team list:" . sqlError());
 
 
          while ($row = $results->fetch(PDO::FETCH_ASSOC))

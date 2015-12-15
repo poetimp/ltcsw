@@ -52,7 +52,7 @@ $roomList  = getRoomList();
                                           $EventScheduleTable s
                                  where    e.EventID = s.EventID
                                  order by $sortBy")
-                   or die ("Unable to get scheduled event list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
          <table border="0" width="100%" id="table1">
@@ -143,7 +143,7 @@ $roomList  = getRoomList();
             }
 
             $cntResult = $db->query($sql)
-                         or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));
+                         or die ("Unable to get Registration count for event:" . sqlError());
             $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numEvents = $cntRow['count'];
 
@@ -268,7 +268,7 @@ $roomList  = getRoomList();
                              order by p.LastName";
                   }
                }
-               $members = $db->query($sql) or die ("Not found:" . sqlError($db->errorInfo()));
+               $members = $db->query($sql) or die ("Not found:" . sqlError());
 
                $prevTeamID="";
                while ($row = $members->fetch(PDO::FETCH_ASSOC))

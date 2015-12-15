@@ -41,7 +41,7 @@ if ($mode == 'update' || $mode == 'view')
                           from   $UsersTable
                           where  Userid='$NewUserid'
                          ")
-             or die ("Unable to get User information: ".sqlError($db->errorInfo()));
+             or die ("Unable to get User information: ".sqlError());
    $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $NewUserID    = isset($row['Userid'])            ? $row['Userid']            : "";
@@ -130,7 +130,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                                         Status    = '$Status'
                                  where  Userid    = '$NewUserid'
                                 ")
-                    or die ("Unable to process update: " . sqlError($db->errorInfo()));
+                    or die ("Unable to process update: " . sqlError());
       }
       else
       {
@@ -138,7 +138,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                                  from   $UsersTable
                                  where  Userid = '$NewUserid'
                                 ")
-                    or die ("Unable to process update: " . sqlError($db->errorInfo()));
+                    or die ("Unable to process update: " . sqlError());
          $row = $results->fetch(PDO::FETCH_ASSOC);
          $count = $row['count'];
          if ($count == 0)
@@ -159,7 +159,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                                      '$IsAdmin'    ,
                                      '$Status'
                                    )")
-             or die ("Unable to process insert: " . sqlError($db->errorInfo()));
+             or die ("Unable to process insert: " . sqlError());
           }
           else
           {
@@ -351,7 +351,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                                              from     $ChurchesTable
                                              order by ChurchName
                                           ")
-                              or die ("Not found:" . sqlError($db->errorInfo()));
+                              or die ("Not found:" . sqlError());
                      while ($row = $results->fetch(PDO::FETCH_ASSOC))
                      {
                         $selected = ($NewChurchID == $row['ChurchID']) ? "selected" : "";

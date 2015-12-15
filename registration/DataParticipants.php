@@ -62,7 +62,7 @@ if ($Admin != 'Y')
                                        from     $ParticipantsTable
                                        where    ParticipantID = $ParticipantID
                                       ")
-                        or die ("Unable to get Participant Info:" . sqlError($db->errorInfo()));
+                        or die ("Unable to get Participant Info:" . sqlError());
 
                $row = $results->fetch(PDO::FETCH_ASSOC);
 

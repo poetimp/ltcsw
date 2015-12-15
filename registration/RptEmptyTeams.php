@@ -46,7 +46,7 @@ if ($Admin != 'Y')
                                  order by EventName,
                                           StartTime,
                                           ChurchName")
-                    or die (":" . sqlError($db->errorInfo()));
+                    or die (":" . sqlError());
          ?>
          <table border="1" width="100%" id="table1">
             <tr>

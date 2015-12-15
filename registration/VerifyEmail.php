@@ -9,7 +9,7 @@ if (isset($_POST['verify']))
                               from   $UsersTable
                               where  Userid   = '$Userid'
                              ")
-              or die ("Unable to obtain verification code!". sqlError($db->errorInfo()));
+              or die ("Unable to obtain verification code!". sqlError());
       $row     = $results->fetch(PDO::FETCH_ASSOC);
 
       if ($row['verificationCode'] == $_POST['code'])
@@ -24,7 +24,7 @@ if (isset($_POST['verify']))
          }
          else
          {
-            $message="Unable to update email address: ".sqlError($db->errorInfo());
+            $message="Unable to update email address: ".sqlError();
          }
 
       }

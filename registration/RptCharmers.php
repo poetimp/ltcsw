@@ -30,7 +30,7 @@ if ($Admin != 'Y')
                                  where    p.ChurchID = c.ChurchID
                                  order by c.ChurchName,
                                           p.Name")
-                    or die ("Unable to get Charmer information:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get Charmer information:" . sqlError());
          $first = 1;
          ?>
          <table border="1" width="100%" id="table1">

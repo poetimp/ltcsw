@@ -39,7 +39,7 @@ if ($Admin != 'Y')
                                              ChurchPhone
                                     from     $ChurchesTable
                                     where    ChurchID=$ChurchID")
-                     or die ("Unable to get Church Info:" . sqlError($db->errorInfo()));
+                     or die ("Unable to get Church Info:" . sqlError());
 
 
             $row = $results->fetch(PDO::FETCH_ASSOC);

@@ -3,18 +3,6 @@ include 'include/config.php';
 include 'include/auth.inc.php';
 include 'include/MySql-connect.inc.php';
 
-//-----------------------------------------------------------------------------
-// Return a formatted string of a PDR Database error array
-//-----------------------------------------------------------------------------
-function sqlError($pdoErrorArray)
-{
-   $pdoErrString='PDOError: ';
-   foreach ($pdoErrorArray as $pdoErr)
-   {
-      $pdoErrString.="[".$pdoErr."]";
-   }
-   return $pdoErrString;
-}
 
 //-----------------------------------------------------------------------------
 // Set Prices (Should be a database function, not hard coded as it is)
@@ -57,7 +45,7 @@ function WriteToLog($LogEntry)
                        '$LogEntry'
                       )
                ")
-   or die ("Unable to write to log: ".sqlError($db->errorInfo()));
+   or die ("Unable to write to log: ".sqlError());
 }
 //-----------------------------------------------------------------------------
 // This function returns a list of all defined churches
@@ -73,7 +61,7 @@ function ChurchesDefined()
                             from     $ChurchesTable
                             order by ChurchName
                             ")
-               or die ("Unable to get church list:" . sqlError($db->errorInfo()));
+               or die ("Unable to get church list:" . sqlError());
 
    while ($row = $churches->fetch(PDO::FETCH_ASSOC))
    {
@@ -101,7 +89,7 @@ function ChurchesRegistered()
                                      $RegistrationTable r
                             where    c.ChurchID = r.ChurchID
                             ")
-               or die ("Unable to get church list from registration:" . sqlError($db->errorInfo()));
+               or die ("Unable to get church list from registration:" . sqlError());
 
    while ($row = $churches->fetch(PDO::FETCH_ASSOC))
    {
@@ -114,7 +102,7 @@ function ChurchesRegistered()
                                      $TeamMembersTable  t
                             where    c.ChurchID = t.ChurchID
                             ")
-               or die ("Unable to get church list from team members:" . sqlError($db->errorInfo()));
+               or die ("Unable to get church list from team members:" . sqlError());
 
    while ($row = $churches->fetch(PDO::FETCH_ASSOC))
    {
@@ -144,7 +132,7 @@ function ActiveParticipants($ChurchID)
                                 and      p.ChurchID      = r.ChurchID
                                 and      p.ParticipantID = r.ParticipantID
                             ")
-               or die ("Unable to get Participant list from registration:" . sqlError($db->errorInfo()));
+               or die ("Unable to get Participant list from registration:" . sqlError());
 
    while ($row = $participants->fetch(PDO::FETCH_ASSOC))
    {
@@ -158,7 +146,7 @@ function ActiveParticipants($ChurchID)
                                 where    p.ChurchID      = $ChurchID
                                 and      p.ParticipantID = t.ParticipantID
                             ")
-               or die ("Unable to get participant list from team members:" . sqlError($db->errorInfo()));
+               or die ("Unable to get participant list from team members:" . sqlError());
 
    while ($row = $participants->fetch(PDO::FETCH_ASSOC))
    {
@@ -190,7 +178,7 @@ function ParticipantEvents($ParticipantID)
                           and      e.EventID       = r.EventID
                           and      e.TeamEvent     = 'N'
                          ")
-             or die ("Unable to get Participant list from registration:" . sqlError($db->errorInfo()));
+             or die ("Unable to get Participant list from registration:" . sqlError());
 
    while ($row = $events->fetch(PDO::FETCH_ASSOC))
    {
@@ -208,7 +196,7 @@ function ParticipantEvents($ParticipantID)
                           and      e.EventID       = t.EventID
                           and      t.TeamID        = m.TeamID
                          ")
-             or die ("Unable to get participant list from team members:" . sqlError($db->errorInfo()));
+             or die ("Unable to get participant list from team members:" . sqlError());
 
    while ($row = $events->fetch(PDO::FETCH_ASSOC))
    {
@@ -233,7 +221,7 @@ function ParticipantAward($ParticipantID,$EventID)
                            from    $EventsTable
                            where   EventID = $EventID
                         ")
-            or die ("Unable to determine event type:" . sqlError($db->errorInfo()));
+            or die ("Unable to determine event type:" . sqlError());
    $row = $results->fetch(PDO::FETCH_ASSOC);
    $TeamEvent        = ($row['TeamEvent'] == 'Y');
    $IndividualAwards = ($row['IndividualAwards'] == 'Y');
@@ -247,7 +235,7 @@ function ParticipantAward($ParticipantID,$EventID)
                               where  t.TeamID        = m.TeamID
                               and    t.EventID       = $EventID
                               and    m.ParticipantID = $ParticipantID")
-                 or die ("Unable to determine team membership:" . sqlError($db->errorInfo()));
+                 or die ("Unable to determine team membership:" . sqlError());
 
       $row = $results->fetch(PDO::FETCH_ASSOC);
       $TeamID     = $row['TeamID'];
@@ -258,7 +246,7 @@ function ParticipantAward($ParticipantID,$EventID)
                               where   EventID       = $EventID
                               and     ParticipantID = $TeamID
                            ")
-                 or die ("Unable to determine individual Award:" . sqlError($db->errorInfo()));
+                 or die ("Unable to determine individual Award:" . sqlError());
       $row = $results->fetch(PDO::FETCH_ASSOC);
       $Award = $row['Award'];
 
@@ -275,7 +263,7 @@ function ParticipantAward($ParticipantID,$EventID)
                               where   EventID       = $EventID
                               and     ParticipantID = $ParticipantID
                            ")
-                 or die ("Unable to determine individual Award:" . sqlError($db->errorInfo()));
+                 or die ("Unable to determine individual Award:" . sqlError());
       $row = $results->fetch(PDO::FETCH_ASSOC);
       $Award = $row['Award'];
    }
@@ -293,7 +281,7 @@ function ChurchName($ChurchID)
                           from     $ChurchesTable
                           where    ChurchID      = $ChurchID
                          ")
-             or die ("Unable to get ChurchID:" . sqlError($db->errorInfo()));
+             or die ("Unable to get ChurchID:" . sqlError());
 
    $row = $result->fetch(PDO::FETCH_ASSOC);
    return $row['ChurchName'];
@@ -326,7 +314,7 @@ function EventCounts($ParticipantID)
                              and    t.EventID         = e.EventID
                              and    e.TeamEvent       = 'Y'
                             ")
-                or die ("Unable to determine team event count:" . sqlError($db->errorInfo()));
+                or die ("Unable to determine team event count:" . sqlError());
    $cntRow = $cntResult->fetch(PDO::FETCH_ASSOC);
    $EventsCount['Team'] = $cntRow['count'];
 
@@ -337,7 +325,7 @@ function EventCounts($ParticipantID)
                              and    r.EventID         = e.EventID
                              and    e.TeamEvent       = 'N'
                             ")
-                or die ("Unable to determine solo event count:" . sqlError($db->errorInfo()));
+                or die ("Unable to determine solo event count:" . sqlError());
    $cntRow = $cntResult->fetch(PDO::FETCH_ASSOC);
    $EventsCount['Solo'] = $cntRow['count'];
 
@@ -385,7 +373,7 @@ function ChurchExpenses($ChurchID)
                            where  ChurchID   = '$ChurchID'
                            and    ItemType   = 'AdultMeal'
                         ")
-            or die ("Unable to get Extra Adult Meal Ticket Count:" . sqlError($db->errorInfo()));
+            or die ("Unable to get Extra Adult Meal Ticket Count:" . sqlError());
    $row = $results->fetch(PDO::FETCH_ASSOC);
    $ExtraAdultMealCount = isset($row['count']) ? $row['count'] : 0;
    //-----------------------------------------------------------------------
@@ -396,7 +384,7 @@ function ChurchExpenses($ChurchID)
                            where  ChurchID   = '$ChurchID'
                            and    ItemType   = 'ChildMeal'
                         ")
-            or die ("Unable to get Extra Child Meal Ticket Count:" . sqlError($db->errorInfo()));
+            or die ("Unable to get Extra Child Meal Ticket Count:" . sqlError());
    $row = $results->fetch(PDO::FETCH_ASSOC);
    $ExtraChildMealCount = isset($row['count']) ? $row['count'] : 0;
    //-----------------------------------------------------------------------
@@ -407,7 +395,7 @@ function ChurchExpenses($ChurchID)
                            where  ChurchID   = '$ChurchID'
                            and    ItemType in ('YM','YL','S','M','LG','XL','XX')
                         ")
-            or die ("Unable to get Extra T-Shirt Count:" . sqlError($db->errorInfo()));
+            or die ("Unable to get Extra T-Shirt Count:" . sqlError());
    $row = $results->fetch(PDO::FETCH_ASSOC);
    $ExtraShirtCount = isset($row['count']) ? $row['count'] : 0;
 
@@ -418,7 +406,7 @@ function ChurchExpenses($ChurchID)
                            from   $MoneyTable
                            where  ChurchID   = $ChurchID
                         ")
-            or die ("Unable to get monies in and out:" . sqlError($db->errorInfo()));
+            or die ("Unable to get monies in and out:" . sqlError());
    $row = $results->fetch(PDO::FETCH_ASSOC);
    $MoneyInOut = $row['MoneyInOut'];
 
@@ -475,7 +463,7 @@ function getRoomList($fullName='')
                                     from     $RoomsTable
                                     order by RoomName
                                    ")
-                     or die ("Unable to get room information: ".sqlError($db->errorInfo()));
+                     or die ("Unable to get room information: ".sqlError());
       }
       else
       {
@@ -487,7 +475,7 @@ function getRoomList($fullName='')
                                     from     $RoomsTable
                                     order by RoomName
                                    ")
-                     or die ("Unable to get room information: ".sqlError($db->errorInfo()));
+                     or die ("Unable to get room information: ".sqlError());
       }
       //$roomList[0] = 'Unassigned';
       while ($row = $result->fetch(PDO::FETCH_ASSOC))
@@ -513,7 +501,7 @@ function getRoomName($RoomID)
                           from     $RoomsTable
                           where    RoomID      = $RoomID
                          ")
-             or die ("Unable to get Room namme for RoomID $RoomID:" . sqlError($db->errorInfo()));
+             or die ("Unable to get Room namme for RoomID $RoomID:" . sqlError());
 
    $row = $result->fetch(PDO::FETCH_ASSOC);
    return $row['RoomName'];
@@ -530,7 +518,7 @@ function getStartTime($SchedID)
                           from     $EventScheduleTable
                           where    SchedID      = $SchedID
                          ")
-             or die ("Unable to get Start Time for SchedID $SchedID:" . sqlError($db->errorInfo()));
+             or die ("Unable to get Start Time for SchedID $SchedID:" . sqlError());
 
    $row = $result->fetch(PDO::FETCH_ASSOC);
    return $row['StartTime'];
@@ -553,7 +541,7 @@ function ScheduleEventAdd($EventID,$StartTime,$RoomID)   //Returns Success or Fa
                              from     $EventsTable
                              where    EventID      = $EventID
                             ")
-                or die ("Unable to get Duration for EventID $EventID:" . sqlError($db->errorInfo()));
+                or die ("Unable to get Duration for EventID $EventID:" . sqlError());
 
       $row = $result->fetch(PDO::FETCH_ASSOC);
       $EndTime = AddTime($StartTime,$row['Duration']);
@@ -570,7 +558,7 @@ function ScheduleEventAdd($EventID,$StartTime,$RoomID)   //Returns Success or Fa
                           $RoomID
                          )
                   ")
-      or die ("Unable to write to EventSchedule: ".sqlError($db->errorInfo()));
+      or die ("Unable to write to EventSchedule: ".sqlError());
       return TRUE;
    }
    else
@@ -597,7 +585,7 @@ function ScheduleEventUpd($SchedID,$EventID,$StartTime,$RoomID)   //Returns Succ
                              from     $EventsTable
                              where    EventID      = $EventID
                             ")
-                or die ("Unable to get Duration for EventID $EventID:" . sqlError($db->errorInfo()));
+                or die ("Unable to get Duration for EventID $EventID:" . sqlError());
 
       $row = $result->fetch(PDO::FETCH_ASSOC);
       $EndTime = AddTime($StartTime,$row['Duration']);
@@ -608,7 +596,7 @@ function ScheduleEventUpd($SchedID,$EventID,$StartTime,$RoomID)   //Returns Succ
                        RoomID    = '$RoomID'
                    where SchedID = '$SchedID'
                    ")
-      or die ("Unable to update EventSchedule: ".sqlError($db->errorInfo()));
+      or die ("Unable to update EventSchedule: ".sqlError());
       return TRUE;
    }
    else
@@ -633,7 +621,7 @@ function ScheduleEventGet($EventID)                             //Returns a list
                                  and   r.RoomID  = e.RoomID
                                  order by RoomName
                                 ")
-                  or die ("Unable to get room information: ".sqlError($db->errorInfo()));
+                  or die ("Unable to get room information: ".sqlError());
 
    while ($row = $result->fetch(PDO::FETCH_ASSOC))
    {
@@ -657,7 +645,7 @@ function ScheduleEventDel($EventID,$StartTime,$RoomID)                          
                           and      StartTime    = $StartTime
                           and      RoomID       = $RoomID
                          ")
-             or die ("Unable to get Event Count for EventID $EventID:" . sqlError($db->errorInfo()));
+             or die ("Unable to get Event Count for EventID $EventID:" . sqlError());
 
    $row = $result->fetch(PDO::FETCH_ASSOC);
    $Count = $row['Count'];
@@ -673,7 +661,7 @@ function ScheduleEventDel($EventID,$StartTime,$RoomID)                          
                           and      StartTime    = $StartTime
                           and      RoomID       = $RoomID
                          ")
-             or die ("Unable to remove event from schedule:" . sqlError($db->errorInfo()));
+             or die ("Unable to remove event from schedule:" . sqlError());
       return TRUE;
    }
 
@@ -695,7 +683,7 @@ function ScheduleEventTimeAvailable($EventID,$StartTime,$RoomID)
                           from     $EventsTable
                           where    EventID      = $EventID
                          ")
-             or die ("Unable to get Duration for EventID $EventID:" . sqlError($db->errorInfo()));
+             or die ("Unable to get Duration for EventID $EventID:" . sqlError());
 
    $row = $result->fetch(PDO::FETCH_ASSOC);
    $EndTime = AddTime($StartTime,$row['Duration']);
@@ -737,7 +725,7 @@ function ScheduleEventTimeAvailable($EventID,$StartTime,$RoomID)
                                  )
                               )
                          ")
-                          or die ("Unable to get schedule for the Event:" . sqlError($db->errorInfo()));
+                          or die ("Unable to get schedule for the Event:" . sqlError());
 
    $row = $result->fetch(PDO::FETCH_ASSOC);
    $Count = $row['Count'];
@@ -764,7 +752,7 @@ function ScheduleGetEventName($checkSchedID,$ParticipantID)
                           from     $EventScheduleTable
                           where    SchedID = $checkSchedID
                          ")
-             or die ("Unable to get schedule information for participant $ParticipantID:" . sqlError($db->errorInfo()));
+             or die ("Unable to get schedule information for participant $ParticipantID:" . sqlError());
    $row = $result->fetch(PDO::FETCH_ASSOC);
    $checkStartTime = $row['StartTime'];
    $checkEndTime   = $row['EndTime'];
@@ -782,7 +770,7 @@ function ScheduleGetEventName($checkSchedID,$ParticipantID)
                           and      e.TeamEvent     = 'N'
                           and      e.ConvEvent     = 'C'
                          ")
-             or die ("Unable to get solo schedule for participant $ParticipantID:" . sqlError($db->errorInfo()));
+             or die ("Unable to get solo schedule for participant $ParticipantID:" . sqlError());
 
 // And check each even against the one they are wanting to sign up for. If there is overlap
 // there is conflict
@@ -835,7 +823,7 @@ function ScheduleGetEventName($checkSchedID,$ParticipantID)
                              and    e.ConvEvent     = 'C'
                              and    r.SchedID       = s.SchedID
                             ")
-      or die ("Unable to get team schedule for participant $ParticipantID:" . sqlError($db->errorInfo()));
+      or die ("Unable to get team schedule for participant $ParticipantID:" . sqlError());
 
 //      print "CheckStartTime: $checkStartTime, CheckEndTime: $checkEndTime<br>";
       while (! $conflict and $row = $result->fetch(PDO::FETCH_ASSOC))
@@ -976,7 +964,7 @@ function slotsFilledInRoom($RoomName,$StartTime)
                            and    s.StartTime = '$StartTime'
                            and    s.SchedID   = p.SchedID
                            and    s.RoomID    = r.RoomID")
-              or die ("Unable to get slot usage for Room:$RoomName at start time $StartTime:" . sqlError($db->errorInfo()));
+              or die ("Unable to get slot usage for Room:$RoomName at start time $StartTime:" . sqlError());
    $row = $result->fetch(PDO::FETCH_ASSOC);
    return ($row['Count']);
 }

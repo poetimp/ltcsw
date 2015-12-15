@@ -5,16 +5,16 @@ include 'include/RegFunctions.php';
 
 if (isset($_POST['Confirm']))
 {
-   $db->query("delete from $EventsTable        where EventID=".$_REQUEST['EventID']) or die ("Unable to delete event record: "        . sqlError($db->errorInfo()));
-   $db->query("delete from $RegistrationTable  where EventID=".$_REQUEST['EventID']) or die ("Unable to delete registration record: " . sqlError($db->errorInfo()));
-   $db->query("delete from $EventScheduleTable where EventID=".$_REQUEST['EventID']) or die ("Unable to delete schedule record: "     . sqlError($db->errorInfo()));
+   $db->query("delete from $EventsTable        where EventID=".$_REQUEST['EventID']) or die ("Unable to delete event record: "        . sqlError());
+   $db->query("delete from $RegistrationTable  where EventID=".$_REQUEST['EventID']) or die ("Unable to delete registration record: " . sqlError());
+   $db->query("delete from $EventScheduleTable where EventID=".$_REQUEST['EventID']) or die ("Unable to delete schedule record: "     . sqlError());
 
-   $TeamList = $db->query("select TeamID from $TeamsTable where EventID=".$_REQUEST['EventID']) or die ("Unable to delete Team records: "        . sqlError($db->errorInfo()));
+   $TeamList = $db->query("select TeamID from $TeamsTable where EventID=".$_REQUEST['EventID']) or die ("Unable to delete Team records: "        . sqlError());
    while ($row = $TeamList->fetch(PDO::FETCH_ASSOC))
    {
-      $db->query("delete from $TeamMembersTable where TeamID=".$row['TeamID']) or die ("Unable to delete Team Member record: "     . sqlError($db->errorInfo()));
+      $db->query("delete from $TeamMembersTable where TeamID=".$row['TeamID']) or die ("Unable to delete Team Member record: "     . sqlError());
    }
-   $db->query("delete from $TeamsTable        where EventID=".$_REQUEST['EventID']) or die ("Unable to delete Team records: "        . sqlError($db->errorInfo()));
+   $db->query("delete from $TeamsTable        where EventID=".$_REQUEST['EventID']) or die ("Unable to delete Team records: "        . sqlError());
 
    WriteToLog("Event ".$_REQUEST['EventID']." was deleted");
    ?>

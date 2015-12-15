@@ -84,7 +84,7 @@ $IgnoreEvents = "117,118,119"; // Hack to remove bible Bowl
                                  and      e.EventID not in($IgnoreEvents)
                                  order by e.EventName,
                                           s.StartTime")
-                   or die ("Unable to get scheduled event list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get scheduled event list:" . sqlError());
 
 
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
@@ -131,7 +131,7 @@ $IgnoreEvents = "117,118,119"; // Hack to remove bible Bowl
 
 
             $cntResult = $db->query($sql)
-                         or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));
+                         or die ("Unable to get Registration count for event:" . sqlError());
             $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numEvents = $cntRow['count'];
 
@@ -176,7 +176,7 @@ $IgnoreEvents = "117,118,119"; // Hack to remove bible Bowl
                           order by p.LastName";
                }
 
-               $members = $db->query($sql) or die ("Not found:" . sqlError($db->errorInfo()));
+               $members = $db->query($sql) or die ("Not found:" . sqlError());
 
                while ($row = $members->fetch(PDO::FETCH_ASSOC))
                {

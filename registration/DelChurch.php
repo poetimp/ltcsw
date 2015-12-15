@@ -14,25 +14,25 @@ if (isset($_POST['Confirm']))
    $ChurchID=$_REQUEST['ChurchID'];
 
    $db->query("delete from $ChurchesTable         where ChurchID=$ChurchID")
-         or die ("Unable to delete church record: "           . sqlError($db->errorInfo()));
+         or die ("Unable to delete church record: "           . sqlError());
    $db->query("delete from $UsersTable            where ChurchID=$ChurchID")
-         or die ("Unable to delete user records: "           . sqlError($db->errorInfo()));
+         or die ("Unable to delete user records: "           . sqlError());
    $db->query("delete from $RegistrationTable     where ChurchID=$ChurchID")
-         or die ("Unable to delete registration records: "    . sqlError($db->errorInfo()));
+         or die ("Unable to delete registration records: "    . sqlError());
    $db->query("delete from $ParticipantsTable     where ChurchID=$ChurchID")
-         or die ("Unable to delete participants records: "    . sqlError($db->errorInfo()));
+         or die ("Unable to delete participants records: "    . sqlError());
    $db->query("delete from $TeamsTable            where ChurchID=$ChurchID")
-         or die ("Unable to delete team records: "            . sqlError($db->errorInfo()));
+         or die ("Unable to delete team records: "            . sqlError());
    $db->query("delete from $TeamMembersTable      where ChurchID=$ChurchID")
-         or die ("Unable to delete team members records: "    . sqlError($db->errorInfo()));
+         or die ("Unable to delete team members records: "    . sqlError());
    $db->query("delete from $ExtraOrdersTable      where ChurchID=$ChurchID")
-         or die ("Unable to delete extra orders records: "    . sqlError($db->errorInfo()));
+         or die ("Unable to delete extra orders records: "    . sqlError());
    $db->query("delete from $NonParticipantsTable  where ChurchID=$ChurchID")
-         or die ("Unable to delete Non-Participant records: " . sqlError($db->errorInfo()));
+         or die ("Unable to delete Non-Participant records: " . sqlError());
    $db->query("delete from $JudgeAssignmentsTable where ChurchID=$ChurchID")
-         or die ("Unable to delete Judging Assignmrnts records: " . sqlError($db->errorInfo()));
+         or die ("Unable to delete Judging Assignmrnts records: " . sqlError());
    $db->query("delete from $JudgesTable           where ChurchID=$ChurchID")
-         or die ("Unable to delete Judges records: " . sqlError($db->errorInfo()));
+         or die ("Unable to delete Judges records: " . sqlError());
 
 
    WriteToLog("Church ".$_REQUEST['ChurchID']." was deleted");

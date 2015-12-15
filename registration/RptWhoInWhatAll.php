@@ -31,7 +31,7 @@ if ($Admin != 'Y')
                                  from     $ParticipantsTable
                                  order by LastName,
                                           FirstName")
-                    or die ("Unable to get participant List:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get participant List:" . sqlError());
          $first = 1;
          ?>
          <table border="0" width="100%">
@@ -87,7 +87,7 @@ if ($Admin != 'Y')
                                           AND      e.TeamEvent   = 'N'
                                           AND      ParticipantID = $ParticipantID
                                           ORDER BY EventID")
-               or die ("Unable to get individual events:" . sqlError($db->errorInfo()));
+               or die ("Unable to get individual events:" . sqlError());
 
                //======================================================================
                // List the individual events participant is in
@@ -100,7 +100,7 @@ if ($Admin != 'Y')
                                       from   $EventsTable
                                       where  EventID = $EventID
                                      ")
-                         or die ("Unable to get Solo Event Name:" . sqlError($db->errorInfo()));
+                         or die ("Unable to get Solo Event Name:" . sqlError());
                  $row = $evnt->fetch(PDO::FETCH_ASSOC);
                  $EventName = $row['EventName'];
                  $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
@@ -128,7 +128,7 @@ if ($Admin != 'Y')
                                           and    t.ChurchID      = $ChurchID
                                           and    m.ParticipantID = $ParticipantID
                                           ")
-                              or die ("Unable to get Team events:" . sqlError($db->errorInfo()));
+                              or die ("Unable to get Team events:" . sqlError());
 
                 //======================================================================
                 // List the Team events participant is in
@@ -143,7 +143,7 @@ if ($Admin != 'Y')
                                         from  $EventsTable
                                         where EventID = $EventID
                                       ")
-                          or die ("Unable to get Team Event Name:" . sqlError($db->errorInfo()));
+                          or die ("Unable to get Team Event Name:" . sqlError());
                   $row = $evnt->fetch(PDO::FETCH_ASSOC);
                   $EventName = $row['EventName'];
                   $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";

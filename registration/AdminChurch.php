@@ -48,7 +48,7 @@ if ($mode == 'update' || $mode == 'view')
                           from   $ChurchesTable
                           where  ChurchID ='$ChurchID'
                          ")
-             or die ("Unable to get church information: ".sqlError($db->errorInfo()));
+             or die ("Unable to get church information: ".sqlError());
    $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $ChurchName  = isset($row['ChurchName'])  ? $row['ChurchName']  : "";
@@ -148,19 +148,19 @@ if (isset($_POST['add']) or isset($_POST['update']))
    {
       $ErrorMsg = "Please enter the required field: Coordinator Email Address";
    }
-   else if (!preg_match("/^[0-9]{5}$/",$ChurchZip) and !preg_match("/^[0-9]{5}-[0-9]{4}$/",$ChurchZip))
+   else if (!ereg("^[0-9]{5}$",$ChurchZip) and !ereg("^[0-9]{5}-[0-9]{4}$",$ChurchZip))
    {
       $ErrorMsg = "Invalid Zip Church Code specified. Must be in the format: ##### or #####-####";
    }
-   else if (!preg_match("/^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/",$ChurchPhone))
+   else if (!ereg("^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$",$ChurchPhone))
    {
       $ErrorMsg = "Invalid Church Phone number specified. Must be in the format: (###) ###-####";
    }
-   else if (!preg_match("/^[0-9]{5}$/",$CoordZip) and !preg_match("/^[0-9]{5}-[0-9]{4}$/",$CoordZip))
+   else if (!ereg("^[0-9]{5}$",$CoordZip) and !ereg("^[0-9]{5}-[0-9]{4}$",$CoordZip))
    {
       $ErrorMsg = "Invalid Zip Coordinator Code specified. Must be in the format: ##### or #####-####";
    }
-   else if (!preg_match("/^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/",$CoordPhone))
+   else if (!ereg("^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$",$CoordPhone))
    {
       $ErrorMsg = "Invalid Coordinator Phone number specified. Must be in the format: (###) ###-####";
    }
@@ -235,7 +235,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          '$CoordEmail')";
       }
 
-      $results = $db->query($sql) or die ("Unable to process update: " . sqlError($db->errorInfo()));
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
    ?>
          <body style="background-color: rgb(217, 217, 255);">
          <?php

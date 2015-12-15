@@ -4,7 +4,7 @@ include 'include/RegFunctions.php';
 $result     = $db->query("select email
                            from   $UsersTable
                            where  Userid = '$Userid'")
-              or die ("Unable to obtain email adress Name: " . sqlError($db->errorInfo()));
+              or die ("Unable to obtain email adress Name: " . sqlError());
 $row        = $result->fetch(PDO::FETCH_ASSOC);
 $Email      = $row['email'];
 

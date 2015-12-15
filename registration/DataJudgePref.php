@@ -48,7 +48,7 @@ if ($Admin != 'Y')
                                  where    t.JudgeID = e.JudgeID
                                  and      s.SchedID = t.SchedID
                                  order by JudgeID")
-                   or die ("Unable to get Judge Preference list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get Judge Preference list:" . sqlError());
 
 
          while ($row = $results->fetch(PDO::FETCH_ASSOC))

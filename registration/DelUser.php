@@ -6,7 +6,7 @@ include 'include/RegFunctions.php';
 if (isset($_POST['Confirm']))
 {
    $db->query("delete from $UsersTable where Userid='".$_REQUEST['Userid']."'")
-   or die ("Unable to delete userid record: ".sqlError($db->errorInfo()));
+   or die ("Unable to delete userid record: ".sqlError());
    WriteToLog("User ".$_REQUEST['Userid']." Deleted");
    ?>
       <head>

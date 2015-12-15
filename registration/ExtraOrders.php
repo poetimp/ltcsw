@@ -50,7 +50,7 @@ else
                         where    ChurchID = $ChurchID
                         and      ParticipantID in $inClause
                         group by ShirtSize")
-            or die ("Unable to read participant table" . sqlError($db->errorInfo()));
+            or die ("Unable to read participant table" . sqlError());
 
    $ParticipantTotal = 0;
    while ($row = $shirts->fetch(PDO::FETCH_ASSOC))
@@ -74,7 +74,7 @@ else
 //                        and      (MealTicket = '3'
 //                        or        MealTicket = '5')
 //                        group by MealTicket")
-//            or die ("Unable to read participant table" . sqlError($db->errorInfo()));
+//            or die ("Unable to read participant table" . sqlError());
 //
 //   $ParticipantMealTotal=0;
 //   while ($row = $meals->fetch(PDO::FETCH_ASSOC))
@@ -139,7 +139,7 @@ if (isset($_POST['Update']))
       // existing extra order data for this church.
       //----------------------------------------------------------------------------
       $db->query("delete from $ExtraOrdersTable where ChurchID=$ChurchID")
-            or die ("Unable to clear ExtraOrder Table: ".sqlError($db->errorInfo()));
+            or die ("Unable to clear ExtraOrder Table: ".sqlError());
 
       //----------------------------------------------------------------------------
       // Add all of the shirt data
@@ -156,7 +156,7 @@ if (isset($_POST['Update']))
                                 '$shirtSize',
                                 '$ShirtCount')
                         ")
-            or die ("Unable to insert extra shirts into ExtraOrders table: ".sqlError($db->errorInfo()));
+            or die ("Unable to insert extra shirts into ExtraOrders table: ".sqlError());
          }
       }
 
@@ -175,7 +175,7 @@ if (isset($_POST['Update']))
                                 '$mealType',
                                 '$MealCount')
                         ")
-            or die ("Unable to insert extra meal ticket into ExtraOrders table: ".sqlError($db->errorInfo()));
+            or die ("Unable to insert extra meal ticket into ExtraOrders table: ".sqlError());
          }
       }
    }
@@ -190,7 +190,7 @@ else
                                         ItemCount
                                from     $ExtraOrdersTable
                                where    ChurchID = $ChurchID")
-                  or die ("Unable to Read Extra Orders Table" . sqlError($db->errorInfo()));
+                  or die ("Unable to Read Extra Orders Table" . sqlError());
 
    //-------------------------------------------------------------------------------
    // Load data from the database into a local array to parse

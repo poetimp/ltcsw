@@ -28,7 +28,7 @@ if (isset($_POST['AddNew']))
                                              ChurchID
                                     from     $ChurchesTable
                                     order by ChurchName")
-                     or die ("Unable to obtain church list:" . sqlError($db->errorInfo()));
+                     or die ("Unable to obtain church list:" . sqlError());
 
             $count = 0;
             ?>

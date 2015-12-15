@@ -34,7 +34,7 @@ $awardsBronze = 0;
                                 where    r.EventID    = e.EventID
                                 and      r.Award     != 'No Show'
                                 and      e.TeamEvent  = 'N'")
-                    or die ("Unable to get award list:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get award list:" . sqlError());
          $row = $count->fetch(PDO::FETCH_ASSOC);
          $numRows = $row['count'];
          print "<br>[$numRows]\n";
@@ -48,7 +48,7 @@ $awardsBronze = 0;
                                 and      e.TeamEvent  = 'N'
                                 group by e.EventName,
                                          r.Award")
-                    or die ("Unable to get award list:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get award list:" . sqlError());
 
        ?>
          <table border="1" width="100%" id="table1">
@@ -129,7 +129,7 @@ $awardsBronze = 0;
                                  where  e.EventID=t.EventID
                                  and    r.EventID=t.EventID
                                  and    t.TeamID=r.ParticipantID")
-                    or die ("Unable to get team list:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get team list:" . sqlError());
 
          while ($team = $results->fetch(PDO::FETCH_ASSOC))
          {
@@ -148,7 +148,7 @@ $awardsBronze = 0;
                                          where  t.TeamID=m.TeamID
                                          and    t.TeamID=".$team['TeamID']."
                                          group by m.Award")
-                          or die ("Unable to get team member count:" . sqlError($db->errorInfo()));
+                          or die ("Unable to get team member count:" . sqlError());
                while ($members = $memberQry->fetch(PDO::FETCH_ASSOC))
                {
                   if (isset($teamAwards[$team['EventName']][$members['Award']]))
@@ -164,7 +164,7 @@ $awardsBronze = 0;
                                                 $TeamsTable        t
                                          where  t.TeamID=m.TeamID
                                          and    t.TeamID=".$team['TeamID'])
-                          or die ("Unable to get team member count:" . sqlError($db->errorInfo()));
+                          or die ("Unable to get team member count:" . sqlError());
                $members = $memberQry->fetch(PDO::FETCH_ASSOC);
                if (isset($teamAwards[$team['EventName']][$team['Award']]))
                   $teamAwards[$team['EventName']][$team['Award']] += $members['Count'];

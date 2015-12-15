@@ -45,7 +45,7 @@ $pageBreak='';
                                  from     $EventsTable
                                  order by EventName
                                 ")
-                    or die ("Unable to get event list:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get event list:" . sqlError());
        $first = 1;
        ?>
        <table border="0" width="100%" id="table1">
@@ -75,7 +75,7 @@ $pageBreak='';
                         and    EventID  = '$EventID'";
           }
 
-          $cntResult = $db->query($select) or die ("Unable to get registration count for event:" . sqlError($db->errorInfo()));
+          $cntResult = $db->query($select) or die ("Unable to get registration count for event:" . sqlError());
           $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
           $numEvents = $cntRow['count'];
 
@@ -206,7 +206,7 @@ $pageBreak='';
                              order by p.LastName";
                   }
                }
-               $members = $db->query($sql) or die ("Unable to obtain event participant list:" . sqlError($db->errorInfo()));
+               $members = $db->query($sql) or die ("Unable to obtain event participant list:" . sqlError());
 
                //--------------------------------------------------------------
                // Now print the details of each participant in the event

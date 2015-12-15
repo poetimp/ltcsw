@@ -50,7 +50,7 @@ if ($mode == 'update' || $mode == 'view')
                           from   $EventsTable
                           where  EventID ='$EventID'
                          ")
-             or die ("Unable to get event information: ".sqlError($db->errorInfo()));
+             or die ("Unable to get event information: ".sqlError());
    $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $EventName        = isset($row['EventName'])        ? $row['EventName']        : "";
@@ -285,7 +285,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          )";
          WriteToLog("Event $EventName Added");
       }
-      $results = $db->query($sql) or die ("Unable to process update: " . sqlError($db->errorInfo()));
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
    ?>
 <html lang="en">
 
@@ -927,7 +927,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                   $results = $db->query("select   Name
                                  from     $EventCoordTable
                                  where    CoordID=$CoordID")
-                  or die ("Unable to get coordinator:" . sqlError($db->errorInfo()));
+                  or die ("Unable to get coordinator:" . sqlError());
 
                   $row = $results->fetch(PDO::FETCH_ASSOC);
                   $CoordName = $row['Name'];
@@ -956,7 +956,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                                                       CoordID
                                     from     $EventCoordTable
                                     order by Name")
-                     or die ("Unable to get coordinator list:" . sqlError($db->errorInfo()));
+                     or die ("Unable to get coordinator list:" . sqlError());
 
                      while ($row = $results->fetch(PDO::FETCH_ASSOC))
                      {

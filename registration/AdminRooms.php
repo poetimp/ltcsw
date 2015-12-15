@@ -36,7 +36,7 @@ if ($mode == 'update' || $mode == 'view')
    $result = $db->query("select RoomName,
                                  RoomSeats
                          from $RoomsTable where RoomID = '$RoomID'")
-             or die ("Unable to get Room information: ".sqlError($db->errorInfo()));
+             or die ("Unable to get Room information: ".sqlError());
    $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $RoomName  = $row['RoomName'];
@@ -95,7 +95,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       }
 
       //print "<pre>";print_r($sql);print "</pre>\n";
-      $results = $db->query($sql) or die ("Unable to process update: " . sqlError($db->errorInfo()));
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
 
       if ($mode == 'add')
          $RoomID = $db->lastInsertId();

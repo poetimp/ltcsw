@@ -43,7 +43,7 @@ else
                                 where   a.JudgeID     = j.JudgeID
                                 and     a.ChurchID    = $ChurchID
                               ")
-         or die ("Unable to obtain Judge List:" . sqlError($db->errorInfo()));
+         or die ("Unable to obtain Judge List:" . sqlError());
          $row = $result->fetch(PDO::FETCH_ASSOC);
          $numRows = $row['count'];
 
@@ -65,7 +65,7 @@ else
                                    and     a.ChurchID    = $ChurchID
                                    order by j.LastName
                                  ")
-            or die ("Unable to obtain Judge List:" . sqlError($db->errorInfo()));
+            or die ("Unable to obtain Judge List:" . sqlError());
             ?>
             <table border="1" width="100%">
                <tr>
@@ -97,7 +97,7 @@ else
                                        and      e.EventID = s.EventID
                                        order by s.StartTime
                                  ")
-               or die ("Unable to obtain Judging Details:" . sqlError($db->errorInfo()));
+               or die ("Unable to obtain Judging Details:" . sqlError());
                while ($judgeDtails = $details->fetch(PDO::FETCH_ASSOC))
                {
                   $RoomName  = $judgeDtails['RoomName'];

@@ -35,7 +35,7 @@ if ($Admin != 'Y')
                                  and      Comments != ''
                                  order by LastName,
                                           FirstName")
-                    or die ("Unable to get participant information:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get participant information:" . sqlError());
          $first = 1;
          ?>
          <table border="1" width="100%" id="table1">

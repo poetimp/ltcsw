@@ -22,7 +22,7 @@ function ScheduleEventGet($EventID)
                               where    EventID = $EventID
                               order by RoomID, StartTime
                               ")
-               or die ("Unable to get schedule information for event: ".sqlError($db->errorInfo()));
+               or die ("Unable to get schedule information for event: ".sqlError());
 
    while ($row = $result->fetch(PDO::FETCH_ASSOC))
    {
@@ -50,7 +50,7 @@ function ScheduleEventGet($EventID)
                               where    ConvEvent = 'C'
                               and      EventAttended='Y'
                               order by EventName")
-                 or die ("Unable to obtain convention event list:" . sqlError($db->errorInfo()));
+                 or die ("Unable to obtain convention event list:" . sqlError());
       ?>
       <table border="1" width="100%">
       <?php

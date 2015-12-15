@@ -16,7 +16,7 @@ if (isset($_POST['reset']))
       $result     = $db->query("select Userid
                                  from   $UsersTable
                                  where  email = '$address'")
-                    or die ("Unable to get user information: " . sqlError($db->errorInfo()));
+                    or die ("Unable to get user information: " . sqlError());
       $row        = $result->fetch(PDO::FETCH_ASSOC);
       $Userid = isset($row['Userid']) ? $row['Userid'] : '';
 
@@ -74,7 +74,7 @@ if (isset($_POST['reset']))
          }
          else
          {
-            $message="Unable to set your new password: ".sqlError($db->errorInfo());
+            $message="Unable to set your new password: ".sqlError();
          }
       }
    }

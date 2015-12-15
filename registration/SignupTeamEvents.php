@@ -57,14 +57,14 @@ include 'include/RegFunctions.php';
                                             $TeamsTable  T
                                      WHERE  E.EventID  = T.EventID
                                      AND    T.ChurchID = $ChurchID")
-                        or die ("Unable to retrieve Team List:" . sqlError($db->errorInfo()));
+                        or die ("Unable to retrieve Team List:" . sqlError());
 
          while ($row = $ChurchTeams->fetch(PDO::FETCH_ASSOC))
          {
             $cntResult = $db->query("select count(*) as count
                                       from   $TeamMembersTable
                                       where  TeamID = ".$row['TeamID'])
-                         or die ("Can not determine team count:" . sqlError($db->errorInfo()));
+                         or die ("Can not determine team count:" . sqlError());
             $cntRow = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numMembers = $cntRow['count'];
             ?>

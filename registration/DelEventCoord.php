@@ -5,8 +5,8 @@ include 'include/RegFunctions.php';
 
 if (isset($_POST['Confirm']))
 {
-   $db->query("delete from $EventCoordTable          where CoordID=".$_REQUEST['CoordID']) or die ("Unable to delete Coordinator record: "        . sqlError($db->errorInfo()));
-   $db->query("update $EventsTable  set CoordID=NULL where CoordID=".$_REQUEST['CoordID']) or die ("Unable to delete registration record: " . sqlError($db->errorInfo()));
+   $db->query("delete from $EventCoordTable          where CoordID=".$_REQUEST['CoordID']) or die ("Unable to delete Coordinator record: "        . sqlError());
+   $db->query("update $EventsTable  set CoordID=NULL where CoordID=".$_REQUEST['CoordID']) or die ("Unable to delete registration record: " . sqlError());
 
    WriteToLog("Coordinator ".$_REQUEST['CoordID']." was deleted");
    ?>

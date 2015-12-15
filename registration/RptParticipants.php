@@ -66,7 +66,7 @@ else
                                     order by p.LastName,
                                              p.FirstName"
                                  )
-                     or die ("Unable to get participant information:" . sqlError($db->errorInfo()));
+                     or die ("Unable to get participant information:" . sqlError());
             ?>
             <?php
             $row = $results->fetch(PDO::FETCH_ASSOC);

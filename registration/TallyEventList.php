@@ -50,7 +50,7 @@ $prevTime = "";
                                  and      e.EventAttended = 'Y'
                                  order by s.StartTime,
                                           e.EventName")
-                   or die ("Unable to get scheduled event list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
          <table border="1"
@@ -85,7 +85,7 @@ $prevTime = "";
                                          AND    e.TeamEvent = 'Y'
                                          AND    m.TeamID    = r.ParticipantID
                                         ")
-                            or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+                            or die ("Unable to get Registration count for event:" . sqlError());;
                $numEvents = $cntResult->fetchColumn();
 
                if ($IndividualAwards)
@@ -96,7 +96,7 @@ $prevTime = "";
                                              WHERE m.TeamID  = t.TeamID
                                              and   t.EventID = $EventID
                                             ")
-                                 or die ("Unable to get Registration count for teams members:" . sqlError($db->errorInfo()));;
+                                 or die ("Unable to get Registration count for teams members:" . sqlError());;
                   $numEvents += $cntResult->fetchColumn();
                }
             }
@@ -111,7 +111,7 @@ $prevTime = "";
                                         AND    r.EventID   = e.EventID
                                         AND    e.TeamEvent = 'N'
                                        ")
-                           or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+                           or die ("Unable to get Registration count for event:" . sqlError());;
                $numEvents    = $cntResult->fetchColumn();
             }
 
@@ -133,7 +133,7 @@ $prevTime = "";
                                            AND    m.TeamID    = r.ParticipantID
                                            AND    r.Award Is Not Null
                                          ")
-                             or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+                             or die ("Unable to get Registration count for event:" . sqlError());;
                   $numAwards = $cntResult->fetchColumn();
 
                   if ($IndividualAwards)
@@ -145,7 +145,7 @@ $prevTime = "";
                                                 and   t.EventID = $EventID
                                                 and   m.Award is not null
                                              ")
-                                    or die ("Unable to get Registration count for teams members:" . sqlError($db->errorInfo()));;
+                                    or die ("Unable to get Registration count for teams members:" . sqlError());;
                      $numAwards += $cntResult->fetchColumn();
                   }
                }
@@ -161,7 +161,7 @@ $prevTime = "";
                                            AND    e.TeamEvent = 'N'
                                            AND    r.Award Is Not Null
                                          ")
-                             or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+                             or die ("Unable to get Registration count for event:" . sqlError());;
                   $numAwards = $cntResult->fetchColumn();
                }
             }
@@ -229,7 +229,7 @@ $prevTime = "";
                                  where    e.EventAttended = 'N'
                                  order by e.ConvEvent,
                                           e.EventName")
-                   or die ("Unable to get Unscheduled event list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get Unscheduled event list:" . sqlError());
          $first = 1;
          ?>
          <table border="1"
@@ -262,7 +262,7 @@ $prevTime = "";
                                         AND    e.TeamEvent = 'Y'
                                         AND    m.TeamID    = r.ParticipantID
                                        ")
-                           or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+                           or die ("Unable to get Registration count for event:" . sqlError());;
             }
             else
             {
@@ -275,7 +275,7 @@ $prevTime = "";
                                         AND    r.EventID   = e.EventID
                                         AND    e.TeamEvent = 'N'
                                        ")
-                           or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+                           or die ("Unable to get Registration count for event:" . sqlError());;
             }
             $numEvents = $cntResult->fetchColumn();
 
@@ -298,7 +298,7 @@ $prevTime = "";
                                            AND    m.TeamID    = r.ParticipantID
                                            AND    r.Award Is Not Null
                                          ")
-                             or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+                             or die ("Unable to get Registration count for event:" . sqlError());;
                }
                else
                {
@@ -312,7 +312,7 @@ $prevTime = "";
                                            AND    e.TeamEvent = 'N'
                                            AND    r.Award Is Not Null
                                          ")
-                             or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));;
+                             or die ("Unable to get Registration count for event:" . sqlError());;
                }
                $numAwards = $cntResult->fetchColumn();
             }

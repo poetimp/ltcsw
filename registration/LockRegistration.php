@@ -14,7 +14,7 @@ if (isset($_POST['Reports']))
                 where  Admin   = 'N'
                 and    Status != 'L'
                 ")
-   or die ("Unable to lock users".sqlError($db->errorInfo()));
+   or die ("Unable to lock users".sqlError());
 }
 else if (isset($_POST['Lock']))
 {
@@ -22,7 +22,7 @@ else if (isset($_POST['Lock']))
                 set    Status = 'L'
                 where  Admin  = 'N'
                 ")
-   or die ("Unable to lock users".sqlError($db->errorInfo()));
+   or die ("Unable to lock users".sqlError());
 }
 else if (isset($_POST['Unlock']))
 {
@@ -30,7 +30,7 @@ else if (isset($_POST['Unlock']))
                 set    Status = 'O'
                 where  Admin  = 'N'
                 ")
-   or die ("Unable to lock users".sqlError($db->errorInfo()));
+   or die ("Unable to lock users".sqlError());
 }
 else if (isset($_POST['Open']))
 {
@@ -39,7 +39,7 @@ else if (isset($_POST['Open']))
                 where  Admin   = 'N'
                 and    Status != 'L'
                ")
-   or die ("Unable to lock users".sqlError($db->errorInfo()));
+   or die ("Unable to lock users".sqlError());
 }
 else if (isset($_POST['Close']))
 {
@@ -48,7 +48,7 @@ else if (isset($_POST['Close']))
                 where  Admin   = 'N'
                 and    Status != 'L'
                 ")
-   or die ("Unable to lock users".sqlError($db->errorInfo()));
+   or die ("Unable to lock users".sqlError());
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -91,7 +91,7 @@ else if (isset($_POST['Close']))
                                  from     $UsersTable
                                  Order by ChurchID,
                                           Userid")
-                    or die ("Unable to get user list:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get user list:" . sqlError());
 
          ?>
          <table border="1" width="100%">
@@ -109,7 +109,7 @@ else if (isset($_POST['Close']))
                                      from   $ChurchesTable
                                      where  ChurchID = ".$row['ChurchID']
                                     )
-                        or die ("Unable to get Church Name:" . sqlError($db->errorInfo()));
+                        or die ("Unable to get Church Name:" . sqlError());
             $chRow      = $chResult->fetch(PDO::FETCH_ASSOC);
             $ChurchName = $chRow['ChurchName'];
 

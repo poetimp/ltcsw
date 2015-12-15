@@ -14,7 +14,7 @@ $EventID = $_REQUEST['EventID'];
 $result     = $db->query("select EventName
                            from   $EventsTable
                            where EventID='$EventID'")
-              or die ("Unable to get event information: ".sqlError($db->errorInfo()));
+              or die ("Unable to get event information: ".sqlError());
 $row        = $result->fetch(PDO::FETCH_ASSOC);
 $EventName  = isset($row['EventName'])  ? $row['EventName']  : "";
 
@@ -25,7 +25,7 @@ $EventName  = isset($row['EventName'])  ? $row['EventName']  : "";
 if (isset($_POST['Reset']))
 {
    $db->query("delete from $ScheduleTable where EventID='$EventID'")
-         or die ("Unable to delete existing schedule: ".sqlError($db->errorInfo()));
+         or die ("Unable to delete existing schedule: ".sqlError());
    $message    = "Schedule Reset";
 }
 //------------------------------------------------------------------------------
@@ -34,11 +34,11 @@ if (isset($_POST['Reset']))
 else if (isset($_POST['Update']))
 {
    $db->query("delete from $ScheduleTable where EventID='$EventID'")
-         or die ("Unable to delete existing schedule: ".sqlError($db->errorInfo()));
+         or die ("Unable to delete existing schedule: ".sqlError());
 
    foreach (array_keys($_POST) as $keyValue)
    {
-      if (preg_match("/^[FS][0-9]{2}$/",$keyValue))
+      if (ereg("^[FS][0-9]{2}$",$keyValue))
       {
          $DisplayText       = substr($_POST[$keyValue],2);
          $SchedID           = $keyValue.substr($_POST[$keyValue],0,2);
@@ -56,7 +56,7 @@ else if (isset($_POST['Update']))
                              '$RoomID'
                              )
                      ")
-         or die ("Unable to Add Schedule: ".sqlError($db->errorInfo()));
+         or die ("Unable to Add Schedule: ".sqlError());
       }
    }
    $message = "Updated";
@@ -70,7 +70,7 @@ else
                                      RoomID
                               from   $ScheduleTable
                               where EventID='$EventID'")
-                 or die ("Unable to get event information: ".sqlError($db->errorInfo()));
+                 or die ("Unable to get event information: ".sqlError());
    while ($row = $result->fetch(PDO::FETCH_ASSOC))
    {
       $checked[$row['SchedID']] = 1;
@@ -96,7 +96,7 @@ function selectRoom($SchedID)
                              where  SchedID like '$roomKey'
                              and    EventID = $EventID
                             ")
-              or die ("Unable to get room ID: ".sqlError($db->errorInfo()));
+              or die ("Unable to get room ID: ".sqlError());
 
    $row    = $result->fetch(PDO::FETCH_ASSOC);
    if (!empty($row))

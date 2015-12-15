@@ -57,7 +57,7 @@ if (isset($_POST['ChangeEmail']))
       }
       else
       {
-         $message="Unable to generate verification code: ".sqlError($db->errorInfo());
+         $message="Unable to generate verification code: ".sqlError();
       }
    }
 }

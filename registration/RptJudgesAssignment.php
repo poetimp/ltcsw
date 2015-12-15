@@ -9,7 +9,7 @@ $TimesList = $db->query("select distinct
                                     StartTime
                            from     $EventScheduleTable
                            order by StartTime")
-or die ("Unable to obtain Times List:" . sqlError($db->errorInfo()));
+or die ("Unable to obtain Times List:" . sqlError());
 
 $times         = array();
 $fridayTimes   = 1;
@@ -50,7 +50,7 @@ $RoomList = $db->query("select   distinct
                                     RoomName
                            from    $RoomsTable
                            order by RoomName")
-or die ("Unable to obtain Rooms List:" . sqlError($db->errorInfo()));
+or die ("Unable to obtain Rooms List:" . sqlError());
 
 $rooms=array();
 while ($row = $RoomList->fetch(PDO::FETCH_ASSOC))
@@ -102,7 +102,7 @@ function constructJudgesTable($dayTimes,$day)
                                   where   StartTime like '$dayInitial%'
                                   and     RoomID    =     $RoomID
                                  ")
-            or die ("Unable to obtain Events in room on $day:" . sqlError($db->errorInfo()));
+            or die ("Unable to obtain Events in room on $day:" . sqlError());
 
             $row   = $Event->fetch(PDO::FETCH_ASSOC);
             $count = $row['Count'];
@@ -134,7 +134,7 @@ function constructJudgesTable($dayTimes,$day)
                                           and     s.RoomID  = $RoomID
                                           and     s.EventID = e.EventID
                                           ")
-                     or die ("Unable to obtain Event Name:" . sqlError($db->errorInfo()));
+                     or die ("Unable to obtain Event Name:" . sqlError());
 
                      $row = $Event->fetch(PDO::FETCH_ASSOC);
                      if (!empty($row))
@@ -158,7 +158,7 @@ function constructJudgesTable($dayTimes,$day)
                                                      and     a.JudgeNumber = $i
                                                      and     a.JudgeID     = j.JudgeID
                                           ")
-                                          or die ("Unable to obtain Judge Name:" . sqlError($db->errorInfo()));
+                                          or die ("Unable to obtain Judge Name:" . sqlError());
                               $row       = $result->fetch(PDO::FETCH_ASSOC);
                               if (!empty($row))
                               {

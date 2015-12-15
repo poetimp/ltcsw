@@ -30,7 +30,7 @@ if (isset($_POST['AddNew']))
                                           RoomSeats
                                  from     $RoomsTable
                                  order by RoomName")
-                    or die ("Unable to obtain room list:" . sqlError($db->errorInfo()));
+                    or die ("Unable to obtain room list:" . sqlError());
 
          $count = 0;
          ?>

@@ -35,7 +35,7 @@ if (isset($_POST['Confirm']))
    //=========================================================================================
    // Clear all accounting from last year
    //=========================================================================================
-   $db->query("delete from $MoneyTable") or die ("Unable to clear MoneyTable " . sqlError($db->errorInfo()));
+   $db->query("delete from $MoneyTable") or die ("Unable to clear MoneyTable " . sqlError());
    //=========================================================================================
    // Restore non-zero balances
    //=========================================================================================
@@ -51,7 +51,7 @@ if (isset($_POST['Confirm']))
                            'Balance carried forward',
                            $ChurchID)
                   ")
-         or die ("Unable to insert into Money table: " . sqlError($db->errorInfo()));
+         or die ("Unable to insert into Money table: " . sqlError());
          /*print "insert into $MoneyTable
                            (Date,
                            Amount,
@@ -67,19 +67,19 @@ if (isset($_POST['Confirm']))
    //=========================================================================================
    // First clear out various registration tables that contain only information for a given year
    //=========================================================================================
-   $db->query("delete from $ExtraOrdersTable"     ) or die ("Unable to clear ExtraOrders "          . sqlError($db->errorInfo()));
-   $db->query("delete from $NonParticipantsTable" ) or die ("Unable to clear NonParticipantsTable " . sqlError($db->errorInfo()));
-   $db->query("delete from $RegistrationTable"    ) or die ("Unable to clear RegistrationTabl "     . sqlError($db->errorInfo()));
-   $db->query("delete from $TeamMembersTable"     ) or die ("Unable to clear TeamMembersTable "     . sqlError($db->errorInfo()));
-   $db->query("delete from $LogTable"             ) or die ("Unable to clear LogTable "             . sqlError($db->errorInfo()));
-   $db->query("delete from $TeamsTable"           ) or die ("Unable to clear TeamsTable "           . sqlError($db->errorInfo()));
-   $db->query("delete from $JudgeAssignmentsTable") or die ("Unable to clear JudgeAssignmentsTable" . sqlError($db->errorInfo()));
+   $db->query("delete from $ExtraOrdersTable"     ) or die ("Unable to clear ExtraOrders "          . sqlError());
+   $db->query("delete from $NonParticipantsTable" ) or die ("Unable to clear NonParticipantsTable " . sqlError());
+   $db->query("delete from $RegistrationTable"    ) or die ("Unable to clear RegistrationTabl "     . sqlError());
+   $db->query("delete from $TeamMembersTable"     ) or die ("Unable to clear TeamMembersTable "     . sqlError());
+   $db->query("delete from $LogTable"             ) or die ("Unable to clear LogTable "             . sqlError());
+   $db->query("delete from $TeamsTable"           ) or die ("Unable to clear TeamsTable "           . sqlError());
+   $db->query("delete from $JudgeAssignmentsTable") or die ("Unable to clear JudgeAssignmentsTable" . sqlError());
 
    //=========================================================================================
    // Set the team number to start at 100000 again
    //=========================================================================================
    $db->query("alter table $TeamsTable auto_increment = 100000")
-         or die ("Unable to set starting Team Number ". sqlError($db->errorInfo()));
+         or die ("Unable to set starting Team Number ". sqlError());
 
    //=========================================================================================
    // Age up or out all of the particpants
@@ -87,7 +87,7 @@ if (isset($_POST['Confirm']))
    $ParticipantList = $db->query("select ParticipantID,
                                           Grade
                                    from   $ParticipantsTable")
-                      or die ("Unable to obtain participant List". sqlError($db->errorInfo()));
+                      or die ("Unable to obtain participant List". sqlError());
    while ($row = $ParticipantList->fetch(PDO::FETCH_ASSOC))
    {
       $grade = $row['Grade'] + 1;
@@ -95,12 +95,12 @@ if (isset($_POST['Confirm']))
       if ($grade > 12)
       {
          $db->query("delete from $ParticipantsTable where ParticipantID=$PID")
-               or die  ("Unable to delete aged out participant: $PID: ". sqlError($db->errorInfo()));
+               or die  ("Unable to delete aged out participant: $PID: ". sqlError());
       }
       else
       {
          $db->query("update $ParticipantsTable set Grade=$grade,Comments='' where ParticipantID=$PID")
-               or die  ("Unable to age up participant: $PID: ". sqlError($db->errorInfo()));
+               or die  ("Unable to age up participant: $PID: ". sqlError());
       }
    }
 

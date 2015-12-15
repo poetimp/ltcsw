@@ -47,7 +47,7 @@ if ($Admin != 'Y')
                                        from     $ParticipantsTable p
                                        where    p.ParticipantID=$ParticipantID
                                       ")
-                        or die ("Unable to get Participant info:" . sqlError($db->errorInfo()));
+                        or die ("Unable to get Participant info:" . sqlError());
 
 
                $row = $results->fetch(PDO::FETCH_ASSOC);
@@ -70,7 +70,7 @@ if ($Admin != 'Y')
                                           e.CoordName
                                  from     $EventsTable e
                                  order by CoordName")
-                   or die ("Unable to get Coordinator list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get Coordinator list:" . sqlError());
 
 
          while ($row = $results->fetch(PDO::FETCH_ASSOC))

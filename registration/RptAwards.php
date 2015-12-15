@@ -20,7 +20,7 @@ if ($Admin != 'Y')
                          group by ChurchName,EventName,Award
                          order by ChurchName,EventName,field(Award,'Gold','Silver','Bronze','No Award','No Show')
                          ")
-   or die ("Unable to get Awards list:" . sqlError($db->errorInfo()));
+   or die ("Unable to get Awards list:" . sqlError());
    
    $CurrentChurch = '';
    $CurrentEvent  = '';

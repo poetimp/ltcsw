@@ -6,8 +6,8 @@ include 'include/RegFunctions.php';
 if (isset($_POST['Confirm']))
 {
    $TeamID = $_REQUEST['TeamID'];
-   $db->query("delete from $TeamsTable        where TeamID=$TeamID") or die ("Unable to delete Team record: "         . sqlError($db->errorInfo()));
-   $db->query("delete from $TeamMembersTable  where TeamID=$TeamID") or die ("Unable to delete Members: "             . sqlError($db->errorInfo()));
+   $db->query("delete from $TeamsTable        where TeamID=$TeamID") or die ("Unable to delete Team record: "         . sqlError());
+   $db->query("delete from $TeamMembersTable  where TeamID=$TeamID") or die ("Unable to delete Members: "             . sqlError());
 
    $RegList = $db->query("select r.EventID
                            from   $RegistrationTable r,
@@ -16,7 +16,7 @@ if (isset($_POST['Confirm']))
                            and    r.ParticipantID = $TeamID
                            and    e.TeamEvent     = 'Y'
                           ")
-              or die ("Unable to get Registration List".sqlError($db->errorInfo()));
+              or die ("Unable to get Registration List".sqlError());
    while ($Row = $RegList->fetch(PDO::FETCH_ASSOC))
    {
       $EventID=$Row['EventID'];
@@ -25,7 +25,7 @@ if (isset($_POST['Confirm']))
                    where  ParticipantID = $TeamID
                    and    EventID       = $EventID
                   ")
-      or die ("Unable to delete registration record: " . sqlError($db->errorInfo()));
+      or die ("Unable to delete registration record: " . sqlError());
    }
    ?>
       <head>

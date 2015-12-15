@@ -36,7 +36,7 @@ if ($mode == 'update' || $mode == 'view')
                           from   $JudgesTable
                           where  JudgeID = $JudgeID
                           and    ChurchID = $ChurchID")
-             or die ("Unable to get Judge information: ".sqlError($db->errorInfo()));
+             or die ("Unable to get Judge information: ".sqlError());
    $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $JudgeID       = isset($row['JudgeID'])       ? $row['JudgeID']       : "";
@@ -100,11 +100,11 @@ if (isset($_POST['add']) or isset($_POST['update']))
    {
       $ErrorMsg = "Please enter the required field: Phone Number";
    }
-   else if (!preg_match("/^[0-9]{5}$/",$Zip) and !preg_match("/^[0-9]{5}-[0-9]{4}$/",$Zip))
+   else if (!ereg("^[0-9]{5}$",$Zip) and !ereg("^[0-9]{5}-[0-9]{4}$",$Zip))
    {
       $ErrorMsg = "Invalid Zip Code specified. Must be in the format: ##### or #####-####";
    }
-   else if (!preg_match("/^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/",$Phone))
+   else if (!ereg("^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$",$Phone))
    {
       $ErrorMsg = "Invalid Phone number specified. Must be in the format: (###) ###-####";
    }
@@ -163,7 +163,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
       }
 
-      $results = $db->query($sql) or die ("Unable to process update: " . sqlError($db->errorInfo()));
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
 
       if ($mode != 'update')
       {

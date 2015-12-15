@@ -25,7 +25,7 @@ include 'include/RegFunctions.php';
                                  where    ChurchID = '$ChurchID'
                                  order by LastName,
                                           FirstName")
-                    or die ("Not found:" . sqlError($db->errorInfo()));
+                    or die ("Not found:" . sqlError());
          $first = 1;
          ?>
          <table border="0" width="100%" id="table1">
@@ -72,7 +72,7 @@ include 'include/RegFunctions.php';
                                          AND      e.TeamEvent   = 'N'
                                          AND      ParticipantID = $ParticipantID
                                          ORDER BY EventID")
-                            or die ("Unable to get individual events:" . sqlError($db->errorInfo()));
+                            or die ("Unable to get individual events:" . sqlError());
 
               while ($row = $SoloEvents->fetch(PDO::FETCH_ASSOC))
               {
@@ -81,7 +81,7 @@ include 'include/RegFunctions.php';
                                             ConvEvent
                                      from   $EventsTable
                                      where  EventID = $EventID")
-                        or die ("Not found:" . sqlError($db->errorInfo()));
+                        or die ("Not found:" . sqlError());
                 $row = $evnt->fetch(PDO::FETCH_ASSOC);
                 $EventName = $row['EventName'];
                 $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
@@ -108,7 +108,7 @@ include 'include/RegFunctions.php';
                                         and     t.ChurchID      = $ChurchID
                                         and     m.ParticipantID = $ParticipantID
                                         ")
-                            or die ("Unable to get Team events:" . sqlError($db->errorInfo()));
+                            or die ("Unable to get Team events:" . sqlError());
 
               while ($row = $TeamEvents->fetch(PDO::FETCH_ASSOC))
               {
@@ -119,7 +119,7 @@ include 'include/RegFunctions.php';
                                             ConvEvent
                                      from   $EventsTable
                                      where  EventID = $EventID")
-                        or die ("Not able to get events list:" . sqlError($db->errorInfo()));
+                        or die ("Not able to get events list:" . sqlError());
                 $row = $evnt->fetch(PDO::FETCH_ASSOC);
                 $EventName = $row['EventName'];
                 $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";

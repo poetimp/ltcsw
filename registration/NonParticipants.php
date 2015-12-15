@@ -9,7 +9,7 @@ $result = $db->query("select Name,
                               Email
                        from   $NonParticipantsTable
                        where  ChurchID=$ChurchID")
-          or die ("Unable to read NonParticipants table: ".sqlError($db->errorInfo()));
+          or die ("Unable to read NonParticipants table: ".sqlError());
 
 $i = 0;
 while ($row = $result->fetch(PDO::FETCH_ASSOC))
@@ -42,7 +42,7 @@ if (isset($_POST['Update']))
          {
             $ErrorMsg = "Please enter email address for: ".$name[$i]." or enter \"None\"";;
          }
-         else if ($phone[$i] != "" and !preg_match("/^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/",$phone[$i]))
+         else if ($phone[$i] != "" and !ereg("^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$",$phone[$i]))
          {
             $ErrorMsg = "Invalid Phone number format. Should be: (###) ###-####";
          }
@@ -52,7 +52,7 @@ if (isset($_POST['Update']))
    if ($ErrorMsg == "")
    {
       $db->query("delete from $NonParticipantsTable where ChurchID=$ChurchID")
-            or die ("Unable to clear NonParticipants table: ".sqlError($db->errorInfo()));
+            or die ("Unable to clear NonParticipants table: ".sqlError());
       for ($i=0; $i<$MaxRows and $ErrorMsg == ""; $i++)
       {
          if ($name[$i] != "")
@@ -71,7 +71,7 @@ if (isset($_POST['Update']))
                                  '$Phone',
                                  '$Email'
                                  )
-                         ") or die ("Unable to insert into NonParticipants table: ".sqlError($db->errorInfo()));
+                         ") or die ("Unable to insert into NonParticipants table: ".sqlError());
          }
       }
    }

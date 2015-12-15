@@ -24,7 +24,7 @@ if (isset($_POST['ChangePwd']))
                               where  Userid   = '$Userid'
                               and    Status  != 'L'
                              ")
-              or die ("Unable to validate Userid and Password!". sqlError($db->errorInfo()));
+              or die ("Unable to validate Userid and Password!". sqlError());
       $row     = $results->fetch(PDO::FETCH_ASSOC);
 
       if ($row['Count'] != 1 or !password_verify($oldPassword,$row['Password']))
@@ -37,7 +37,7 @@ if (isset($_POST['ChangePwd']))
          if ($db->query("update $UsersTable set Password = '$newPassword' where Userid='$Userid'"))
             $message="Your password has been successfully updated";
          else
-            $message="Unable to update Password!". sqlError($db->errorInfo());
+            $message="Unable to update Password!". sqlError();
       }
    }
 }

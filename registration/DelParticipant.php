@@ -7,8 +7,8 @@ if (isset($_POST['Confirm']))
 {
    $ParticipantID = $_REQUEST['ParticipantID'];
 
-   $db->query("delete from $ParticipantsTable where ParticipantID=$ParticipantID") or die ("Unable to delete participant record: "     . sqlError($db->errorInfo()));
-   $db->query("delete from $TeamMembersTable  where ParticipantID=$ParticipantID") or die ("Unable to delete team membership record: " . sqlError($db->errorInfo()));
+   $db->query("delete from $ParticipantsTable where ParticipantID=$ParticipantID") or die ("Unable to delete participant record: "     . sqlError());
+   $db->query("delete from $TeamMembersTable  where ParticipantID=$ParticipantID") or die ("Unable to delete team membership record: " . sqlError());
 
    $RegList = $db->query("select r.EventID
                            from   $RegistrationTable r,
@@ -17,7 +17,7 @@ if (isset($_POST['Confirm']))
                            and    r.ParticipantID = $ParticipantID
                            and    e.TeamEvent     = 'N'
                           ")
-              or die ("Unable to get Registration List".sqlError($db->errorInfo()));
+              or die ("Unable to get Registration List".sqlError());
    while ($Row = $RegList->fetch(PDO::FETCH_ASSOC))
    {
       $EventID=$Row['EventID'];
@@ -26,7 +26,7 @@ if (isset($_POST['Confirm']))
                    where  ParticipantID = $ParticipantID
                    and    EventID       = $EventID
                   ")
-      or die ("Unable to delete registration record: " . sqlError($db->errorInfo()));
+      or die ("Unable to delete registration record: " . sqlError());
    }
    ?>
       <head>

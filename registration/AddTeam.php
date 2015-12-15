@@ -40,7 +40,7 @@ if (isset($_POST['Add']))
                                               from     $EventsTable
                                               where    TeamEvent = 'Y'
                                               order by EventName")
-                     or die ("Unable to get team list:" . sqlError($db->errorInfo()));
+                     or die ("Unable to get team list:" . sqlError());
                      while ($Row = $TeamList->fetch(PDO::FETCH_ASSOC))
                      {
                        print "<option value=\"".$Row['EventID']."\">".$Row['EventName']."</option>\n";

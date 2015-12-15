@@ -26,7 +26,7 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
                                  where    ChurchID = '$ChurchID'
                                  order by LastName,
                                           FirstName")
-                    or die ("Participant Not found:" . sqlError($db->errorInfo()));
+                    or die ("Participant Not found:" . sqlError());
 
          $count = 0;
          ?>

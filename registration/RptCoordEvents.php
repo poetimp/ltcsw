@@ -72,7 +72,7 @@ if ($Admin != 'Y')
                                  order by c.Name,
                                           e.EventName,
                                           s.StartTime")
-                   or die ("Unable to get scheduled event list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get scheduled event list:" . sqlError());
          ?>
          <?php
          $PrevCoord = "";
@@ -137,7 +137,7 @@ if ($Admin != 'Y')
             }
 
             $cntResult = $db->query($sql)
-                         or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));
+                         or die ("Unable to get Registration count for event:" . sqlError());
             $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numEvents = $cntRow['count'];
             ?>
@@ -200,7 +200,7 @@ if ($Admin != 'Y')
                           order by p.LastName";
                }
 
-               $members = $db->query($sql) or die ("Unable to obtain member list:" . sqlError($db->errorInfo()));
+               $members = $db->query($sql) or die ("Unable to obtain member list:" . sqlError());
 
                $prevTeamID="";
                while ($row = $members->fetch(PDO::FETCH_ASSOC))

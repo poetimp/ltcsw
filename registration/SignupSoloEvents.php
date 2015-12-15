@@ -22,7 +22,7 @@ include 'include/RegFunctions.php';
                                  where  ChurchID = $ChurchID
                                  order  by LastName
                                 ")
-                    or die ("Can not get Participant List:" . sqlError($db->errorInfo()));
+                    or die ("Can not get Participant List:" . sqlError());
 
          $count = 0;
          ?>

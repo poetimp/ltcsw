@@ -78,7 +78,7 @@ if ($Admin != 'Y')
                                 and      p.ParticipantID in $inClause
                                 group by p.ShirtSize
                                ")
-                   or die ("Unable to obtain Shirt List:" . sqlError($db->errorInfo()));
+                   or die ("Unable to obtain Shirt List:" . sqlError());
 
          //====================================================================
          // Start with zero counts
@@ -111,7 +111,7 @@ if ($Admin != 'Y')
                                      where    ChurchID = $ChurchID
                                      and      ItemType in ('YM','YL','S','M','LG','XL','XX')
                                      ")
-                        or die ("Unable to Read Extra Orders Table" . sqlError($db->errorInfo()));
+                        or die ("Unable to Read Extra Orders Table" . sqlError());
 
          while ($row = $extraOrders->fetch(PDO::FETCH_ASSOC))
          {

@@ -12,7 +12,7 @@ if (isset($_POST['submit']))
                            where  Userid   = '" . $_POST['userid'] . "'
                            and    Status  != 'L'
                           ")
-              or die ("Unable to validate Userid and Password!". sqlError($db->errorInfo()));
+              or die ("Unable to validate Userid and Password!". sqlError());
    $row     = $results->fetch(PDO::FETCH_ASSOC);
 
 // Yep ... continue
@@ -22,7 +22,7 @@ if (isset($_POST['submit']))
                               from $UsersTable
                               where Userid = '" .$_POST['userid'] ."'
                              ")
-                 or die ("Unable to read Users information!". sqlError($db->errorInfo()));
+                 or die ("Unable to read Users information!". sqlError());
       $row     = $results->fetch(PDO::FETCH_ASSOC);
 
       $_SESSION['Admin']     = $row['Admin'];
@@ -44,7 +44,7 @@ if (isset($_POST['submit']))
                                     loginCount = loginCount+1
                                 where Userid   = '$UserID'
                                 ")
-                 or die ("Unable to update Users information!". sqlError($db->errorInfo()));
+                 or die ("Unable to update Users information!". sqlError());
          if (isset($_POST['redirect']))
          {
             header ("Refresh: 0; URL=" . $_POST['redirect'] . "");
@@ -69,7 +69,7 @@ if (isset($_POST['submit']))
                               from   $UsersTable
                               where  Userid   = '" . $_POST['userid'] . "'
                              ")
-                 or die ("Unable to validate Userid and Password!". sqlError($db->errorInfo()));
+                 or die ("Unable to validate Userid and Password!". sqlError());
       $row     = $results->fetch(PDO::FETCH_ASSOC);
 
       if ($row['Count'] == 1)
@@ -78,7 +78,7 @@ if (isset($_POST['submit']))
                                  set failedLoginCount = failedLoginCount+1
                                  where Userid   = '".$_POST['userid']."'
                                 ")
-                 or die ("Unable to update Users information!". sqlError($db->errorInfo()));
+                 or die ("Unable to update Users information!". sqlError());
       }
    }
 }

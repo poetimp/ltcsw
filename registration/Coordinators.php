@@ -29,7 +29,7 @@ if (isset($_POST['AddNew']))
                                           CoordID
                                  from     $EventCoordTable
                                  order by Name")
-                    or die ("Unable to get coordinator list:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get coordinator list:" . sqlError());
 
          $count = 0;
          ?>

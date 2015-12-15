@@ -209,7 +209,7 @@ function selectTime($Timestr = '')
                               from     $EventsTable
                               where    ConvEvent = 'C'
                               order by EventName")
-                 or die ("Unable to obtain convention event list:" . sqlError($db->errorInfo()));
+                 or die ("Unable to obtain convention event list:" . sqlError());
       ?>
       <form method="post">
       <table border="1" width="100%">
@@ -261,7 +261,7 @@ function selectTime($Timestr = '')
                                       where    s.EventID = '$EventID'
                                       and      s.RoomID  = r.RoomID
                                       order by StartTime")
-                         or die ("Unable to get schedule information for event:" . sqlError($db->errorInfo()));
+                         or die ("Unable to get schedule information for event:" . sqlError());
             if ($cntResult->fetchColumn() > 0)
             {
                $cntResult = $db->query("select    s.StartTime,
@@ -274,7 +274,7 @@ function selectTime($Timestr = '')
                                          where    s.EventID = '$EventID'
                                          and      s.RoomID  = r.RoomID
                                          order by StartTime")
-                            or die ("Unable to get schedule information for event:" . sqlError($db->errorInfo()));
+                            or die ("Unable to get schedule information for event:" . sqlError());
                while ($cntRow = $cntResult->fetch(PDO::FETCH_ASSOC))
                {// $moveSuccessful or
                 // $_REQUEST['MoveEventID'] != $EventID

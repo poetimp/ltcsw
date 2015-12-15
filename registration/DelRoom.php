@@ -8,10 +8,10 @@ $RoomName = getRoomName($RoomID);
 if (isset($_POST['Confirm']))
 {
    $db->query("delete from $RoomsTable where RoomID='$RoomID'")
-       or die ("Unable to delete Room record: " . sqlError($db->errorInfo()));
+       or die ("Unable to delete Room record: " . sqlError());
 
    $db->query("delete from $EventScheduleTable where RoomID='$RoomID'")
-       or die ("Unable to delete Room record from schedule table: " . sqlError($db->errorInfo()));
+       or die ("Unable to delete Room record from schedule table: " . sqlError());
        ?>
       <head>
          <title>

@@ -27,7 +27,7 @@ include 'include/RegFunctions.php';
                                           $EventCoordTable c
                                  where    e.CoordID = c.CoordID
                                  order by EventName")
-                    or die ("Not found:" . sqlError($db->errorInfo()));
+                    or die ("Not found:" . sqlError());
          $first = 1;
          ?>
          <table border="0" width="100%" id="table1">

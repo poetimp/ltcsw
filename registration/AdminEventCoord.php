@@ -40,7 +40,7 @@ if ($mode == 'update' || $mode == 'view')
                           from   $EventCoordTable
                           where  CoordID ='$CoordID'
                          ")
-             or die ("Unable to get coordinator information: ".sqlError($db->errorInfo()));
+             or die ("Unable to get coordinator information: ".sqlError());
    $row = $result->fetch(PDO::FETCH_ASSOC);
 
    $CoordID          = isset($row['CoordID'])     ? $row['CoordID']     : "";
@@ -101,11 +101,11 @@ if (isset($_POST['add']) or isset($_POST['update']))
    {
       $ErrorMsg = "Please enter the required field: Coordinator Email Address";
    }
-   else if (!preg_match("/^[0-9]{5}$/",$CoordZip) and !preg_match("/^[0-9]{5}-[0-9]{4}$/",$CoordZip))
+   else if (!ereg("^[0-9]{5}$",$CoordZip) and !ereg("^[0-9]{5}-[0-9]{4}$",$CoordZip))
    {
       $ErrorMsg = "Invalid Zip Code specified. Must be in the format: ##### or #####-####";
    }
-   else if (!preg_match("/^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/",$CoordPhone))
+   else if (!ereg("^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$",$CoordPhone))
    {
       $ErrorMsg = "Invalid Phone number specified. Must be in the format: (###) ###-####";
    }
@@ -155,7 +155,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          )";
          WriteToLog("Coordinator $CoordName Added");
       }
-      $results = $db->query($sql) or die ("Unable to process update: " . sqlError($db->errorInfo()));
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
    ?>
    <body style="background-color: rgb(217, 217, 255);">
 

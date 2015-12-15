@@ -49,7 +49,7 @@ $prevTime = "";
                                  and      e.EventAttended = 'Y'
                                  order by s.StartTime,
                                           e.EventName")
-                   or die ("Unable to get scheduled event list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
          <table border="1" width="100%">
@@ -91,7 +91,7 @@ $prevTime = "";
             }
 
             $cntResult = $db->query($sql)
-                         or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));
+                         or die ("Unable to get Registration count for event:" . sqlError());
             $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numEvents = $cntRow['count'];
 
@@ -139,7 +139,7 @@ $prevTime = "";
                                  where    e.EventAttended = 'N'
                                  order by e.ConvEvent,
                                           e.EventName")
-                   or die ("Unable to get Unscheduled event list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get Unscheduled event list:" . sqlError());
          $first = 1;
          ?>
          <table border="1" width="100%">
@@ -176,7 +176,7 @@ $prevTime = "";
             }
 
             $cntResult = $db->query($sql)
-                         or die ("Unable to get Registration count for event:" . sqlError($db->errorInfo()));
+                         or die ("Unable to get Registration count for event:" . sqlError());
             $cntRow    = $cntResult->fetch(PDO::FETCH_ASSOC);
             $numEvents = $cntRow['count'];
 

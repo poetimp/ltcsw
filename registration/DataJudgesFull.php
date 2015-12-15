@@ -43,7 +43,7 @@ if ($Admin != 'Y')
                                           Email
                                  from     $JudgesTable
                                  order by JudgeID")
-                   or die ("Unable to get Judge list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get Judge list:" . sqlError());
 
 
          while ($row = $results->fetch(PDO::FETCH_ASSOC))

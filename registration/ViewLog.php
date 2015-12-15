@@ -24,7 +24,7 @@ if ($Admin != 'Y')
                               from     $LogTable
                               where    Date > date_sub(current_date(),interval 6 month)
                               order by Date Desc")
-                 or die ("Unable to read the log:" . sqlError($db->errorInfo()));
+                 or die ("Unable to read the log:" . sqlError());
 
       ?>
       <div align="center">
@@ -56,7 +56,7 @@ if ($Admin != 'Y')
                               from     $LogTable
                               where    Date > date_sub(current_date(),interval 6 month)
                               order by Date Desc")
-                 or die ("Unable to read the log:" . sqlError($db->errorInfo()));
+                 or die ("Unable to read the log:" . sqlError());
 
       ?>
       <div align="center">

@@ -33,7 +33,7 @@ if ($Admin != 'Y')
                                           ChurchName
                                  from     $ChurchesTable
                                  order by CoordName")
-                     or die ("Unable to obtain coordinator list:" . sqlError($db->errorInfo()));
+                     or die ("Unable to obtain coordinator list:" . sqlError());
          $first = 1;
          ?>
          <table border="1" width="100%" id="table1">

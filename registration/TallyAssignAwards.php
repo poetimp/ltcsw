@@ -23,7 +23,7 @@ $results = $db->query("Select  TeamEvent,
                         from    $EventsTable
                         where   EventID = $EventID
                        ")
-           or die ("Unable to determine event type:" . sqlError($db->errorInfo()));
+           or die ("Unable to determine event type:" . sqlError());
 $row = $results->fetch(PDO::FETCH_ASSOC);
 $EventName        = $row['EventName'];
 $TeamEvent        = ($row['TeamEvent'] == 'Y');
@@ -49,7 +49,7 @@ if ($TeamEvent)
                            and   e.TeamEvent     = 'Y'
                            order by c.ChurchName,t.TeamID
                           ")
-              or die ("Unable to get event Member list:" . sqlError($db->errorInfo()));
+              or die ("Unable to get event Member list:" . sqlError());
 }
 else
 {
@@ -67,7 +67,7 @@ else
                            and     c.ChurchID      = r.ChurchID
                            order by c.ChurchName,p.LastName,p.FirstName
                           ")
-              or die ("Unable to get event Member list:" . sqlError($db->errorInfo()));
+              or die ("Unable to get event Member list:" . sqlError());
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -148,7 +148,7 @@ else
                                             from   $TeamMembersTable  m
                                             where  m.TeamID = $ParticipantID
                                             ")
-                  or die ("Unable to get event Team Member list:" . sqlError($db->errorInfo()));
+                  or die ("Unable to get event Team Member list:" . sqlError());
                   $row = $memberCnt->fetch(PDO::FETCH_ASSOC);
                   $MemberCount      = $row['count'];
                }
@@ -178,7 +178,7 @@ else
                                      and     SchedID       = $SchedID
                                      and     ParticipantID = $ParticipantID
                                     ")
-                        or die ("Unable to Update Award Value:" . sqlError($db->errorInfo()));
+                        or die ("Unable to Update Award Value:" . sqlError());
                       }
                   }
 
@@ -268,7 +268,7 @@ else
                                                  and    p.ParticipantID = m.ParticipantID
                                                  order by p.LastName
                                                 ")
-                                    or die ("Unable to get event Team Member list:" . sqlError($db->errorInfo()));
+                                    or die ("Unable to get event Team Member list:" . sqlError());
                       $MemberIndex=0;
                       while ($row = $memberList->fetch(PDO::FETCH_ASSOC))
                       {
@@ -320,7 +320,7 @@ else
                                              where   TeamID        = $TeamID
                                              and     ParticipantID = $MemberID
                                             ")
-                                or die ("Unable to Update Team Individual Award Value:" . sqlError($db->errorInfo()));
+                                or die ("Unable to Update Team Individual Award Value:" . sqlError());
                                }
 
                               if ($Solo_Award == 'Gold')

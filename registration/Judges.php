@@ -25,7 +25,7 @@ if (isset($_POST['AddNew']))
                                    from     $JudgesTable
                                    where    ChurchID = $ChurchID
                                    order by LastName, FirstName")
-         or die ("Unable to obtain Judges List:" . sqlError($db->errorInfo()));
+         or die ("Unable to obtain Judges List:" . sqlError());
 
          $count = 0;
          ?>
@@ -48,7 +48,7 @@ if (isset($_POST['AddNew']))
                      $TimesList = $db->query("select   count(*) Count
                                              from     $JudgeAssignmentsTable
                                              where    JudgeID = " .$row['JudgeID'])
-                     or die ("Unable to obtain Judges Times Count:" . sqlError($db->errorInfo()));
+                     or die ("Unable to obtain Judges Times Count:" . sqlError());
 
                      $TimeRow = $TimesList->fetch(PDO::FETCH_ASSOC);
                      print $TimeRow['Count'];

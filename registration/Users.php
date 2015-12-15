@@ -55,7 +55,7 @@ else
                                           $ChurchesTable c
                                  where    c.ChurchID=u.ChurchID
                                  Order by ".$sort." ".$order)
-                    or die ("Unable to get user list:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get user list:" . sqlError());
 
          if ($order == "asc")
             $order = "desc";

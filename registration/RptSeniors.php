@@ -38,7 +38,7 @@ if ($Admin != 'Y')
                                  and      p.Grade    = 12
                                  order by LastName,
                                           FirstName")
-                    or die ("Not found:" . sqlError($db->errorInfo()));
+                    or die ("Not found:" . sqlError());
          $first = 1;
          ?>
          <table border="1" width="100%">

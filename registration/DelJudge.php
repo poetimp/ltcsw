@@ -6,9 +6,9 @@ include 'include/RegFunctions.php';
 if (isset($_POST['Confirm']))
 {
    $db->query("delete from $JudgesTable             where JudgeID=".$_REQUEST['JudgeID'])
-      or die ("Unable to delete Judge record: "        . sqlError($db->errorInfo()));
+      or die ("Unable to delete Judge record: "        . sqlError());
    $db->query("delete from $JudgeAssignmentsTable   where JudgeID=".$_REQUEST['JudgeID'])
-      or die ("Unable to delete Judge Assignment records: "  . sqlError($db->errorInfo()));
+      or die ("Unable to delete Judge Assignment records: "  . sqlError());
    ?>
       <head>
          <title>

@@ -23,7 +23,7 @@ if (isset($_POST['AddNew']))
                                           EventID
                                  from     $EventsTable
                                  order by EventName")
-                    or die ("Unable to get events list:" . sqlError($db->errorInfo()));
+                    or die ("Unable to get events list:" . sqlError());
 
          $count = 0;
          ?>

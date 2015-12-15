@@ -31,7 +31,7 @@ if (isset($_POST['Update']))
                                           ChurchID
                                  from     $ChurchesTable
                                  order by ChurchName")
-                    or die ("Unable to obtain church list:" . sqlError($db->errorInfo()));
+                    or die ("Unable to obtain church list:" . sqlError());
          ?>
          <center>
          <select name=ChurchID>

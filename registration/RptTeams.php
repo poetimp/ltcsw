@@ -34,7 +34,7 @@ else
       $results = $db->query("select ChurchName
                               from   $ChurchesTable
                               where  ChurchID = '$ChurchID'")
-                 or die ("Unable to get church name:" . sqlError($db->errorInfo()));
+                 or die ("Unable to get church name:" . sqlError());
       $row = $results->fetch(PDO::FETCH_ASSOC);
       $ChurchName = $row['ChurchName'];
       ?>
@@ -48,7 +48,7 @@ else
                               from     $EventsTable
                               where    TeamEvent = 'Y'
                               order by EventName")
-                 or die ("Not found:" . sqlError($db->errorInfo()));
+                 or die ("Not found:" . sqlError());
       $first = 1;
       ?>
       <table border="0" width="100%" id="table1">
@@ -63,7 +63,7 @@ else
                                    from   $RegistrationTable
                                    where  ChurchID = '$ChurchID'
                                    and    EventID = '$EventID'")
-                      or die ("Not found:" . sqlError($db->errorInfo()));
+                      or die ("Not found:" . sqlError());
          $cntRow = $cntResult->fetch(PDO::FETCH_ASSOC);
          $numEvents = $cntRow['count'];
 
@@ -102,7 +102,7 @@ else
                                     AND    r.EventID  = $EventID
                                     AND    r.ChurchID = $ChurchID
                                     order by t.TeamID,p.LastName")
-                       or die ("Not found:" . sqlError($db->errorInfo()));
+                       or die ("Not found:" . sqlError());
 
             $prevTeamID='';
             while ($row = $members->fetch(PDO::FETCH_ASSOC))
@@ -139,7 +139,7 @@ else
       $churches = $db->query("select   ChurchID
                                from     $ChurchesTable
                                order by ChurchName")
-                  or die ("Not found:" . sqlError($db->errorInfo()));
+                  or die ("Not found:" . sqlError());
 
       while ($row = $churches->fetch(PDO::FETCH_ASSOC))
       {
@@ -150,7 +150,7 @@ else
                                where  r.EventID = e.EventID
                                and    e.TeamEvent = 'Y'
                                and    r.ChurchID = $ChurchID")
-                  or die ("Not found:" . sqlError($db->errorInfo()));
+                  or die ("Not found:" . sqlError());
          $cntRow = $count->fetch(PDO::FETCH_ASSOC);
          if ($cntRow['count'] > 0)
          {

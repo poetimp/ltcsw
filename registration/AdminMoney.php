@@ -61,7 +61,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
                           '$Annotation',
                           $ChurchID)
                  ")
-      or die ("Unable to insert into Money table: " . sqlError($db->errorInfo()));
+      or die ("Unable to insert into Money table: " . sqlError());
       WriteToLog(ChurchName($ChurchID) . " account updated by: \$$Amount");
       unset($_POST['Amount']);     unset($Amount);
       unset($_POST['Annotation']); unset($Annotation);
@@ -133,7 +133,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
                                       from   $MoneyTable
                                       where  ChurchID=$ChurchID
                                       ")
-                         or die ("Unable to get accounting history: ".sqlError($db->errorInfo()));
+                         or die ("Unable to get accounting history: ".sqlError());
                while ($row = $result->fetch(PDO::FETCH_ASSOC))
                {
                   $Date       = $row['Date'];

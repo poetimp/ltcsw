@@ -13,12 +13,12 @@ $StatusMessage='';
 if (isset($_POST['Submit']))
 {
    $db->query("delete from $JudgeAssignmentsTable where Churchid=$ChurchID")
-      or die ("Unable to clear $JudgeAssignmentsTable " . sqlError($db->errorInfo()));
+      or die ("Unable to clear $JudgeAssignmentsTable " . sqlError());
 
    $debugStr = "";
    foreach (array_keys($_POST) as $keyValue)
    {
-      if (preg_match("/^judge_/",$keyValue))
+      if (ereg("^judge_",$keyValue))
       {
          //judge_$RoomID_$SchedID_$i
          list($judgeStr,
@@ -35,7 +35,7 @@ if (isset($_POST['Submit']))
                                   and    SchedID  = $SchedID
                                   and    ChurchID = $ChurchID
                                  ")
-            or die ("Unable to check current assignments:" . sqlError($db->errorInfo()));
+            or die ("Unable to check current assignments:" . sqlError());
             $row            = $check->fetch(PDO::FETCH_ASSOC);
 
             if (empty($row))
@@ -54,7 +54,7 @@ if (isset($_POST['Submit']))
                                     $ChurchID
                                    )
                            ")
-               or die ("Unable to Add Judge to assignment: ".sqlError($db->errorInfo()));
+               or die ("Unable to Add Judge to assignment: ".sqlError());
             }
             else
             {
@@ -67,7 +67,7 @@ if (isset($_POST['Submit']))
                                         from   $RoomsTable
                                         where  RoomID = $AssignedRoomID
                                     ")
-               or die ("Unable to get existing room name:" . sqlError($db->errorInfo()));
+               or die ("Unable to get existing room name:" . sqlError());
                $row               = $conflict->fetch(PDO::FETCH_ASSOC);
                $AssignedRoomName  = $row['RoomName'];
 
@@ -77,7 +77,7 @@ if (isset($_POST['Submit']))
                                        from   $JudgesTable
                                        where  JudgeID = $JudgeID
                                     ")
-               or die ("Unable to get Judge Name:" . sqlError($db->errorInfo()));
+               or die ("Unable to get Judge Name:" . sqlError());
                $row                     = $conflict->fetch(PDO::FETCH_ASSOC);
                $AssignedJudgeName       = $row['FirstName']." ".$row['LastName'];
                $AssignedJudgeFirstName  = $row['FirstName'];
@@ -91,7 +91,7 @@ if (isset($_POST['Submit']))
                                        and    s.SchedID  = $SchedID
                                        and    r.RoomID   = s.RoomID
                                     ")
-               or die ("Unable to get conflicted info:" . sqlError($db->errorInfo()));
+               or die ("Unable to get conflicted info:" . sqlError());
                $row               = $conflict->fetch(PDO::FETCH_ASSOC);
                $NewRoomName  = $row['RoomName'];
                $NewSchedTime = TimeToStr($row['StartTime']);
@@ -124,7 +124,7 @@ $Assignments = $db->query("select JudgeID     ,
                                    ChurchID
                            from    $JudgeAssignmentsTable
                            ")
-or die ("Unable to load current assignments:" . sqlError($db->errorInfo()));
+or die ("Unable to load current assignments:" . sqlError());
 
 while ($row = $Assignments->fetch(PDO::FETCH_ASSOC))
 {
@@ -142,7 +142,7 @@ $TimesList = $db->query("select    SchedID,
                                     StartTime
                            from     $EventScheduleTable
                            order by StartTime")
-or die ("Unable to obtain Times List:" . sqlError($db->errorInfo()));
+or die ("Unable to obtain Times List:" . sqlError());
 
 $times         = array();
 $fridayTimes   = 1;
@@ -179,7 +179,7 @@ $RoomList = $db->query("select distinct
                                     RoomName
                            from    $RoomsTable
                            order by RoomName")
-or die ("Unable to obtain Rooms List:" . sqlError($db->errorInfo()));
+or die ("Unable to obtain Rooms List:" . sqlError());
 
 $rooms=array();
 while ($row = $RoomList->fetch(PDO::FETCH_ASSOC))
@@ -196,7 +196,7 @@ $JudgeList = $db->query("select    FirstName,
                            from     $JudgesTable
                            where    ChurchID = $ChurchID
                            order by LastName, FirstName")
-or die ("Unable to obtain Judges List:" . sqlError($db->errorInfo()));
+or die ("Unable to obtain Judges List:" . sqlError());
 $judges=array();
 while ($row = $JudgeList->fetch(PDO::FETCH_ASSOC))
 {
@@ -253,7 +253,7 @@ function constructJudgesTable($dayTimes,$day)
                                     where   StartTime like '$dayInitial%'
                                     and     RoomID    =     $RoomID
                                     ")
-               or die ("Unable to obtain Events in room on $day:" . sqlError($db->errorInfo()));
+               or die ("Unable to obtain Events in room on $day:" . sqlError());
 
                $row   = $Event->fetch(PDO::FETCH_ASSOC);
                $count = $row['Count'];
@@ -277,7 +277,7 @@ function constructJudgesTable($dayTimes,$day)
                                              and     s.RoomID    = $RoomID
                                              and     s.EventID   = e.EventID
                                              ")
-                        or die ("Unable to obtain Event Name:" . sqlError($db->errorInfo()));
+                        or die ("Unable to obtain Event Name:" . sqlError());
                         $row = $Event->fetch(PDO::FETCH_ASSOC);
 
                         if (!empty($row))

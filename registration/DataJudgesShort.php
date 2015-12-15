@@ -37,7 +37,7 @@ if ($Admin != 'Y')
                                   and      j.JudgeID=a.JudgeID
                                   order by j.LastName
                                   ")
-                   or die ("Unable to get Judge list:" . sqlError($db->errorInfo()));
+                   or die ("Unable to get Judge list:" . sqlError());
 
 
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
