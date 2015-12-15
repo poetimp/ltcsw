@@ -30,17 +30,17 @@ $dropboxDirectory = '/Seniors';
 //===========================================================================================
 
 $query = "select   distinct
-                      ChurchName,
-                      c.ChurchID
-             from     LTC_PHX_Churches c,
-                      LTC_PHX_Registration r,
-                      LTC_PHX_Participants p
-             where    c.ChurchID=r.ChurchID
-             and      r.ChurchID=p.ChurchID
-             and      r.ParticipantID=p.ParticipantID
-             and      p.Grade=12
-             order    by ChurchName";
-$result = $db->query($query)or die ("Unable to obtain church list:" . mysql_error());
+                   ChurchName,
+                   c.ChurchID
+          from     LTC_PHX_Churches c,
+                   LTC_PHX_Registration r,
+                   LTC_PHX_Participants p
+          where    c.ChurchID=r.ChurchID
+          and      r.ChurchID=p.ChurchID
+          and      r.ParticipantID=p.ParticipantID
+          and      p.Grade=12
+          order    by ChurchName";
+$result = $db->query($query)or die ("Unable to obtain church list:" . sqlError());
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $churches[] = array("id" => $row['ChurchID'], "val" => $row['ChurchName']);
    $church[$row['ChurchID']] = $row['ChurchName'];
@@ -59,7 +59,7 @@ $query   = "SELECT distinct
                and   r.ChurchID=p.ChurchID
                and   p.Grade=12
                order by ParticipantName";
-$result = $db->query($query)or die ("Unable to obtain participant list:" . mysql_error());
+$result = $db->query($query)or die ("Unable to obtain participant list:" . sqlError());
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $participants[$row['ChurchID']][] = array("id" => $row['ParticipantID'], "val" => $row['ParticipantName']);
    $participant[$row['ParticipantID']] = $row['ParticipantName'];

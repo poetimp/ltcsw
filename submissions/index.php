@@ -34,14 +34,14 @@ $dropboxDirectory = '/PreConvention';
 $query = "select   distinct
                       ChurchName,
                       c.ChurchID
-             from     LTC_PHX_Churches c,
-                      LTC_PHX_Registration r,
-                      LTC_PHX_Events e
-             where    c.ChurchID=r.ChurchID
-             and      r.EventID=e.EventID
-             and      e.ConvEvent='P'
-             order    by ChurchName";
-$result = $db->query($query)or die ("Unable to obtain church list:" . mysql_error());
+          from     LTC_PHX_Churches c,
+                   LTC_PHX_Registration r,
+                   LTC_PHX_Events e
+          where    c.ChurchID=r.ChurchID
+          and      r.EventID=e.EventID
+          and      e.ConvEvent='P'
+          order    by ChurchName";
+$result = $db->query($query)or die ("Unable to obtain church list:" . sqlError());
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $churches[] = array("id" => $row['ChurchID'], "val" => $row['ChurchName']);
    $church[$row['ChurchID']] = $row['ChurchName'];
@@ -62,7 +62,7 @@ $query   = "SELECT distinct
                and   r.EventID=e.EventID
                and   e.ConvEvent='P'
                order by ParticipantName";
-$result = $db->query($query)or die ("Unable to obtain participant list:" . mysql_error());
+$result = $db->query($query)or die ("Unable to obtain participant list:" . sqlError());
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $participants[$row['ChurchID']][] = array("id" => $row['ParticipantID'], "val" => $row['ParticipantName']);
    $participant[$row['ParticipantID']] = $row['ParticipantName'];
@@ -83,7 +83,7 @@ $query   = "SELECT distinct
             and   e.ConvEvent='P'
             and   e.EventID=t.EventID
             order by e.EventName,t.TeamID;";
-$result = $db->query($query)or die ("Unable to obtain team list:" . mysql_error());
+$result = $db->query($query)or die ("Unable to obtain team list:" . sqlError());
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $participants[$row['ChurchID']][] = array("id" => ltrim($row['TeamID'],'0'), "val" => $row['TeamName']);
    $participant[ltrim($row['TeamID'],'0')] = $row['TeamName'];
@@ -101,7 +101,7 @@ $query   = "SELECT distinct
               where   r.EventID=e.EventID
               and     e.ConvEvent = 'P'
               order   by EventName";
-$result = $db->query($query)or die ("Unable to obtain events list:" . mysql_error());
+$result = $db->query($query)or die ("Unable to obtain events list:" . sqlError());
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $events[$row['ParticipantID']][] = array("id" => $row['EventID'], "val" => $row['EventName']);
    $event[$row['EventID']] = $row['EventName'];
