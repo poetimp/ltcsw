@@ -87,7 +87,7 @@ if (isset($_POST['submit']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
    <head>
-      <title>LTCSW Registration Signon</title>
+      <title>LTCSW Registration Sign In</title>
    </head>
 
    <body style="background-color: rgb(217, 217, 255);">
@@ -100,10 +100,10 @@ if (isset($_POST['submit']))
       }
       else
       {?>
-<!--  <b><font size="+1" color="Red"><p align="center">Registration is Open for 2015</p></font></b>  -->
-      <b><font size="+1" color="Red"><p align="center">Registration is Open for Reports Only</p></font></b>
-<!--  <b><font size="+1" color="Red"><p align="center">2013 Registration Reports and Awards are Ready</p></font></b> -->
-<!--  <b><font size="+1" color="Red"><p align="center">See you in April of 2013!</p></font></b> -->
+<!--  <b><font size="+1" color="Red"><p align="center">Registration is Open for 2016</p></font></b>  -->
+      <b><font size="+1" color="Red"><p align="center">Registration is closed in preparation for 2016 convention</p></font></b>
+<!--  <b><font size="+1" color="Red"><p align="center">2016 Registration Reports and Awards are Ready</p></font></b> -->
+<!--  <b><font size="+1" color="Red"><p align="center">See you in April of 2017!</p></font></b> -->
 
       <form action='login.php' method="post">
 
