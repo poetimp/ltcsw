@@ -12,7 +12,7 @@ if ($Admin != 'Y')
    header("refresh: 0; URL=Admin.php");
    die();
 }
-die ("Already done for 2015");
+die ("Already done for 2016");
 
 if (isset($_POST['Confirm']))
 {
@@ -26,7 +26,7 @@ if (isset($_POST['Confirm']))
       foreach ($ChuchList as $ChurchID=>$ChurchName)
       {
          $costDetail = ChurchExpenses($ChurchID);
-         print "<hr><pre>Churchid = $ChurchID<br>ChurchName = $ChurchName<br>";print_r ($costDetail);print "</pre>";
+         //print "<hr><pre>Churchid = $ChurchID<br>ChurchName = $ChurchName<br>";print_r ($costDetail);print "</pre>";
          if ($costDetail["Balance"] != 0)
             $balanceCaryForward[$ChurchID] = $costDetail["Balance"];
       }
