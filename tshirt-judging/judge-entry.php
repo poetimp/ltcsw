@@ -268,7 +268,7 @@
                $message = preg_replace('/<input.*type="submit"[^>]*>/','',$theForm);
                $message = preg_replace_callback('/<input.*type="text".*name="([^"]+)"[^>]*>/',$inputValue,$message);
                $message = preg_replace_callback('/<input.*type="hidden".*name="([^"]+)"[^>]*>/',$inputValue,$message);
-               $message = preg_replace_callback('/<textarea.*name="([^"]+)"[^>]*>/',$inputValue,$message);
+               $message = preg_replace_callback('/<textarea.*name="([^"]+)"[^>]*>[^<]*<\/textarea>/',$inputValue,$message);
 
    //            print $message;
                $subject .= $imageName;
@@ -277,10 +277,17 @@
                   $message = preg_replace('/<input.*type="submit"[^>]*>/','',$theFormTop.$theFormRight.$theFormBottom);
                   $message = preg_replace_callback('/<input.*type="text".*name="([^"]+)"[^>]*>/',$inputValue,$message);
                   $message = preg_replace_callback('/<input.*type="hidden".*name="([^"]+)"[^>]*>/',$inputValue,$message);
-                  $message = preg_replace_callback('/<textarea.*name="([^"]+)"[^>]*>/',$inputValue,$message);
-                  $subject .= "(Right Side)";
+                  $message = preg_replace_callback('/<textarea.*name="([^"]+)"[^>]*>[^<]*<\/textarea>/',$inputValue,$message);
+                                    $subject .= "(Right Side)";
                   mail($emailToWho, $subject, $message, $headers);
-               ?>
+
+                  if (($JudgedInfo = fopen("$picDir/$imageName.csv", "a")) !== FALSE)
+                  {
+                     $now=date("Y-m-d H:i:s");
+                     fputs($JudgedInfo,"$Judge,$now\n");
+                     fclose($JudgedInfo);
+                  }
+                  ?>
                   Thank You! Your message has been successfully sent.<br>
                   You may close this window.
                <?php
