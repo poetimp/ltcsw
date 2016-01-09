@@ -29,8 +29,19 @@ $picFiles = scandir($picDir);
                   print "   <tr>\n";
                }
                $pics++;
+
+               $judgedCount=0;
+               if (($JudgedInfo = fopen("$picDir/$fileName.csv", "r")) !== FALSE)
+               {
+                  While ($line=fgets($JudgedInfo))
+                  {
+                     $judgedCount++;
+                  }
+                  fclose($JudgedInfo);
+               }
+
                print "      <td width=\"$picWidth\" align=\"center\" valign=\"top\">\n";
-               print "         $fileName<br>\n";
+               print "         $fileName: Judged $judgedCount times<br>\n";
                print "         <a href=judge-entry.php?entry=".urlencode("$fileName")." target=_blank>\n";
                print "            <img src=./printImage.php?fileName=".urlencode("$picDir/$fileName")." alt='$fileName' width='$picWidth'>\n";
                print "         </a>\n";
