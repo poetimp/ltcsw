@@ -700,7 +700,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             if ($mode == 'update')
             {?>
                <input type="submit" value="Update" name="update" />
-               <input type="hidden" value="&lt;?php  print $ChurchID; ?&gt;" name="ChurchID" />
+               <input type="hidden" value="<?php  print $ChurchID;?>" name="ChurchID" />
                <input type="hidden" value="update" name="action" />
              <?php
             }

@@ -27,7 +27,7 @@ if (isset($_POST['reset']))
       else
       {
 
-         $newPass = generatePassword(16);
+         $newPass = generatePassword(8);
 
          $todayis = date("l, F j, Y, g:i a [T]") ;
 
@@ -48,7 +48,7 @@ if (isset($_POST['reset']))
          $email  .= "         I am not so smart, though, so the password I chose for it is probably pretty ugly. You will want to\n<br>";
          $email  .= "         to change it as soon as you get logged in.<br>\n";
          $email  .= "         <br>\n";
-         $email  .= "         Your new password is: <b>$code</b><br>\n";
+         $email  .= "         Your new password is: <b>$newPass</b><br>\n";
          $email  .= "         <br>\n";
          $email  .= "         Like I said, pretty gnarly. I strongly suggest you copy/paste it into the password field to avoid the frustration of<br>\n";
          $email  .= "         trying to get all of that typed in correctly.<br>\n";

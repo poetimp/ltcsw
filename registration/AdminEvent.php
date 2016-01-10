@@ -285,7 +285,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          )";
          WriteToLog("Event $EventName Added");
       }
-      $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError()."<br>$sql<br>");
    ?>
 <html lang="en">
 
@@ -382,85 +382,85 @@ if (isset($_POST['add']) or isset($_POST['update']))
       }
    ?>
 <form method="post" action="AdminEvent.php">
-	<table border="1" width="100%" id="table1">
-	   <!------------------------------------------------------------------------------>
-	   <!-- Row 1                                                                    -->
-	   <!------------------------------------------------------------------------------>
-		<tr>
+   <table border="1" width="100%" id="table1">
+      <!------------------------------------------------------------------------------>
+      <!-- Row 1                                                                    -->
+      <!------------------------------------------------------------------------------>
+      <tr>
          <!----------------------- Column 1 ------------------------------------------>
-			<td colspan="7" bgcolor="#000000">
-			<p align="center"><span style="background-color: #000000">
-			<font color="#FFFF00">Event</font></span><font color="#FFFF00"><span style="background-color: #000000">
-			Information</span></font></p>
-			</td>
-		</tr>
-	   <!------------------------------------------------------------------------------>
-	   <!-- Row 2                                                                    -->
-	   <!------------------------------------------------------------------------------>
-		<tr>
+         <td colspan="7" bgcolor="#000000">
+         <p align="center"><span style="background-color: #000000">
+         <font color="#FFFF00">Event</font></span><font color="#FFFF00"><span style="background-color: #000000">
+         Information</span></font></p>
+         </td>
+      </tr>
+      <!------------------------------------------------------------------------------>
+      <!-- Row 2                                                                    -->
+      <!------------------------------------------------------------------------------>
+      <tr>
          <!----------------------- Column 1 ------------------------------------------>
-			<td width="12%">Event Name</td>
+         <td width="12%">Event Name</td>
          <!----------------------- Column 2-4----------------------------------------->
-			<td width="38%" colspan="3">
+         <td width="38%" colspan="3">
             <?php
-			   if ($mode == "view")
-			   {
-			      print $EventName;
-			   }
-			   else
-			   {
-			   ?>
-			      <input type="text" name="EventName" size="36" <?php  print ($EventName != "") ? "value=\"" . $EventName . "\"" : ""; ?>>
-			   <?php
-			   }
-			   ?>
-			</td>
+            if ($mode == "view")
+            {
+               print $EventName;
+            }
+            else
+            {
+            ?>
+               <input type="text" name="EventName" size="36" <?php  print ($EventName != "") ? "value=\"" . $EventName . "\"" : ""; ?>>
+            <?php
+            }
+            ?>
+         </td>
 
          <!----------------------- Column 5 ------------------------------------------>
-			<td width="25%">Team Event</td>
-			   <?php
-			   if ($mode == "view")
-			   {
-			      ?>
+         <td width="25%">Team Event</td>
+            <?php
+            if ($mode == "view")
+            {
+               ?>
                <!----------------------- Column 6-7 ------------------------------------------>
                <td width="25%" colspan="2">
                <?php
-			         print $TeamEvent == "Y" ? "Yes" : "No";
-			      ?>
-			      </td>
-			      <?php
-			   }
-			   else
-			   {
-			   ?>
+                  print $TeamEvent == "Y" ? "Yes" : "No";
+               ?>
+               </td>
+               <?php
+            }
+            else
+            {
+            ?>
                <!----------------------- Column 6 ------------------------------------------>
-			      <td width="12%">
+               <td width="12%">
                   <input type="radio" name="TeamEvent" value="Y" <?php  print ($TeamEvent == "Y") ? "checked" : "" ?>>Yes
                </td>
                <!----------------------- Column 7 ------------------------------------------>
-		         <td width="12%">
+               <td width="12%">
                   <input type="radio" name="TeamEvent" value="N" <?php  print ($TeamEvent == "N") ? "checked" : "" ?>>No
                </td>
-			      <?php
-			   }
-			?>
-		</tr>
-	   <!------------------------------------------------------------------------------>
-	   <!-- Row 3                                                                    -->
-	   <!------------------------------------------------------------------------------>
-		<tr>
+               <?php
+            }
+         ?>
+      </tr>
+      <!------------------------------------------------------------------------------>
+      <!-- Row 3                                                                    -->
+      <!------------------------------------------------------------------------------>
+      <tr>
          <!----------------------- Column 1 ------------------------------------------>
-			<td width="12%">Min Grade</td>
+         <td width="12%">Min Grade</td>
          <!----------------------- Column 2-4----------------------------------------->
-			<td width="38%" colspan="3">
-   			<?php
-   			if ($mode == "view")
-   			{
-   			   print $MinGrade;
-   			}
-   			else
-   			{
-   			?>
+         <td width="38%" colspan="3">
+            <?php
+            if ($mode == "view")
+            {
+               print $MinGrade;
+            }
+            else
+            {
+            ?>
                <select name="MinGrade" size="1">
                   <option <?php  print ($MinGrade == "0")  ? "selected" : "" ?> value="0">Please Select</option>
                   <option <?php  print ($MinGrade == "3")  ? "selected" : "" ?>>3</option>
@@ -474,44 +474,44 @@ if (isset($_POST['add']) or isset($_POST['update']))
                   <option <?php  print ($MinGrade == "11") ? "selected" : "" ?>>11</option>
                   <option <?php  print ($MinGrade == "12") ? "selected" : "" ?>>12</option>
                </select>
-   			<?php
-   			}
-   			?>
+            <?php
+            }
+            ?>
             </td>
          <!----------------------- Column 5 ------------------------------------------>
-			<td width="25%">Minimum Team Size</td>
+         <td width="25%">Minimum Team Size</td>
          <!----------------------- Column 6-7 ---------------------------------------->
-			<td width="25%" colspan="2">
-   			<?php
-   			if ($mode == "view")
-   			{
-   			   print $MinSize;
-   			}
-   			else
-   			{
-   			?>
+         <td width="25%" colspan="2">
+            <?php
+            if ($mode == "view")
+            {
+               print $MinSize;
+            }
+            else
+            {
+            ?>
                <input type="text" name="MinSize" size="20"<?php  print ($MinSize != "") ? "value=\"" . $MinSize . "\"" : ""; ?>>
-   			<?php
-   			}
-   			?>
+            <?php
+            }
+            ?>
          </td>
-		</tr>
-	   <!------------------------------------------------------------------------------>
-	   <!-- Row 4                                                                    -->
-	   <!------------------------------------------------------------------------------>
-		<tr>
+      </tr>
+      <!------------------------------------------------------------------------------>
+      <!-- Row 4                                                                    -->
+      <!------------------------------------------------------------------------------>
+      <tr>
          <!----------------------- Column 1 ------------------------------------------>
-			<td width="12%">Max Grade</td>
+         <td width="12%">Max Grade</td>
          <!----------------------- Column 2-4 ---------------------------------------->
-			<td width="38%" colspan="3">
-   			<?php
-   			if ($mode == "view")
-   			{
-   			   print $MaxGrade;
-   			}
-   			else
-   			{
-   			?>
+         <td width="38%" colspan="3">
+            <?php
+            if ($mode == "view")
+            {
+               print $MaxGrade;
+            }
+            else
+            {
+            ?>
                <select name="MaxGrade" size="1">
                   <option <?php  print ($MaxGrade == "0")  ? "selected" : "" ?> value="0">Please Select</option>
                   <option <?php  print ($MaxGrade == "3")  ? "selected" : "" ?>>3</option>
@@ -525,52 +525,52 @@ if (isset($_POST['add']) or isset($_POST['update']))
                   <option <?php  print ($MaxGrade == "11") ? "selected" : "" ?>>11</option>
                   <option <?php  print ($MaxGrade == "12") ? "selected" : "" ?>>12</option>
                </select>
-   			<?php
-   			}
-   			?>
+            <?php
+            }
+            ?>
             </td>
          <!----------------------- Column 5 ------------------------------------------>
-			<td width="25%">Maximum Team Size</td>
+         <td width="25%">Maximum Team Size</td>
          <!----------------------- Column 6-7 ------------------------------------------>
-			<td width="25%" colspan="2">
-   			<?php
-   			if ($mode == "view")
-   			{
-   			   print $MaxSize;
-   			}
-   			else
-   			{
-   			?>
+         <td width="25%" colspan="2">
+            <?php
+            if ($mode == "view")
+            {
+               print $MaxSize;
+            }
+            else
+            {
+            ?>
                <input type="text" name="MaxSize" size="20"<?php  print ($MaxSize != "") ? "value=\"" . $MaxSize . "\"" : ""; ?>>
-   			<?php
-   			}
-   			?>
+            <?php
+            }
+            ?>
          </td>
-		</tr>
-	   <!------------------------------------------------------------------------------>
-	   <!-- Row 5                                                                    -->
-	   <!------------------------------------------------------------------------------>
-		<tr>
+      </tr>
+      <!------------------------------------------------------------------------------>
+      <!-- Row 5                                                                    -->
+      <!------------------------------------------------------------------------------>
+      <tr>
          <!----------------------- Column 1 ------------------------------------------>
-		   <td width="13%" colspan="1">Duration</td>
+         <td width="13%" colspan="1">Duration</td>
          <!----------------------- Column 2-4 ---------------------------------------->
-		   <td width="38%" colspan="3">
-   			<?php
-   			if ($mode == "view")
-   			{
-   			   $hours   = (int)($Duration/60);
-   			   $minutes = $Duration % 60;
+         <td width="38%" colspan="3">
+            <?php
+            if ($mode == "view")
+            {
+               $hours   = (int)($Duration/60);
+               $minutes = $Duration % 60;
 
-   			   $hrsPlural  = ($hours   == 1)                    ? "hour"              : "hours";
-   			   $hours      = ($hours   > 0)                     ? "$hours $hrsPlural" : "";
-   			   $minutes    = ($minutes > 0)                     ? "$minutes minutes"  : "";
-   			   $and        = ($hours != "" and $minutes != "")  ? "and"               : "";
+               $hrsPlural  = ($hours   == 1)                    ? "hour"              : "hours";
+               $hours      = ($hours   > 0)                     ? "$hours $hrsPlural" : "";
+               $minutes    = ($minutes > 0)                     ? "$minutes minutes"  : "";
+               $and        = ($hours != "" and $minutes != "")  ? "and"               : "";
 
-   			   print  "$hours $and $minutes &nbsp;";
-   			}
-   			else
-   			{
-   			?>
+               print  "$hours $and $minutes &nbsp;";
+            }
+            else
+            {
+            ?>
             <select name="Duration" size="1">
                <option <?php  print ($Duration == "0")  ? "selected" : "" ?> value="0">Please Select</option>
                <option <?php  print ($Duration == "30")  ? "selected" : "" ?> value="30">30 Minutes</option>
@@ -595,260 +595,260 @@ if (isset($_POST['add']) or isset($_POST['update']))
                <option <?php  print ($Duration == "420")  ? "selected" : "" ?> value="420">7 Hours</option>
                <option <?php  print ($Duration == "480")  ? "selected" : "" ?> value="480">8 Hours</option>
             </select>
-   			<?php
-   			}
-   			?>
-		   </td>
+            <?php
+            }
+            ?>
+         </td>
          <!----------------------- Column 5 ------------------------------------------>
-		   <td width="25%" colspan="1">Number of Judges Needed</td>
-   			<?php
-   			if ($mode == "view")
-   			{
-   			   ?>
+         <td width="25%" colspan="1">Number of Judges Needed</td>
+            <?php
+            if ($mode == "view")
+            {
+               ?>
                <!----------------------- Column 6-7 ------------------------------------------>
-   			   <td width="25%" colspan="2">
-   			   <?php
-   			   print "$JudgesNeeded";
-   			   ?>
-   			   </td>
-   			   <?php
-   			}
-   			else
-   			{
-   			?>
+               <td width="25%" colspan="2">
+               <?php
+               print "$JudgesNeeded";
+               ?>
+               </td>
+               <?php
+            }
+            else
+            {
+            ?>
                <!----------------------- Column 6-7 ------------------------------------------>
                <td width="25%" colspan="2">
                   <input type="text" name="JudgesNeeded" size="20"<?php  print ($JudgesNeeded != "") ? "value=\"" . $JudgesNeeded . "\"" : ""; ?>>
                </td>
-   			<?php
-   			}
-   			?>
-		</tr>
-	   <!------------------------------------------------------------------------------>
-	   <!-- Row 6                                                                    -->
-	   <!------------------------------------------------------------------------------>
-		<tr>
+            <?php
+            }
+            ?>
+      </tr>
+      <!------------------------------------------------------------------------------>
+      <!-- Row 6                                                                    -->
+      <!------------------------------------------------------------------------------>
+      <tr>
          <!----------------------- Column 1 ------------------------------------------>
-			<td width="12%">Sex</td>
-			<?php
-			if ($mode == "view")
-			{
-   			?>
+         <td width="12%">Sex</td>
+         <?php
+         if ($mode == "view")
+         {
+            ?>
             <!----------------------- Column 2-4 ------------------------------------------>
-			   <td width="38%" colspan="3">
-			   <?php
-			   if ($Sex == "E")
-			   {
-			      print "Either";
-			   }
-			   else if ($Sex == "M")
-			   {
-			      print "Male Only";
-			   }
-			   else
-			   {
-			      print "Female Only";
-			   }
-			   ?>
-			   </td>
-			   <?php
-			}
-			else
-			{
-			?>
+            <td width="38%" colspan="3">
+            <?php
+            if ($Sex == "E")
+            {
+               print "Either";
+            }
+            else if ($Sex == "M")
+            {
+               print "Male Only";
+            }
+            else
+            {
+               print "Female Only";
+            }
+            ?>
+            </td>
+            <?php
+         }
+         else
+         {
+         ?>
          <!----------------------- Column 2 ------------------------------------------>
-			<td width="13%"><input type="radio" name="Sex" value="E" <?php  print ($Sex == "E") ? "checked" : "" ?>>Either</td>
+         <td width="13%"><input type="radio" name="Sex" value="E" <?php  print ($Sex == "E") ? "checked" : "" ?>>Either</td>
          <!----------------------- Column 3 ------------------------------------------>
-			<td width="13%"><input type="radio" name="Sex" value="M" <?php  print ($Sex == "M") ? "checked" : "" ?>>Male</td>
+         <td width="13%"><input type="radio" name="Sex" value="M" <?php  print ($Sex == "M") ? "checked" : "" ?>>Male</td>
          <!----------------------- Column 4 ------------------------------------------>
-			<td width="12%"><input type="radio" name="Sex" value="F" <?php  print ($Sex == "F") ? "checked" : "" ?>>Female</td>
-   	   <?php
-   	   }
-   	   ?>
+         <td width="12%"><input type="radio" name="Sex" value="F" <?php  print ($Sex == "F") ? "checked" : "" ?>>Female</td>
+         <?php
+         }
+         ?>
          <!----------------------- Column 5 ------------------------------------------>
-			<td width="25%" colspan="1">Maximum Number of rooms</td>
-			<?php
-   		if ($mode == "view")
-   		{
-   		   print "<td width=25% colspan=2>$MaxRooms</td>";
-   		}
-   		else
-   		{
-   		?>
+         <td width="25%" colspan="1">Maximum Number of rooms</td>
+         <?php
+         if ($mode == "view")
+         {
+            print "<td width=25% colspan=2>$MaxRooms</td>";
+         }
+         else
+         {
+         ?>
          <!----------------------- Column 6-7 ------------------------------------------>
-			<td width="25%" colspan="2"><input type="text" name="MaxRooms" size="20"<?php  print ($MaxRooms != "") ? "value=\"" . $MaxRooms . "\"" : ""; ?>></td>
- 			<?php
-  			}
-  			?>
-		</tr>
-	   <!------------------------------------------------------------------------------>
-	   <!-- Row 7                                                                    -->
-	   <!------------------------------------------------------------------------------>
-		<tr>
+         <td width="25%" colspan="2"><input type="text" name="MaxRooms" size="20"<?php  print ($MaxRooms != "") ? "value=\"" . $MaxRooms . "\"" : ""; ?>></td>
+          <?php
+           }
+           ?>
+      </tr>
+      <!------------------------------------------------------------------------------>
+      <!-- Row 7                                                                    -->
+      <!------------------------------------------------------------------------------>
+      <tr>
          <!----------------------- Column 1 ------------------------------------------>
-		   <td width="13%" colspan="1">Event Type</td>
-			<?php
-   		if ($mode == "view")
-   		{
-   		   ?>
+         <td width="13%" colspan="1">Event Type</td>
+         <?php
+         if ($mode == "view")
+         {
+            ?>
             <!----------------------- Column 2-4 ------------------------------------------>
-   		   <td width="25%" colspan="3">
-   		   <?php
-   		   if ($ConvEvent == 'C')
-   		   {
-   		      print "Convention";
-   		   }
-   		   else
-   		   {
-   		      print "Pre-Convention";
-   		   }
-   		   ?>
-   		   </td>
-   		   <?php
-   		}
-   		else
-   		{
-   		?>
+            <td width="25%" colspan="3">
+            <?php
+            if ($ConvEvent == 'C')
+            {
+               print "Convention";
+            }
+            else
+            {
+               print "Pre-Convention";
+            }
+            ?>
+            </td>
+            <?php
+         }
+         else
+         {
+         ?>
             <!----------------------- Column 2 ------------------------------------------>
-	   	   <td width="12%" colspan="1"><input type="radio" name="ConvEvent" value="C" <?php  print ($ConvEvent == "C") ? "checked" : "" ?>>Convention</td>
+            <td width="12%" colspan="1"><input type="radio" name="ConvEvent" value="C" <?php  print ($ConvEvent == "C") ? "checked" : "" ?>>Convention</td>
             <!----------------------- Column 3-4 ------------------------------------------>
-		      <td width="25%" colspan="2"><input type="radio" name="ConvEvent" value="P" <?php  print ($ConvEvent == "P") ? "checked" : "" ?>>Pre-convention</td>
- 			<?php
-  			}
-  			?>
+            <td width="25%" colspan="2"><input type="radio" name="ConvEvent" value="P" <?php  print ($ConvEvent == "P") ? "checked" : "" ?>>Pre-convention</td>
+          <?php
+           }
+           ?>
          <!----------------------- Column 5 ------------------------------------------>
-			<td width="25%" colspan="1">Maximum time slots per room</td>
-			<?php
-   		if ($mode == "view")
-   		{
-   		   print "<td width=25% colspan=2>$MaxEventSlots</td>";
-   		}
-   		else
-   		{
-   		?>
+         <td width="25%" colspan="1">Maximum time slots per room</td>
+         <?php
+         if ($mode == "view")
+         {
+            print "<td width=25% colspan=2>$MaxEventSlots</td>";
+         }
+         else
+         {
+         ?>
          <!----------------------- Column 6-7 ------------------------------------------>
-			<td width="25%" colspan="2"><input type="text" name="MaxEventSlots" size="20"<?php  print ($MaxEventSlots != "") ? "value=\"" . $MaxEventSlots . "\"" : ""; ?>></td>
- 			<?php
-  			}
-  			?>
-		</tr>
-	   <!------------------------------------------------------------------------------>
-	   <!-- Row 8                                                                    -->
-	   <!------------------------------------------------------------------------------>
-		<tr>
+         <td width="25%" colspan="2"><input type="text" name="MaxEventSlots" size="20"<?php  print ($MaxEventSlots != "") ? "value=\"" . $MaxEventSlots . "\"" : ""; ?>></td>
+          <?php
+           }
+           ?>
+      </tr>
+      <!------------------------------------------------------------------------------>
+      <!-- Row 8                                                                    -->
+      <!------------------------------------------------------------------------------>
+      <tr>
          <!----------------------- Column 1 ------------------------------------------>
-		   <td width="13%" colspan="1">Judge Type</td>
-			<?php
-   		if ($mode == "view")
-   		{
-   		   ?>
+         <td width="13%" colspan="1">Judge Type</td>
+         <?php
+         if ($mode == "view")
+         {
+            ?>
             <!----------------------- Column 2-4 ------------------------------------------>
-   		   <td width="25%" colspan="3">
-   		   <?php
-   		   if ($JudgeTrained == 'Y')
-   		   {
-   		      print "Must be trained for event";
-   		   }
-   		   else
-   		   {
-   		      print "No special training needed";
-   		   }
-   		   ?>
-   		   </td>
-   		   <?php
-   		}
-   		else
-   		{
-   		?>
+            <td width="25%" colspan="3">
+            <?php
+            if ($JudgeTrained == 'Y')
+            {
+               print "Must be trained for event";
+            }
+            else
+            {
+               print "No special training needed";
+            }
+            ?>
+            </td>
+            <?php
+         }
+         else
+         {
+         ?>
             <!----------------------- Column 2 ------------------------------------------>
-		      <td width="12%" colspan="1"><input type="radio" name="JudgeTrained" value="Y" <?php  print ($JudgeTrained == "Y") ? "checked" : "" ?>>Special Skills</td>
+            <td width="12%" colspan="1"><input type="radio" name="JudgeTrained" value="Y" <?php  print ($JudgeTrained == "Y") ? "checked" : "" ?>>Special Skills</td>
             <!----------------------- Column 3-4 ------------------------------------------>
-		      <td width="25%" colspan="2"><input type="radio" name="JudgeTrained" value="N" <?php  print ($JudgeTrained == "N") ? "checked" : "" ?>>No Special Training needed</td>
- 			<?php
-  			}
-  			?>
+            <td width="25%" colspan="2"><input type="radio" name="JudgeTrained" value="N" <?php  print ($JudgeTrained == "N") ? "checked" : "" ?>>No Special Training needed</td>
+          <?php
+           }
+           ?>
          <!----------------------- Column 5 ------------------------------------------>
-		   <td width="25%" colspan="1">Maximum Web Signups Slots per room</td>
- 			<?php
-   		if ($mode == "view")
-   		{
-   		   ?>
+         <td width="25%" colspan="1">Maximum Web Signups Slots per room</td>
+          <?php
+         if ($mode == "view")
+         {
+            ?>
             <!----------------------- Column 6-7 ------------------------------------------>
-   		   <td width="25%" colspan="2">
-   		   <?php
-   		   print "$MaxWebSlots";
-   		   ?>
-   		   </td>
-   		   <?php
-   		}
-   		else
-   		{
-   		?>
+            <td width="25%" colspan="2">
+            <?php
+            print "$MaxWebSlots";
+            ?>
+            </td>
+            <?php
+         }
+         else
+         {
+         ?>
             <!----------------------- Column 6-7 ------------------------------------------>
-		      <td width="25%" colspan="2">
-		         <input type="text" name="MaxWebSlots" size="20"<?php  print ($MaxWebSlots != "") ? "value=\"" . $MaxWebSlots . "\"" : ""; ?>>
-		      </td>
- 			   <?php
-  			}
-  			?>
-		</tr>
-	   <!------------------------------------------------------------------------------>
-	   <!-- Row 9                                                                    -->
-	   <!------------------------------------------------------------------------------>
-		<tr>
+            <td width="25%" colspan="2">
+               <input type="text" name="MaxWebSlots" size="20"<?php  print ($MaxWebSlots != "") ? "value=\"" . $MaxWebSlots . "\"" : ""; ?>>
+            </td>
+             <?php
+           }
+           ?>
+      </tr>
+      <!------------------------------------------------------------------------------>
+      <!-- Row 9                                                                    -->
+      <!------------------------------------------------------------------------------>
+      <tr>
          <!----------------------- Column 1 ------------------------------------------>
-		   <td width="13%" colspan="1">Judging Catagory</td>
+         <td width="13%" colspan="1">Judging Catagory</td>
          <!----------------------- Column 1-4 ------------------------------------------>
-		   <td width="37%" colspan="3">
- 			<?php
-   		if ($mode == "view")
-   		{
-   		   print "$JudgingCatagory";
-   		}
-   		else
-   		{
-   		?>
-   	      <input type="text" name="JudgingCatagory" size="36" <?php  print ($JudgingCatagory != "") ? "value=\"" . $JudgingCatagory . "\"" : ""; ?>>
-   		<?php
-   		}
-   		?>
+         <td width="37%" colspan="3">
+          <?php
+         if ($mode == "view")
+         {
+            print "$JudgingCatagory";
+         }
+         else
+         {
+         ?>
+            <input type="text" name="JudgingCatagory" size="36" <?php  print ($JudgingCatagory != "") ? "value=\"" . $JudgingCatagory . "\"" : ""; ?>>
+         <?php
+         }
+         ?>
          </td>
          <!----------------------- Column 5 ------------------------------------------>
-		   <td width="25%" colspan="1">Allow Teen Coordinators</td>
- 			<?php
-   		if ($mode == "view")
-   		{
-   		   ?>
-            <!----------------------- Column 6-7 ------------------------------------------>
-   		   <td width="25%" colspan="2">
-   		   <?php
-   		   if ($TeenCoord == "Y")
-   		   {
-   		      print "Yes";
-   		   }
-   		   else
-   		   {
-   		      print "No";
-   		   }
+         <td width="25%" colspan="1">Allow Teen Coordinators</td>
+          <?php
+         if ($mode == "view")
+         {
             ?>
-   		   </td>
-   		   <?php
-   		}
-   		else
-   		{
-   		?>
+            <!----------------------- Column 6-7 ------------------------------------------>
+            <td width="25%" colspan="2">
+            <?php
+            if ($TeenCoord == "Y")
+            {
+               print "Yes";
+            }
+            else
+            {
+               print "No";
+            }
+            ?>
+            </td>
+            <?php
+         }
+         else
+         {
+         ?>
             <!----------------------- Column 6 ------------------------------------------>
-		   <td width="12%" colspan="1"><input type="radio" name="TeenCoord" value="Y" <?php  print ($TeenCoord == "Y") ? "checked" : "" ?>>Yes</td>
+         <td width="12%" colspan="1"><input type="radio" name="TeenCoord" value="Y" <?php  print ($TeenCoord == "Y") ? "checked" : "" ?>>Yes</td>
             <!----------------------- Column 7 ------------------------------------------>
-		   <td width="13%" colspan="1"><input type="radio" name="TeenCoord" value="N" <?php  print ($TeenCoord == "N") ? "checked" : "" ?>>No</td>
- 			<?php
-  			}
-  			?>
-		</tr>
-	   <!------------------------------------------------------------------------------>
-	   <!-- Row 10                                                                    -->
-	   <!------------------------------------------------------------------------------>
-		<tr>
+         <td width="13%" colspan="1"><input type="radio" name="TeenCoord" value="N" <?php  print ($TeenCoord == "N") ? "checked" : "" ?>>No</td>
+          <?php
+           }
+           ?>
+      </tr>
+      <!------------------------------------------------------------------------------>
+      <!-- Row 10                                                                    -->
+      <!------------------------------------------------------------------------------>
+      <tr>
          <?php
          if ($mode == "view")
          {
@@ -881,36 +881,36 @@ if (isset($_POST['add']) or isset($_POST['update']))
          <?php
          }
          ?>
-		   <td width="25%" colspan="1">Is this an attended event?</td>
- 			<?php
-   		if ($mode == "view")
-   		{
+         <td width="25%" colspan="1">Is this an attended event?</td>
+          <?php
+         if ($mode == "view")
+         {
             ?>
             <!----------------------- Column 6-7 ------------------------------------------>
-   		   <td width="25%" colspan="2">
-   		   <?php
-   		   if ($EventAttended == "Y")
-   		   {
-   		      print "Yes";
-   		   }
-   		   else
-   		   {
-   		      print "No";
-   		   }
+            <td width="25%" colspan="2">
+            <?php
+            if ($EventAttended == "Y")
+            {
+               print "Yes";
+            }
+            else
+            {
+               print "No";
+            }
             ?>
-   		   </td>
-   		   <?php
-   		}
-   		else
-   		{
-   		?>
+            </td>
+            <?php
+         }
+         else
+         {
+         ?>
          <!----------------------- Column 6 ------------------------------------------>
-		   <td width="12%" colspan="1"><input type="radio" name="EventAttended" value="Y" <?php  print ($EventAttended == "Y") ? "checked" : "" ?>>Yes</td>
+         <td width="12%" colspan="1"><input type="radio" name="EventAttended" value="Y" <?php  print ($EventAttended == "Y") ? "checked" : "" ?>>Yes</td>
          <!----------------------- Column 7 ------------------------------------------>
-		   <td width="25%" colspan="2"><input type="radio" name="EventAttended" value="N" <?php  print ($EventAttended == "N") ? "checked" : "" ?>>No</td>
- 			<?php
-  			}
-  			?>
+         <td width="25%" colspan="2"><input type="radio" name="EventAttended" value="N" <?php  print ($EventAttended == "N") ? "checked" : "" ?>>No</td>
+          <?php
+           }
+           ?>
       <!------------------------------------------------------------------------------>
       <!-- Row 11                                                                    -->
       <!------------------------------------------------------------------------------>
@@ -978,21 +978,21 @@ if (isset($_POST['add']) or isset($_POST['update']))
          <?php
          }
          ?>
-		<tr></tr>
-	</table>
-	<p align="center"><?php
+      <tr></tr>
+   </table>
+   <p align="center"><?php
             if ($mode == 'update')
             {?> <input type="submit" value="Update" name="update">
-	            <input type="hidden" value="&lt;?php  print $EventID; ?&gt;" name="EventID">
-	            <input type="hidden" value="update" name="action"><?php
+               <input type="hidden" value="<?php print $EventID;?>" name="EventID">
+               <input type="hidden" value="update" name="action"><?php
             }
             else if ($mode == 'add')
             {?> <input type="submit" value="Add" name="add">
-             	<input type="hidden" value="add" name="action"><?php
+                <input type="hidden" value="add" name="action"><?php
             }
             else if ($mode == 'view')
             {?>
-	            <input type="hidden" value="update" name="action"><?php
+               <input type="hidden" value="update" name="action"><?php
             }
          ?>
          <br>
