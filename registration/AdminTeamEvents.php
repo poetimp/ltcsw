@@ -122,7 +122,7 @@ if (isset($_REQUEST['Add']))
       or die ("Unable to get start times:" . sqlError());
 
       $allFull=1; // Guilty until proven innocent
-      while (($rowCount = 0 or $allFull == 1) or ($allFull and $Row = $RegInfo)->fetch(PDO::FETCH_ASSOC))
+      while (($rowCount = 0 or $allFull == 1) or ($allFull and $Row = $RegInfo->fetch(PDO::FETCH_ASSOC)))
       {
          $StartTime    = $SchedRow['StartTime'];
          $RoomName     = $SchedRow['RoomName'];
