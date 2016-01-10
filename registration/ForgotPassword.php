@@ -1,4 +1,3 @@
-
 <?php
 include 'include/RegFunctions.php';
 
@@ -14,8 +13,8 @@ if (isset($_POST['reset']))
    else
    {
       $result     = $db->query("select Userid
-                                 from   $UsersTable
-                                 where  email = '$address'")
+                                from   $UsersTable
+                                where  email = '$address'")
                     or die ("Unable to get user information: " . sqlError());
       $row        = $result->fetch(PDO::FETCH_ASSOC);
       $Userid = isset($row['Userid']) ? $row['Userid'] : '';
@@ -26,10 +25,8 @@ if (isset($_POST['reset']))
       }
       else
       {
-
-         $newPass = generatePassword(8);
-
-         $todayis = date("l, F j, Y, g:i a [T]") ;
+         $password = generatePassword(8);
+         $newPass  = password_hash($password,PASSWORD_DEFAULT);
 
          $subject  = "LTC Password Reset";
 
@@ -48,7 +45,7 @@ if (isset($_POST['reset']))
          $email  .= "         I am not so smart, though, so the password I chose for it is probably pretty ugly. You will want to\n<br>";
          $email  .= "         to change it as soon as you get logged in.<br>\n";
          $email  .= "         <br>\n";
-         $email  .= "         Your new password is: <b>$newPass</b><br>\n";
+         $email  .= "         Your new password is: <b>$password</b><br>\n";
          $email  .= "         <br>\n";
          $email  .= "         Like I said, pretty gnarly. I strongly suggest you copy/paste it into the password field to avoid the frustration of<br>\n";
          $email  .= "         trying to get all of that typed in correctly.<br>\n";
@@ -64,8 +61,16 @@ if (isset($_POST['reset']))
          {
             if (mail($address, $subject, $email, $from))
             {
-               $_SESSION['newemail'] = $address;
-               header("refresh: 0; URL=VerifyEmail.php");
+               header("refresh: 5; URL=login.php");
+               print "<html>
+                        <body style=\"background-color: rgb(217, 217, 255);\">
+                           <center>
+                              Please check your email for your new password<br>
+                              (Page will refresh in 5 seconds)
+                           </center>
+                        </body>
+                     </html>";
+               die();
             }
             else
             {
