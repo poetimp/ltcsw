@@ -122,7 +122,7 @@ if (isset($_POST['Apply']))
        <title>
           Manage Individual Events
        </title>
-       <h1 align="center">>Update Individual Events For</h1>
+       <h1 align="center">Update Individual Events For</h1>
        <h2 align="center"><?php  print $ParticipantName; ?></h2>
        <?php
        if (isset($_POST['Apply']))
@@ -167,23 +167,23 @@ if (isset($_POST['Apply']))
 //                                    order by EventName
 //                      </pre>";
             $results = $db->query("select   EventID,
-                                             EventName,
-                                             Case ConvEvent
-                                                When 'C' then 'Convention'
-                                                When 'P' then 'Preconvention'
-                                                Else          'Unknown'
-                                             End
-                                             ConvEvent,
-                                             (MaxWebSlots * MaxRooms) MaxWebSlots,
-                                             EventAttended
-                                    from     $EventsTable
-                                    where    TeamEvent = 'N'
-                                    and      MaxGrade >= $ParticipantGrade
-                                    and  (   Sex       = '$ParticipantSex'
-                                          or Sex       = 'E'
-                                         )
-                                    order by EventName
-                                   ")
+                                            EventName,
+                                            Case ConvEvent
+                                               When 'C' then 'Convention'
+                                               When 'P' then 'Preconvention'
+                                               Else          'Unknown'
+                                            End
+                                            ConvEvent,
+                                            (MaxWebSlots * MaxRooms) MaxWebSlots,
+                                            EventAttended
+                                   from     $EventsTable
+                                   where    TeamEvent = 'N'
+                                   and      MaxGrade >= $ParticipantGrade
+                                   and  (   Sex       = '$ParticipantSex'
+                                         or Sex       = 'E'
+                                        )
+                                   order by EventName
+                                  ")
                        or die ("Unable to obtain eligible event list:" . sqlError());
 
             while ($row = $results->fetch(PDO::FETCH_ASSOC))
@@ -277,6 +277,7 @@ if (isset($_POST['Apply']))
                            {
                               $SchedID = "";
                            }
+
                            $sql="select distinct
                                                               s.SchedID,
                                                               s.StartTime,
@@ -300,7 +301,7 @@ if (isset($_POST['Apply']))
 
                            while ($SchedRow = $SchedResult->fetch(PDO::FETCH_ASSOC))
                            {
-                              if (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or $selected > 0)
+                              if (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or ($selected > 0 and $SchedID == $SchedRow['SchedID']))
                               {
                                  $sel =  ($selected > 0 and $SchedID == $SchedRow['SchedID']) ? "selected" : "";
                                  print "<option value=\"".$SchedRow['SchedID']."\" $sel>".TimeToStr($SchedRow['StartTime'])."</option>\n";
