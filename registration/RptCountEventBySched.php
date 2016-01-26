@@ -42,13 +42,17 @@ $prevTime = "";
                                           END
                                           EventType,
                                           s.StartTime,
-                                          s.SchedID
+                                          s.SchedID,
+                                          r.RoomName
                                  from     $EventsTable        e,
-                                          $EventScheduleTable s
-                                 where    e.EventID = s.EventID
+                                          $EventScheduleTable s,
+                                          $RoomsTable         r
+                                 where    e.EventID       = s.EventID
                                  and      e.EventAttended = 'Y'
+                                 and      s.RoomID        = r.RoomID
                                  order by s.StartTime,
-                                          e.EventName")
+                                          e.EventName,
+                                          r.RoomName")
                    or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
@@ -66,6 +70,7 @@ $prevTime = "";
             $EventTime   = TimeToStr($row['StartTime']);
             $SchedID     = $row['SchedID'];
             $MaxWebSlots = $row['MaxWebSlots'];
+            $RoomName    = $row['RoomName'];
 
             if ($EventType == 'Team')
             {
@@ -99,16 +104,17 @@ $prevTime = "";
             {
                ?>
                <tr>
-                  <td bgcolor="#C0C0C0" colspan=3><b><?php  print $EventTime; ?></b></td>
+                  <td bgcolor="#C0C0C0" colspan=4><b><?php  print $EventTime; ?></b></td>
                </tr>
                <?php
                $prevTime = $EventTime;
             }
             ?>
             <tr>
-               <td width="35%"><?php  print $EventName; ?></td>
+               <td width="25%"><?php  print $EventName; ?></td>
+               <td width="25%"><?php  print preg_replace('/\s*-\s*[a-zA-Z]\s*$/','',$RoomName) ?></td>
                <td width="10%"><?php  if ($numEvents > $MaxWebSlots){print "<font color=\"red\">";} print "$numEvents of $MaxWebSlots"; if ($numEvents > $MaxWebSlots){print "</font>";}?></td>
-               <td width="55%"><?php  print $EventType; ?></td>
+               <td width="40%"><?php  print $EventType; ?></td>
             </tr>
          <?php
          }
