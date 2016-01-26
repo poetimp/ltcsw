@@ -405,9 +405,10 @@ if ($_POST)
                // Send note to IS to process
                //============================
 
-               $toWho   =  'mamasaidsew@cox.net';
+               $toWho   =  'cepym1@msn.com';
+               $toWho  .= ',blacksv@juno.com';
                $toWho  .= ',paul.lemmons@gmail.com';
-   //          $toWho   = 'paul.lemmons@gmail.com';
+               //          $toWho   = 'paul.lemmons@gmail.com';
 
                $from    = 'MIME-Version: 1.0' . "\r\n";
                $from   .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
