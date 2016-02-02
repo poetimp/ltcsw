@@ -58,14 +58,37 @@ $query   = "SELECT distinct
                where r.ParticipantID=p.ParticipantID
                and   r.ChurchID=p.ChurchID
                and   p.Grade=12
-               order by ParticipantName";
+               order by ParticipantName
+           ";
 $result = $db->query($query)or die ("Unable to obtain participant list:" . sqlError());
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
-   $participants[$row['ChurchID']][] = array("id" => $row['ParticipantID'], "val" => $row['ParticipantName']);
-   $participant[$row['ParticipantID']] = $row['ParticipantName'];
+   $participants[$row['ChurchID']][]    = array("id" => $row['ParticipantID'], "val" => $row['ParticipantName']);
+   $participant[$row['ParticipantID']]  = $row['ParticipantName'];
+}
+$query   = "SELECT distinct
+                      t.ChurchID,
+                      t.ParticipantID,
+                      concat(LastName,', ',FirstName) as ParticipantName
+               FROM LTC_PHX_Participants p,
+                    LTC_PHX_TeamMembers  t
+               where t.ParticipantID=p.participantID
+               and   t.ChurchID=p.ChurchID
+               and   t.ChurchID=p.ChurchID
+               and   p.Grade=12
+               order by ParticipantName;
+             ";
+   //print "<pre>";print_r($participant);print "</pre>";
+$result = $db->query($query)or die ("Unable to obtain participant list:" . sqlError());
+while($row = $result->fetch(PDO::FETCH_ASSOC)){
+   //print "<pre>";print_r($row);print "</pre>";
+   if ($participant[$row['ParticipantID']+0] != $row['ParticipantName'])
+   {
+      $participants[$row['ChurchID']][] = array("id" => $row['ParticipantID'], "val" => $row['ParticipantName']);
+      $participant[$row['ParticipantID']+0] = $row['ParticipantName'];
+   }
 }
 
-//===========================================================================================
+//==========================================================================================
 // Collect the results from above into json entities so that they can be accessed in javascript
 //===========================================================================================
 $jsonChurches     = json_encode($churches);
