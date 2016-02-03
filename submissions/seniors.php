@@ -1,16 +1,7 @@
 <?php
 session_start();
-require '../ssl-registration/include/config.php';
-require '../ssl-registration/include/MySql-connect.inc.php';
-require 'dropbox-sdk/Dropbox/autoload.php';
-
-use \Dropbox as dbx;
-
-//your access token from the Dropbox App Panel: https://www.dropbox.com/developers/apps
-$accessToken = '***REMOVED***';
-
-// load the dropbox credentials
-$appInfo = dbx\AppInfo::loadFromJsonFile(__DIR__."/config.json");
+require __DIR__.'/include/config.php';
+require __DIR__.'/include/MySql-connect.inc.php';
 
 //===================================================================
 // Pickup and validate variables
@@ -32,9 +23,9 @@ $dropboxDirectory = '/Seniors';
 $query = "select   distinct
                    ChurchName,
                    c.ChurchID
-          from     LTC_PHX_Churches c,
-                   LTC_PHX_Registration r,
-                   LTC_PHX_Participants p
+          from     $ChurchesTable     c,
+                   $RegistrationTable r,
+                   $ParticipantsTable p
           where    c.ChurchID=r.ChurchID
           and      r.ChurchID=p.ChurchID
           and      r.ParticipantID=p.ParticipantID
@@ -53,8 +44,8 @@ $query   = "SELECT distinct
                       r.ChurchID,
                       r.ParticipantID,
                       concat(LastName,', ',FirstName) as ParticipantName
-               FROM LTC_PHX_Registration r,
-                    LTC_PHX_Participants p
+               FROM $RegistrationTable r,
+                    $ParticipantsTable p
                where r.ParticipantID=p.ParticipantID
                and   r.ChurchID=p.ChurchID
                and   p.Grade=12
@@ -69,8 +60,8 @@ $query   = "SELECT distinct
                       t.ChurchID,
                       t.ParticipantID,
                       concat(LastName,', ',FirstName) as ParticipantName
-               FROM LTC_PHX_Participants p,
-                    LTC_PHX_TeamMembers  t
+               FROM $ParticipantsTable p,
+                    $TeamMembersTable  t
                where t.ParticipantID=p.participantID
                and   t.ChurchID=p.ChurchID
                and   t.ChurchID=p.ChurchID

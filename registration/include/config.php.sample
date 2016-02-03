@@ -5,21 +5,22 @@
 $systemDown = 0;
 
 //===================================================================
-// Database connectivity.
+// Database connectivity. Most of the time "localhost" is my test
+// platform. So it is nice to gave it setup to reflect that.
 //===================================================================
 if ($_SERVER['SERVER_NAME'] == 'localhost')
 {
    $db_host     = "localhost";
-   $db_user     = "***REMOVED***";
-   $db_database = "***REMOVED***";
-   $db_password = "***REMOVED***";
+   $db_user     = "<local db user>";
+   $db_database = "<local db name>";
+   $db_password = "<local db password>";
 }
 else
 {
-   $db_host     = "***REMOVED***";
-   $db_user     = "***REMOVED***";
-   $db_database = "***REMOVED***";
-   $db_password = "***REMOVED***";
+   $db_host     = "<remote db host>";
+   $db_user     = "<remote db user>";
+   $db_database = "<remote db name>";
+   $db_password = "<remote db password>";
 }
 
 
@@ -27,10 +28,11 @@ else
 // Table prefix to be prepended to each table name.
 //===================================================================
 
-$db_prefix            = "LTC_PHX_";
+$db_prefix            = "LTC_";
 
 //===================================================================
 // Establish the names of all of the tables.
+// Not a lot of reason to change these but you can
 //===================================================================
 $UsersTable           = $db_prefix.'Users';
 $ChurchesTable        = $db_prefix.'Churches';

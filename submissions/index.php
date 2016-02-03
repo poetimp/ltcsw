@@ -1,16 +1,7 @@
 <?php
 session_start();
-require '../ssl-registration/include/config.php';
-require '../ssl-registration/include/MySql-connect.inc.php';
-require 'dropbox-sdk/Dropbox/autoload.php';
-
-use \Dropbox as dbx;
-
-//your access token from the Dropbox App Panel: https://www.dropbox.com/developers/apps
-$accessToken = '***REMOVED***';
-
-// load the dropbox credentials
-$appInfo = dbx\AppInfo::loadFromJsonFile(__DIR__."/config.json");
+require __DIR__.'/include/config.php';
+require __DIR__.'/include/MySql-connect.inc.php';
 
 //===================================================================
 // Pickup and validate variables
@@ -34,9 +25,9 @@ $dropboxDirectory = '/PreConvention';
 $query = "select   distinct
                       ChurchName,
                       c.ChurchID
-          from     LTC_PHX_Churches c,
-                   LTC_PHX_Registration r,
-                   LTC_PHX_Events e
+          from     $ChurchesTable     c,
+                   $RegistrationTable r,
+                   $EventsTable       e
           where    c.ChurchID=r.ChurchID
           and      r.EventID=e.EventID
           and      e.ConvEvent='P'
@@ -51,17 +42,17 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
 //===========================================================================================
 
 $query   = "SELECT distinct
-                      r.ChurchID,
-                      r.ParticipantID,
-                      concat(LastName,', ',FirstName) as ParticipantName
-               FROM LTC_PHX_Registration r,
-                    LTC_PHX_Participants p,
-                    LTC_PHX_Events e
-               where r.ParticipantID=p.ParticipantID
-               and   r.ChurchID=p.ChurchID
-               and   r.EventID=e.EventID
-               and   e.ConvEvent='P'
-               order by ParticipantName";
+                   r.ChurchID,
+                   r.ParticipantID,
+                   concat(LastName,', ',FirstName) as ParticipantName
+            FROM $RegistrationTable r,
+                 $ParticipantsTable p,
+                 $EventsTable
+            where r.ParticipantID=p.ParticipantID
+            and   r.ChurchID=p.ChurchID
+            and   r.EventID=e.EventID
+            and   e.ConvEvent='P'
+            order by ParticipantName";
 $result = $db->query($query)or die ("Unable to obtain participant list:" . sqlError());
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $participants[$row['ChurchID']][] = array("id" => $row['ParticipantID'], "val" => $row['ParticipantName']);
@@ -71,17 +62,17 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
 // Add the teams to the "participant" array
 //===========================================================================================
 $query   = "SELECT distinct
-            r.ChurchID,
-            t.TeamID,
-            concat('[',t.TeamID,'] ',e.EventName) TeamName
-            FROM LTC_PHX_Registration r,
-            LTC_PHX_Events e,
-            LTC_PHX_Teams t
-            where r.ParticipantID=t.TeamID
-            and   r.ChurchID=t.ChurchID
-            and   r.EventID=e.EventID
-            and   e.ConvEvent='P'
-            and   e.EventID=t.EventID
+                   r.ChurchID,
+                   t.TeamID,
+                   concat('[',t.TeamID,'] ',e.EventName) TeamName
+            FROM   $RegistrationTable r,
+                   $EventsTable       e,
+                   $TeamsTable        t
+            where  r.ParticipantID=t.TeamID
+            and    r.ChurchID=t.ChurchID
+            and    r.EventID=e.EventID
+            and    e.ConvEvent='P'
+            and    e.EventID=t.EventID
             order by e.EventName,t.TeamID;";
 $result = $db->query($query)or die ("Unable to obtain team list:" . sqlError());
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
@@ -96,8 +87,8 @@ $query   = "SELECT distinct
                       r.ParticipantID,
                       r.EventID,
                       e.EventName
-               FROM   LTC_PHX_Registration r,
-                      LTC_PHX_Events e
+               FROM   $RegistrationTable r,
+                      $EventsTable       e
               where   r.EventID=e.EventID
               and     e.ConvEvent = 'P'
               order   by EventName";
