@@ -2,6 +2,7 @@
 session_start();
 require __DIR__.'/include/config.php';
 require __DIR__.'/include/MySql-connect.inc.php';
+use \Dropbox as dbx;
 
 //===================================================================
 // Pickup and validate variables
@@ -14,6 +15,8 @@ $EventID         = isset($_POST['EventID'])        ? $_POST['EventID']        : 
 
 $thisMonth = date('m');
 $thisYear  = date('Y');
+
+$errorMsg = '';
 
 if ($thisMonth > 5) $thisYear++;
 $dropboxDirectory = '/PreConvention';

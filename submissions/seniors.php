@@ -2,6 +2,7 @@
 session_start();
 require __DIR__.'/include/config.php';
 require __DIR__.'/include/MySql-connect.inc.php';
+use \Dropbox as dbx;
 
 //===================================================================
 // Pickup and validate variables
@@ -13,6 +14,8 @@ $SubmitterID     = isset($_POST['SubmitterID'])    ? $_POST['SubmitterID']    : 
 
 $thisMonth = date('m');
 $thisYear  = date('Y');
+
+$errorMsg = '';
 
 if ($thisMonth > 5) $thisYear++;
 $dropboxDirectory = '/Seniors';
@@ -72,9 +75,9 @@ $query   = "SELECT distinct
 $result = $db->query($query)or die ("Unable to obtain participant list:" . sqlError());
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    //print "<pre>";print_r($row);print "</pre>";
-   if ($participant[$row['ParticipantID']+0] != $row['ParticipantName'])
+   if (!isset($participant[$row['ParticipantID']+0]))
    {
-      $participants[$row['ChurchID']][] = array("id" => $row['ParticipantID'], "val" => $row['ParticipantName']);
+      $participants[$row['ChurchID']][] = array("id" => $row['ParticipantID']+0, "val" => $row['ParticipantName']);
       $participant[$row['ParticipantID']+0] = $row['ParticipantName'];
    }
 }
@@ -422,7 +425,7 @@ if ($_POST)
                $toWho   =  'cepym1@msn.com';
                $toWho  .= ',blacksv@juno.com';
                $toWho  .= ',paul.lemmons@gmail.com';
-               //          $toWho   = 'paul.lemmons@gmail.com';
+             //$toWho   = 'paul.lemmons@gmail.com';
 
                $from    = 'MIME-Version: 1.0' . "\r\n";
                $from   .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
