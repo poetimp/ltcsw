@@ -1,0 +1,61 @@
+<?php
+//===================================================================
+// Should be settable online but not there yet so have to set here
+//===================================================================
+$systemDown = 0;
+
+//===================================================================
+// Database connectivity. Most of the time "localhost" is my test
+// platform. So it is nice to gave it setup to reflect that.
+//===================================================================
+if ($_SERVER['SERVER_NAME'] == 'localhost')
+{
+   $db_host     = "localhost";
+   $db_user     = "<local db user>";
+   $db_database = "<local db name>";
+   $db_password = "<local db password>";
+}
+else
+{
+   $db_host     = "<remote db host>";
+   $db_user     = "<remote db user>";
+   $db_database = "<remote db name>";
+   $db_password = "<remote db password>";
+}
+
+//===================================================================
+// Table prefix to be prepended to each table name.
+//===================================================================
+
+$db_prefix            = "LTC_";
+
+//===================================================================
+// load the dropbox api and establish the credentials.
+//===================================================================
+require __DIR__.'dropbox-sdk/Dropbox/autoload.php';
+
+use \Dropbox as dbx;
+
+//your access token from the Dropbox App Panel: https://www.dropbox.com/developers/apps
+
+$accessToken = 'This Token is established at the Dropbox App Panel noted above. ';
+
+// load the dropbox credentials the app key and the secret key are also found at the URL above
+
+$appInfo = dbx\AppInfo::loadFromJson(array("key"    => "*****",
+                                           "secret" => "*******"
+                                           )
+                                     );
+
+//===================================================================
+// Establish the names of all of the tables.
+// Not a lot of reason to change these but you can. Mayhapes a
+// different language? I-duh-know
+//===================================================================
+
+$ChurchesTable        = $db_prefix.'Churches';
+$EventsTable          = $db_prefix.'Events';
+$ParticipantsTable    = $db_prefix.'Participants';
+$RegistrationTable    = $db_prefix.'Registration';
+$TeamsTable           = $db_prefix.'Teams';
+$TeamMembersTable     = $db_prefix.'TeamMembers';
