@@ -1,0 +1,40 @@
+
+
+Hello, if you are here you are either curious or are looking for something that 
+you think this project may supply. Here is what you have found/stumbled across...
+
+This is a registration system for the Leadership Training for Christ (LTC) youth 
+mentoring program. (For more info on the organization take a look at http://ltcsw.org). 
+This program is used by the Southwest region of the organization. It has most of 
+the features that are needed to run a successful LTC convention.
+
+  - Registration
+  - Event Management
+  - Event Coordinator Management
+  - Participant Management
+  - Room Management
+  - Event scheduling and signup
+  - Standard reports
+  - Assignment of judges
+  - Tally and awards Management
+  - Extremely simplistic accounting
+  - Extra T-Shirt ordering
+  - Extra Meals ordering
+  - And other duties as assigned
+
+The program has served LTCSW for many years and every year it evolves. New features 
+are added, old features augmented and bugs addressed. Often times updates are just 
+to clean up the code. This was my inaugural php/mysql project many years ago and 
+some areas of the code really show novice coding. The UI is very non-standard in 
+some places and the overall visual design looks like it was conceived by an engineer 
+without any graphical skills. There is a reason for that: It was. Newer code is much 
+better but not as good as the code I will right later ... always improving :)
+
+You are welcome to use the system as is, offer suggestions for improvement, offer 
+updates, open issues or use it as a base for your own project or whatever. You just 
+do so at your own risk. It has been know to eat kittens.
+
+-Paul
+
+Feel free to contact me if you have interest or wish to get a site setup using this code.
+
