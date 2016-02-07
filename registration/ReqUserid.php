@@ -1,4 +1,12 @@
 <?php
+//----------------------------------------------------------------------------
+// This software is licensed under the MIT license. Use as you wish but give
+// and take credit where due.
+//
+// Author: Paul Lemmons
+//----------------------------------------------------------------------------
+?>
+<?php
 
 $Name         = isset($_POST['Name'])      ? $_POST['Name']      : "";
 $Userid       = isset($_POST['Userid'])    ? $_POST['Userid']    : "";

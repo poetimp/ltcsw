@@ -1,3 +1,10 @@
+//----------------------------------------------------------------------------
+// This software is licensed under the MIT license. Use as you wish but give
+// and take credit where due. 
+//
+// Author: Paul Lemmons 
+//----------------------------------------------------------------------------
+
 // These variables are for saving the original background colors
 var savedStates=new Array();
 var savedStateCount=0;

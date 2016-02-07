@@ -1,8 +1,8 @@
 OK, Install instructions... Hmmm
 
-I am going to assume that you have some experience with mysql and with php. If you don't 
+I am going to assume that you have some experience with MySql and with php. If you don't 
 you are likely to have some difficulty. If you need help though, I am willing to do what
-I can. However, I cannot really help with teaching you PHP, MySql or how you might interact
+I can. However, I cannot really help with teaching you php, MySql or how you might interact
 with your web host. In those areas you are on your own. 
 
 Alright, lets get the database setup first:
@@ -19,12 +19,12 @@ hosted, you will need jump through their predefined hoops. This may be simple or
 depending on your provider. Again, I am assuming that you know a little about what you are
 doing here. In any event you need to create a database and you need to have credentials to
 access the database. The sql file has some very basic steps documented at the top of it that 
-work if you have root or administrative access to your mysql database.
+work if you have root or administrative access to your MySql database.
 
 Now, you need to execute the sql in your new database and once again the way you do 
-that is completely dependent on where your mysql database is hosted. The command line means of
+that is completely dependent on where your MySql database is hosted. The command line means of
 doing so are in the header of the sql file. At some point I may move all of this into php
-and hae everything done from there but for now this is how it is.
+and have everything done from there but for now this is how it is.
 
 If you have succeeded in all of the above you have the following information:
 
@@ -52,10 +52,10 @@ Userid: Admin
 Password: DoDeut6:4-7
 
 I STRONGLY suggest that after you login you create another administrative account with
-a userid and password that only you know and delete th "Admin" account. There is nothing
+a userid and password that only you know and delete the "Admin" account. There is nothing
 special about it except that it is named Admin and the whole world knows the password.
 
-At this point you should be fully up and operational. Lease let me know if you have any 
+At this point you should be fully up and operational. Please let me know if you have any 
 issues because if *YOU* do than most like *I* will and I would just as soon fix it.
 
 Other files and directories here in the download:
@@ -67,6 +67,6 @@ so that they can be honored at closing ceremonies. The latter may be unique to o
 The former may or may not be useful to you based on how you collect pre-convention media.
 
 The tshirt-judging is almost certainly unique to our region. We allow our kids to submit
-tshirt designs and one of them is chosen to be the tshirt for that year. This app is a
+tshirt designs and one of them is chosen go on the t-shirt for that year. This app is a
 simple gallery app to allow the board members to judge and select the design to be used.
 

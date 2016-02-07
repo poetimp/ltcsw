@@ -1,4 +1,12 @@
 <?php
+//----------------------------------------------------------------------------
+// This software is licensed under the MIT license. Use as you wish but give
+// and take credit where due.
+//
+// Author: Paul Lemmons
+//----------------------------------------------------------------------------
+?>
+<?php
 include 'include/config.php';
 include 'include/auth.inc.php';
 include 'include/MySql-connect.inc.php';

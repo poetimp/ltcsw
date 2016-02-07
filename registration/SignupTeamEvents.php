@@ -1,4 +1,12 @@
 <?php
+//----------------------------------------------------------------------------
+// This software is licensed under the MIT license. Use as you wish but give
+// and take credit where due.
+//
+// Author: Paul Lemmons
+//----------------------------------------------------------------------------
+?>
+<?php
 include 'include/RegFunctions.php';
 
 ?>
@@ -17,35 +25,35 @@ include 'include/RegFunctions.php';
          <table border="1" width="100%">
             <tr>
                <td width="70" align="left" bgcolor="#000000" colspan=3>
-				      <span style="background-color: #000000">
-				         <font color="#FFFF00">
-				            Action
-				         </font>
-				      </span>
-				   </td>
+                  <span style="background-color: #000000">
+                     <font color="#FFFF00">
+                        Action
+                     </font>
+                  </span>
+               </td>
                <td width="105" align="left" bgcolor="#000000">
-				      <span style="background-color: #000000">
-				         <font color="#FFFF00">
-				            Participants
-				         </font>
-				      </span>
-				   </td>
+                  <span style="background-color: #000000">
+                     <font color="#FFFF00">
+                        Participants
+                     </font>
+                  </span>
+               </td>
 
                <td align="left" bgcolor="#000000">
-				      <span style="background-color: #000000">
-				         <font color="#FFFF00">
-				            Team Number
-				         </font>
-				      </span>
-				   </td>
+                  <span style="background-color: #000000">
+                     <font color="#FFFF00">
+                        Team Number
+                     </font>
+                  </span>
+               </td>
 
                <td align="left" bgcolor="#000000">
-				      <span style="background-color: #000000">
-				         <font color="#FFFF00">
-				            Event Name
-				         </font>
-				      </span>
-				   </td>
+                  <span style="background-color: #000000">
+                     <font color="#FFFF00">
+                        Event Name
+                     </font>
+                  </span>
+               </td>
             </tr>
          <?php
          $ChurchTeams = $db->query("SELECT E.EventName,
