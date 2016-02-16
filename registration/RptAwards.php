@@ -1,4 +1,12 @@
 <?php
+//----------------------------------------------------------------------------
+// This software is licensed under the MIT license. Use as you wish but give
+// and take credit where due.
+//
+// Author: Paul Lemmons
+//----------------------------------------------------------------------------
+?>
+<?php
 include 'include/RegFunctions.php';
 
 if ($Admin != 'Y')
@@ -13,7 +21,7 @@ if ($Admin != 'Y')
                                   count(*) AwardCount
                          FROM $RegistrationTable r,
                               $ChurchesTable     c,
-                              $EventsTable       e 
+                              $EventsTable       e
                          where c.ChurchId  = r.ChurchID
                          and   e.EventID   = r.EventID
                          and   e.ConvEvent = 'C'
@@ -21,7 +29,7 @@ if ($Admin != 'Y')
                          order by ChurchName,EventName,field(Award,'Gold','Silver','Bronze','No Award','No Show')
                          ")
    or die ("Unable to get Awards list:" . sqlError());
-   
+
    $CurrentChurch = '';
    $CurrentEvent  = '';
    $pageBreak='';
@@ -31,23 +39,23 @@ if ($Admin != 'Y')
       $EventName  = $row['EventName'];
       $Award      = $row['Award'];
       $AwardCount = $row['AwardCount'];
-      
+
       if ($CurrentChurch != $ChurchName)
       {
       	 if ($CurrentChurch != '')
       	    print "</table>\n";
-      	 
+
          print "<h1 align=\"center\" $pageBreak>\n";
          print "   $ChurchName\n";
          print "</h1>\n";
          print "<hr>\n";
          print "<table border=1 width=100%>\n";
-         
+
          $CurrentChurch = $ChurchName;
          $CurrentEvent  = '';
          $pageBreak="style=\"page-break-before:always;\"";
       }
-      
+
       if ($CurrentEvent != $EventName)
       {
          print "   <tr>\n";
@@ -67,6 +75,6 @@ if ($Admin != 'Y')
       print "      </td>\n";
       print "      <td width=70%>&nbsp;</td>\n";
       print "   </tr>\n";
-      
+
    }
 ?>
