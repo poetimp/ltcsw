@@ -1,0 +1,72 @@
+OK, Install instructions... Hmmm
+
+I am going to assume that you have some experience with MySql and with php. If you don't 
+you are likely to have some difficulty. If you need help though, I am willing to do what
+I can. However, I cannot really help with teaching you php, MySql or how you might interact
+with your web host. In those areas you are on your own. 
+
+Alright, lets get the database setup first:
+
+First thing you need to do is update the schema that will be added to the database. In the 
+setup directory there is a file called ltc_schema.sql. You will likely want to edit that 
+file. All of the tables are prefixed with "LTC_PHX_". You will likely want or need to change 
+that. So in your favorite editor do a replace-all for LTC_PHX_ to some other prefix and save 
+the file.
+
+Now create the database. Depending on where the database will be hosted how you do this varies.
+If it is your laptop for testing then you will likely use a command line utility. If it is
+hosted, you will need jump through their predefined hoops. This may be simple or complex
+depending on your provider. Again, I am assuming that you know a little about what you are
+doing here. In any event you need to create a database and you need to have credentials to
+access the database. The sql file has some very basic steps documented at the top of it that 
+work if you have root or administrative access to your MySql database.
+
+Now, you need to execute the sql in your new database and once again the way you do 
+that is completely dependent on where your MySql database is hosted. The command line means of
+doing so are in the header of the sql file. At some point I may move all of this into php
+and have everything done from there but for now this is how it is.
+
+If you have succeeded in all of the above you have the following information:
+
+db host     : ________________________
+
+db user     : ________________________
+
+db database : ________________________
+
+db password : ________________________
+
+db prefix   : ________________________
+
+Whew! That was fun! Right? Ok, now on to the web site:
+
+Copy the "registration" directory along with its sub-directories to your web server. 
+
+copy the file "include/config.php.sample" to "include/config.php" and then edit the
+config.php file. Using the information above update the file to represent your environment.
+
+You should now be able to login. Just point your browser to wherever you uploaded the 
+registration directory to and you should be ready to go. 
+
+Userid: Admin
+Password: DoDeut6:4-7
+
+I STRONGLY suggest that after you login you create another administrative account with
+a userid and password that only you know and delete the "Admin" account. There is nothing
+special about it except that it is named Admin and the whole world knows the password.
+
+At this point you should be fully up and operational. Please let me know if you have any 
+issues because if *YOU* do than most like *I* will and I would just as soon fix it.
+
+Other files and directories here in the download:
+
+You will notice a Submissions and tshirt-judging directories in the download. These are not
+required at all for the registration system. These are ancillary files that are useful in
+collecting pre-convention events via an upload to Dropbox. The same for Senior information
+so that they can be honored at closing ceremonies. The latter may be unique to our region. 
+The former may or may not be useful to you based on how you collect pre-convention media.
+
+The tshirt-judging is almost certainly unique to our region. We allow our kids to submit
+tshirt designs and one of them is chosen go on the t-shirt for that year. This app is a
+simple gallery app to allow the board members to judge and select the design to be used.
+
