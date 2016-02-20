@@ -58,7 +58,7 @@ $query   = "SELECT distinct
                    concat(LastName,', ',FirstName) as ParticipantName
             FROM $RegistrationTable r,
                  $ParticipantsTable p,
-                 $EventsTable
+                 $EventsTable       e
             where r.ParticipantID=p.ParticipantID
             and   r.ChurchID=p.ChurchID
             and   r.EventID=e.EventID
