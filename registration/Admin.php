@@ -82,6 +82,7 @@ $ChurchName = ChurchName($ChurchID);
                         <li><a target="_blank" href="RptAwardCounts.php">Post Convention Award Counts</a></li>
                         <li><a target="_blank" href="RptJudgesAssignment.php">Judges Assigned</a></li>
                         <li><a target="_blank" href="RptJudges.php?Admin=Y">Judges by Congregation</a></li>
+                        <li><a target="_blank" href="RptJudgesAssignment.php?ID=ByEvent">Judges by Event</a></li>
                         <li><a target="_blank" href="RptCharmers.php">List of C.H.A.R.M.E.R.S</a></li>
                      </ul>
                   </td>
