@@ -9,6 +9,10 @@
 <?php
 include 'include/RegFunctions.php';
 
+$forEvent = (isset($_REQUEST['ID']) and !preg_match("/[^0-9]/",$_REQUEST['ID']))
+      ? "EventID = ".$_REQUEST['ID']
+      : 'EventID > 0';
+
 //========================================================================
 // Collect a list of all of the distinct times that events start
 //========================================================================
@@ -16,6 +20,7 @@ $TimesList = $db->query("select distinct
                                     SchedID,
                                     StartTime
                            from     $EventScheduleTable
+                           where    $forEvent
                            order by StartTime")
 or die ("Unable to obtain Times List:" . sqlError());
 
@@ -79,6 +84,7 @@ function constructJudgesTable($dayTimes,$day)
    global $allTimes;
    global $allRooms;
    global $db;
+   global $forEvent;
 
    $dayInitial = substr($day,0,1) == "F" ? 6 : 7;
    ?>
@@ -109,6 +115,7 @@ function constructJudgesTable($dayTimes,$day)
                                   from    $EventScheduleTable
                                   where   StartTime like '$dayInitial%'
                                   and     RoomID    =     $RoomID
+                                  and     $forEvent
                                  ")
             or die ("Unable to obtain Events in room on $day:" . sqlError());
 
@@ -207,11 +214,60 @@ function constructJudgesTable($dayTimes,$day)
    </head>
 
    <body style="background-color: rgb(217, 217, 255);">
-      <h1 align="center">Assigned Judges</h1>
-         <?php
+      <?php
+      if (isset($_REQUEST['ID']) and !preg_match("/[^0-9]/",$_REQUEST['ID']))
+      {
+         $result = $db->query("select  EventName
+                                from    $EventsTable
+                                where   EventID     = ".$_REQUEST['ID'])
+                     or die ("Unable to obtain Event Name:" . sqlError());
+         $row       = $result->fetch(PDO::FETCH_ASSOC);
+         if (!empty($row))
+         {
+            print "<h1 align='center'>Assigned Judges</h1>";
+            print "<h2 align='center'>for event ".$row['EventName']."</h2>";
             constructJudgesTable($fridayTimes,'Friday');
             constructJudgesTable($saturdayTimes,'Saturday');
-         ?>
+         }
+      }
+      elseif (isset($_REQUEST['ID']) and preg_match("/^byEvent/i",$_REQUEST['ID']))
+      {
+         $result = $db->query("select   EventID,
+                                        EventName,
+                                        JudgingCatagory
+                                from    $EventsTable
+                                order by JudgingCatagory
+                              ")
+                     or die ("Unable to obtain Event List:" . sqlError());
+         $first=1;
+         $judgingCatagory='';
+         while($row = $result->fetch(PDO::FETCH_ASSOC))
+         {
+            if ($first)
+            {
+               print "<h1 align='center'>Assigned Judges</h1>";
+               $first=0;
+            }
+            elseif ($row['JudgingCatagory'] != $judgingCatagory)
+            {
+               print "<h1 align='center' style='page-break-before: always;'>Assigned Judges</h1>";
+            }
+            $judgingCatagory=$row['JudgingCatagory'];
+
+            print "<h2 align='center'>for event ".$row['EventName']."</h2>";
+
+            $forEvent = "EventID = ".$row['EventID'];
+            constructJudgesTable($fridayTimes,'Friday');
+            constructJudgesTable($saturdayTimes,'Saturday');
+         }
+      }
+      else
+      {
+         print "<h1 align='center'>Assigned Judges</h1>";
+         constructJudgesTable($fridayTimes,'Friday');
+         constructJudgesTable($saturdayTimes,'Saturday');
+      }
+      ?>
       <?php footer("","")?>
    </body>
 
