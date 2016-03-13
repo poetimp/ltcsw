@@ -6,7 +6,7 @@
 // Author: Paul Lemmons
 //----------------------------------------------------------------------------
 ?>
-?php
+<?php
 include 'include/RegFunctions.php';
 
 if ($Admin != 'Y')
