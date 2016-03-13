@@ -582,29 +582,91 @@ function ScheduleEventUpd($SchedID,$EventID,$StartTime,$RoomID)   //Returns Succ
 {
    global $RoomsTable,
           $EventsTable,
-          $EventScheduleTable;
+          $EventScheduleTable,
+          $JudgeAssignmentsTable;
    global $db;
 
    //print "SchedID: [$SchedID], EventID: [$EventID], StartTime: [$StartTime],RoomID: [$RoomID]";
    if (ScheduleEventTimeAvailable($EventID,$StartTime,$RoomID))
    {
 
-      $result = $db->query("select   Duration
-                             from     $EventsTable
-                             where    EventID      = $EventID
+      // Pickup the current values in the schedule so we can see what changed
+
+      $result = $db->query("select   RoomID,
+                                     StartTime
+                            from     $EventScheduleTable
+                            where    SchedID      = $SchedID
                             ")
                 or die ("Unable to get Duration for EventID $EventID:" . sqlError());
 
       $row = $result->fetch(PDO::FETCH_ASSOC);
-      $EndTime = AddTime($StartTime,$row['Duration']);
+      $origStartTime = $row['StartTime'];
+      $origRoomID    = $row['RoomID'];
 
-      $db->query("update $EventScheduleTable
-                   set StartTime = '$StartTime',
-                       EndTime   = '$EndTime',
-                       RoomID    = '$RoomID'
-                   where SchedID = '$SchedID'
-                   ")
-      or die ("Unable to update EventSchedule: ".sqlError());
+      // Build the appropriate updates
+
+      $updated=0; // Assume that they did not update anything so we don't do an update unless we have to
+
+      // Did we update the StartTime?
+      if ($origStartTime != $StartTime)
+      {
+      // Calculate the EndTime from the startTime plus the defined Event duration
+         $result = $db->query("select   Duration
+                                from     $EventsTable
+                                where    EventID      = $EventID
+                               ")
+                   or die ("Unable to get Duration for EventID $EventID:" . sqlError());
+
+         $row = $result->fetch(PDO::FETCH_ASSOC);
+         $EndTime = AddTime($StartTime,$row['Duration']);
+
+         $setStart = " StartTime = '$StartTime',";
+         $setEnd   = " EndTime   = '$EndTime'";
+         $updated  = 1;
+      }
+      else
+         $setStart = '';
+
+      // Did we update the RoomID?
+      if ($origRoomID != $RoomID)
+      {
+         $setRoomID = " RoomID    = $RoomID";
+         $updated   = 1;
+      }
+      else
+         $setRoomID = '';
+
+      // Build and execute the update SQL if there was information updated
+      if ($updated)
+      {
+         $sql = "update $EventScheduleTable set ";
+         if ($setStart != '')
+         {
+            $sql .= $setStart;
+            $sql .= $setEnd;
+            if ($setRoomID != '')
+               $sql .=',';
+         }
+         if ($setRoomID != '')
+         {
+            $sql .= $setRoomID;
+//            print "<pre>update  $JudgeAssignmentsTable
+//                        set    RoomID  = $RoomID
+//                        where  SchedID = '$SchedID'
+//                       </pre>";
+
+            $db->query("update  $JudgeAssignmentsTable
+                        set    RoomID  = $RoomID
+                        where  SchedID = '$SchedID'
+                       ")
+            or die ("Unable to update Judge Room Assignment: ".sqlError());
+         }
+
+         $sql .= " where  SchedID = '$SchedID'";
+//         print "<pre>$sql</pre>";
+         $db->query($sql)
+         or die ("Unable to update EventSchedule: ".sqlError());
+      }
       return TRUE;
    }
    else
