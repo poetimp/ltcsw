@@ -47,6 +47,36 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $churches[] = array("id" => $row['ChurchID'], "val" => $row['ChurchName']);
    $church[$row['ChurchID']] = $row['ChurchName'];
 }
+
+$query = "select   distinct
+                   c.ChurchName,
+                   t.ChurchID
+          from     $ChurchesTable     c,
+                   $ParticipantsTable p,
+                   $TeamMembersTable  t
+          where    t.ParticipantID=p.participantID
+          and      t.ChurchID=p.ChurchID
+          and      c.ChurchID=p.ChurchID
+          and      p.Grade=12
+          order    by ChurchName
+                   ";
+$result = $db->query($query)or die ("Unable to obtain church team list:" . sqlError());
+while($row = $result->fetch(PDO::FETCH_ASSOC))
+{
+   if (!isset($church[$row['ChurchID']]))
+   {
+      $churches[] = array("id" => $row['ChurchID'], "val" => $row['ChurchName']);
+      $church[$row['ChurchID']] = $row['ChurchName'];
+   }
+}
+
+usort($churches, "church_sort");
+// Define the custom sort function
+function church_sort($a,$b)
+{
+   return $a['val']>$b['val'];
+}
+
 //===========================================================================================
 // Create the array with all of the Participant that are seniors
 //===========================================================================================
@@ -75,7 +105,6 @@ $query   = "SELECT distinct
                     $TeamMembersTable  t
                where t.ParticipantID=p.participantID
                and   t.ChurchID=p.ChurchID
-               and   t.ChurchID=p.ChurchID
                and   p.Grade=12
                order by ParticipantName;
              ";
@@ -90,6 +119,16 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
    }
 }
 
+foreach ($participants as $names)
+{
+   usort($names, "participant_sort");
+}
+
+// Define the custom sort function
+function participant_sort($a,$b)
+{
+   return $a['val']>$b['val'];
+}
 //==========================================================================================
 // Collect the results from above into json entities so that they can be accessed in javascript
 //===========================================================================================
