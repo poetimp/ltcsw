@@ -57,7 +57,7 @@ if ($Admin != 'Y')
                <td><a target="_blank" href="DataTeams.php"       >Team information</a></td>
             </tr>
             <tr>
-               <td>All Convention Events along with their participants. Bible Bowl is filterd out</td>
+               <td>All Convention Events along with their participants. Bible Bowl is filtered out</td>
                <td><a target="_blank" href="DataEvents.php"      >Participants and events</a></td>
             </tr>
             <tr>

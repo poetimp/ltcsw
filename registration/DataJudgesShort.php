@@ -14,55 +14,40 @@ if ($Admin != 'Y')
    die();
 // JudgeID,FirstName, LastName, Address, City, State, Zip, Phone, ChurchID, Gender, MaxEvents, Comments, Email
 }
+   $filename = "AllJudgesSummary-".date("m-d-Y").".csv";
 
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
+   header("Content-disposition: attachment; filename=$filename");
+   header("Content-type: application/octet-stream");
 
-    <head>
-       <meta http-equiv="Content-Language" content="en-us">
-       <title>
-          Judges Data
-       </title>
-    </head>
+   $fp = fopen('php://output', 'w');
+   $results = $db->query("
+                            SELECT DISTINCT
+                                   j.LastName,
+                                   j.FirstName,
+                                   c.ChurchName,
+                                   c.ChurchState,
+                                   c.ChurchCity
+                           FROM    $ChurchesTable         c,
+                                   $JudgesTable           j,
+                                   $JudgeAssignmentsTable a
+                           where    c.ChurchId=j.ChurchID
+                           and      j.JudgeID=a.JudgeID
+                           order by j.LastName
+                           ")
+            or die ("Unable to get Judge list:" . sqlError());
 
-    <body>
-    <?php
-         print "\"Name\",";
-         print "\"Church\",";
-         print "\"Location\"<br>";
-         $results = $db->query("
-                                  SELECT DISTINCT
-                                          j.LastName,
-                                          j.FirstName,
-                                          c.ChurchName,
-                                          c.ChurchState,
-                                          c.ChurchCity
-                                  FROM    $ChurchesTable         c,
-                                          $JudgesTable           j,
-                                          $JudgeAssignmentsTable a
-                                  where    c.ChurchId=j.ChurchID
-                                  and      j.JudgeID=a.JudgeID
-                                  order by j.LastName
-                                  ")
-                   or die ("Unable to get Judge list:" . sqlError());
-
-
-         while ($row = $results->fetch(PDO::FETCH_ASSOC))
+   $rowCount=0;
+   while ($row = $results->fetch(PDO::FETCH_ASSOC))
+   {
+      if ($rowCount++ == 0)
+      {
+         foreach ($row as $key => $value)
          {
-            $FirstName  = $row['FirstName'];
-            $LastName   = $row['LastName'];
-            $ChurchName = $row['ChurchName'];
-            $City       = $row['ChurchCity'];
-            $State      = $row['ChurchState'];
-
-
-            print "\"$FirstName $LastName\",";
-            print "\"$ChurchName\",";
-            print "\"$City, $State\"";
-            print "<br>\n";
+            $heading[] = $key;
          }
-         ?>
-         </table>
-    </body>
-</html>
+         fputcsv($fp, $heading);
+      }
+      fputcsv($fp, $row);
+   }
+   fclose($fp);
+?>

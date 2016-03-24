@@ -13,62 +13,37 @@ if ($Admin != 'Y')
    header("refresh: 0; URL=Admin.php");
    die();
 }
+   $filename = "Churches-".date("m-d-Y").".csv";
 
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
+   header("Content-disposition: attachment; filename=$filename");
+   header("Content-type: application/octet-stream");
 
-    <head>
-       <meta http-equiv="Content-Language" content="en-us">
-       <title>
-          Church Data
-       </title>
-    </head>
+   $fp = fopen('php://output', 'w');
+   $rowCount=0;
+   $church_list = ChurchesRegistered();
+   foreach ($church_list as $ChurchID=>$ChurchName)
+   {
+      $results = $db->query("select   ChurchAddr,
+                                      ChurchCity,
+                                      ChurchState,
+                                      ChurchZip,
+                                      ChurchPhone
+                             from     $ChurchesTable
+                             where    ChurchID=$ChurchID")
+                 or die ("Unable to get Church Info:" . sqlError());
 
-    <body>
-    <?php
-         print "\"ChurchID\",";
-         print "\"ChurchName\",";
-         print "\"Address\",";
-         print "\"City\",";
-         print "\"State\",";
-         print "\"Zip\",";
-         print "\"Phone\"";
-         print "<br>\n";
-
-         $church_list = ChurchesRegistered();
-         foreach ($church_list as $ChurchID=>$ChurchName)
+      while ($row = $results->fetch(PDO::FETCH_ASSOC))
+      {
+         if ($rowCount++ == 0)
          {
-
-            $results = $db->query("select   ChurchAddr,
-                                             ChurchCity,
-                                             ChurchState,
-                                             ChurchZip,
-                                             ChurchPhone
-                                    from     $ChurchesTable
-                                    where    ChurchID=$ChurchID")
-                     or die ("Unable to get Church Info:" . sqlError());
-
-
-            $row = $results->fetch(PDO::FETCH_ASSOC);
-
-            $ChurchAddr  = $row['ChurchAddr'];
-            $ChurchCity  = $row['ChurchCity'];
-            $ChurchState = $row['ChurchState'];
-            $ChurchZip   = $row['ChurchZip'];
-            $ChurchPhone = $row['ChurchPhone'];
-
-
-            print "\"$ChurchID\",";
-            print "\"$ChurchName\",";
-            print "\"$ChurchAddr\",";
-            print "\"$ChurchCity\",";
-            print "\"$ChurchState\",";
-            print "\"$ChurchZip\",";
-            print "\"$ChurchPhone\"";
-            print "<br>\n";
+            foreach ($row as $key => $value)
+            {
+               $heading[] = $key;
+            }
+            fputcsv($fp, $heading);
          }
-         ?>
-         </table>
-    </body>
-</html>
+         fputcsv($fp, $row);
+      }
+   }
+   fclose($fp);
+?>
