@@ -108,7 +108,7 @@ if (isset($_POST['submit']))
       }
       else
       {?>
-      <b><font size="+1" color="Red"><p align="center">Registration is Open for 2016 convention</p></font></b>
+      <b><font size="+1" color="Red"><p align="center">Registration is available for reports only for 2016 convention</p></font></b>
 <!--  <b><font size="+1" color="Red"><p align="center">There will be a delay in opening registration</p></font></b> -->
 <!--  <b><font size="+1" color="Red"><p align="center">check <a href="https://www.facebook.com/groups/ltcsw/">Facebook page</a> for updates</p></font></b> -->
 <!--  <b><font size="+1" color="Red"><p align="center">2016 Registration Reports and Awards are Ready</p></font></b> -->
