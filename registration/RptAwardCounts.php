@@ -45,7 +45,7 @@ $awardsBronze = 0;
                     or die ("Unable to get award list:" . sqlError());
          $row = $count->fetch(PDO::FETCH_ASSOC);
          $numRows = $row['count'];
-         print "<br>[$numRows]\n";
+         //print "<br>[$numRows]\n";
          $results = $db->query("select   e.EventName,
                                          r.Award,
                                          count(*) as AwardCount
