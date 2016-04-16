@@ -40,7 +40,7 @@ if ($Admin != 'Y')
                                           CoordZip,
                                           ChurchName
                                  from     $ChurchesTable
-                                 order by CoordName")
+                                 order by ChurchName,CoordName")
                      or die ("Unable to obtain coordinator list:" . sqlError());
          $first = 1;
          ?>
