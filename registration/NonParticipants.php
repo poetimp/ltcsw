@@ -5,6 +5,11 @@
 //
 // Author: Paul Lemmons
 //----------------------------------------------------------------------------
+// TODO Collect Shirt Size
+// TODO Collect Room need
+// TODO Collect Church
+// TODO Collect Availability
+// TODO Push on main page
 ?>
 <?php
 include 'include/RegFunctions.php';

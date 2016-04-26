@@ -5,6 +5,7 @@
 //
 // Author: Paul Lemmons
 //----------------------------------------------------------------------------
+// TODO Ask if they are a 10 year participant
 ?>
 <?php
 session_start();
