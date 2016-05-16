@@ -3,7 +3,7 @@ require_once 'include/general.php';
 $error = false;
 if (GET('FirstName')) {
     $Participant = ParticipantLookup(trim(GET('FirstName')), trim(GET('LastName')), GET('ChurchID'));
-    if ($Participant) {
+    if (!empty($Participant)) {
         redirect(sprintf('view.php?id=%s&church=%s', $Participant['ParticipantID'], $Participant['ChurchID']));
     } else {
         $error = sprintf('Could not find %s, %s', GET('LastName'), GET('FirstName'));
