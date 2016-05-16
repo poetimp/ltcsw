@@ -120,6 +120,18 @@ function ChurchesRegistered()
    natsort($ChurchIDs);
    return $ChurchIDs;
 }
+
+//-----------------------------------------------------------------------------
+// Lookup Participant by FirstName, Lastname, and ChurchID
+// Currently used in schedule app alpha
+//-----------------------------------------------------------------------------
+
+function ParticipantLookup($FirstName, $LastName, $ChurchID) {
+    global $ParticipantsTable;
+    $where = sprintf('FirstName = %s AND LastName = %s AND ChurchID = %s', escape($FirstName), escape($LastName), escape($ChurchID));
+    return Fetch($ParticipantsTable, $where);
+}
+
 //-----------------------------------------------------------------------------
 // Given a ChurchID this function will return a list of participants that are
 // registered in at least one event.
