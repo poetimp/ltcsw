@@ -97,9 +97,10 @@ if (isset($_POST['reset']))
 <html lang="en">
    <head>
       <title>Forgot Password</title>
-      <h1 align=center>Forgot Password</h1>
+      
    </head>
    <body style="background-color: rgb(217, 217, 255);">
+       <h1 align=center>Forgot Password</h1>
       <form method="post" id="main" name="main">
          <center>
             <table border="0" width="550px">
