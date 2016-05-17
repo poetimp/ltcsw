@@ -1,0 +1,15 @@
+<ion-view cache-view="false" style="" id="page4" title="My Schedule">
+   <script>$window.location.reload(true)</script>
+   <ion-content ng-controller="myScheduleCtrl" class="has-header" padding="true" style="background: url(img/Plasma.jpg) no-repeat center;background-size:cover;">
+      <ion-list style="">
+         <ion-item ng-repeat="event in events" class="item-text-wrap">
+            <table style="border-collapse: separate;border-spacing: 5px;">
+               <tr><td><b>Day:   </b></td><td>{{ event.day }}</td></tr>
+               <tr><td><b>Time:  </b></td><td>{{ event.time }}</td></tr>
+               <tr><td><b>Event: </b></td><td>{{ event.name }}</td></tr>
+               <tr><td><b>Room:  </b></td><td>{{ event.room }}</td></tr>
+            </table>
+         </ion-item>
+      </ion-list>
+   </ion-content>
+</ion-view>

@@ -1,0 +1,14 @@
+<ion-view style="" id="page5" title="All Events">
+      <ion-content ng-controller="allEventsCtrl" class="has-header" padding="true" style="background: url(img/Plasma.jpg) no-repeat center;background-size:cover;">
+        <ion-list style="">
+          <ion-item ng-repeat="event in events" class="item-text-wrap">
+             <table style="border-collapse: separate;border-spacing: 5px;">
+                <tr><td><b>Day:   </b></td><td>{{ event.day }}</td></tr>
+                <tr><td><b>Time:  </b></td><td>{{ event.time }}</td></tr>
+                <tr><td><b>Event: </b></td><td>{{ event.name }}</td></tr>
+                <tr><td><b>Room:  </b></td><td>{{ event.room }}</td></tr>
+             </table>
+           </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

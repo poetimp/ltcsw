@@ -1,0 +1,14 @@
+<ion-view style="" id="page9" title="Contacts">
+    <ion-content class="has-header" padding="true" style="background: url(img/Plasma.jpg) no-repeat center;background-size:cover;">
+        <ion-list style="">
+           <ion-item ng-repeat="contact in contacts" 
+                     type="item-text-wrap" 
+                     class="item-avatar" 
+                     href="#/contactdetails/{{contact.ID}}"
+           >
+                <!-- <img src="pics/{{employee.pic}}"/>  -->
+                {{contact.name}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
