@@ -23,6 +23,7 @@ $Email      = isset($_SESSION['email'])     ? $_SESSION['email']     : '';
 
 if (!$LoggedIn and !preg_match('/login.php$/'         ,$_SERVER['PHP_SELF'])
                and !preg_match('/ForgotPassword.php$/',$_SERVER['PHP_SELF'])
+               and !preg_match('/ResetPassword.php$/',$_SERVER['PHP_SELF'])
    )
 {
    if (isset($_REQUEST['Admin']) and $_REQUEST['Admin'] == 1)

@@ -10,6 +10,7 @@
 include 'include/config.php';
 include 'include/auth.inc.php';
 include 'include/MySql-connect.inc.php';
+include __DIR__ . '/DatabaseFunctions.php';
 
 
 //-----------------------------------------------------------------------------
@@ -119,6 +120,7 @@ function ChurchesRegistered()
    natsort($ChurchIDs);
    return $ChurchIDs;
 }
+
 //-----------------------------------------------------------------------------
 // Given a ChurchID this function will return a list of participants that are
 // registered in at least one event.
