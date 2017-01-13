@@ -7,20 +7,20 @@
 --      grant all on <dbName> to <someID>@localhost identified by '<somePasswd>';
 --   3) Change the prefix of all the tables
 --      vi:
---      :%s/LTC_PHX_/<myorg_>/g
+--      :%s/LTC_/<myorg_>/g
 --   4) Run this script
 --      mysql -u<someID> -p<somePasswd> -hlocalhost <dbName> < thisfile.sql
 --
 --   make note of all of the updates above so that you can update the config.php 
 --   with your values.
 --
--- Table structure for table `LTC_PHX_Churches`
+-- Table structure for table `LTC_Churches`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Churches`;
+DROP TABLE IF EXISTS `LTC_Churches`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Churches` (
+CREATE TABLE `LTC_Churches` (
   `ChurchID` int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `ChurchName` varchar(255) NOT NULL DEFAULT '',
   `ChurchAddr` varchar(255) NOT NULL DEFAULT '',
@@ -41,13 +41,13 @@ CREATE TABLE `LTC_PHX_Churches` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_EventCoord`
+-- Table structure for table `LTC_EventCoord`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_EventCoord`;
+DROP TABLE IF EXISTS `LTC_EventCoord`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_EventCoord` (
+CREATE TABLE `LTC_EventCoord` (
   `CoordID` int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL DEFAULT '',
   `Address` varchar(255) NOT NULL DEFAULT '',
@@ -61,13 +61,13 @@ CREATE TABLE `LTC_PHX_EventCoord` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_EventSchedule`
+-- Table structure for table `LTC_EventSchedule`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_EventSchedule`;
+DROP TABLE IF EXISTS `LTC_EventSchedule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_EventSchedule` (
+CREATE TABLE `LTC_EventSchedule` (
   `SchedID` int(8) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `EventID` int(3) unsigned zerofill NOT NULL DEFAULT '000',
   `StartTime` int(5) unsigned zerofill NOT NULL DEFAULT '00000',
@@ -81,13 +81,13 @@ CREATE TABLE `LTC_PHX_EventSchedule` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_Events`
+-- Table structure for table `LTC_Events`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Events`;
+DROP TABLE IF EXISTS `LTC_Events`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Events` (
+CREATE TABLE `LTC_Events` (
   `EventID` int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `EventName` varchar(255) NOT NULL DEFAULT '',
   `JudgingCatagory` varchar(255) NOT NULL DEFAULT '',
@@ -113,13 +113,13 @@ CREATE TABLE `LTC_PHX_Events` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_ExtraOrders`
+-- Table structure for table `LTC_ExtraOrders`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_ExtraOrders`;
+DROP TABLE IF EXISTS `LTC_ExtraOrders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_ExtraOrders` (
+CREATE TABLE `LTC_ExtraOrders` (
   `ChurchID` int(4) unsigned NOT NULL DEFAULT '0',
   `ItemType` varchar(255) NOT NULL DEFAULT '',
   `ItemCount` int(4) unsigned NOT NULL DEFAULT '0',
@@ -128,13 +128,13 @@ CREATE TABLE `LTC_PHX_ExtraOrders` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_JudgeAssignments`
+-- Table structure for table `LTC_JudgeAssignments`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_JudgeAssignments`;
+DROP TABLE IF EXISTS `LTC_JudgeAssignments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_JudgeAssignments` (
+CREATE TABLE `LTC_JudgeAssignments` (
   `JudgeID` int(4) unsigned NOT NULL DEFAULT '0',
   `JudgeNumber` int(2) unsigned NOT NULL DEFAULT '0',
   `RoomID` int(5) unsigned zerofill NOT NULL DEFAULT '00000',
@@ -145,13 +145,13 @@ CREATE TABLE `LTC_PHX_JudgeAssignments` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_JudgeEvents`
+-- Table structure for table `LTC_JudgeEvents`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_JudgeEvents`;
+DROP TABLE IF EXISTS `LTC_JudgeEvents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_JudgeEvents` (
+CREATE TABLE `LTC_JudgeEvents` (
   `JudgeID` int(4) unsigned NOT NULL DEFAULT '0',
   `JudgingCatagory` varchar(255) NOT NULL DEFAULT '0',
   KEY `JudgeEvents_X1` (`JudgeID`)
@@ -159,13 +159,13 @@ CREATE TABLE `LTC_PHX_JudgeEvents` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_JudgeTimes`
+-- Table structure for table `LTC_JudgeTimes`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_JudgeTimes`;
+DROP TABLE IF EXISTS `LTC_JudgeTimes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_JudgeTimes` (
+CREATE TABLE `LTC_JudgeTimes` (
   `JudgeID` int(4) unsigned NOT NULL DEFAULT '0',
   `SchedID` int(8) unsigned zerofill NOT NULL DEFAULT '00000000',
   KEY `JudgeTimes_X1` (`JudgeID`)
@@ -173,13 +173,13 @@ CREATE TABLE `LTC_PHX_JudgeTimes` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_Judges`
+-- Table structure for table `LTC_Judges`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Judges`;
+DROP TABLE IF EXISTS `LTC_Judges`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Judges` (
+CREATE TABLE `LTC_Judges` (
   `JudgeID` int(4) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `LastName` varchar(255) NOT NULL DEFAULT '',
   `FirstName` varchar(255) NOT NULL DEFAULT '',
@@ -195,13 +195,13 @@ CREATE TABLE `LTC_PHX_Judges` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_Log`
+-- Table structure for table `LTC_Log`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Log`;
+DROP TABLE IF EXISTS `LTC_Log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Log` (
+CREATE TABLE `LTC_Log` (
   `Date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `UserID` varchar(10) NOT NULL DEFAULT '',
   `Action` varchar(255) NOT NULL DEFAULT '',
@@ -210,13 +210,13 @@ CREATE TABLE `LTC_PHX_Log` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_Money`
+-- Table structure for table `LTC_Money`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Money`;
+DROP TABLE IF EXISTS `LTC_Money`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Money` (
+CREATE TABLE `LTC_Money` (
   `ChurchID` int(3) unsigned NOT NULL DEFAULT '0',
   `Amount` decimal(7,2) NOT NULL DEFAULT '0.00',
   `Annotation` varchar(255) NOT NULL DEFAULT '',
@@ -226,13 +226,13 @@ CREATE TABLE `LTC_PHX_Money` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_NonParticipants`
+-- Table structure for table `LTC_NonParticipants`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_NonParticipants`;
+DROP TABLE IF EXISTS `LTC_NonParticipants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_NonParticipants` (
+CREATE TABLE `LTC_NonParticipants` (
   `ChurchID` int(4) unsigned NOT NULL DEFAULT '0',
   `Name` varchar(255) NOT NULL DEFAULT '',
   `Phone` varchar(14) NOT NULL DEFAULT '',
@@ -241,13 +241,13 @@ CREATE TABLE `LTC_PHX_NonParticipants` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_Participants`
+-- Table structure for table `LTC_Participants`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Participants`;
+DROP TABLE IF EXISTS `LTC_Participants`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Participants` (
+CREATE TABLE `LTC_Participants` (
   `ParticipantID` int(4) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(255) NOT NULL DEFAULT '',
   `LastName` varchar(255) NOT NULL DEFAULT '',
@@ -271,13 +271,13 @@ CREATE TABLE `LTC_PHX_Participants` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_Registration`
+-- Table structure for table `LTC_Registration`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Registration`;
+DROP TABLE IF EXISTS `LTC_Registration`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Registration` (
+CREATE TABLE `LTC_Registration` (
   `ChurchID` int(3) NOT NULL DEFAULT '0',
   `ParticipantID` int(4) unsigned zerofill NOT NULL DEFAULT '0',
   `EventID` int(3) NOT NULL DEFAULT '0',
@@ -290,13 +290,13 @@ CREATE TABLE `LTC_PHX_Registration` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_Rooms`
+-- Table structure for table `LTC_Rooms`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Rooms`;
+DROP TABLE IF EXISTS `LTC_Rooms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Rooms` (
+CREATE TABLE `LTC_Rooms` (
   `RoomID` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `RoomName` varchar(50) NOT NULL DEFAULT '',
   `RoomSeats` int(4) NOT NULL DEFAULT '0',
@@ -306,13 +306,13 @@ CREATE TABLE `LTC_PHX_Rooms` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_TeamMembers`
+-- Table structure for table `LTC_TeamMembers`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_TeamMembers`;
+DROP TABLE IF EXISTS `LTC_TeamMembers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_TeamMembers` (
+CREATE TABLE `LTC_TeamMembers` (
   `TeamID` int(4) unsigned zerofill NOT NULL DEFAULT '0000',
   `ParticipantID` int(4) unsigned zerofill NOT NULL DEFAULT '0000',
   `ChurchID` int(3) unsigned NOT NULL DEFAULT '0',
@@ -322,13 +322,13 @@ CREATE TABLE `LTC_PHX_TeamMembers` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_Teams`
+-- Table structure for table `LTC_Teams`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Teams`;
+DROP TABLE IF EXISTS `LTC_Teams`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Teams` (
+CREATE TABLE `LTC_Teams` (
   `TeamID` int(4) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `ChurchID` int(3) unsigned NOT NULL DEFAULT '0',
   `EventID` int(3) unsigned NOT NULL DEFAULT '0',
@@ -340,13 +340,13 @@ CREATE TABLE `LTC_PHX_Teams` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `LTC_PHX_Users`
+-- Table structure for table `LTC_Users`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Users`;
+DROP TABLE IF EXISTS `LTC_Users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Users` (
+CREATE TABLE `LTC_Users` (
   `Userid` varchar(10) NOT NULL DEFAULT '',
   `ChurchID` int(3) NOT NULL DEFAULT '0',
   `Name` varchar(255) NOT NULL DEFAULT '',
@@ -362,13 +362,13 @@ CREATE TABLE `LTC_PHX_Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='List of users';
 
 --
--- Table structure for table `LTC_PHX_Resets`
+-- Table structure for table `LTC_Resets`
 --
 
-DROP TABLE IF EXISTS `LTC_PHX_Resets`;
+DROP TABLE IF EXISTS `LTC_Resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `LTC_PHX_Resets` (
+CREATE TABLE `LTC_Resets` (
   `Userid` varchar(10)   NOT NULL DEFAULT '',
   `Code`   varchar(255)  NOT NULL DEFAULT '',
   `Created` int(11)      NOT NULL DEFAULT 0,
@@ -380,8 +380,8 @@ CREATE TABLE `LTC_PHX_Resets` (
 -- Add initial church and admin id
 --
 
-INSERT INTO `LTC_PHX_Churches` (`ChurchID`,`ChurchName`,`ChurchAddr`,`ChurchCity`,`ChurchState`,`ChurchZip`,`ChurchPhone`,`CoordName`,`CoordAddr`,`CoordCity`,`CoordState`,`CoordZip`,`CoordPhone`,`ChurchEmail`,`CoordEmail`) 
+INSERT INTO `LTC_Churches` (`ChurchID`,`ChurchName`,`ChurchAddr`,`ChurchCity`,`ChurchState`,`ChurchZip`,`ChurchPhone`,`CoordName`,`CoordAddr`,`CoordCity`,`CoordState`,`CoordZip`,`CoordPhone`,`ChurchEmail`,`CoordEmail`) 
              VALUES (100,'First Church','123 The Rock','City of gold','AZ','77777','(777) 777-7777','My Name','123 The Rock','City of gold','AZ','77777','(777) 777-7777','my.ltc@somedomain.org','my.ltc@somedomain.org');
 
-INSERT INTO `LTC_PHX_Users` (`Userid`,`ChurchID`,`Name`,`Password`,`Admin`,`Status`,`email`,`lastLogin`,`loginCount`,`failedLoginCount`,`verificationCode`) 
+INSERT INTO `LTC_Users` (`Userid`,`ChurchID`,`Name`,`Password`,`Admin`,`Status`,`email`,`lastLogin`,`loginCount`,`failedLoginCount`,`verificationCode`) 
 VALUES ('Admin',100,'Initial Admin account - delete me!','$2y$10$EV2iOBXUO9GGPCh/ZeBZRO/EH1LcCgNvwlzgeNHgDR5rZ1Mk1JiRq','Y','O','my.ltc@somedomain.org','0000-00-00 00:00:00',0,NULL,NULL);
