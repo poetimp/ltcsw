@@ -12,14 +12,14 @@ include 'include/MoreFunctions.php';
 require_once 'include/table/users.php';
 require_once 'include/table/resets.php';
 
-$message = '';
+$message  = '';
 $redirect = false;
-$email = GET('email');
-$code = GET('code');
+$email    = GET('email');
+$code     = GET('code');
 
 if (empty($email))
     die('error: missing email');
-if (empty($email))
+if (empty($code))
     die('error: missing code');
 
 $User = user_by_email($email);
@@ -34,27 +34,34 @@ if(!$Reset)
 if ($Reset['Userid'] != $User['Userid'])
     die('error: user <-> code mismatch');
 
-if (POST('password')) {
-    if (POST('password') != POST('passwordr')) {
-        $message = 'Password Mismatch';
-    } else if (!verifyPasswordFormat(POST('password'))) {
-        $message = "Sorry, chosen password is too easily hacked. Read note above";
-    } else {
-        user_update_password($User['Userid'], POST('password'));
-        resets_delete_by_id($Reset['id']);
-        $redirect = true;
-    }
+if (POST('password'))
+{
+   if (POST('password') != POST('passwordr'))
+   {
+      $message = 'Password Mismatch';
+   }
+   else if (!verifyPasswordFormat(POST('password')))
+   {
+      $message = "Sorry, chosen password is too easily hacked. Read note above";
+   }
+   else
+   {
+      user_update_password($User['Userid'], POST('password'));
+      resets_delete_by_id($Reset['id']);
+      $redirect = true;
+   }
 }
-if ($redirect) {
-    header("refresh: 5; URL=login.php");
-    print "<html>
-                        <body style=\"background-color: rgb(217, 217, 255);\">
-                           <center>
-                              Your password has been updated.<br/>
-                              Redirecting in 5 seconds.
-                           </center>
-                        </body>
-                     </html>";
+if ($redirect)
+{
+   header("refresh: 5; URL=login.php");
+   print "<html>
+             <body style=\"background-color: rgb(217, 217, 255);\">
+                <center>
+                   Your password has been updated.<br/>
+                   Redirecting in 5 seconds.
+                </center>
+             </body>
+          </html>";
     die();
 }
 ?>

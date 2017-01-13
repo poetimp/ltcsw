@@ -361,6 +361,20 @@ CREATE TABLE `LTC_PHX_Users` (
   PRIMARY KEY (`Userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='List of users';
 
+--
+-- Table structure for table `LTC_PHX_Resets`
+--
+
+DROP TABLE IF EXISTS `LTC_PHX_Resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LTC_PHX_Resets` (
+  `Userid` varchar(10)   NOT NULL DEFAULT '',
+  `Code`   varchar(255)  NOT NULL DEFAULT '',
+  `Created` int(11)      NOT NULL DEFAULT 0,
+  PRIMARY KEY (`Code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Codes for password resets';
+
 
 --
 -- Add initial church and admin id

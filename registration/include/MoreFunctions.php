@@ -63,7 +63,7 @@ function ParticipantLookup($FirstName, $LastName, $ChurchID) {
 
 if (!function_exists('TimeToStr')) {
 
-    //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Represent Time value (DHHMM) in readable format
 //-----------------------------------------------------------------------------
     function TimeToStr($Time) {

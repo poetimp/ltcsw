@@ -62,6 +62,7 @@ $TeamsTable           = $db_prefix.'Teams';
 $UsersTable           = $db_prefix.'Users';
 $TeamMembersTable     = $db_prefix.'TeamMembers';
 $EventCoordTable      = $db_prefix.'EventCoord';
+$ResetsTable          = $db_prefix.'PWResets';
 
 // print_r($_SESSION);
 // print "<br>UsersTable: $UsersTable";
@@ -83,3 +84,4 @@ $EventCoordTable      = $db_prefix.'EventCoord';
 // print "<br>UsersTable: $UsersTable";
 // print "<br>TeamMembersTable: $TeamMembersTable";
 // print "<br>EventCoordTable: $EventCoordTable";
+// print "<br>ResetsTable: $ResetsTable";

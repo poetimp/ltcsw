@@ -2,9 +2,9 @@
 
 function reset_new($Userid) {
     global $ResetsTable;
-    $code = reset_generate_code();
+    $code    = reset_generate_code();
     $created = time();
-    $sql = sprintf('INSERT INTO %s (Userid, code, created) VALUES (%s, %s, %s)',
+    $sql = sprintf('INSERT INTO %s (Userid, Code, Created) VALUES (%s, %s, %s)',
             $ResetsTable,
             escape($Userid),
             escape($code),
@@ -15,7 +15,7 @@ function reset_new($Userid) {
 
 function reset_by_code($code){
     global $ResetsTable;
-    return Fetch($ResetsTable, sprintf('code = %s', escape($code)));
+    return Fetch($ResetsTable, sprintf('Code = %s', escape($code)));
 }
 
 function reset_generate_code() {

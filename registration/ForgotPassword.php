@@ -13,53 +13,61 @@ require_once 'include/table/users.php';
 require_once 'include/table/resets.php';
 
 $message = '';
-if (isset($_POST['reset'])) {
+if (isset($_POST['reset']))
+{
     $address = POST('email');
 
-    if (!filter_var($address, FILTER_VALIDATE_EMAIL)) {
-        $message = "I am sorry, that does not look like a valid email address.";
-    } else {
-        $User = user_by_email($address);
+    if (!filter_var($address, FILTER_VALIDATE_EMAIL))
+    {
+       $message = "I am sorry, that does not look like a valid email address.";
+    }
+    else
+    {
+       $User = user_by_email($address);
 
-        if (!$User) {
-            $message = "I am sorry, I cannot find that email address in the database.";
-        } else {
-            $Userid = $User['Userid'];
-            $code = reset_new($Userid);
+       if (!$User)
+       {
+          $message = "I am sorry, I cannot find that email address in the database.";
+       }
+       else
+       {
+          $Userid = $User['Userid'];
+          $code = reset_new($Userid);
 
-            $url = base_url() . 'ResetPassword.php?' . http_build_query(array(
-                        'email' => $User['email'],
-                        'code' => $code
-            ));
+          $url = base_url() . 'ResetPassword.php?' . http_build_query(array('email' => $User['email'],
+                                                                            'code' => $code
+                                                                           )
+                                                                     );
 
-            $subject = "LTC Password Reset";
+          $subject = "LTC Password Reset";
 
-            $email = "<html>";
-            $email .= "   <head>\n";
-            $email .= "      <title>\n";
-            $email .= "         LTC Password Reset\n";
-            $email .= "      </title>\n";
-            $email .= "      <h1 align=center>\n";
-            $email .= "         LTC Password Reset\n";
-            $email .= "      </h1>\n";
-            $email .= "   </head>\n";
-            $email .= "   <body>\n";
-            $email .= "      <p>\n";
-            $email .= "         So, it appears that you have forgotten your password. No problem. This will be easy.<br>\n";
-            $email .= "         Click the link below to reset your password.<br>\n";
-            $email .= "         <br>\n";
-            $email .= "         $url<br>\n";
-            $email .= "      </p>\n";
-            $email .= "   </body>\n";
-            $email .= "</html>\n";
+          $email = "<html>";
+          $email .= "   <head>\n";
+          $email .= "      <title>\n";
+          $email .= "         LTC Password Reset\n";
+          $email .= "      </title>\n";
+          $email .= "      <h1 align=center>\n";
+          $email .= "         LTC Password Reset\n";
+          $email .= "      </h1>\n";
+          $email .= "   </head>\n";
+          $email .= "   <body>\n";
+          $email .= "      <p>\n";
+          $email .= "         So, it appears that you have forgotten your password. No problem. This will be easy.<br>\n";
+          $email .= "         Click the link below to reset your password.<br>\n";
+          $email .= "         <br>\n";
+          $email .= "         $url<br>\n";
+          $email .= "      </p>\n";
+          $email .= "   </body>\n";
+          $email .= "</html>\n";
 
-            $from = 'MIME-Version: 1.0' . "\r\n";
-            $from .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-            $from .= "From: registration@ltcsw.org\r\n";
+          $from = 'MIME-Version: 1.0' . "\r\n";
+          $from .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+          $from .= "From: registration@ltcsw.org\r\n";
 
-            if (@mail($address, $subject, $email, $from)) {
-                header("refresh: 5; URL=login.php");
-                print "<html>
+          if (@mail($address, $subject, $email, $from))
+          {
+             header("refresh: 5; URL=login.php");
+             print "<html>
                         <body style=\"background-color: rgb(217, 217, 255);\">
                            <center>
                               Please check your email for instructions.<br>
@@ -67,11 +75,13 @@ if (isset($_POST['reset'])) {
                            </center>
                         </body>
                      </html>";
-                die();
-            } else {
-                $message = "Unable to send email. You need to contact support.";
-            }
-        }
+             die();
+          }
+          else
+          {
+             $message = "Unable to send email. You need to contact support.";
+          }
+       }
     }
 }
 ?>
@@ -79,7 +89,6 @@ if (isset($_POST['reset'])) {
 <html lang="en">
     <head>
         <title>Forgot Password</title>
-
     </head>
     <body style="background-color: rgb(217, 217, 255);">
         <h1 align=center>Forgot Password</h1>
