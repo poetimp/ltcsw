@@ -202,7 +202,7 @@ DROP TABLE IF EXISTS `LTC_Log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `LTC_Log` (
-  `Date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `Date` datetime NOT NULL ,
   `UserID` varchar(10) NOT NULL DEFAULT '',
   `Action` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`Date`)
@@ -220,7 +220,7 @@ CREATE TABLE `LTC_Money` (
   `ChurchID` int(3) unsigned NOT NULL DEFAULT '0',
   `Amount` decimal(7,2) NOT NULL DEFAULT '0.00',
   `Annotation` varchar(255) NOT NULL DEFAULT '',
-  `Date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `Date` datetime NOT NULL ,
   KEY `Index_ChurchID` (`ChurchID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -384,4 +384,4 @@ INSERT INTO `LTC_Churches` (`ChurchID`,`ChurchName`,`ChurchAddr`,`ChurchCity`,`C
              VALUES (100,'First Church','123 The Rock','City of gold','AZ','77777','(777) 777-7777','My Name','123 The Rock','City of gold','AZ','77777','(777) 777-7777','my.ltc@somedomain.org','my.ltc@somedomain.org');
 
 INSERT INTO `LTC_Users` (`Userid`,`ChurchID`,`Name`,`Password`,`Admin`,`Status`,`email`,`lastLogin`,`loginCount`,`failedLoginCount`,`verificationCode`) 
-VALUES ('Admin',100,'Initial Admin account - delete me!','$2y$10$EV2iOBXUO9GGPCh/ZeBZRO/EH1LcCgNvwlzgeNHgDR5rZ1Mk1JiRq','Y','O','my.ltc@somedomain.org','0000-00-00 00:00:00',0,NULL,NULL);
+VALUES ('Admin',100,'Initial Admin account - delete me!','$2y$10$EV2iOBXUO9GGPCh/ZeBZRO/EH1LcCgNvwlzgeNHgDR5rZ1Mk1JiRq','Y','O','my.ltc@somedomain.org',now(),0,NULL,NULL);
