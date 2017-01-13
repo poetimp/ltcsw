@@ -220,12 +220,10 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
    if ($ErrorMsg == "")
    {
-      ereg_replace("'","''",$EventName);
-
       if ($mode == 'update')
       {
          $sql = "update $EventsTable
-                    set EventName        = '$EventName'        ,
+                    set EventName        = ".$db->quote($EventName).",
                         TeamEvent        = '$TeamEvent'        ,
                         ConvEvent        = '$ConvEvent'        ,
                         MinGrade         = '$MinGrade'         ,
@@ -271,7 +269,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          IndividualAwards,
                          CoordID
                          )
-                 values ('$EventName'       ,
+                 values (".$db->quote($EventName)." ,
                          '$TeamEvent'       ,
                          '$ConvEvent'       ,
                          '$MinGrade'        ,

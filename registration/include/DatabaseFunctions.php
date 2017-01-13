@@ -13,7 +13,7 @@ function escape($var) {
 //-----------------------------------------------------------------------------
 function Query($sql) {
     global $db;
-    $query = $db->query($sql);
+    $query = $db->query($sql) or die ("Unable to process query: " . sqlError());
     if ($query) {
         $rows = [];
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {

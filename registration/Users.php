@@ -155,7 +155,7 @@ else
                <td><?php  print $ChurchName; ?></td>
                <td align="center"><?php  print $row['Status'];    ?></td>
                <td align="center"><?php  print $row['Admin'];     ?></td>
-               <td align="center"><?php  print $row['lastLogin'] == '0000-00-00 00:00:00' ? 'Never' : $row['lastLogin']; ?></td>
+               <td align="center"><?php  print $row['lastLogin'] == '1900-01-01 00:00:00' ? 'Never' : $row['lastLogin']; ?></td>
                </tr>
          <?php
          }

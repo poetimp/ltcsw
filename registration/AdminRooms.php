@@ -82,13 +82,11 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
    if ($ErrorMsg == "")
    {
-      ereg_replace("'","''",$RoomName);
-
       if ($mode == 'update')
       {
          $sql = "update $RoomsTable
                     set RoomSeats    = $RoomSeats,
-                        RoomName     = '$RoomName'
+                        RoomName     = ".$db->quote($RoomName)."
                     where RoomID     = $RoomID";
       }
       else
@@ -97,7 +95,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                         (RoomName,
                          RoomSeats
                          )
-                 values ('$RoomName',
+                 values (".$db->quote($RoomName).",
                          $RoomSeats
                          )";
       }

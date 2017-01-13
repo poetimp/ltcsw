@@ -124,26 +124,18 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
    if ($ErrorMsg == "")
    {
-      ereg_replace("'","''",$FirstName);
-      ereg_replace("'","''",$LastName);
-      ereg_replace("'","''",$Address);
-      ereg_replace("'","''",$City);
-      ereg_replace("'","''",$Zip);
-      ereg_replace("'","''",$Phone);
-      ereg_replace("'","''",$Email);
-
 
       if ($mode == 'update')
       {
          $sql = "update $JudgesTable
-                    set FirstName      = '$FirstName',
-                        LastName       = '$LastName',
-                        Address        = '$Address',
-                        City           = '$City',
-                        State          = '$State',
-                        Zip            = '$Zip',
-                        Email          = '$Email',
-                        Phone          = '$Phone'
+                    set FirstName      = ".$db->quote($FirstName).",
+                        LastName       = ".$db->quote($LastName).",
+                        Address        = ".$db->quote($Address).",
+                        City           = ".$db->quote($City).",
+                        State          = ".$db->quote($State).",
+                        Zip            = ".$db->quote($Zip).",
+                        Email          = ".$db->quote($Email).",
+                        Phone          = ".$db->quote($Phone)."
                   where JudgeId        =  $JudgeID
                   and   ChurchId       =  $ChurchID";
       }
@@ -159,14 +151,14 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          Email       ,
                          Phone       ,
                          ChurchID)
-                 values ('$FirstName',
-                         '$LastName' ,
-                         '$Address'  ,
-                         '$City'     ,
-                         '$State'    ,
-                         '$Zip'      ,
-                         '$Email'    ,
-                         '$Phone'    ,
+                 values (".$db->quote($FirstName).",
+                         ".$db->quote($LastName)." ,
+                         ".$db->quote($Address)."  ,
+                         ".$db->quote($City)."     ,
+                         ".$db->quote($State)."    ,
+                         ".$db->quote($Zip)."      ,
+                         ".$db->quote($Email)."    ,
+                         ".$db->quote($Phone)."    ,
                          $ChurchID)";
 
       }

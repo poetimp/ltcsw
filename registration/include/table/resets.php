@@ -4,18 +4,20 @@ function reset_new($Userid) {
     global $ResetsTable;
     $code    = reset_generate_code();
     $created = time();
-    $sql = sprintf('INSERT INTO %s (Userid, Code, Created) VALUES (%s, %s, %s)',
-            $ResetsTable,
-            escape($Userid),
-            escape($code),
-            $created);
+    $sql = "INSERT INTO $ResetsTable
+               (Userid, Code, Created)
+               VALUES (".escape($Userid).",
+                       ".escape($code).",
+                       $created
+                      )
+            ";
     Query($sql);
     return $code;
 }
 
 function reset_by_code($code){
     global $ResetsTable;
-    return Fetch($ResetsTable, sprintf('Code = %s', escape($code)));
+    return Fetch($ResetsTable, "Code = ".escape($code));
 }
 
 function reset_generate_code() {
@@ -24,5 +26,5 @@ function reset_generate_code() {
 
 function resets_delete_by_id($id) {
     global $ResetsTable;
-    return Query(sprintf('DELETE FROM %s WHERE id = %s', $ResetsTable, escape($id)));
+    return Query("DELETE FROM $ResetsTable WHERE Code = ".escape($id));
 }

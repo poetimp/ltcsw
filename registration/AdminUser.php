@@ -113,8 +113,8 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
    if ($ErrorMsg == "")
    {
-      ereg_replace("'","''",$Name);
-      ereg_replace("'","''",$Password);
+      $Name     = $db->quote($Name);
+      $Password = $db->quote($Password);
 
       $newPassword = password_hash($Password,PASSWORD_DEFAULT);
       if ($mode == 'update')
@@ -133,7 +133,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                                  set    ChurchID  = '$NewChurchID',
                                         $pwdSet
                                         $emailSet
-                                        Name      = '$Name',
+                                        Name      = ".$db->quote($Name).",
                                         Admin     = '$IsAdmin',
                                         Status    = '$Status'
                                  where  Userid    = '$NewUserid'
@@ -151,23 +151,28 @@ if (isset($_POST['add']) or isset($_POST['update']))
          $count = $row['count'];
          if ($count == 0)
          {
-            $db->query("insert into $UsersTable
+            $sql = "insert into $UsersTable
                                     (Userid   ,
                                      ChurchID ,
                                      Email,
                                      Name     ,
                                      Password ,
                                      Admin    ,
-                                     Status)
-                             values ('$NewUserid'  ,
-                                     '$NewChurchID',
-                                     '$NewEmail',
-                                     '$Name'       ,
-                                     '$newPassword'   ,
-                                     '$IsAdmin'    ,
-                                     '$Status'
-                                   )")
-             or die ("Unable to process insert: " . sqlError());
+                                     Status   ,
+                                     lastLogin,
+                                     loginCount)
+                             values ('$NewUserid'   ,
+                                     '$NewChurchID' ,
+                                     '$NewEmail'    ,
+                                      $Name         ,
+                                     '$newPassword' ,
+                                     '$IsAdmin'     ,
+                                     '$Status'      ,
+                                     '1900-01-01 00:00:00',
+                                     0)
+                    ";
+
+            $db->query($sql) or die ("Unable to process insert: " . sqlError());
           }
           else
           {

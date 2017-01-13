@@ -55,7 +55,7 @@ if (isset($_POST['reset']))
           $email .= "         So, it appears that you have forgotten your password. No problem. This will be easy.<br>\n";
           $email .= "         Click the link below to reset your password.<br>\n";
           $email .= "         <br>\n";
-          $email .= "         $url<br>\n";
+          $email .= "         <a href=$url>Reset Password</a><br>\n";
           $email .= "      </p>\n";
           $email .= "   </body>\n";
           $email .= "</html>\n";

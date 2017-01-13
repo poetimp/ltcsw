@@ -175,40 +175,25 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
    if ($ErrorMsg == "")
    {
-      ereg_replace("'","''",$ChurchName);
-      ereg_replace("'","''",$ChurchAddr);
-      ereg_replace("'","''",$ChurchCity);
-      ereg_replace("'","''",$ChurchState);
-      ereg_replace("'","''",$ChurchZip);
-      ereg_replace("'","''",$ChurchPhone);
-      ereg_replace("'","''",$ChurchEmail);
-
-      ereg_replace("'","''",$CoordName);
-      ereg_replace("'","''",$CoordAddr);
-      ereg_replace("'","''",$CoordCity);
-      ereg_replace("'","''",$CoordState);
-      ereg_replace("'","''",$CoordZip);
-      ereg_replace("'","''",$CoordPhone);
-      ereg_replace("'","''",$CoordEmail);
 
       if ($mode == 'update')
       {
          $sql = "update $ChurchesTable
-                    set ChurchName  = '$ChurchName' ,
-                        ChurchAddr  = '$ChurchAddr' ,
-                        ChurchCity  = '$ChurchCity' ,
-                        ChurchState = '$ChurchState',
-                        ChurchZip   = '$ChurchZip'  ,
-                        ChurchPhone = '$ChurchPhone',
-                        ChurchEmail = '$ChurchEmail',
-                        CoordName   = '$CoordName'  ,
-                        CoordAddr   = '$CoordAddr'  ,
-                        CoordCity   = '$CoordCity'  ,
-                        CoordState  = '$CoordState' ,
-                        CoordZip    = '$CoordZip'   ,
-                        CoordPhone  = '$CoordPhone' ,
-                        CoordEmail  = '$CoordEmail  '
-                  where ChurchId    = '$ChurchID'";
+                    set ChurchName  = ".$db->quote($ChurchName)."  ,
+                        ChurchAddr  = ".$db->quote($ChurchAddr)."  ,
+                        ChurchCity  = ".$db->quote($ChurchCity)."  ,
+                        ChurchState = ".$db->quote($ChurchState)." ,
+                        ChurchZip   = ".$db->quote($ChurchZip)."   ,
+                        ChurchPhone = ".$db->quote($ChurchPhone)." ,
+                        ChurchEmail = ".$db->quote($ChurchEmail)." ,
+                        CoordName   = ".$db->quote($CoordName)."   ,
+                        CoordAddr   = ".$db->quote($CoordAddr)."   ,
+                        CoordCity   = ".$db->quote($CoordCity)."   ,
+                        CoordState  = ".$db->quote($CoordState)."  ,
+                        CoordZip    = ".$db->quote($CoordZip)."    ,
+                        CoordPhone  = ".$db->quote($CoordPhone)."  ,
+                        CoordEmail  = ".$db->quote($CoordEmail)."
+                  where ChurchId    = $ChurchID";
       }
       else
       {
@@ -227,20 +212,21 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          CoordZip    ,
                          CoordPhone  ,
                          CoordEmail)
-                 values ('$ChurchName'  ,
-                         '$ChurchAddr'  ,
-                         '$ChurchCity'  ,
-                         '$ChurchState' ,
-                         '$ChurchZip'   ,
-                         '$ChurchPhone' ,
-                         '$ChurchEmail' ,
-                         '$CoordName'   ,
-                         '$CoordAddr'   ,
-                         '$CoordCity'   ,
-                         '$CoordState'  ,
-                         '$CoordZip'    ,
-                         '$CoordPhone'  ,
-                         '$CoordEmail')";
+                 values (".$db->quote($ChurchName)."  ,
+                         ".$db->quote($ChurchAddr)."  ,
+                         ".$db->quote($ChurchCity)."  ,
+                         ".$db->quote($ChurchState)." ,
+                         ".$db->quote($ChurchZip)."   ,
+                         ".$db->quote($ChurchPhone)." ,
+                         ".$db->quote($ChurchEmail)." ,
+                         ".$db->quote($CoordName)."   ,
+                         ".$db->quote($CoordAddr)."   ,
+                         ".$db->quote($CoordCity)."   ,
+                         ".$db->quote($CoordState)."  ,
+                         ".$db->quote($CoordZip)."    ,
+                         ".$db->quote($CoordPhone)."  ,
+                         ".$db->quote($CoordEmail).
+                       ")";
       }
 
       $results = $db->query($sql) or die ("Unable to process update: " . sqlError());

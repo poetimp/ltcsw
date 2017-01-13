@@ -120,25 +120,18 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
    if ($ErrorMsg == "")
    {
-      ereg_replace("'","''",$CoordName);
-      ereg_replace("'","''",$CoordAddr);
-      ereg_replace("'","''",$CoordCity);
-      ereg_replace("'","''",$CoordState);
-      ereg_replace("'","''",$CoordZip);
-      ereg_replace("'","''",$CoordPhone);
-      ereg_replace("'","''",$CoordEmail);
 
       if ($mode == 'update')
       {
          $sql = "update $EventCoordTable
-                    set Name        = '$CoordName'        ,
-                        Address     = '$CoordAddr'        ,
-                        City        = '$CoordCity'        ,
-                        State       = '$CoordState'       ,
-                        Zip         = '$CoordZip'         ,
-                        Phone       = '$CoordPhone'       ,
-                        Email       = '$CoordEmail'
-                  where CoordId     = '$CoordID'
+                    set Name        = ".$db->quote($CoordName)."        ,
+                        Address     = ".$db->quote($CoordAddr)."        ,
+                        City        = ".$db->quote($CoordCity)."        ,
+                        State       = ".$db->quote($CoordState)."       ,
+                        Zip         = ".$db->quote($CoordZip)."         ,
+                        Phone       = ".$db->quote($CoordPhone)."       ,
+                        Email       = ".$db->quote($CoordEmail)."
+                  where CoordId     = ".$db->quote($CoordID)."
                   ";
          WriteToLog("Coordinator $CoordName Updated");
       }
@@ -153,13 +146,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          Phone      ,
                          Email
                          )
-                 values ('$CoordName'       ,
-                         '$CoordAddr'       ,
-                         '$CoordCity'       ,
-                         '$CoordState'      ,
-                         '$CoordZip'        ,
-                         '$CoordPhone'      ,
-                         '$CoordEmail'
+                 values (".$db->quote($CoordName)."       ,
+                         ".$db->quote($CoordAddr)."       ,
+                         ".$db->quote($CoordCity)."       ,
+                         ".$db->quote($CoordState)."      ,
+                         ".$db->quote($CoordZip)."        ,
+                         ".$db->quote($CoordPhone)."      ,
+                         ".$db->quote($CoordEmail)."
                          )";
          WriteToLog("Coordinator $CoordName Added");
       }
