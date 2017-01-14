@@ -375,6 +375,27 @@ CREATE TABLE `LTC_Resets` (
   PRIMARY KEY (`Code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Codes for password resets';
 
+--
+-- Table structure for table `LTC_Charmers`
+--
+
+DROP TABLE IF EXISTS `LTC_Charmers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LTC_Charmers` (
+  `charmerID` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `ChurchID` int(6) NOT NULL,
+  `charmerName` varchar(255) NOT NULL,
+  `charmerSex` char(1) NOT NULL,
+  `charmerTshirtSize` varchar(15) NOT NULL,
+  `charmerTshirtNeeded` char(2) NOT NULL,
+  `charmerNeedRoom` char(2) NOT NULL,
+  `charmerAvailibility` varchar(1024) NOT NULL,
+  `charmerEmail` varchar(255) NOT NULL DEFAULT '',
+  `charmerPhone` varchar(15) NOT NULL DEFAULT '',
+  PRIMARY KEY (`charmerID`),
+  UNIQUE KEY `charmerID_UNIQUE` (`charmerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Add initial church and admin id
