@@ -12,29 +12,31 @@ include 'include/MoreFunctions.php';
 require_once 'include/table/users.php';
 require_once 'include/table/resets.php';
 
-$message  = '';
-$redirect = false;
-$email    = GET('email');
-$code     = GET('code');
+$message         = '';
+$redirectMessage = '';
+$redirect        = false;
+$email           = GET('email');
+$code            = GET('code');
 
 if (empty($email))
-    die('error: missing email');
+    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: missing email</font></b><br>';
+
 if (empty($code))
-    die('error: missing code');
+    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: missing code</font></b><br>';
 
 $User = user_by_email($email);
 if (!$User)
-    die('error: invalid user for email');
+    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: bad email</font></b><br>';
 
 $Reset = reset_by_code($code);
 
 if(!$Reset)
-    die('That code may have already been used.');
+    $redirectMessage .= '<b><font color="red">I am sorry, it appears that the link you used has expired. Please try again.</font></b><br>';
 
 if ($Reset['Userid'] != $User['Userid'])
-    die('error: user <-> code mismatch');
+    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: mismatched parameters</font></b><br>';
 
-if (POST('password'))
+if (POST('password') and $redirectMessage == '')
 {
    if (POST('password') != POST('passwordr'))
    {
@@ -47,17 +49,17 @@ if (POST('password'))
    else
    {
       user_update_password($User['Userid'], POST('password'));
-      resets_delete_by_id($Reset['id']);
-      $redirect = true;
+      resets_delete_by_id($Reset['Code']);
+      $redirectMessage = '<b><font color="blue">Congratulations! Your password has been updated.</font></b>';
    }
 }
-if ($redirect)
+if ($redirectMessage != '')
 {
    header("refresh: 5; URL=login.php");
    print "<html>
              <body style=\"background-color: rgb(217, 217, 255);\">
                 <center>
-                   Your password has been updated.<br/>
+                   $redirectMessage<br/>
                    Redirecting in 5 seconds.
                 </center>
              </body>
@@ -69,7 +71,6 @@ if ($redirect)
 <html lang="en">
     <head>
         <title>Reset Password</title>
-
     </head>
     <body style="background-color: rgb(217, 217, 255);">
         <h1 align=center>Reset Password</h1>

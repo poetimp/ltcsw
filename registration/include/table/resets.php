@@ -2,12 +2,27 @@
 
 function reset_new($Userid)
 {
-   //TODO: Delete any old entries
-   //TODO: Delete any entries for this user if they exist
 
    global $ResetsTable;
-   $code    = reset_generate_code();
-   $created = time();
+
+   $code      = reset_generate_code();
+   $created   = time();
+   $anHourAgo = time()-(60*60);
+
+   //-------------------------------------------------------------
+   // First some housekeeping. Clear up expired entries and if
+   // this person has tried multiple times, only the latest should
+   // be valid
+   //-------------------------------------------------------------
+   $sql = "Delete From $ResetsTable
+           where Userid = ".escape($Userid)."
+           or Created <  $anHourAgo
+           ";
+   Query($sql);
+
+   //-------------------------------------------------------------
+   // Now enter the massively long random sequence into the table
+   //-------------------------------------------------------------
    $sql = "INSERT INTO $ResetsTable
               (Userid, Code, Created)
               VALUES (".escape($Userid).",
