@@ -82,6 +82,7 @@ if (isset($_POST['Confirm']))
    $db->query("delete from $LogTable"             ) or die ("Unable to clear LogTable "             . sqlError());
    $db->query("delete from $TeamsTable"           ) or die ("Unable to clear TeamsTable "           . sqlError());
    $db->query("delete from $JudgeAssignmentsTable") or die ("Unable to clear JudgeAssignmentsTable" . sqlError());
+   $db->query("delete from $CharmersTable"        ) or die ("Unable to clear CharmersTable"         . sqlError());
 
    //=========================================================================================
    // Set the team number to start at 100000 again

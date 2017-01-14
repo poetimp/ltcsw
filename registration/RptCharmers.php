@@ -26,45 +26,56 @@ if ($Admin != 'Y')
     </head>
 
     <body bgcolor="White">
-    <h1 align="center">LTC Participants With Comments</h1>
+    <h1 align="center">Charmers</h1>
     <hr>
     <?php
-         $results = $db->query("select   p.Name,
-                                          p.Phone,
-                                          p.Email,
-                                          c.ChurchName
-                                 from     $NonParticipantsTable p,
-                                          $ChurchesTable        c
-                                 where    p.ChurchID = c.ChurchID
-                                 order by c.ChurchName,
-                                          p.Name")
-                    or die ("Unable to get Charmer information:" . sqlError());
-         $first = 1;
+         $results = $db->query("select    c.charmerID,
+                                          c.charmerName,
+                                          c.charmerSex,
+                                          c.charmerTshirtSize,
+                                          c.charmerTshirtNeeded,
+                                          c.charmerNeedRoom,
+                                          c.charmerAvailibility,
+                                          c.charmerEmail,
+                                          c.charmerPhone,
+                                          n.ChurchName
+                                 from     $CharmersTable c,
+                                          $ChurchesTable n
+                                 where    c.ChurchID=n.ChurchID
+                                 Order by ChurchName,charmerName")
+                    or die ("Unable to get charmer list:" . sqlError());
+
          ?>
-         <table border="1" width="100%" id="table1">
-            <tr>
-               <td width=30% bgcolor=#CCCCCC><b>Church</b></td>
-               <td width=30% bgcolor=#CCCCCC><b>Charmer</b></td>
-               <td width=30% bgcolor=#CCCCCC><b>Phone</b></td>
-               <td width=10% bgcolor=#CCCCCC><b>Email</b></td>
-            </tr>
-         <?php
-         while ($row = $results->fetch(PDO::FETCH_ASSOC))
-         {
-            $Name    = $row['Name'];
-            $Email   = $row['Email'];
-            $Phone   = $row['Phone'];
-            $Church  = $row['ChurchName'];
-            ?>
-            <tr>
-               <td width=30% bgcolor=#FFFFFF><?php  print $Church;?></td>
-               <td width=30% bgcolor=#FFFFFF><?php  print $Name;  ?></td>
-               <td width=30% bgcolor=#FFFFFF><?php  print $Phone; ?></td>
-               <td width=10% bgcolor=#FFFFFF><?php  print $Email; ?></td>
-            </tr>
-         <?php
-         }
-         ?>
-         </table>
-    </body>
+               <table border="1" width="100%">
+                  <tr>
+                     <td bgcolor="#CCCCCC"><b>Church        </b></td>
+                     <td bgcolor="#CCCCCC"><b>Name          </b></td>
+                     <td bgcolor="#CCCCCC"><b>Sex           </b></td>
+                     <td bgcolor="#CCCCCC"><b>Need Room     </b></td>
+                     <td bgcolor="#CCCCCC"><b>Shirt Needed  </b></td>
+                     <td bgcolor="#CCCCCC"><b>Shirt Size    </b></td>
+                     <td bgcolor="#CCCCCC"><b>Phone         </b></td>
+                     <td bgcolor="#CCCCCC"><b>Email         </b></td>
+                     <td bgcolor="#CCCCCC"><b>Availability  </b></td>
+                  </tr>
+               <?php
+               while ($row = $results->fetch(PDO::FETCH_ASSOC))
+               {
+                  ?>
+                  <tr>
+                     <td>               <?php  print $row['ChurchName'];                                       ?></td>
+                     <td>               <?php  print $row['charmerName'];                                      ?></td>
+                     <td align="center"><?php  print $row['charmerSex'];                                       ?></td>
+                     <td align="center"><?php  print $row['charmerNeedRoom']     == 'on' ? "Yes" : "No";       ?></td>
+                     <td align="center"><?php  print $row['charmerTshirtNeeded'] == 'on' ? "Yes" : "No";       ?></td>
+                     <td>               <?php  print $row['charmerTshirtSize'];                                ?></td>
+                     <td>               <?php  print $row['charmerPhone'];                                     ?></td>
+                     <td>               <?php  print $row['charmerEmail'];                                     ?></td>
+                     <td>               <?php  print preg_replace("/\n/","<br>\n",$row['charmerAvailibility']);?></td>
+                  </tr>
+               <?php
+               }
+               ?>
+               </table>
+   </body>
 </html>

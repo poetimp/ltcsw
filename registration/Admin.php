@@ -192,7 +192,7 @@ $ChurchName = ChurchName($ChurchID);
                   <h2>Miscellaneous:</h2>
                   <ul>
                      <li><a href="ExtraOrders.php">Order Extra T-Shirts and Meal Tickets</a></li>
-                     <li><a href="NonParticipants.php">Add C.H.A.R.M.ers</a></li>
+                     <li><a href="Charmers.php">Manage C.H.A.R.M.ers</a></li>
                      <li><a href="/">LTCSW Home</a></li>
                      <li><a href="mailto:paul@lemmons.name">Feedback: Comments or Report a problem</a></li>
                   </ul>
