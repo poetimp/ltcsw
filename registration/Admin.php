@@ -77,7 +77,8 @@ $ChurchName = ChurchName($ChurchID);
                         <li><a target="_blank" href="RptWhoBySched.php?Admin=1&amp;byTime">Roster by scheduled event (All Churches, By Time)</a></li>
                         <li><a target="_blank" href="RptWhoInWhatAll.php">Participant list with events (All Churches)</a></li>
                         <li><a target="_blank" href="RptParticipants.php?Admin=1">Participant Lists</a></li>
-                        <li><a target="_blank" href="RptCountEventBySched.php">Event Participation</a></li>
+                        <li><a target="_blank" href="RptEventParticipation.php">Event Participation</a></li>
+                        <li><a target="_blank" href="RptCountEventBySched.php">Event Participation by time slot</a></li>
                         <li><a target="_blank" href="RptCoordEvents.php">Event Directors Rosters</a></li>
                         <li><a target="_blank" href="RptAwardCounts.php">Post Convention Award Counts</a></li>
                         <li><a target="_blank" href="RptJudgesAssignment.php">Judges Assigned</a></li>
