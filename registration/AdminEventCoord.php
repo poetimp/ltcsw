@@ -109,11 +109,11 @@ if (isset($_POST['add']) or isset($_POST['update']))
    {
       $ErrorMsg = "Please enter the required field: Coordinator Email Address";
    }
-   else if (!ereg("^[0-9]{5}$",$CoordZip) and !ereg("^[0-9]{5}-[0-9]{4}$",$CoordZip))
+   else if (!preg_match("/^[0-9]{5}$/",$CoordZip) and !preg_match("/^[0-9]{5}-[0-9]{4}$/",$CoordZip))
    {
       $ErrorMsg = "Invalid Zip Code specified. Must be in the format: ##### or #####-####";
    }
-   else if (!ereg("^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$",$CoordPhone))
+   else if (!preg_match("/^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/",$CoordPhone))
    {
       $ErrorMsg = "Invalid Phone number specified. Must be in the format: (###) ###-####";
    }

@@ -46,7 +46,7 @@ else if (isset($_POST['Update']))
 
    foreach (array_keys($_POST) as $keyValue)
    {
-      if (ereg("^[FS][0-9]{2}$",$keyValue))
+      if (preg_match("/^[FS][0-9]{2}$/",$keyValue))
       {
          $DisplayText       = substr($_POST[$keyValue],2);
          $SchedID           = $keyValue.substr($_POST[$keyValue],0,2);

@@ -26,7 +26,7 @@ if (isset($_POST['Submit']))
    $debugStr = "";
    foreach (array_keys($_POST) as $keyValue)
    {
-      if (ereg("^judge_",$keyValue))
+      if (preg_match("/^judge_/",$keyValue))
       {
          //judge_$RoomID_$SchedID_$i
          list($judgeStr,
