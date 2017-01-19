@@ -108,7 +108,7 @@ if (isset($_POST['submit']))
       }
       else
       {?>
-      <b><font size="+1" color="Red"><p align="center">Registration is currently down in preparation for for 2017 convention</p></font></b>
+<!--  <b><font size="+1" color="Red"><p align="center">Registration is currently down in preparation for for 2017 convention</p></font></b> -->
 <!--  <b><font size="+1" color="Red"><p align="center">There will be a delay in opening registration</p></font></b> -->
 <!--  <b><font size="+1" color="Red"><p align="center">check <a href="https://www.facebook.com/groups/ltcsw/">Facebook page</a> for updates</p></font></b> -->
 <!--  <b><font size="+1" color="Red"><p align="center">2016 Registration Reports and Awards are Ready</p></font></b> -->
@@ -158,17 +158,11 @@ if (isset($_POST['submit']))
                <p align="center"><font color="#FF0000">Invalid username and/or password</font><br/></p>
                <?php
             }
-            else
-            {
-               ?>
-               <p align="center">Please log in to enter registration</p>
-               <p align="center">Forgot Password<br/>
-                  <a href="ForgotPassword.php">Click Here</a>
-               </p>
-               <?php
-            }
-         ?>
-
+            ?>
+            <p align="center">Please log in to enter registration</p>
+            <p align="center">Forgot Password<br/>
+               <a href="ForgotPassword.php">Click Here</a>
+            </p>
 
             <div align="center" style="position: relative; font: 13px verdana, arial, helvetica, sans-serif; width: 500px; background-color: #ffffcc; padding: 15px 15px 15px 15px; border: 1px solid #c60130; text-align: left; color: black;">
                <h2 align="center">Can't Login?</h2>
