@@ -156,7 +156,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
    {
       $ErrorMsg = "Please enter the required field: Coordinator Email Address";
    }
-   else if (!preg_match("/^[0-9]{5}$/",$ChurchZip) and !ereg("^[0-9]{5}-[0-9]{4}$",$ChurchZip))
+   else if (!preg_match("/^[0-9]{5}$/",$ChurchZip) and !preg_match("/^[0-9]{5}-[0-9]{4}$/",$ChurchZip))
    {
       $ErrorMsg = "Invalid Zip Church Code specified. Must be in the format: ##### or #####-####";
    }
