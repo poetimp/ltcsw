@@ -133,7 +133,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                                  set    ChurchID  = '$NewChurchID',
                                         $pwdSet
                                         $emailSet
-                                        Name      = ".$db->quote($Name).",
+                                        Name      = '$Name',
                                         Admin     = '$IsAdmin',
                                         Status    = '$Status'
                                  where  Userid    = '$NewUserid'
