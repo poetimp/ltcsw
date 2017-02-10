@@ -204,6 +204,8 @@ function selectTime($Timestr = '')
 
    <head>
       <meta http-equiv="Content-Language" content="en-us"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
       <title>Schedule Events</title>
 
    </head>

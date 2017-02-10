@@ -19,6 +19,8 @@ if (isset($_POST['AddNew']))
 
 <head>
 <meta http-equiv="Content-Language" content="en-us">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Maintain Judges</title>
 
 </head>
@@ -41,7 +43,7 @@ if (isset($_POST['AddNew']))
             <tr>
                <TD align="center" colspan="3" bgcolor="Black"><font color="Yellow"><b>Action</b></font></TD>
                <TD bgcolor="Black"><font color="Yellow"><b>Assignments</b></font></TD>
-               <TD bgcolor="Black"><font color="Yellow"><b>[ID]: Name</b></font></TD>
+               <TD bgcolor="Black"><font color="Yellow"><b>Name</b></font></TD>
             </tr>
          <?php
          while ($row = $JudgeList->fetch(PDO::FETCH_ASSOC))
@@ -62,7 +64,7 @@ if (isset($_POST['AddNew']))
                      print $TimeRow['Count'];
                   ?>
                </td>
-               <td width="80%"><?php  print "[".$row['JudgeID']."]: ".$row['LastName'].", ".$row['FirstName']; ?></td>
+               <td width="80%"><?php  print $row['LastName'].", ".$row['FirstName']; ?></td>
             </tr>
          <?php
          }

@@ -130,6 +130,8 @@ if (isset($_POST['Apply']))
        <title>
           Manage Individual Events
        </title>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
        <h1 align="center">Update Individual Events For</h1>
        <h2 align="center"><?php  print $ParticipantName; ?></h2>
        <?php

@@ -19,6 +19,8 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
 
 <head>
 <meta http-equiv="Content-Language" content="en-us">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Maintain Participants</title>
 
 </head>

@@ -82,6 +82,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
 
    <head>
       <title>Administer Monies</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <h1 align=center>Administer Monies</h1>
    </head>
 

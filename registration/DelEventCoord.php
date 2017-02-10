@@ -19,6 +19,7 @@ if (isset($_POST['Confirm']))
    WriteToLog("Coordinator ".$_REQUEST['CoordID']." was deleted");
    ?>
       <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
          <title>
             Coordinator Deleted
          </title>

@@ -22,6 +22,7 @@ if (isset($_POST['Confirm']))
        or die ("Unable to delete Room record from schedule table: " . sqlError());
        ?>
       <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
          <title>
             Room Deleted
          </title>

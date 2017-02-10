@@ -63,8 +63,8 @@ else if (isset($_POST['Close']))
 <html lang="en">
 
 <head>
-<title>Lock or Unlock Registration</title>
-
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lock or Unlock Registration</title>s
 </head>
 
 <body style="background-color: rgb(217, 217, 255);">

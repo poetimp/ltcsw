@@ -88,7 +88,8 @@ if (isset($_POST['reset']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
     <head>
-        <title>Forgot Password</title>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Forgot Password</title>
     </head>
     <body style="background-color: rgb(217, 217, 255);">
         <h1 align=center>Forgot Password</h1>

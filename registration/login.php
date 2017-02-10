@@ -96,6 +96,15 @@ if (isset($_POST['submit']))
 <html lang="en">
    <head>
       <title>LTCSW Registration Sign In</title>
+<!--       <style>
+          html{font-size:100%;}
+          @media(min-width:60em)
+          {
+             html{font-size: 400%}
+          }
+      </style> -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
    </head>
 
    <body style="background-color: rgb(217, 217, 255);">
@@ -137,7 +146,18 @@ if (isset($_POST['submit']))
          <input type="hidden" name="Admin"    value="<?php print $admin ?>"/>
          <input type="hidden" name="redirect" value="<?php print $redirect ?>"/>
          <div align="center">
+             <?php
+            if (!$MOBILE)
+            {?>
             <table border="1" width="39%" id="table">
+            <?php
+            }
+            else
+            {?>
+            <table border="1" width="96%" id="table">
+            <?php
+            }
+               ?>
                <tr>
                   <td width="11%">Userid: </td>
                      <td width="27%"> <input type="text" name="userid" size="28"/></td>
@@ -164,19 +184,6 @@ if (isset($_POST['submit']))
                <a href="ForgotPassword.php">Click Here</a>
             </p>
 
-            <div align="center" style="position: relative; font: 13px verdana, arial, helvetica, sans-serif; width: 500px; background-color: #ffffcc; padding: 15px 15px 15px 15px; border: 1px solid #c60130; text-align: left; color: black;">
-               <h2 align="center">Can't Login?</h2>
-               <p>
-                  <b>IMPORTANT:</b> In order to improve security, a number of changes have been implemented in regards
-                  to passwords and password recovery. You may now manage your own password, changing it to something
-                  that is memorable to you. You can also reset your password should you ever forget it. To do that, though
-                  you will have to add your email to your profile. You are strongly encouraged to do that.
-               </p>
-               <p>
-                  Password complexity has also been improved. If you have a simple password, please take a moment and change it.
-                  Consider the information here that you are protecting with your password and choose a password wisely.
-               </p>
-            </div>
          </div>
       </form>
    </body>

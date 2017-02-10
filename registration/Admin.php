@@ -9,14 +9,19 @@
 <?php
 include 'include/RegFunctions.php';
 
-$result     = $db->query("select email
-                           from   $UsersTable
-                           where  Userid = '$Userid'")
-              or die ("Unable to obtain email adress Name: " . sqlError());
-$row        = $result->fetch(PDO::FETCH_ASSOC);
-$Email      = $row['email'];
+$result       = $db->query("select email
+                            from   $UsersTable
+                            where  Userid = '$Userid'")
+                or die ("Unable to obtain email adress Name: " . sqlError());
+$row          = $result->fetch(PDO::FETCH_ASSOC);
+$Email        = $row['email'];
 
-$ChurchName = ChurchName($ChurchID);
+$ChurchName   = ChurchName($ChurchID);
+
+$result       = $db->query("select count(*) as Count from $CharmersTable")
+                or die ("Unable to obtain Charmer Count: " . sqlError());
+$row          = $result->fetch(PDO::FETCH_ASSOC);
+$charmerCount = $row['Count'];
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -25,6 +30,7 @@ $ChurchName = ChurchName($ChurchID);
       <title>
          LTC Registration
       </title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
    <body style="background-color: rgb(217, 217, 255);">
       <h1 align="center">
@@ -59,8 +65,15 @@ $ChurchName = ChurchName($ChurchID);
                         <li><a href="AdminMoney.php">Post funds to an account</a></li>
                         <li><a href="NewDatabase.php">Delete old registration data from database</a></li>
                      </ul>
+                  <?php
+                  if(!$MOBILE)
+                  {
+                  ?>
                   </td>
                   <td width="50%" valign="top">
+                  <?php
+                  }
+                  ?>
                      <h2>Administrative Reports:</h2>
                      <ul>
                         <li><a target="_blank" href="RptWhoByEvent.php?Admin=1">Who is in what</a> (By Event, All Churches)</li>
@@ -102,8 +115,15 @@ $ChurchName = ChurchName($ChurchID);
                         <li><a href="TallyEventList.php">Select an Event to Tally</a></li>
                         <li><a href="DataMenu.php">Data Download Facilities</a></li>
                      </ul>
+                  <?php
+                  if(!$MOBILE)
+                  {
+                  ?>
                   </td>
                   <td width="50%" valign="top">
+                  <?php
+                  }
+                  ?>
                      <h2>Tally Room Reports:</h2>
                      <ul>
                         <li><a target="_blank" href="TallyAllAwards.php">All Participant Awards</a></li>
@@ -122,52 +142,52 @@ $ChurchName = ChurchName($ChurchID);
                 <td colspan="2" align="center" bgcolor="#C0C0C0"><font size="+2"><b>Church Coordination Functions</b></font></td>
             </tr>
             <tr>
-              <td width="50%" valign="top">
-                  <table width="100%">
-                     <tr>
-                        <td width="100%">
-                           <?php
-                           if ($UserStatus != 'R')
-                           {
-                           ?>
-                              <h2>Participant Management:</h2>
-                              <ul>
-                                 <li><a href="Participants.php">Manage Participants</a></li>
-                                 <li><a href="SignupSoloEvents.php">Signup for Individual Events</a></li>
-                                 <li><a href="SignupTeamEvents.php">Signup Teams</a></li>
-                              </ul>
-                           <?php
-                           }
-                           ?>
-                           <h2>Judging information</h2>
-                           <ul>
-                              <li><a href="Judges.php">Enter Judges Info</a></li>
-                              <li><a href="AssignJudges.php">Assign Judges to Events</a></li>
-                           </ul>
-                           <h2>Account Management</h2>
-                           <ul>
-                              <li><a href="ChangePassword.php">Change your Password</a></li>
-                              <li><a href="ChangeEmail.php">Change your Email Address</a></li>
-                           </ul>
-                           <?php
-                           if (!preg_match("/@/",$Email))
-                           {
-                           ?>
-                              <b><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;Your email address is not set.<br />
-                                                   &nbsp;&nbsp;&nbsp;&nbsp;Please take a moment and set it using the link above</font></b><br /><br />
-                           <?php
-                           }
-                           else
-                           {
-                              print "<b>&nbsp;&nbsp;&nbsp;&nbsp;Your email address is : $Email</b><br><br>";
-                           }
-                           ?>
-                        </td>
-                     </tr>
-                  </table>
-               </td>
-
                <td width="50%" valign="top">
+                  <?php
+                  if ($UserStatus != 'R')
+                  {
+                  ?>
+                     <h2>Participant Management:</h2>
+                     <ul>
+                        <li><a href="Participants.php">Manage Participants</a></li>
+                        <li><a href="SignupSoloEvents.php">Signup for Individual Events</a></li>
+                        <li><a href="SignupTeamEvents.php">Signup Teams</a></li>
+                     </ul>
+                  <?php
+                  }
+                  ?>
+                  <h2>Judging information</h2>
+                  <ul>
+                     <li><a href="Judges.php">Enter Judges Info</a></li>
+                     <li><a href="AssignJudges.php">Assign Judges to Events</a></li>
+                  </ul>
+                  <h2>Account Management</h2>
+                  <ul>
+                     <li><a href="ChangePassword.php">Change your Password</a></li>
+                     <li><a href="ChangeEmail.php">Change your Email Address</a></li>
+                  </ul>
+                  <?php
+                  if (!preg_match("/@/",$Email))
+                  {
+                  ?>
+                     <b><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;Your email address is not set.<br />
+                                          &nbsp;&nbsp;&nbsp;&nbsp;Please take a moment and set it using the link above</font></b><br /><br />
+                  <?php
+                  }
+                  else
+                  {
+                     print "<b>&nbsp;&nbsp;&nbsp;&nbsp;Your email address is : $Email</b><br><br>";
+                  }
+                  ?>
+               <?php
+               if(!$MOBILE)
+               {
+               ?>
+               </td>
+               <td width="50%" valign="top">
+               <?php
+               }
+               ?>
                   <h2>Reports:</h2>
                   <ul>
                      <li><a target="_blank" href="RptWhoInWhat.php">Who is in what</a> (By Participant)</li>
@@ -191,6 +211,20 @@ $ChurchName = ChurchName($ChurchID);
             <tr>
                <td width="50%" valign="top">
                   <h2>Miscellaneous:</h2>
+                  <?php
+                  if ($charmerCount >=20)
+                  {
+                  ?>
+                  <font color='green'><b>Wow! Thank you all! We have enough Charmers for this year!</b></font>
+                  <?php
+                  }
+                  else
+                  {
+                  ?>
+                  <font color='red'><b>Please consider adding some charmers.<br>We need 20 for LTC to run smoothly and currently have <?php print $charmerCount?> signed up</b></font>
+                  <?php
+                  }
+                  ?>
                   <ul>
                      <li><a href="ExtraOrders.php">Order Extra T-Shirts and Meal Tickets</a></li>
                      <li><a href="Charmers.php">Manage C.H.A.R.M.ers</a></li>
@@ -198,7 +232,14 @@ $ChurchName = ChurchName($ChurchID);
                      <li><a href="mailto:paul@lemmons.name">Feedback: Comments or Report a problem</a></li>
                   </ul>
                </td>
-               <td width="50%" valign="top"><h2>&nbsp;</h2></td>
+               <?php
+               if (!$MOBILE)
+               {
+               ?>
+                  <td width="50%" valign="top"><h2>&nbsp;</h2></td>
+               <?php
+               }
+               ?>
             </tr>
             <?php
             }

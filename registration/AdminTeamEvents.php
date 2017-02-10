@@ -342,6 +342,8 @@ if (isset($_POST['Apply']))
        <title>
           Manage Team Events
        </title>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
        <h1 align=center>Manage Team Members For</h1>
        <h2 align=center><?php  print $EventName; ?><br>
            <?php  if ($TeamID > 0)
