@@ -28,7 +28,7 @@
          $Focus      = isset($_POST['Focus'])      ? $_POST['Focus']      : "";
          $Impression = isset($_POST['Impression']) ? $_POST['Impression'] : "";
 
-         $picDir     = "/webroot/l/t/ltcsw001/www/tshirt-judging/shirts-2016";
+         $picDir     = "/webroot/l/t/ltcsw001/www/tshirt-judging/shirts-2017";
          $emailToWho = 'paul@ltcsw.org';
          $subject    = 'T-Shirt Judging Submission for: ';
          $imageName =isset($_REQUEST['entry'])    ? $_REQUEST['entry']    : "";
