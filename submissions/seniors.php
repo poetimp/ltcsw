@@ -470,7 +470,7 @@ if ($_POST)
                // Send note to IS to process
                //============================
 
-               $toWho   =  'cepym1@msn.com';
+               $toWho   =  'jan.lemmons@gmail.com';
                $toWho  .= ',blacksv@juno.com';
                $toWho  .= ',paul.lemmons@gmail.com';
              //$toWho   = 'paul.lemmons@gmail.com';
