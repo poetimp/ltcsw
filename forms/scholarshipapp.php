@@ -8,7 +8,7 @@
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
 <?php
-$emailToWho = 'cepym1@msn.com';
+$emailToWho = 'jan.lemmons@gmail.com';
 // $emailToWho = 'the_mama@cox.net';
 // $emailToWho = 'paullem@cox.net';
 
