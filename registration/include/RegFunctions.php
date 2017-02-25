@@ -129,7 +129,6 @@ function ChurchesRegistered()
    natsort($ChurchIDs);
    return $ChurchIDs;
 }
-
 //-----------------------------------------------------------------------------
 // Given a ChurchID this function will return a list of participants that are
 // registered in at least one event.
@@ -173,6 +172,23 @@ function ActiveParticipants($ChurchID)
    }
    natsort($ParticipantIDs);
    return $ParticipantIDs;
+}
+//-----------------------------------------------------------------------------
+// This function returns a list of events a  participant has registered for
+//-----------------------------------------------------------------------------
+function ParticipantDetails($ParticipantID)
+{
+   global $ParticipantsTable;
+   global $db;
+
+   $details = $db->query("select   *
+                          from     $ParticipantsTable
+                          where    ParticipantID = $ParticipantID
+                         ")
+             or die ("Unable to get Participant details from Participant Table:" . sqlError());
+
+   $row = $details->fetch(PDO::FETCH_ASSOC);
+   return $row;
 }
 //-----------------------------------------------------------------------------
 // This function returns a list of events a  participant has registered for

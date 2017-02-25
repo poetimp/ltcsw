@@ -128,6 +128,7 @@ $charmerCount = $row['Count'];
                      <ul>
                         <li><a target="_blank" href="TallyAllAwards.php">All Participant Awards</a></li>
                         <li><a target="_blank" href="RptAwards.php">Award Counts for each Church</a></li>
+                        <li><a href="DataTallyAwards.php">Download Awards Data in csv format</a></li>
                      </ul>
                   </td>
                </tr>
