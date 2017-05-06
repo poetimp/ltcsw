@@ -143,7 +143,7 @@ function ActiveParticipants($ChurchID)
    $ParticipantIDs=array();
    $participants = $db->query("select   distinct
                                          p.ParticipantID,
-                                         concat(p.FirstName,' ',p.LastName) ParticipantName
+                                         concat(p.LastName,', ',p.FirstName) ParticipantName
                                 from     $ParticipantsTable p,
                                          $RegistrationTable r
                                 where    p.ChurchID      = $ChurchID
