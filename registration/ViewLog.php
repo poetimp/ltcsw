@@ -39,11 +39,11 @@ if ($Admin != 'Y')
 
       ?>
       <div align="center">
-      <table class='registrationTable' border="1">
+      <table class='registrationTable' style='width: 50%'>
          <tr>
-            <th width="250" align="left">Date</td>
-            <th width="100" align="left">Userid</td>
-            <th width="250" align="left">Log Entry</td>
+            <th style='width: 250px; text-align: left'>Date</th>
+            <th style='width: 100px; text-align: left'>Userid</th>
+            <th style='width: 250px; text-align: left'>Log Entry</th>
          </tr>
       <?php
       while ($row = $results->fetch(PDO::FETCH_ASSOC))
@@ -53,9 +53,9 @@ if ($Admin != 'Y')
          $Action = $row['Action'];
          ?>
          <tr>
-            <td align="left"><?php  print $Date; ?></td>
-            <td align="left"><?php  print $User; ?>&nbsp;</td>
-            <td align="left"><?php  print $Action; ?></td>
+            <td style='text-align: left'><?php  print $Date; ?></td>
+            <td style='text-align: left'><?php  print $User; ?>&nbsp;</td>
+            <td style='text-align: left'><?php  print $Action; ?></td>
          </tr>
       <?php
       }
@@ -72,11 +72,11 @@ if ($Admin != 'Y')
       ?>
       <div align="center">
       <h1 align="center">View Current Convention Log</h1>
-      <table class='registrationTable' border="1">
+      <table class='registrationTable' style='width: 50%'>
          <tr>
-            <th align="left">Date</th>
-            <th align="left">Userid</th>
-            <th align="left">Log Entry</th>
+            <th style='text-align: left'>Date</th>
+            <th style='text-align: left'>Userid</th>
+            <th style='text-align: left'>Log Entry</th>
          </tr>
       <?php
       while ($row = $results->fetch(PDO::FETCH_ASSOC))
@@ -86,9 +86,9 @@ if ($Admin != 'Y')
          $Action = $row['Action'];
          ?>
          <tr>
-            <td align="left"><?php  print $Date; ?></td>
-            <td align="left"><?php  print $User; ?>&nbsp;</td>
-            <td align="left"><?php  print $Action; ?></td>
+            <td style='text-align: left'><?php  print $Date; ?></td>
+            <td style='text-align: left'><?php  print $User; ?>&nbsp;</td>
+            <td style='text-align: left'><?php  print $Action; ?></td>
          </tr>
       <?php
       }

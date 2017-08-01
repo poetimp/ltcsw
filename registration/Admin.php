@@ -55,7 +55,7 @@ $charmerCount = $row['Count'];
                </tr>
                <tr>
                   <td width="50%" valign="top">
-                     <h2>Administrative Tasks:</h2>
+                     <h2 align='center'>Administrative Tasks:</h2>
                      <table class='registrationTable'>
                         <tr><td style='padding-left: 5%'><a href="ChangeChurch.php">     Administer a different Church             </a></td></tr>
                         <tr><td style='padding-left: 5%'><a href="Users.php">            User Maintenance                          </a></td></tr>
@@ -102,12 +102,13 @@ $charmerCount = $row['Count'];
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptEventParticipation.php">            Event Participation                                 </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptCountEventBySched.php">             Event Participation by time slot                    </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptCoordEvents.php">                   Event Directors Rosters                             </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptCharmers.php">                      List of C.H.A.R.M.E.R.S                             </a></td></tr>
 
+                        <tr><td style='padding-left: 5%'>Judges</td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptJudgesAssignment.php">              Judges Assigned                                     </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptJudges.php?Admin=Y">                Judges by Congregation                              </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptJudgesAssignment.php?ID=ByEvent">   Judges by Event                                     </a></td></tr>
 
-                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptCharmers.php">                      List of C.H.A.R.M.E.R.S                             </a></td></tr>
                      </table>
                   </td>
                </tr>
@@ -116,11 +117,11 @@ $charmerCount = $row['Count'];
 
             <table class='registrationTable'>
                <tr>
-                  <td colspan="2" align="center"><font size="+2"><b>Tally Room Functions</b></font></td>
+                  <td colspan="2" style='text-align: center'><font size="+2"><b>Tally Room Functions</b></font></td>
                </tr>
                <tr>
                   <td width="50%" valign="top">
-                     <h2>Tally Room Tasks:</h2>
+                     <h2 align='center'>Tally Room Tasks:</h2>
                      <table class='registrationTable'>
                         <tr><td><a href="TallyEventList.php">Select an Event to Tally</a></td></tr>
                         <tr><td><a href="DataMenu.php">Data Download Facilities</a></td></tr>
@@ -134,7 +135,7 @@ $charmerCount = $row['Count'];
                   <?php
                   }
                   ?>
-                     <h2>Tally Room Reports:</h2>
+                     <h2 align='center'>Tally Room Reports:</h2>
                      <table class='registrationTable'>
                         <tr><td><a target="_blank" href="TallyAllAwards.php">All Participant Awards</a></td></tr>
                         <tr><td><a target="_blank" href="RptAwards.php">Award Counts for each Church</a></td></tr>
@@ -149,7 +150,7 @@ $charmerCount = $row['Count'];
          ?>
          <table class='registrationTable'>
             <tr>
-                <td colspan="2" align="center"><font size="+2"><b>Church Coordination Functions</b></font></td>
+                <td colspan="2" style='text-align: center'><font size="+2"><b>Church Coordination Functions</b></font></td>
             </tr>
             <tr>
                <td width="50%" valign="top">
@@ -157,7 +158,7 @@ $charmerCount = $row['Count'];
                   if ($UserStatus != 'R')
                   {
                   ?>
-                     <h2>Participant Management:</h2>
+                     <h2 align='center'>Participant Management:</h2>
                      <table class='registrationTable'>
                         <tr><td><a href="Participants.php">Manage Participants</a></td></tr>
                         <tr><td><a href="SignupSoloEvents.php">Signup for Individual Events</a></td></tr>
@@ -166,29 +167,32 @@ $charmerCount = $row['Count'];
                   <?php
                   }
                   ?>
-                  <h2>Judging information</h2>
+                  <h2 align='center'>Judging information</h2>
                   <table class='registrationTable'>
                      <tr><td><a href="Judges.php">Enter Judges Info</a></td></tr>
                      <tr><td><a href="AssignJudges.php">Assign Judges to Events</a></td></tr>
                   </table>
-                  <h2>Account Management</h2>
+                  <h2 align='center'>Account Management</h2>
                   <table class='registrationTable'>
                      <tr><td><a href="ChangePassword.php">Change your Password</a></td></tr>
-                     <tr><td><a href="ChangeEmail.php">Change your Email Address</a></td></tr>
+                     <tr><td>
+                            <a href="ChangeEmail.php">Change your Email Address</a>
+                            <?php
+                            if (!preg_match("/@/",$Email))
+                            {
+                            ?>
+                               <b><font color="red"><br />&nbsp;&nbsp;&nbsp;&nbsp;Your email address is not set.
+                                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;Please take a moment and set it using the link above</font></b>
+                            <?php
+                            }
+                            else
+                            {
+                               print "<b>&nbsp;&nbsp;&nbsp;&nbsp;Your email address is : $Email</b><br><br>";
+                            }
+                            ?>
+                         </td>
+                     </tr>
                   </table>
-                  <?php
-                  if (!preg_match("/@/",$Email))
-                  {
-                  ?>
-                     <b><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;Your email address is not set.<br />
-                                          &nbsp;&nbsp;&nbsp;&nbsp;Please take a moment and set it using the link above</font></b><br /><br />
-                  <?php
-                  }
-                  else
-                  {
-                     print "<b>&nbsp;&nbsp;&nbsp;&nbsp;Your email address is : $Email</b><br><br>";
-                  }
-                  ?>
                <?php
                if(!$MOBILE)
                {
@@ -198,7 +202,7 @@ $charmerCount = $row['Count'];
                <?php
                }
                ?>
-                  <h2>Reports:</h2>
+                  <h2 align='center'>Reports:</h2>
                   <table class='registrationTable'>
                      <tr><td><a target="_blank" href="RptWhoInWhat.php">Who is in what</a> (By Participant)</td></tr>
                      <tr><td><a target="_blank" href="RptWhoByEvent.php">Who is in what</a> (By Event)</td></tr>
@@ -218,7 +222,7 @@ $charmerCount = $row['Count'];
             ?>
             <tr>
                <td width="50%" valign="top">
-                  <h2>Miscellaneous:</h2>
+                  <h2 align='center'>Miscellaneous:</h2>
                   <?php
                   if ($charmerCount >=20)
                   {
