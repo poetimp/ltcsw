@@ -22,6 +22,9 @@ if ($Admin != 'Y')
        <title>
           Participants with Events
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -42,7 +45,7 @@ if ($Admin != 'Y')
                     or die ("Unable to get participant List:" . sqlError());
          $first = 1;
          ?>
-         <table class='registrationTable' border="0" width="100%">
+         <table class='registrationTable' style='width: 95%'>
          <?php
        //======================================================================
        // For each participant in LTC ...
@@ -76,10 +79,10 @@ if ($Admin != 'Y')
             }
             ?>
             <tr>
-               <td width=30%><b><?php  print $Name;           ?></b></td>
-               <td width=30%><b><?php  print $ChurchName;     ?></b></td>
-               <td width=30%><b><?php  print "Grade: $Grade"; ?></b></td>
-               <td width=10%><b><?php  print "&nbsp;";        ?></b></td>
+               <th style='width: 30%'><b><?php  print $Name;           ?></b></th>
+               <th style='width: 30%'><b><?php  print $ChurchName;     ?></b></th>
+               <th style='width: 30%'><b><?php  print "Grade: $Grade"; ?></b></th>
+               <th style='width: 10%'><b><?php  print "&nbsp;";        ?></b></th>
             </tr>
             <?php
             //======================================================================

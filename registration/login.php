@@ -144,12 +144,12 @@ if (isset($_POST['submit']))
              <?php
             if (!$MOBILE)
             {?>
-            <table class='registrationTable' border="1" width="39%" id="table">
+            <table class='registrationTable' border="1" style="width: 39%" id="table">
             <?php
             }
             else
             {?>
-            <table class='registrationTable' border="1" width="96%" id="table">
+            <table class='registrationTable' border="1" style="width: 96%" id="table">
             <?php
             }
                ?>
@@ -162,7 +162,7 @@ if (isset($_POST['submit']))
                   <td width="27%"> <input type="password" name="pwd" size="28"/></td>
                </tr>
                <tr>
-                  <td colspan="2" align="center">
+                  <td colspan="2" style="text-align: center">
                   <input type="submit" name="submit" value="Login"/></td>
                </tr>
             </table>

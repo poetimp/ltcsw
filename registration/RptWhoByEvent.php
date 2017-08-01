@@ -27,6 +27,9 @@ $pageBreak='';
        <title>
           Event Roster
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -56,7 +59,7 @@ $pageBreak='';
                     or die ("Unable to get event list:" . sqlError());
        $first = 1;
        ?>
-       <table class='registrationTable' border="0" width="100%" id="table1">
+       <table class='registrationTable' style='width: 95%' id="table1">
        <?php
        while ($row = $eventList->fetch(PDO::FETCH_ASSOC))
        {
@@ -120,11 +123,11 @@ $pageBreak='';
                 $pageBreak="style=\"page-break-before:always;\"";
              ?>
              <tr>
-                <td bgcolor=#CCCCCC><b><?php  print $EventName ; ?></b></td>
-                <td bgcolor=#CCCCCC><b><?php  print $ConvEvent; ?></b></td>
-                <td bgcolor=#CCCCCC><b><?php  print $EventType; ?></b></td>
-                <td bgcolor=#CCCCCC><b><?php  print $AdminReport ? "Church" : "Award"?></b></td>
-                <td bgcolor=#CCCCCC><b><?php  print $AdminReport ? "Award" : "&nbsp;"; ?></b></td>
+                <th><b><?php  print $EventName ; ?></b></th>
+                <th><b><?php  print $ConvEvent; ?></b></th>
+                <th><b><?php  print $EventType; ?></b></th>
+                <th><b><?php  print $AdminReport ? "Church" : "Award"?></b></th>
+                <th><b><?php  print $AdminReport ? "Award" : "&nbsp;"; ?></b></th>
              </tr>
              <?php
              //----------------------------------------------------------------
@@ -236,7 +239,7 @@ $pageBreak='';
                   if ($EventType == 'Team' and $prevTeamID != $TeamID)
                   {
                      print "<tr>";
-                     print "   <td bgcolor=#EAEAEA colspan=1><b>Team: $TeamID</b></td>";
+                     print "   <th colspan=1><b>Team: $TeamID</b></th>";
                      print "   <td colspan=3>&nbsp;</td>";
                      print "</tr>";
                      $prevTeamID=$TeamID;

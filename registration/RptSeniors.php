@@ -22,6 +22,9 @@ if ($Admin != 'Y')
        <title>
           Seniors
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -58,48 +61,46 @@ if ($Admin != 'Y')
             $eventCount=$eventTypeCount['Team']+$eventTypeCount['Solo'];
             if ($eventCount > 0)
             {
-		$Name    = $row['LastName'].", ".$row['FirstName'];
-		$Email   = $row['Email'];
-		$Phone   = $row['Phone'];
-		$Grade   = $row['Grade'];
-		$Comment = $row['Comments'];
-		$Address = $row['Address'];
-		$City    = $row['City'];
-		$State   = $row['State'];
-		$Zip     = $row['Zip'];
-		$Church  = $row['ChurchName'];
+         		$Name    = $row['LastName'].", ".$row['FirstName'];
+         		$Email   = $row['Email'];
+         		$Phone   = $row['Phone'];
+         		$Grade   = $row['Grade'];
+         		$Comment = $row['Comments'];
+         		$Address = $row['Address'];
+         		$City    = $row['City'];
+         		$State   = $row['State'];
+         		$Zip     = $row['Zip'];
+         		$Church  = $row['ChurchName'];
 
-		if ($Comment == '')
-		$Comment = "&nbsp;";
+         		if ($Comment == '')
+            		$Comment = "&nbsp;";
 
-		if ($first == 0)
-		{
-		?>
-		<tr>
-			<td colspan=3>&nbsp;</td>
-		</tr>
-		<?php
-		}
-		else
-		{
-		$first = 0;
-		}
-		?>
-		<tr>
-		<td width=33% bgcolor=#CCCCCC><b><?php  print $Name;  ?></b></td>
-		<td width=33% bgcolor=#CCCCCC><b><?php  print $Church;?></b></td>
-		<td width=33% bgcolor=#CCCCCC><b><?php  print $Phone; ?></b></td>
-		</tr>
-		<tr>
-		<td width=33% colspan=1 bgcolor=#CCCCCC><b><?php  print "$Address<br>$City, $State $Zip"; ?></b></td>
-		<td width=66% colspan=2 bgcolor=#CCCCCC><b><?php  print $Comment; ?></b></td>
-		</tr>
-		<?php
-	    }
+         		if ($first == 0)
+         		{
+         		?>
+            		<tr>
+            			<td colspan=3>&nbsp;</td>
+            		</tr>
+         		<?php
+         		}
+         		else
+         		{
+            		$first = 0;
+         		}
+      		?>
+         		<tr>
+            		<th style='width: 33%'><b><?php  print $Name;  ?></b></td>
+            		<th style='width: 33%'><b><?php  print $Church;?></b></td>
+            		<th style='width: 33%'><b><?php  print $Phone; ?></b></td>
+         		</tr>
+         		<tr>
+            		<td style='width: 33%' colspan=1><b><?php  print "$Address<br>$City, $State $Zip"; ?></b></td>
+            		<td style='width: 33%' colspan=2><b><?php  print $Comment; ?></b></td>
+         		</tr>
+         		<?php
+      	   }
          }
-         ?>
+      ?>
          </table>
-
     </body>
-
 </html>

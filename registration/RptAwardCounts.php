@@ -27,6 +27,9 @@ $awardsBronze = 0;
        <title>
           Award Counts
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -59,12 +62,12 @@ $awardsBronze = 0;
                     or die ("Unable to get award list:" . sqlError());
 
        ?>
-         <table class='registrationTable' id="table1">
+         <table class='registrationTable' id="table1" style='width: 95%'>
             <tr>
-               <td bgcolor="#000000"><font color="#FFFF00">Event Name</font></td>
-               <td bgcolor="#000000"><font color="#FFFF00">Gold</font></td>
-               <td bgcolor="#000000"><font color="#FFFF00">Silver</font></td>
-               <td bgcolor="#000000"><font color="#FFFF00">Bronze</font></td>
+               <th>Event Name</th>
+               <th>Gold</th>
+               <th>Silver</th>
+               <th>Bronze</th>
             </tr>
          <?php
          $currentEvent = '';
@@ -183,12 +186,12 @@ $awardsBronze = 0;
          }
          //print "<pre>";print_r($teamAwards); print "</pre>";
          ?>
-         <table class='registrationTable' id="table1">
+         <table class='registrationTable' id="table2" style='width: 95%'>
             <tr>
-               <td bgcolor="#000000"><font color="#FFFF00">Event Name</font></td>
-               <td bgcolor="#000000"><font color="#FFFF00">Gold</font></td>
-               <td bgcolor="#000000"><font color="#FFFF00">Silver</font></td>
-               <td bgcolor="#000000"><font color="#FFFF00">Bronze</font></td>
+               <th>Event Name</th>
+               <th>Gold</th>
+               <th>Silver</th>
+               <th>Bronze</th>
             </tr>
          <?php
          foreach ($teamAwards as $EventName=>$Award)
@@ -210,11 +213,11 @@ $awardsBronze = 0;
     <hr>
     <h1 align="center">Summary Award Counts</h1>
     <hr>
-    <table class='registrationTable' id="table1">
+    <table class='registrationTable' id="table3" style='width: 95%'>
        <tr>
-          <td bgcolor="#000000"><font color="#FFFF00">Gold</font></td>
-          <td bgcolor="#000000"><font color="#FFFF00">Silver</font></td>
-          <td bgcolor="#000000"><font color="#FFFF00">Bronze</font></td>
+          <th>Gold</th>
+          <th>Silver</th>
+          <th>Bronze</th>
        </tr>
        <tr>
           <td><?php  print $awardsGold; ?></td>

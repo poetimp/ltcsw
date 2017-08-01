@@ -25,6 +25,9 @@ else
        <title>
           Judges List
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -76,8 +79,6 @@ else
             or die ("Unable to obtain Judge List:" . sqlError());
             ?>
             <table class='registrationTable'>
-               <tr>
-               </tr>
             <?php
 
             while ($row = $result->fetch(PDO::FETCH_ASSOC))
@@ -87,7 +88,7 @@ else
                $JudgeID   = $row['JudgeID'];
                ?>
                <tr>
-                  <td width="10%" bgcolor="#CCCCCC" colspan="4"><?php print "$LastName, $FirstName"?></td>
+                  <th style='width: 10%' colspan="4"><?php print "$LastName, $FirstName"?></th>
                </tr>
                <?php
 
@@ -113,7 +114,7 @@ else
                   $EventName = $judgeDtails['EventName'];
                   ?>
                   <tr>
-                     <td width="10%">&nbsp;</td>
+                     <td style='width: 10%'>&nbsp;</td>
                      <td><?php print $SchedTime?></td>
                      <td><?php print $RoomName?></td>
                      <td><?php print $EventName?></td>

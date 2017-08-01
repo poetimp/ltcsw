@@ -17,6 +17,9 @@ include 'include/RegFunctions.php';
        <title>
           Church Coordinatord
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -38,7 +41,7 @@ include 'include/RegFunctions.php';
                     or die ("Not found:" . sqlError());
          $first = 1;
          ?>
-         <table class='registrationTable' border="0" width="100%" id="table1">
+         <table class='registrationTable' style='width: 95%' id="table1">
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {

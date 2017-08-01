@@ -83,7 +83,7 @@ if (isset($_POST['ChangeEmail']))
    <body>
       <form method="post" id="main" name="main">
          <center>
-            <table class='registrationTable' border="0" width="550px">
+            <table class='registrationTable' style='width: 550px'>
                <tr>
                   <td>
                      <p style="text-align: Left">
@@ -100,9 +100,9 @@ if (isset($_POST['ChangeEmail']))
                </tr>
             </table>
 
-            <table class='registrationTable' border="1" width="625px" style="text-align: center">
+            <table class='registrationTable' border="1"  style='text-align: center; width: 625px'>
                <tr>
-                  <td colspan="2"><b>Change Email:</b></td>
+                  <td style='text-align: center' colspan="2"><b>Change Email:</b></td>
                </tr>
                <tr>
                   <td align="right">New Email Address:&nbsp;&nbsp;</td>
@@ -113,13 +113,13 @@ if (isset($_POST['ChangeEmail']))
                {
                ?>
                <tr>
-                  <td colspan="2" align="center"><font color=red><b><?php print $message?></b></font></td>
+                  <td colspan="2" style='text-align: center'><font color=red><b><?php print $message?></b></font></td>
                </tr>
                <?php
                }
                ?>
                <tr>
-                  <td colspan="2" align="center"><input type="submit" name="ChangeEmail" value="Change Email"></td>
+                  <td colspan="2" style='text-align: center'><input type="submit" name="ChangeEmail" value="Change Email"></td>
                </tr>
                </table>
          </center>

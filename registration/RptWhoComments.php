@@ -23,6 +23,9 @@ if ($Admin != 'Y')
        <title>
           Participants with Comments
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -71,13 +74,13 @@ if ($Admin != 'Y')
             }
             ?>
             <tr>
-               <td width=30% bgcolor=#CCCCCC><b><?php  print $Name;  ?></b></td>
-               <td width=30% bgcolor=#CCCCCC><b><?php  print $Church;?></b></td>
-               <td width=30% bgcolor=#CCCCCC><b><?php  print $Phone; ?></b></td>
-               <td width=10% bgcolor=#CCCCCC><b><?php  print $Grade; ?></b></td>
+               <th style='width: 30%'><b><?php  print $Name;  ?></b></th>
+               <th style='width: 30%'><b><?php  print $Church;?></b></th>
+               <th style='width: 30%'><b><?php  print $Phone; ?></b></th>
+               <th style='width: 30%'><b><?php  print $Grade; ?></b></th>
             </tr>
             <tr>
-               <td width=100% colspan=4 bgcolor=#CCCCCC><b><?php  print $Comment; ?></b></td>
+               <td  style='width: 100%' colspan=4><b><?php  print $Comment; ?></b></td>
             </tr>
          <?php
          }

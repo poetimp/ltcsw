@@ -29,7 +29,7 @@ If you like this solution, you might also want to check out the 1.0 version:
 }
 .registrationTable th:first-child {
   display: table-cell;
-  text-align: center;
+  /* text-align: center; */
 }
 .registrationTable th:nth-child(2) {
   display: table-cell;
@@ -55,7 +55,7 @@ If you like this solution, you might also want to check out the 1.0 version:
 }
 .registrationTable td:first-child {
   display: table-cell;
-  text-align: center;
+  /* text-align: center; */
   border-right: 1px solid #D9E4E6;
 }
 @media (min-width: 480px) {
@@ -90,15 +90,3 @@ h1 {
 h1 span {
   color: #167F92;
 }
-
-.center1
-{ 
-margin-left: auto;
-margin-right: auto;
-}
- 
-.center2
-{ 
-text-align: center;
-}
-

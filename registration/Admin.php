@@ -51,22 +51,22 @@ $charmerCount = $row['Count'];
             ?>
             <table class='registrationTable'>
                <tr>
-                  <td colspan="2" align="center"><font size="+2"><b>Administration Functions</b></font></td>
+                  <td colspan="2" style="text-align: center"><h2>Administration Functions</h2></td>
                </tr>
                <tr>
                   <td width="50%" valign="top">
                      <h2>Administrative Tasks:</h2>
                      <table class='registrationTable'>
-                        <tr><td><a href="ChangeChurch.php">Administer a different Church</a></td></tr>
-                        <tr><td><a href="Users.php">Manage Web Site Users</a></td></tr>
-                        <tr><td><a href="Events.php">Manage Events</a></td></tr>
-                        <tr><td><a href="Coordinators.php">Manage Event Directors</a></td></tr>
-                        <tr><td><a href="Churches.php">Manage Churches</a></td></tr>
-                        <tr><td><a href="Rooms.php">Manage Event Rooms</a></td></tr>
-                        <tr><td><a href="AdminSchedule.php">Manage Event Schedules</a></td></tr>
-                        <tr><td><a href="LockRegistration.php">Open or Close Registration</a></td></tr>
-                        <tr><td><a href="AdminMoney.php">Post funds to an account</a></td></tr>
-                        <tr><td><a href="NewDatabase.php">Delete old registration data from database</a></td></tr>
+                        <tr><td style='padding-left: 5%'><a href="ChangeChurch.php">     Administer a different Church             </a></td></tr>
+                        <tr><td style='padding-left: 5%'><a href="Users.php">            User Maintenance                          </a></td></tr>
+                        <tr><td style='padding-left: 5%'><a href="Events.php">           Event Maintenance                         </a></td></tr>
+                        <tr><td style='padding-left: 5%'><a href="Coordinators.php">     Director Maintenance                      </a></td></tr>
+                        <tr><td style='padding-left: 5%'><a href="Churches.php">         Church Maintenance                        </a></td></tr>
+                        <tr><td style='padding-left: 5%'><a href="Rooms.php">            Room Maintenance                          </a></td></tr>
+                        <tr><td style='padding-left: 5%'><a href="AdminSchedule.php">    Schedule Maintenance                      </a></td></tr>
+                        <tr><td style='padding-left: 5%'><a href="LockRegistration.php"> Set Registration Status                   </a></td></tr>
+                        <tr><td style='padding-left: 5%'><a href="AdminMoney.php">       Accounting                                </a></td></tr>
+                        <tr><td style='padding-left: 5%'><a href="NewDatabase.php">      Prepare database for new LTC year         </a></td></tr>
                      </table>
                   <?php
                   if(!$MOBILE)
@@ -77,30 +77,37 @@ $charmerCount = $row['Count'];
                   <?php
                   }
                   ?>
-                     <h2>Administrative Reports:</h2>
+                     <h2 align='center'>Administrative Reports:</h2>
                      <table class='registrationTable'>
-                        <tr><td><a target="_blank" href="RptWhoByEvent.php?Admin=1">Who is in what</a> (By Event, All Churches)</td></tr>
-                        <tr><td><a target="_blank" href="RptTeams.php?Admin=1">Team Rosters</a> (All Churches)</td></tr>
-                        <tr><td><a target="_blank" href="RptChurchCoord.php">Church Coordinators</a></td></tr>
-                        <tr><td><a target="_blank" href="RptEnrollment.php">Enrollment</a></td></tr>
-                        <tr><td><a target="_blank" href="RptTshirts.php">T-Shirts</a></td></tr>
-                        <tr><td><a target="_blank" href="RptExpenses.php?Admin=1">Expense Report</a></td></tr>
-                        <tr><td><a target="_blank" href="RptExpensesSumm.php">Expense Report Summary</a></td></tr>
-                        <tr><td><a target="_blank" href="RptBalances.php?nozero">Non-Zero balance Report</a></td></tr>
-                        <tr><td><a target="_blank" href="RptWhoComments.php">Participants with Comments</a></td></tr>
-                        <tr><td><a target="_blank" href="RptSeniors.php">All Seniors with events</a></td></tr>
-                        <tr><td><a target="_blank" href="RptWhoBySched.php?Admin=1">Roster by scheduled event (All Churches, By Event)</a></td></tr>
-                        <tr><td><a target="_blank" href="RptWhoBySched.php?Admin=1&amp;byTime">Roster by scheduled event (All Churches, By Time)</a></td></tr>
-                        <tr><td><a target="_blank" href="RptWhoInWhatAll.php">Participant list with events (All Churches)</a></td></tr>
-                        <tr><td><a target="_blank" href="RptParticipants.php?Admin=1">Participant Lists</a></td></tr>
-                        <tr><td><a target="_blank" href="RptEventParticipation.php">Event Participation</a></td></tr>
-                        <tr><td><a target="_blank" href="RptCountEventBySched.php">Event Participation by time slot</a></td></tr>
-                        <tr><td><a target="_blank" href="RptCoordEvents.php">Event Directors Rosters</a></td></tr>
-                        <tr><td><a target="_blank" href="RptAwardCounts.php">Post Convention Award Counts</a></td></tr>
-                        <tr><td><a target="_blank" href="RptJudgesAssignment.php">Judges Assigned</a></td></tr>
-                        <tr><td><a target="_blank" href="RptJudges.php?Admin=Y">Judges by Congregation</a></td></tr>
-                        <tr><td><a target="_blank" href="RptJudgesAssignment.php?ID=ByEvent">Judges by Event</a></td></tr>
-                        <tr><td><a target="_blank" href="RptCharmers.php">List of C.H.A.R.M.E.R.S</a></td></tr>
+                        <tr><td style='padding-left: 5%'>Accounting Reports</td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptExpensesSumm.php">                  Expense Report: Summary                             </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptBalances.php?nozero">               Expense Report: Churches with Non-Zero balances     </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptExpenses.php?Admin=1">              Expense Report: Details for each church             </a></td></tr>
+
+                        <tr><td style='padding-left: 5%'>Rosters</td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptWhoInWhatAll.php">                  Participant List by Participant with event details  </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptParticipants.php?Admin=1">          Participant List by Church with Shirt, Meal & Grade </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptWhoByEvent.php?Admin=1">            All Events Rosters                                  </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptTeams.php?Admin=1">                 Team Rosters by Church                              </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptWhoBySched.php?Admin=1">            Scheduled events roster by event                    </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptWhoBySched.php?Admin=1&amp;byTime"> Scheduled events roster by time of event            </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptWhoComments.php">                   Participants with Comments                          </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptSeniors.php">                       All Seniors with events this year                   </a></td></tr>
+
+                        <tr><td style='padding-left: 5%'>Administrative</td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptChurchCoord.php">                   Church Coordinators                                 </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptEnrollment.php">                    Church List with Enrollment                         </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptTshirts.php">                       T-Shirts: Sizes and quantities                      </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptAwardCounts.php">                   Award Counts                                        </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptEventParticipation.php">            Event Participation                                 </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptCountEventBySched.php">             Event Participation by time slot                    </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptCoordEvents.php">                   Event Directors Rosters                             </a></td></tr>
+
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptJudgesAssignment.php">              Judges Assigned                                     </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptJudges.php?Admin=Y">                Judges by Congregation                              </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptJudgesAssignment.php?ID=ByEvent">   Judges by Event                                     </a></td></tr>
+
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptCharmers.php">                      List of C.H.A.R.M.E.R.S                             </a></td></tr>
                      </table>
                   </td>
                </tr>

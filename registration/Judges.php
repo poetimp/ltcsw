@@ -39,9 +39,9 @@ if (isset($_POST['AddNew']))
 
          $count = 0;
          ?>
-         <table class='registrationTable'>
+         <table class='registrationTable' style='width: 95%'>
             <tr>
-               <th align="center" colspan="3"><h3>Action</h3></th>
+               <th style='text-align: center' colspan="3"><h3>Action</h3></th>
                <th><h3>Assignments</h3></th>
                <th><h3>Name</h3></th>
             </tr>
@@ -50,10 +50,10 @@ if (isset($_POST['AddNew']))
          {
             ?>
             <tr>
-               <td width="5%" align="center">[<a href="AdminJudges.php?action=view<?php  print "&JudgeID=".$row['JudgeID']; ?>">View</a>]</td>
-               <td width="5%" align="center">[<a href="AdminJudges.php?action=update<?php  print "&JudgeID=".$row['JudgeID']; ?>">Update</a>]</td>
-               <td width="5%" align="center"> [<a href="DelJudge.php?action=del<?php  print "&JudgeID=".$row['JudgeID']."&Name=".urlencode($row['LastName'].", ".$row['FirstName']); ?>">Delete</a>]</td>
-               <td width="5%" align="center">
+               <td style='width: 5%; text-align: center'>[<a href="AdminJudges.php?action=view<?php  print "&JudgeID=".$row['JudgeID']; ?>">View</a>]</td>
+               <td style='width: 5%; text-align: center'>[<a href="AdminJudges.php?action=update<?php  print "&JudgeID=".$row['JudgeID']; ?>">Update</a>]</td>
+               <td style='width: 5%; text-align: center'> [<a href="DelJudge.php?action=del<?php  print "&JudgeID=".$row['JudgeID']."&Name=".urlencode($row['LastName'].", ".$row['FirstName']); ?>">Delete</a>]</td>
+               <td style='width: 5%; text-align: center'>
                   <?php
                      $TimesList = $db->query("select   count(*) Count
                                              from     $JudgeAssignmentsTable
@@ -64,7 +64,7 @@ if (isset($_POST['AddNew']))
                      print $TimeRow['Count'];
                   ?>
                </td>
-               <td width="80%"><?php  print $row['LastName'].", ".$row['FirstName']; ?></td>
+               <td style='width: 80%;'><?php  print $row['LastName'].", ".$row['FirstName']; ?></td>
             </tr>
          <?php
          }

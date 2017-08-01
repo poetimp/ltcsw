@@ -27,6 +27,9 @@ else
       <title>
          Expense Report
       </title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
    <body bgcolor="White">
    <?php
@@ -77,8 +80,7 @@ else
       ?>
       <h1 align="center">Expense Report</h1>
       <h1 align="center">For: <?php  print "$ChurchName";?></h1>
-
-      <table class='registrationTable'>
+      <table class='registrationTable' style='width: 50%;'>
          <tr>
             <td width="25%">Registered Participants</td>
             <td width="25%" align="center"><?php print $ParticipantCount;?></td>

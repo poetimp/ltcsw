@@ -33,9 +33,12 @@ $roomList  = getRoomList();
        <title>
           Scheduled Events Roster
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
-    <body bgcolor="White">
+    <body>
     <h1 align="center">Schedule Roster</h1>
     <hr>
     <?php
@@ -63,7 +66,7 @@ $roomList  = getRoomList();
                    or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table class='registrationTable' border="0" width="100%" id="table1">
+         <table class='registrationTable' style='width: 95%' id='table1'>
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
@@ -177,19 +180,19 @@ $roomList  = getRoomList();
                   <?php
                   if ($byTime)
                   {?>
-                     <td bgcolor=#CCCCCC><b><?php  print "$EventTime ($RoomNameList)"; ?></b></td>
-                     <td bgcolor=#CCCCCC><b><?php  print $EventName; ?></b></td>
+                     <th><b><?php  print "$EventTime ($RoomNameList)"; ?></b></th>
+                     <th><b><?php  print $EventName; ?></b></th>
                   <?php
                   }
                   else
                   {?>
-                     <td bgcolor=#CCCCCC><b><?php  print $EventName; ?></b></td>
-                     <td bgcolor=#CCCCCC><b><?php  print "$EventTime ($RoomNameList)"; ?></b></td>
+                     <th><b><?php  print $EventName; ?></b></td>
+                     <th><b><?php  print "$EventTime ($RoomNameList)"; ?></b></td>
                   <?php
                   }
                   ?>
-                  <td bgcolor=#CCCCCC><b><?php  print $ConvEvent; ?></b></td>
-                  <td bgcolor=#CCCCCC><b><?php  print $TeamEvent; ?></b></td>
+                  <th><b><?php  print $ConvEvent; ?></b></td>
+                  <th><b><?php  print $TeamEvent; ?></b></td>
                </tr>
                <?php
                if ($AdminReport)
@@ -294,7 +297,7 @@ $roomList  = getRoomList();
                   if ($TeamEvent == 'Team' and $prevTeamID != $TeamID)
                   {
                      print "<tr>";
-                     print "   <td bgcolor=#EAEAEA><b>Team: $TeamID</b></td>";
+                     print "   <th><b>Team: $TeamID</b></th>";
                      print "   <td colspan=3>&nbsp;</td>";
                      print "</tr>";
                      $prevTeamID=$TeamID;

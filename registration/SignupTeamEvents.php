@@ -27,10 +27,10 @@ include 'include/RegFunctions.php';
       <form action=AddTeam.php>
          <table class='registrationTable'>
             <tr>
-               <th width="70" align="left">Action</th
-               <th width="105" align="left">Participants</th
-               <th align="left">Team Number</th
-               <th align="left">Event Name</th
+               <th style='width: 70px;  text-align: center' colspan=3>Action</th>
+               <th style='width: 105px; text-align: left'>Participants</th>
+               <th style='text-align: left'>Team Number</th>
+               <th style='text-align: left'>Event Name</th>
             </tr>
          <?php
          $ChurchTeams = $db->query("SELECT E.EventName,
