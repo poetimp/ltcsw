@@ -228,29 +228,29 @@ function constructJudgesTable($dayTimes,$day)
    global $db;
    $dayInitial = substr($day,0,1) == 'F' ? 6 : 7;
    ?>
-   <TABLE width="100%" border="1">
-      <TR>
-         <TD colspan="<?php print $dayTimes?>" align="center" bgcolor="Black">
-            <FONT color="Yellow"><B><?php print $day;?></B></FONT>
-         </TD>
-      </TR>
-      <TR>
+   <table class='registrationTable' width="100%" border="1">
+      <tr>
+         <th colspan="<?php print $dayTimes?>" align="center">
+            <h3><?php print $day;?></h3>
+         </th>
+      </tr>
+      <tr>
       <?php
-         print "<TD bgcolor=\"#6699FF\" width=\"15%\">&nbsp;</TD>\n";
+         print "<th width=\"15%\">&nbsp;</th>\n";
          if (isset($allTimes))
          {
             foreach ($allTimes as $StartTime => $displayTime)
             {
                if (substr($StartTime,0,1) == $dayInitial)
                {
-                  print "<TD bgcolor=\"#6699FF\" align=\"center\">\n";
+                  print "<th align=\"center\">\n";
                   print "<b>$displayTime</b>\n";
-                  print "</TD>\n";
+                  print "</th>\n";
                }
             }
          }
       ?>
-      </TR>
+      </tr>
       <?php
          if (isset($allRooms))
          {
@@ -267,8 +267,8 @@ function constructJudgesTable($dayTimes,$day)
                $count = $row['Count'];
                if ($count > 0)
                {
-                  print "<TR>\n";
-                  print "<TD bgcolor=\"#6699FF\"><b>".preg_replace('/\s*-\s*[a-zA-Z]\s*$/','',$RoomName)."</b></TD>\n";
+                  print "<tr>\n";
+                  print "<th><h3>".preg_replace('/\s*-\s*[a-zA-Z]\s*$/','',$RoomName)."</h3></th>\n";
                   foreach ($allTimes as $StartTime => $displayTime)
                   {
                      if (substr($StartTime,0,1) == $dayInitial)
@@ -296,7 +296,7 @@ function constructJudgesTable($dayTimes,$day)
                            $EventSex     = $row['Sex'];
                            $JudgeTrained = $row['JudgeTrained'];
 
-                           print "<TD align=center><b>$EventName</b><br>\n";
+                           print "<td align=center><b>$EventName</b><br>\n";
                            //----------------------------------------------------------
                            // If there are special notes for this event not it here
                            //----------------------------------------------------------
@@ -309,7 +309,7 @@ function constructJudgesTable($dayTimes,$day)
 
                            if ($JudgesNeeded >0)
                            {
-                              print "<TABLE width=100% border=0>\n";
+                              print "<table class='registrationTable' width=100% border=0>\n";
                               for ($i=0;$i<$JudgesNeeded;$i++)
                               {
                                  $selectName = "judge_" .
@@ -324,8 +324,8 @@ function constructJudgesTable($dayTimes,$day)
                                     $AssignedJudgeChurch = $ChurchID;
                                  }
 
-                                 print "<TR>\n";
-                                 print "<TD>\n";
+                                 print "<tr>\n";
+                                 print "<td>\n";
                                  print "<center>\n";
                                  if ($AssignedJudgeChurch == $ChurchID)
                                  {
@@ -355,23 +355,23 @@ function constructJudgesTable($dayTimes,$day)
                                     print "-- Judge Assigned --\n";
                                  }
                                  print "</center>\n";
-                                 print "</TD>\n";
-                                 print "</TR>\n";
+                                 print "</td>\n";
+                                 print "</tr>\n";
                               }
-                              print "</TABLE>\n";
+                              print "</table>\n";
                            }
-                           print "</TD>\n";
+                           print "</td>\n";
                         }
                         else
-                           print "<TD>&nbsp;</TD>\n";
+                           print "<td>&nbsp;</td>\n";
                      }
                   }
-                  print "</TR>\n";
+                  print "</tr>\n";
                }
             }
          }
       ?>
-   </TABLE>
+   </table>
    <br>
 <?php
 }
@@ -379,12 +379,14 @@ function constructJudgesTable($dayTimes,$day)
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
    <head>
+      <meta http-equiv="Content-Language" content="en-us">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
       <title>Assign Judges</title>
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <h1 align="center">Assign Judges</h1>
       <?php
          if ($StatusMessage != '')

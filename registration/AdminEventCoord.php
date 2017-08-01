@@ -158,7 +158,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       }
       $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
    ?>
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
 
    <?php
       if ($mode == 'update')
@@ -198,8 +198,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
    {
       ?>
       <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <meta http-equiv="Content-Language" content="en-us">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
 
       <?php
       if ($mode == 'update')
@@ -223,7 +224,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       ?>
       </head>
 
-      <body style="background-color: rgb(217, 217, 255);">
+      <body>
 
       <?php
       if ($mode == 'update')
@@ -251,14 +252,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
       }
    ?>
 <form method="post" action="AdminEventCoord.php">
-	<table border="1" width="100%" id="table1">
+	<table class='registrationTable' id="table1">
 	   <!------------------------------------------------------------------------------>
 	   <!-- Row 1                                                                   -->
 	   <!------------------------------------------------------------------------------>
 		<tr>
       <!----------------------- Column 1-7 ------------------------------------------>
-			<td colspan="7" align="center" bgcolor="#000000">
-			<font color="#FFFF00">Coordinator Information</font></td>
+			<th colspan="7" align="center">Coordinator Information</th>
 		</tr>
 	   <!------------------------------------------------------------------------------>
 	   <!-- Row 2                                                                   -->

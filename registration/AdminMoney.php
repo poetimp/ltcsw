@@ -82,11 +82,13 @@ if ($ChurchID != "" and isset($_POST['TxType']))
 
    <head>
       <title>Administer Monies</title>
+      <meta http-equiv="Content-Language" content="en-us">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
       <h1 align=center>Administer Monies</h1>
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <form method="post" action=AdminMoney.php>
          <?php
          if ($ChurchID == "")
@@ -124,15 +126,15 @@ if ($ChurchID != "" and isset($_POST['TxType']))
             <h2 align="center">for<br><?php  print "$ChurchName</h2>"; ?>
 
             <input type=hidden name=ChurchID <?php print "value=$ChurchID"?>>
-            <table border=1 width=100%>
+            <table class='registrationTable' border=1 width=100%>
                <tr>
-                  <td colspan=4 bgcolor=#000000 align=center><font color=#FFFF00>History</font></td>
+                  <td colspan=4 align=center><h3>History</h3></td>
                </tr>
                <tr>
-                  <td bgcolor=#000000><font color=#FFFF00>Date</font></td>
-                  <td bgcolor=#000000><font color=#FFFF00>Type</font></td>
-                  <td bgcolor=#000000><font color=#FFFF00>Amount</font></td>
-                  <td bgcolor=#000000><font color=#FFFF00>Annotation</font></td>
+                  <td>Date</td>
+                  <td>Type</td>
+                  <td>Amount</td>
+                  <td>Annotation</td>
                </tr>
                <?php
 
@@ -211,7 +213,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
                $valueAnnotation = "";
 
             ?>
-            <table align=center border=1>
+            <table class='registrationTable' align=center border=1>
                <tr>
                   <td width="130">Transaction Type:</td>
                   <td width="80"><input type="radio" value="Credit" name="TxType" <?php print $creditChecked?>>Credit</td>

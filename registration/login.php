@@ -19,6 +19,7 @@ if (isset($_POST['submit']))
                            from   $UsersTable
                            where  Userid   = '" . $_POST['userid'] . "'
                            and    Status  != 'L'
+                           group by Password
                           ")
               or die ("Unable to validate Userid and Password!". sqlError());
    $row     = $results->fetch(PDO::FETCH_ASSOC);
@@ -96,18 +97,12 @@ if (isset($_POST['submit']))
 <html lang="en">
    <head>
       <title>LTCSW Registration Sign In</title>
-<!--       <style>
-          html{font-size:100%;}
-          @media(min-width:60em)
-          {
-             html{font-size: 400%}
-          }
-      </style> -->
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <h1 align="center">LTCSW Registration</h1>
       <?php
       if ($systemDown)
@@ -149,12 +144,12 @@ if (isset($_POST['submit']))
              <?php
             if (!$MOBILE)
             {?>
-            <table border="1" width="39%" id="table">
+            <table class='registrationTable' border="1" width="39%" id="table">
             <?php
             }
             else
             {?>
-            <table border="1" width="96%" id="table">
+            <table class='registrationTable' border="1" width="96%" id="table">
             <?php
             }
                ?>

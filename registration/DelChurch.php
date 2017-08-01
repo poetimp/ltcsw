@@ -50,8 +50,11 @@ if (isset($_POST['Confirm']))
          <title>
             Church Deleted
          </title>
+         <meta http-equiv="Content-Language" content="en-us">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
       </head>
-      <body style="background-color: rgb(217, 217, 255);">
+      <body>
          <h1 align=center>
             Church <?php  print $_REQUEST['ChurchName']; ?> Deleted!
          </h1>
@@ -71,9 +74,12 @@ else
           <title>
              Delete Church
           </title>
+          <meta http-equiv="Content-Language" content="en-us">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel=stylesheet href="include/registration.css" type="text/css" />
        </head>
 
-       <body style="background-color: rgb(217, 217, 255);">
+       <body>
           <form method="post" action="DelChurch.php<?php  print "?ChurchID=".$_REQUEST['ChurchID']."&ChurchName=".urlencode($_REQUEST['ChurchName']); ?>">
              <center>
                 <h1>

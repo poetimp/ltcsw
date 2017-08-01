@@ -56,7 +56,7 @@ $pageBreak='';
                     or die ("Unable to get event list:" . sqlError());
        $first = 1;
        ?>
-       <table border="0" width="100%" id="table1">
+       <table class='registrationTable' border="0" width="100%" id="table1">
        <?php
        while ($row = $eventList->fetch(PDO::FETCH_ASSOC))
        {

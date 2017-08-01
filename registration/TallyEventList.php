@@ -27,9 +27,12 @@ $prevTime = "";
        <title>
           Assign Awards
        </title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
     <h1 align="center">Select Event to Assign Awards</h1>
     <hr>
     <?php
@@ -62,7 +65,7 @@ $prevTime = "";
                    or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table border="1"
+         <table class='registrationTable' border="1"
                 width="100%"
                 onmouseover="javascript:trackTableHighlight(event, '#8888FF');"
                 onmouseout="javascript:highlightTableRow(0);"
@@ -186,7 +189,7 @@ $prevTime = "";
             {
                ?>
                <tr id="header">
-                  <td bgcolor="#C0C0C0" colspan=6><b><?php  print $EventTime; ?></b></td>
+                  <th colspan=6><b><?php  print $EventTime; ?></b></th>
                </tr>
                <?php
                $prevTime = $EventTime;
@@ -241,7 +244,7 @@ $prevTime = "";
                    or die ("Unable to get Unscheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table border="1"
+         <table class='registrationTable' border="1"
                 width="100%"
                 onmouseover="javascript:trackTableHighlight(event, '#8888FF');"
                 onmouseout="javascript:highlightTableRow(0);"
@@ -337,7 +340,7 @@ $prevTime = "";
             {
                ?>
                <tr>
-                  <td id="header" bgcolor="#C0C0C0" colspan=6><b><?php  print $ConvEvent; ?></b></td>
+                  <th id="header" colspan=6><b><?php  print $ConvEvent; ?></b></th>
                </tr>
                <?php
                $prevTime = $ConvEvent;

@@ -64,7 +64,7 @@ $prevTime = "";
                    or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable'>
          <?php
          //--------------------------------------------------------------------
          // No loop through the events reporting on the details
@@ -112,7 +112,7 @@ $prevTime = "";
             {
                ?>
                <tr>
-                  <td bgcolor="#C0C0C0" colspan=4><b><?php  print $EventTime; ?></b></td>
+                  <td colspan=4><b><?php  print $EventTime; ?></b></td>
                </tr>
                <?php
                $prevTime = $EventTime;
@@ -156,7 +156,7 @@ $prevTime = "";
                    or die ("Unable to get Unscheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable'>
          <?php
          //--------------------------------------------------------------------
          // No loop through the events reporting on the details
@@ -198,7 +198,7 @@ $prevTime = "";
             {
                ?>
                <tr>
-                  <td bgcolor="#C0C0C0" colspan=3><b><?php  print $ConvEvent; ?></b></td>
+                  <td colspan=3><b><?php  print $ConvEvent; ?></b></td>
                </tr>
                <?php
                $prevTime = $ConvEvent;

@@ -183,7 +183,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       if ($ErrorMsg == "")
       {
       ?>
-         <body style="background-color: rgb(217, 217, 255);">
+         <body>
          <?php
               if ($mode == 'update')
               {
@@ -216,8 +216,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
    <head>
-   <meta http-equiv="Content-Language" content="en-us">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
    <?php
       if ($mode == 'update')
@@ -241,7 +242,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
    <?php
       if ($mode == 'update')
       {
@@ -278,11 +279,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             $requestString.="?Userid=".$_REQUEST['Userid'];
          ?>
       <form method="post" action=AdminUser.php<?php print $requestString?>>
-         <table border="1" width="100%" id="table1">
+         <table class='registrationTable' id="table1">
             <tr>
-               <td colspan="6" bgcolor="#000000">
-               <p align="center"><font color="#FFFF00">
-               <span style="background-color: #000000">User Information</span></font></td>
+               <th colspan="6">User Information</th>
             </tr>
             <tr>
                <td width="12%">Userid</td>

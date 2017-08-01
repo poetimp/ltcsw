@@ -55,7 +55,7 @@ if ($Admin != 'Y')
                     or die ("Unable to get event list:" . sqlError());
        $first = 1;
        ?>
-       <table border="1" width="100%" id="table1">
+       <table class='registrationTable' id="table1">
           <tr>
              <td bgcolor=#CCCCCC><b>Event Name</b></td>
              <td bgcolor=#CCCCCC><b>Convention Presence</b></td>

@@ -46,12 +46,13 @@ function ScheduleEventGet($EventID)
    <head>
       <meta http-equiv="Content-Language" content="en-us">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
       <title>Schedule Events</title>
 
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <h1 align="center">Schedule Convention Events</h1>
       <?php
       $results = $db->query("select   EventName,
@@ -62,7 +63,7 @@ function ScheduleEventGet($EventID)
                               order by EventName")
                  or die ("Unable to obtain convention event list:" . sqlError());
       ?>
-      <table border="1" width="100%">
+      <table class='registrationTable'>
       <?php
       while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {

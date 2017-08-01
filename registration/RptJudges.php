@@ -75,7 +75,7 @@ else
                                  ")
             or die ("Unable to obtain Judge List:" . sqlError());
             ?>
-            <table border="1" width="100%">
+            <table class='registrationTable'>
                <tr>
                </tr>
             <?php

@@ -36,7 +36,7 @@ include 'include/RegFunctions.php';
                     or die ("Not found:" . sqlError());
          $first = 1;
          ?>
-         <table border="0" width="100%" id="table1">
+         <table class='registrationTable' border="0" width="100%" id="table1">
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {

@@ -18,12 +18,14 @@ include 'include/RegFunctions.php';
 <html lang="en">
 
    <head>
+      <meta http-equiv="Content-Language" content="en-us">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
       <title>Charmers</title>
    </head>
 
-   <body  style="background-color: rgb(217, 217, 255);">
+   <body >
       <h1 align="center">Manage Charmers</h1>
       <p>Every year the LTCSW Board depends upon many volunteers to make the
          convention run smoothly. This includes a wide variety of jobs:
@@ -55,41 +57,19 @@ include 'include/RegFunctions.php';
                     or die ("Unable to get charmer list:" . sqlError());
 
          ?>
-               <table border="1" width="100%">
+               <table class='registrationTable'>
                   <tr>
-                     <td width="70" align="center" bgcolor="#000000">
-                        <font color="#FFFF00">View</font>
-                     </td>
-                     <td width="70" align="center" bgcolor="#000000">
-                        <font color="#FFFF00">Update</font>
-                     </td>
-                     <td width="70" align="center" bgcolor="#000000">
-                        <font color="#FFFF00">Delete</font>
-                     </td>
-                     <td bgcolor="#000000">
-                        <font color="#FFFF00">Name</font>
-                     </td>
-                     <td bgcolor="#000000">
-                        <font color="#FFFF00">Sex</font>
-                     </td>
-                     <td bgcolor="#000000">
-                        <font color="#FFFF00">Need Room</font>
-                     </td>
-                     <td bgcolor="#000000">
-                        <font color="#FFFF00">Shirt Needed</font>
-                     </td>
-                     <td bgcolor="#000000">
-                        <font color="#FFFF00">Shirt Size</font>
-                     </td>
-                     <td bgcolor="#000000"">
-                        <font color="#FFFF00">Phone</font>
-                     </td>
-                     <td bgcolor="#000000">
-                        <font color="#FFFF00">Email</font>
-                     </td>
-                     <td bgcolor="#000000">
-                        <font color="#FFFF00">Availability</font>
-                     </td>
+                     <th width="70" align="center">View</th>
+                     <th width="70" align="center">Update</th>
+                     <th width="70" align="center">Delete</th>
+                     <th>Name</th>
+                     <th>Sex</th>
+                     <th>Need Room</th>
+                     <th>Shirt Needed</th>
+                     <th>Shirt Size</th>
+                     <th>Phone</th>
+                     <th>Email</th>
+                     <th>Availability</th>
                   </tr>
                <?php
                while ($row = $results->fetch(PDO::FETCH_ASSOC))

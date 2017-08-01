@@ -49,7 +49,7 @@ if ($Admin != 'Y')
          print "   $ChurchName\n";
          print "</h1>\n";
          print "<hr>\n";
-         print "<table border=1 width=100%>\n";
+         print "<table class='registrationTable' border=1 width=100%>\n";
 
          $CurrentChurch = $ChurchName;
          $CurrentEvent  = '';

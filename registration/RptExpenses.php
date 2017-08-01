@@ -78,7 +78,7 @@ else
       <h1 align="center">Expense Report</h1>
       <h1 align="center">For: <?php  print "$ChurchName";?></h1>
 
-      <table border="1" width="100%">
+      <table class='registrationTable'>
          <tr>
             <td width="25%">Registered Participants</td>
             <td width="25%" align="center"><?php print $ParticipantCount;?></td>

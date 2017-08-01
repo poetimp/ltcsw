@@ -61,17 +61,18 @@ if (isset($_POST['submit']))
 
    <head>
       <title>Request Userid/Password</title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <h1 align="center">Request Userid/Password</h1>
 
       <form method="post" action=ReqUserid.php>
-         <table align="center" border="1" width="425px" id="table1">
+         <table class='registrationTable' align="center" border="1" width="425px" id="table1">
             <tr>
-               <td colspan="2" bgcolor="#000000">
-               <p align="center"><font color="#FFFF00">
-               <span style="background-color: #000000">User Information</span></font></td>
+               <th colspan="2" align="center">User Information</th>
             </tr>
             <tr>
 

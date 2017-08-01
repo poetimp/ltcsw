@@ -119,12 +119,14 @@ if (isset($_POST['Confirm']))
    WriteToLog("Database reinitalized");
    ?>
       <head>
+         <meta http-equiv="Content-Language" content="en-us">
          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
          <title>
             Database prepared
          </title>
       </head>
-      <body style="background-color: rgb(217, 217, 255);">
+      <body>
          <h1 align=center>
             Database has been cleared of previous year's data
          </h1>
@@ -145,9 +147,12 @@ else
           <title>
              Prepare database for new year
           </title>
+          <meta http-equiv="Content-Language" content="en-us">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel=stylesheet href="include/registration.css" type="text/css" />
        </head>
 
-       <body style="background-color: rgb(217, 217, 255);">
+       <body>
           <form method="post" action="NewDatabase.php">
              <center>
                 <h1>
@@ -155,7 +160,7 @@ else
                 </h1>
              </center>
              <p align="center">
-             <table width=60%>
+             <table class='registrationTable' width=60%>
                 <tr>
                    <td>
                    <b><p align=center><font color=red><h2>Warning!!!</h2></font></p></b>

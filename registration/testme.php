@@ -54,7 +54,7 @@ else
 }
 
 $eventSchedule= ScheduleEventGet(100);
-print("<table border=1>");
+print("<table class='registrationTable' border=1>");
 foreach ($eventSchedule as $RoomName=>$StartTime)
    print("<tr><td>$RoomName</td><td>".TimeToStr($StartTime)."</td></tr>");
 print("</table>");
@@ -73,18 +73,18 @@ else
 }
 
 //$church_list = ChurchesRegistered();
-//print("<table border=1>");
+//print("<table class='registrationTable' border=1>");
 //foreach ($church_list as $ChurchID=>$ChurchName)
 //   print("<tr><td>$ChurchID</td><td>$ChurchName</td></tr>");
 //print("</table>");
 //print("<br><br>");
 //$ParticipantIDs = ActiveParticipants(108);
-//print("<table border=1>");
+//print("<table class='registrationTable' border=1>");
 //foreach ($ParticipantIDs as $ParticipantID=>$ParticipantName)
 //   print("<tr><td>$ParticipantID</td><td>$ParticipantName</td></tr>");
 //print("</table>");
 //
-//print("<table border=1>");
+//print("<table class='registrationTable' border=1>");
 //foreach ($_SERVER as $Name=>$Value)
 //   print("<tr><td>$Name</td><td>$Value</td></tr>");
 //print("</table>");

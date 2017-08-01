@@ -41,7 +41,9 @@ if ($Admin != 'Y')
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
    <head>
+      <meta http-equiv="Content-Language" content="en-us">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
       <title>
          Awards Report
       </title>
@@ -56,14 +58,14 @@ if ($Admin != 'Y')
          {
             ?>
          <div <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>>
-         <table border="0" width="100%">
+         <table class='registrationTable' border="0" width="100%">
             <tr>
-               <td colspan="5" bgcolor="#C0C0C0">
+               <th colspan="5">
                      <b>
                         <?php  print $ChurchName;  ?>
                      </b>
                   </div>
-               </td>
+               </th>
             </tr>
                <?php
                   $ParticipantList = ActiveParticipants($ChurchID);
@@ -72,7 +74,7 @@ if ($Admin != 'Y')
                   ?>
                      <tr>
                         <td width="5%" colspan="1">&nbsp;</td>
-                        <td width="95%" colspan="4" bgcolor="#F0F0F0"><?php  print $ParticipantName;  ?></td>
+                        <th width="95%" colspan="4" ><?php  print $ParticipantName;  ?></th>
                      </tr>
                      <?php
 

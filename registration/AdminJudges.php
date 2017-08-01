@@ -171,7 +171,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       }
 
       ?>
-         <body style="background-color: rgb(217, 217, 255);">
+         <body>
          <?php
               if ($mode == 'update')
               {
@@ -203,8 +203,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
    <head>
-   <meta http-equiv="Content-Language" content="en-us">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
    <?php
       if ($mode == 'update')
@@ -228,7 +229,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
    <?php
       if ($mode == 'update')
       {
@@ -256,17 +257,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
 
    <form method="post" action=AdminJudges.php>
-      <table border="1" width="100%" id="table1">
+      <table class='registrationTable' id="table1">
          <tr>
-            <td colspan="5" bgcolor="#000000">
-               <p align="center">
-                  <font color="#FFFF00">
-                     <span style="background-color: #000000">
-                        Judge Information
-                     </span>
-                  </font>
-               </p>
-            </td>
+            <th colspan="5"  align="center">Judge Information</th>
          </tr>
          <tr>
             <td width="15%">First Name</td>

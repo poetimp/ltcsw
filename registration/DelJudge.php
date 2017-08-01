@@ -19,12 +19,17 @@ if (isset($_POST['Confirm']))
       or die ("Unable to delete Judge Assignment records: "  . sqlError());
    ?>
       <head>
+         <meta http-equiv="Content-Language" content="en-us">
          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
          <title>
             Judge Deleted
          </title>
+         <meta http-equiv="Content-Language" content="en-us">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
       </head>
-      <body style="background-color: rgb(217, 217, 255);">
+      <body>
          <h1 align=center>
             Judge: <?php  print $_REQUEST['Name']; ?> Deleted!
          </h1>
@@ -46,9 +51,12 @@ else
           <title>
              Delete Judge
           </title>
+          <meta http-equiv="Content-Language" content="en-us">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel=stylesheet href="include/registration.css" type="text/css" />
        </head>
 
-       <body style="background-color: rgb(217, 217, 255);">
+       <body>
           <form method="post" action="DelJudge.php<?php  print "?JudgeID=".$_REQUEST['JudgeID']."&Name=".urlencode($_REQUEST['Name']); ?>">
              <center>
                 <h1>

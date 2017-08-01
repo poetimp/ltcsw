@@ -136,7 +136,7 @@ function highlightTableRow(myElement, highlightColor)
 }
 
 /////////////////////////////////////////////////////
-// This function is to be assigned to a <table> mouse event handler.
+// This function is to be assigned to a <table class='registrationTable'> mouse event handler.
 // If the element that fired the event is within a table row,
 //   this function will highlight the row.
 /////////////////////////////////////////////////////

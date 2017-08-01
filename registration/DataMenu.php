@@ -22,15 +22,18 @@ if ($Admin != 'Y')
       <title>
          Data Access
       </title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <h1 align=center>
          Data Access
       </h1>
 
-         <table border="1" width="100%">
+         <table class='registrationTable'>
             <tr>
-               <TD align="center" bgcolor="#C0C0C0" colspan="2">
+               <TD align="center" colspan="2">
                   <font size="+2">
                      <b>Download Data</b>
                   </font>

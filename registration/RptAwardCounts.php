@@ -59,7 +59,7 @@ $awardsBronze = 0;
                     or die ("Unable to get award list:" . sqlError());
 
        ?>
-         <table border="1" width="100%" id="table1">
+         <table class='registrationTable' id="table1">
             <tr>
                <td bgcolor="#000000"><font color="#FFFF00">Event Name</font></td>
                <td bgcolor="#000000"><font color="#FFFF00">Gold</font></td>
@@ -183,7 +183,7 @@ $awardsBronze = 0;
          }
          //print "<pre>";print_r($teamAwards); print "</pre>";
          ?>
-         <table border="1" width="100%" id="table1">
+         <table class='registrationTable' id="table1">
             <tr>
                <td bgcolor="#000000"><font color="#FFFF00">Event Name</font></td>
                <td bgcolor="#000000"><font color="#FFFF00">Gold</font></td>
@@ -210,7 +210,7 @@ $awardsBronze = 0;
     <hr>
     <h1 align="center">Summary Award Counts</h1>
     <hr>
-    <table border="1" width="100%" id="table1">
+    <table class='registrationTable' id="table1">
        <tr>
           <td bgcolor="#000000"><font color="#FFFF00">Gold</font></td>
           <td bgcolor="#000000"><font color="#FFFF00">Silver</font></td>

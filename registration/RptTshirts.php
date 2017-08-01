@@ -25,17 +25,17 @@ if ($Admin != 'Y')
    </head>
    <body bgcolor="White">
       <h1 align="center">T-Shirt Orders by Congregation</h1>
-      <table border="1" width="100%" id="table1">
+      <table class='registrationTable' id="table1">
          <tr>
-            <td width="20%" bgcolor="#C0C0C0"><b>Church Name</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>YM</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>YL</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>S</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>M</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>LG</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>XL</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>XX</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>Total</b></td>
+            <td width="20%"><b>Church Name</b></td>
+            <td align="center" width="10%"><b>YM</b></td>
+            <td align="center" width="10%"><b>YL</b></td>
+            <td align="center" width="10%"><b>S</b></td>
+            <td align="center" width="10%"><b>M</b></td>
+            <td align="center" width="10%"><b>LG</b></td>
+            <td align="center" width="10%"><b>XL</b></td>
+            <td align="center" width="10%"><b>XX</b></td>
+            <td align="center" width="10%"><b>Total</b></td>
          </tr>
    <?php
 //=================================================================================================
@@ -141,7 +141,7 @@ if ($Admin != 'Y')
                <td align="center"><?php  print $shirt['LG'];?></td>
                <td align="center"><?php  print $shirt['XL'];?></td>
                <td align="center"><?php  print $shirt['XX'];?></td>
-               <td align="center" bgcolor="#C0C0C0"><?php  print $rowTotal   ;?></td>
+               <td align="center"><?php  print $rowTotal   ;?></td>
             </tr>
          <?php
          }
@@ -157,15 +157,15 @@ if ($Admin != 'Y')
          //=================================================================================================
          ?>
          <tr>
-            <td bgcolor="#C0C0C0">Total</td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['YM'];?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['YL'];?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['S']; ?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['M']; ?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['LG'];?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['XL'];?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['XX'];?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['grand'];?></td>
+            <td>Total</td>
+            <td align="center"><?php  print $total['YM'];?></td>
+            <td align="center"><?php  print $total['YL'];?></td>
+            <td align="center"><?php  print $total['S']; ?></td>
+            <td align="center"><?php  print $total['M']; ?></td>
+            <td align="center"><?php  print $total['LG'];?></td>
+            <td align="center"><?php  print $total['XL'];?></td>
+            <td align="center"><?php  print $total['XX'];?></td>
+            <td align="center"><?php  print $total['grand'];?></td>
          </tr>
       </table>
    </body>

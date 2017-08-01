@@ -46,6 +46,9 @@ if (isset($_POST['reset']))
           $email .= "      <title>\n";
           $email .= "         LTC Password Reset\n";
           $email .= "      </title>\n";
+          $email .= "      <meta http-equiv=\"Content-Language\" content=\"en-us\">\n";
+          $email .= "      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
+          $email .= "      <link rel=stylesheet href=\"include/registration.css\" type=\"text/css\" />\n";
           $email .= "      <h1 align=center>\n";
           $email .= "         LTC Password Reset\n";
           $email .= "      </h1>\n";
@@ -91,11 +94,11 @@ if (isset($_POST['reset']))
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <title>Forgot Password</title>
     </head>
-    <body style="background-color: rgb(217, 217, 255);">
+    <body>
         <h1 align=center>Forgot Password</h1>
         <form method="post" id="main" name="main">
             <center>
-                <table border="0" width="550px">
+                <table class='registrationTable' border="0" width="550px">
                     <tr>
                         <td>
                             <p style="text-align: Left">
@@ -112,7 +115,7 @@ if (isset($_POST['reset']))
                     </tr>
                 </table>
 
-                <table border="1" width="625px" style="text-align: center">
+                <table class='registrationTable' border="1" width="625px" style="text-align: center">
                     <tr>
                         <td colspan="2"><b>Enter your Email address:</b></td>
                     </tr>

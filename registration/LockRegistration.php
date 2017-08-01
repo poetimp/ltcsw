@@ -63,11 +63,13 @@ else if (isset($_POST['Close']))
 <html lang="en">
 
 <head>
+   <meta http-equiv="Content-Language" content="en-us">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Lock or Unlock Registration</title>s
+   <link rel=stylesheet href="include/registration.css" type="text/css" />
+   <title>Lock or Unlock Registration</title>
 </head>
 
-<body style="background-color: rgb(217, 217, 255);">
+<body>
 <h1 align="center">Open or Close Registration </h1>
 <?php
 if (isset($_POST['Lock']))
@@ -102,13 +104,13 @@ else if (isset($_POST['Close']))
                     or die ("Unable to get user list:" . sqlError());
 
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable'>
             <tr>
-               <td bgcolor="#000000"><font color="#FFFF00">Userid</font></td>
-               <td bgcolor="#000000"><font color="#FFFF00">User Name</font></td>
-               <td bgcolor="#000000"><font color="#FFFF00">Church Name</font></td>
-               <td bgcolor="#000000"><font color="#FFFF00">Administrator</font></td>
-               <td bgcolor="#000000"><font color="#FFFF00">Status</font></td>
+               <th style='text-align:left'>Userid</th>
+               <th>User Name</th>
+               <th>Church Name</th>
+               <th>Administrator</th>
+               <th>Status</th>
             </tr>
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
@@ -143,11 +145,11 @@ else if (isset($_POST['Close']))
             }
             ?>
             <tr>
-               <td><?php  print $row['Userid']; ?></td>
+               <td style='text-align:left'><?php  print $row['Userid']; ?></td>
                <td><?php  print $row['Name']; ?></td>
                <td><?php  print $ChurchName; ?></td>
-               <td align=center><?php  print $row['Admin']; ?></td>
-               <td align=center><?php  print $row['Status']; ?></td>
+               <td align='center'><?php  print $row['Admin']; ?></td>
+               <td align='center'><?php  print $row['Status']; ?></td>
             </tr>
          <?php
          }

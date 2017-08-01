@@ -205,12 +205,13 @@ function selectTime($Timestr = '')
    <head>
       <meta http-equiv="Content-Language" content="en-us"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
       <title>Schedule Events</title>
 
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);" onload="window.scrollTo(0,document.body.scrollHeight);document.forms[0].Save.focus();window.scrollBy(0,-30);">
+   <body onload="window.scrollTo(0,document.body.scrollHeight);document.forms[0].Save.focus();window.scrollBy(0,-30);">
       <h1 align="center">Schedule Convention Events</h1>
       <?php
       //dumpSysVars();
@@ -222,7 +223,7 @@ function selectTime($Timestr = '')
                  or die ("Unable to obtain convention event list:" . sqlError());
       ?>
       <form method="post">
-      <table border="1" width="100%">
+      <table class='registrationTable'>
       <?php
       while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {
@@ -231,8 +232,8 @@ function selectTime($Timestr = '')
 
          ?>
          <tr>
-         <td align="center"><a href="<?php print $_SERVER['PHP_SELF']."?AddEventID=$EventID"?>">Add</a></td>
-         <td colspan="4"><?php  print $EventName; ?></td>
+         <th align="center"><a href="<?php print $_SERVER['PHP_SELF']."?AddEventID=$EventID"?>">Add</a></th>
+         <th colspan="4"><?php  print $EventName; ?></th>
          </tr>
          <?php
          //print "<br>errorID: [$errorID], EventID: [$EventID]<br>\n";

@@ -49,7 +49,7 @@ if ($Admin != 'Y')
                     or die ("Not found:" . sqlError());
          $first = 1;
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable'>
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {

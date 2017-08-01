@@ -112,7 +112,7 @@ if ($Admin != 'Y')
                <h2 align="center"><?php print $EventCoord?></h2>
                <hr>
 
-               <table border="0" width="100%">
+               <table class='registrationTable' border="0" width="100%">
                <tr>
                   <td>&nbsp;</td>
                   <td>&nbsp;</td>

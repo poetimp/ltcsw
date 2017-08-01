@@ -1,4 +1,4 @@
-<<?php
+<?php
 //----------------------------------------------------------------------------
 // This software is licensed under the MIT license. Use as you wish but give
 // and take credit where due.
@@ -20,14 +20,15 @@ if ($Admin != 'Y')
 <html lang="en">
 
 <head>
-<meta http-equiv="Content-Language" content="en-us">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="Content-Language" content="en-us">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel=stylesheet href="include/registration.css" type="text/css" />
 
-<title>View Log</title>
+   <title>View Log</title>
 
 </head>
 
-<body style="background-color: rgb(217, 217, 255);">
+<body>
    <h1 align="center">View Access Log</h1>
    <?php
       $results = $db->query("select   *
@@ -38,11 +39,11 @@ if ($Admin != 'Y')
 
       ?>
       <div align="center">
-      <table border="1">
+      <table class='registrationTable' border="1">
          <tr>
-            <td width="250" align="left" bgcolor="#000000"><font color="yellow">Date</font></td>
-            <td width="100" align="left" bgcolor="#000000"><font color="yellow">Userid</font></td>
-            <td width="250" align="left" bgcolor="#000000"><font color="yellow">Log Entry</font></td>
+            <th width="250" align="left">Date</td>
+            <th width="100" align="left">Userid</td>
+            <th width="250" align="left">Log Entry</td>
          </tr>
       <?php
       while ($row = $results->fetch(PDO::FETCH_ASSOC))
@@ -71,11 +72,11 @@ if ($Admin != 'Y')
       ?>
       <div align="center">
       <h1 align="center">View Current Convention Log</h1>
-      <table border="1">
+      <table class='registrationTable' border="1">
          <tr>
-            <td align="left" bgcolor="#000000"><font color="yellow">Date</font></td>
-            <td align="left" bgcolor="#000000"><font color="yellow">Userid</font></td>
-            <td align="left" bgcolor="#000000"><font color="yellow">Log Entry</font></td>
+            <th align="left">Date</th>
+            <th align="left">Userid</th>
+            <th align="left">Log Entry</th>
          </tr>
       <?php
       while ($row = $results->fetch(PDO::FETCH_ASSOC))

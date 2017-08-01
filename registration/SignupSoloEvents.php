@@ -16,12 +16,13 @@ include 'include/RegFunctions.php';
 <head>
 <meta http-equiv="Content-Language" content="en-us">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel=stylesheet href="include/registration.css" type="text/css" />
 
 <title>Assign Individual Events</title>
 
 </head>
 
-<body style="background-color: rgb(217, 217, 255);">
+<body>
 <h1 align="center">Assign Individual Events</h1>
       <?php
          $results = $db->query("select FirstName,
@@ -36,13 +37,13 @@ include 'include/RegFunctions.php';
 
          $count = 0;
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable'>
             <tr>
-               <td width="70" align=center bgcolor="#000000"><font color="#FFFF00">Team</font></td>
-               <td width="70" align=center bgcolor="#000000"><font color="#FFFF00">Individual</font></td>
-               <td width="70" align=center bgcolor="#000000"><font color="#FFFF00">Grade</font></td>
-               <td width="70" align=center bgcolor="#000000"><font color="#FFFF00">ID Number</font></td>
-               <td align="left" bgcolor="#000000"><font color="#FFFF00">Participant</font></td>
+               <th width="70" align=center>Team</th>
+               <th width="70" align=center>Individual</th>
+               <th width="70" align=center>Grade</th>
+               <th width="70" align=center>ID Number</th>
+               <th align="left">Participant</th>
             </tr>
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))

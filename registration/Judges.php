@@ -20,12 +20,12 @@ if (isset($_POST['AddNew']))
 <head>
 <meta http-equiv="Content-Language" content="en-us">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel=stylesheet href="include/registration.css" type="text/css" />
 <title>Maintain Judges</title>
 
 </head>
 
-<body style="background-color: rgb(217, 217, 255);">
+<body>
 <h1 align="center">Judges Maintenance </h1>
 <form method="post" action=Judges.php>
       <?php
@@ -39,11 +39,11 @@ if (isset($_POST['AddNew']))
 
          $count = 0;
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable'>
             <tr>
-               <TD align="center" colspan="3" bgcolor="Black"><font color="Yellow"><b>Action</b></font></TD>
-               <TD bgcolor="Black"><font color="Yellow"><b>Assignments</b></font></TD>
-               <TD bgcolor="Black"><font color="Yellow"><b>Name</b></font></TD>
+               <th align="center" colspan="3"><h3>Action</h3></th>
+               <th><h3>Assignments</h3></th>
+               <th><h3>Name</h3></th>
             </tr>
          <?php
          while ($row = $JudgeList->fetch(PDO::FETCH_ASSOC))

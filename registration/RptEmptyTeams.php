@@ -56,7 +56,7 @@ if ($Admin != 'Y')
                                           ChurchName")
                     or die (":" . sqlError());
          ?>
-         <table border="1" width="100%" id="table1">
+         <table class='registrationTable' id="table1">
             <tr>
                <td bgcolor="#000000"><font color="#FFFF00">Event Name</font></td>
                <td bgcolor="#000000"><font color="#FFFF00">Event Time</font></td>

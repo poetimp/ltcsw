@@ -41,12 +41,12 @@ else
       if (count($ChuchList) > 0)
       {
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable'>
                <tr>
-                  <td width="40%" align="left" bgcolor="#C0C0C0">Church</td>
-                  <td width="10%" align="center" bgcolor="#C0C0C0">Participants?</td>
-                  <td width="25%" align="center" bgcolor="#C0C0C0">Description</td>
-                  <td width="25%" align="left" bgcolor="#C0C0C0">Amount</td>
+                  <td width="40%" align="left">Church</td>
+                  <td width="10%" align="center">Participants?</td>
+                  <td width="25%" align="center">Description</td>
+                  <td width="25%" align="left">Amount</td>
                </tr>
          <?php
          foreach ($ChuchList as $ChurchID=>$ChurchName)

@@ -90,7 +90,7 @@ if ($Admin != 'Y')
       ?>
       <h1 align="center">Summary Expense Report</h1>
 
-      <table border="1" width="100%">
+      <table class='registrationTable'>
          <tr>
             <td width="25%">Registered Participants</td>
             <td width="25%" align="center"><?php print $ParticipantCount;?></td>
