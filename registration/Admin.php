@@ -49,7 +49,7 @@ $charmerCount = $row['Count'];
          if ($Admin =='Y')
          {
             ?>
-            <table class='registrationTable'>
+            <table class='registrationTable' style='width: 95%'>
                <tr>
                   <td colspan="2" style="text-align: center"><h2>Administration Functions</h2></td>
                </tr>
@@ -115,7 +115,7 @@ $charmerCount = $row['Count'];
             </table>
             <br />
 
-            <table class='registrationTable'>
+            <table class='registrationTable' style='width: 95%'>
                <tr>
                   <td colspan="2" style='text-align: center'><font size="+2"><b>Tally Room Functions</b></font></td>
                </tr>
@@ -148,7 +148,7 @@ $charmerCount = $row['Count'];
          }
 
          ?>
-         <table class='registrationTable'>
+         <table class='registrationTable' style='width: 95%'>
             <tr>
                 <td colspan="2" style='text-align: center'><font size="+2"><b>Church Coordination Functions</b></font></td>
             </tr>
