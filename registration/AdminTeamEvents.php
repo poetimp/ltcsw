@@ -377,7 +377,7 @@ if (isset($_POST['Apply']))
     {
     ?>
         <form method="post" action="AdminTeamEvents.php?EventID=<?php  print $EventID; ?>&TeamID=<?php  print $TeamID; ?><?php  if ($Admin == 'Y' and isset($_REQUEST['ChurchID'])) print "&ChurchID=$ChurchID"; if (isset($_REQUEST['Return'])) print '&Return='.$_REQUEST['Return']?>">
-          <table class='registrationTable'>
+          <table class='registrationTable' style='width: 95%'>
           <?php
          $EventResult = $db->query("select EventAttended
                                      from   $EventsTable
@@ -406,7 +406,7 @@ if (isset($_POST['Apply']))
          {
             ?>
             <tr>
-               <th width="10%">
+               <th style='width: 10%;'>
                <?php
                if ($Action == "View")
                {
@@ -562,9 +562,9 @@ if (isset($_POST['Apply']))
             else
             {
             ?>
-               <th width="10%">Selected</th>
-               <th width="10%">Grade</th>
-               <th width='80%'>Participant Name</th>
+               <th style='width: 10%;'>Selected</th>
+               <th style='width: 10%;'>Grade</th>
+               <td style='width: 80%;'>Participant Name</th>
             <?php
             }
             ?>
@@ -629,12 +629,12 @@ if (isset($_POST['Apply']))
                 {
                 ?>
                 <tr>
-                  <td width="10%">
+                  <td style='width: 10%;'>
                      <center>
                         <input type="checkbox" name="s<?php  print $ParticipantID; ?>" value="ON" <?php  print $selected == 1 ? 'checked' : '' ?>/>
                      </center>
                   </td>
-                  <td width="10%">
+                  <td style='width: 10%;'>
                      <div style="text-align:center">
                   <?php
                      print $ParticipantGrade;

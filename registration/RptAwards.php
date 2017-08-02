@@ -81,14 +81,14 @@ if ($Admin != 'Y')
          $CurrentEvent  = $EventName;
       }
       print "   <tr>\n";
-      print "      <td width=10%>&nbsp;</td>\n";
-      print "      <td width=10% align=left>\n";
+      print "      <td style='width: 10%;'>&nbsp;</td>\n";
+      print "      <td style='width: 10%; text-align: left;'>\n";
       print "         $Award\n";
       print "      </td>\n";
-      print "      <td width=10% align=left>\n";
+      print "      <td style='width: 10%; text-align: left;'>\n";
       print "         $AwardCount\n";
       print "      </td>\n";
-      print "      <td width=70%>&nbsp;</td>\n";
+      print "      <td style='width: 70%;'>&nbsp;</td>\n";
       print "   </tr>\n";
 
    }

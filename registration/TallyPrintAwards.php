@@ -138,22 +138,22 @@ else
                         print "<h2 align=\"center\">*** Warning there are entries without awards Assigned ***</h2>"
                   ?>
                   <hr>
-                  <table class='registrationTable' border="0" width="100%">
+                  <table class='registrationTable' style='width=: 95%'>
                <?php
                   $prevChurchName = $ChurchName;
                }
                ?>
                <tr>
-                  <TD colspan="4">&nbsp;</TD>
+                  <td colspan="4">&nbsp;</td>
                </tr>
                <tr>
-                  <TD colspan="4">&nbsp;</TD>
+                  <td colspan="4">&nbsp;</td>
                </tr>
                <tr>
-               <TD width="30%"><b><?php print $ChurchName;?></b></TD>
-               <TD width="30%"><b><?php print $EventName;?></b></TD>
-               <TD width="25%"><b><?php print $PatricipantName;?></b></TD>
-               <TD width="15%"><b><?php print $Award;?></b></TD>
+               <td style='width: 30%;'<b><?php print $ChurchName;?></b></TD>
+               <td style='width: 30%;'<b><?php print $EventName;?></b></TD>
+               <td style='width: 25%;'<b><?php print $PatricipantName;?></b></TD>
+               <td style='width: 15%;'<b><?php print $Award;?></b></TD>
                <tr>
 
             <?php

@@ -242,7 +242,7 @@ function selectTime($Timestr = '')
             ?>
             <tr>
             <td colspan="2" width="100">&nbsp;</td>
-            <td width="75" align="center" valign="middle">
+            <td style='width: 75px; text-align: center;' valign="middle">
                <input type="hidden" value="<?php print $EventID?>" name="EventID"/>
                <input type="submit" value="Save" name="Save"/>
             </td>
@@ -256,7 +256,7 @@ function selectTime($Timestr = '')
             ?>
             <tr>
                <td colspan="2" width="100">&nbsp;</td>
-               <td width="75" align="center" valign="middle">
+               <td style='width: 75px; text-align: center;' valign="middle">
                   <input type="hidden" value="<?php print $EventID?>" name="EventID"/>
                   <input type="hidden" value="<?php print $SchedID?>" name="SchedID"/>
                   <input type="submit" value="Update" name="Save"/>
@@ -312,10 +312,10 @@ function selectTime($Timestr = '')
 
                      ?>
                      <tr>
-                     <td width="50">&nbsp;</td>
-                     <td width="75" align="center"><a href="<?php  print $_SERVER['PHP_SELF']."?DelEventID=$EventID&StartTime=$StartTime&RoomID=$RoomID"; ?>">Delete</a></td>
-                     <td width="75" align="center"><a href="<?php  print $_SERVER['PHP_SELF']."?MoveEventID=$EventID&SchedID=$SchedID&StartTime=$StartTime&RoomID=$RoomID"; ?>">Move</a></td>
-                     <td width="350"><?php print TimeToStr($StartTime)." to ".TimeToStr($EndTime)?></td>
+                     <td style='width: 50px;'>&nbsp;</td>
+                     <td style='width: 75px; text-align: center;'><a href="<?php  print $_SERVER['PHP_SELF']."?DelEventID=$EventID&StartTime=$StartTime&RoomID=$RoomID"; ?>">Delete</a></td>
+                     <td style='width: 75px; text-align: center;'><a href="<?php  print $_SERVER['PHP_SELF']."?MoveEventID=$EventID&SchedID=$SchedID&StartTime=$StartTime&RoomID=$RoomID"; ?>">Move</a></td>
+                     <td style='width: 350px;'><?php print TimeToStr($StartTime)." to ".TimeToStr($EndTime)?></td>
                      <td><?php print $RoomName?></td>
                      </tr>
                      <?php

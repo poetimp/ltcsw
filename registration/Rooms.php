@@ -46,8 +46,8 @@ if (isset($_POST['AddNew']))
          ?>
          <table class='registrationTable' style='width: 95%'>
             <tr>
-               <th width=100 align="center" colspan="3">Action</th>
-               <th width=10 align="center">Seats</th>
+               <th style='width: 100px; text-align: center;' colspan="3">Action</th>
+               <th style='width: 10px; text-align: center;'>Seats</th>
                <th>Room Name</th>
             </tr>
          <?php
@@ -55,10 +55,10 @@ if (isset($_POST['AddNew']))
          {
             ?>
             <tr>
-               <td width=5% align="center">[<a href="AdminRooms.php?action=view<?php  print "&RoomID=".$row['RoomID']; ?>">View</a>]</td>
-               <td width=5% align="center">[<a href="AdminRooms.php?action=update<?php  print "&RoomID=".$row['RoomID']; ?>">Update</a>]</td>
-               <td width=5% align="center">[<a href="DelRoom.php?action=del<?php  print "&RoomID=".$row['RoomID']; ?>">Delete</a>]</td>
-               <td width=5% align="center"><?php  print $row['RoomSeats']; ?></td>
+               <td style='width: 5%; text-align: center;'>[<a href="AdminRooms.php?action=view<?php  print "&RoomID=".$row['RoomID']; ?>">View</a>]</td>
+               <td style='width: 5%; text-align: center;'>[<a href="AdminRooms.php?action=update<?php  print "&RoomID=".$row['RoomID']; ?>">Update</a>]</td>
+               <td style='width: 5%; text-align: center;'>[<a href="DelRoom.php?action=del<?php  print "&RoomID=".$row['RoomID']; ?>">Delete</a>]</td>
+               <td style='width: 5%; text-align: center;'><?php  print $row['RoomSeats']; ?></td>
                <td><?php  print $row['RoomName']; ?></td>
             </tr>
          <?php

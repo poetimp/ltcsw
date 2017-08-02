@@ -54,7 +54,7 @@ $charmerCount = $row['Count'];
                   <td colspan="2" style="text-align: center"><h2>Administration Functions</h2></td>
                </tr>
                <tr>
-                  <td width="50%" valign="top">
+                  <td style='width: 50%;vertical-align: top'>
                      <h2 align='center'>Administrative Tasks:</h2>
                      <table class='registrationTable'>
                         <tr><td style='padding-left: 5%'><a href="ChangeChurch.php">     Administer a different Church             </a></td></tr>
@@ -73,7 +73,7 @@ $charmerCount = $row['Count'];
                   {
                   ?>
                   </td>
-                  <td width="50%" valign="top">
+                  <td style='width: 50%;vertical-align: top'>
                   <?php
                   }
                   ?>
@@ -120,7 +120,7 @@ $charmerCount = $row['Count'];
                   <td colspan="2" style='text-align: center'><font size="+2"><b>Tally Room Functions</b></font></td>
                </tr>
                <tr>
-                  <td width="50%" valign="top">
+                  <td style='width: 50%;vertical-align: top'>
                      <h2 align='center'>Tally Room Tasks:</h2>
                      <table class='registrationTable'>
                         <tr><td><a href="TallyEventList.php">Select an Event to Tally</a></td></tr>
@@ -131,7 +131,7 @@ $charmerCount = $row['Count'];
                   {
                   ?>
                   </td>
-                  <td width="50%" valign="top">
+                  <td style='width: 50%;vertical-align: top'>
                   <?php
                   }
                   ?>
@@ -153,7 +153,7 @@ $charmerCount = $row['Count'];
                 <td colspan="2" style='text-align: center'><font size="+2"><b>Church Coordination Functions</b></font></td>
             </tr>
             <tr>
-               <td width="50%" valign="top">
+               <td style='width: 50%;vertical-align: top'>
                   <?php
                   if ($UserStatus != 'R')
                   {
@@ -198,7 +198,7 @@ $charmerCount = $row['Count'];
                {
                ?>
                </td>
-               <td width="50%" valign="top">
+               <td style='width: 50%;vertical-align: top'>
                <?php
                }
                ?>
@@ -221,7 +221,7 @@ $charmerCount = $row['Count'];
             {
             ?>
             <tr>
-               <td width="50%" valign="top">
+               <td style='width: 50%;vertical-align: top'>
                   <h2 align='center'>Miscellaneous:</h2>
                   <?php
                   if ($charmerCount >=20)
@@ -248,7 +248,7 @@ $charmerCount = $row['Count'];
                if (!$MOBILE)
                {
                ?>
-                  <td width="50%" valign="top"><h2>&nbsp;</h2></td>
+                  <td style='width: 50%;vertical-align: top'><h2>&nbsp;</h2></td>
                <?php
                }
                ?>

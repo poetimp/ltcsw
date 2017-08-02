@@ -153,9 +153,9 @@ if (isset($_POST['Apply']))
     </head>
     <body>
         <form method="post" action="AdminSoloEvents.php?ID=<?php  print $ParticipantID; ?>">
-           <table class='registrationTable' id="table1">
+           <table class='registrationTable' style='width: 95%' id="table1">
               <tr>
-                 <th width="78">Selected</th>
+                 <th style='width: 15%;'>Selected</th>
                  <th >Event Name</th>
               </tr>
               <?php
@@ -218,7 +218,7 @@ if (isset($_POST['Apply']))
                $selected = $cntRow['count'];
                ?>
                <tr>
-                  <td width="78">
+                  <td style='width: 15%;'>
                      <?php
                      if ($EventAttended == 'Y')
                      {

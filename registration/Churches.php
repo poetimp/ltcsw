@@ -49,9 +49,9 @@ if (isset($_POST['AddNew']))
             {
                ?>
                <tr>
-                  <td width="70" align="center">[<a href="AdminChurch.php?action=view<?php  print "&ChurchID=".$row['ChurchID']; ?>">View</a>]</td>
-                  <td width="70" align="center">[<a href="AdminChurch.php?action=update<?php  print "&ChurchID=".$row['ChurchID']; ?>">Update</a>]</td>
-                  <td width="70" align="center"> [<a href="DelChurch.php?action=del<?php  print "&ChurchID=".$row['ChurchID']."&ChurchName=".urlencode($row['ChurchName']); ?>">Delete</a>]</td>
+                  <td style='width: 70px; text-align: center;'>[<a href="AdminChurch.php?action=view<?php  print "&ChurchID=".$row['ChurchID']; ?>">View</a>]</td>
+                  <td style='width: 70px; text-align: center;'>[<a href="AdminChurch.php?action=update<?php  print "&ChurchID=".$row['ChurchID']; ?>">Update</a>]</td>
+                  <td style='width: 70px; text-align: center;'> [<a href="DelChurch.php?action=del<?php  print "&ChurchID=".$row['ChurchID']."&ChurchName=".urlencode($row['ChurchName']); ?>">Delete</a>]</td>
                   <td><?php  print "[".$row['ChurchID']."]: ".$row['ChurchName']; ?></td>
                </tr>
             <?php

@@ -43,7 +43,7 @@ if (isset($_POST['Add']))
       <form method="post" action="AddTeam.php">
          <table class='registrationTable'>
             <tr>
-               <th width="25%">
+               <th style='width: 25%;'>
                   <select size="1" name="EventID">
                      <option value="0">-- Please select event --</option>
                      <?php
@@ -60,8 +60,8 @@ if (isset($_POST['Add']))
                      ?>
                   </select>
                </th>
-               <th width="50%" align="center">&lt;--- Select the type ofevent to add, then press Add ---&gt;</th>
-               <td width="25%" align="center"><input type="submit" value="Add" name="Add" /></td>
+               <th style='width: 50%; text-align: center'>&lt;--- Select the type ofevent to add, then press Add ---&gt;</th>
+               <td style='width: 25%; text-align: center'><input type="submit" value="Add" name="Add" /></td>
             </tr>
          </table>
       </form>

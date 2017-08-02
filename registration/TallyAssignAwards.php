@@ -104,9 +104,9 @@ else
                 onmouseout="javascript:highlightTableRow(0);"
          >
            <tr id="header">
-               <th width="2%">&nbsp;</th>
-               <th width="20%">Church</th>
-               <th width="18%">
+               <th style='width: 2%;'>&nbsp;</th>
+               <th style='width: 20%;'>Church</th>
+               <th style='width: 18%;'>
                   <?php
                      if ($TeamEvent)
                         print "Team Number";
@@ -114,7 +114,7 @@ else
                         print "Participant";
                   ?>
                </th>
-               <th width="80%" colspan="5" style='text-align: center'>Award</th>
+               <th style='width: 80%; text-align: center' colspan='5'>Award</th>
            </tr>
          <?php
            //--------------------------------------------------------------------
@@ -210,32 +210,32 @@ else
 
                   ?>
                   <tr>
-                    <td width="2%" id="preserve" bgcolor=<?php print $flagColor?>>
+                    <td style='width: 2%' id="preserve" bgcolor=<?php print $flagColor?>>
                         &nbsp;
                     </td>
-                    <td width="28%"><?php print $ChurchName;?></td>
-                    <td width="20%"><?php print "$ViewMembers$PatricipantName";?></td>
-                    <td width="10%">
+                    <td style='width: 28%;'><?php print $ChurchName;?></td>
+                    <td style='width: 20%;'><?php print "$ViewMembers$PatricipantName";?></td>
+                    <td style='width: 10%;'>
                         <input type="radio" value="Gold" name=<?php print "\"$RadioName\" $Gold_Checked";?>>
                           Gold
                         </input>
                     </td>
-                    <td width="10%">
+                    <td style='width: 10%;'>
                         <input type="radio" value="Silver" name=<?php print "\"$RadioName\" $Silver_Checked";?>>
                           Silver
                         </input>
                     </td>
-                    <td width="10%">
+                    <td style='width: 10%;'>
                         <input type="radio" value="Bronze" name=<?php print "\"$RadioName\" $Bronze_Checked";?>>
                           Bronze
                         </input>
                     </td>
-                    <td width="10%">
+                    <td style='width: 10%;'>
                         <input type="radio" value="No Award" name=<?php print "\"$RadioName\" $None_Checked";?>>
                           No Award
                         </input>
                     </td>
-                    <td width="10%">
+                    <td style='width: 10%;'>
                         <input type="radio" value="No Show" name=<?php print "\"$RadioName\" $Noshow_Checked";?>>
                           No Show
                         </input>
@@ -278,7 +278,7 @@ else
                           if (!$IndividualAwards)
                           {
                           ?>
-                             <td width="2%" id="preserve" bgcolor=<?php print $flagColor?>>
+                             <td style='width: 2%' id="preserve" bgcolor=<?php print $flagColor?>>
                                 &nbsp;
                              </td>
                              <td colspan="1">&nbsp;</td>
@@ -340,27 +340,27 @@ else
                              <td id='preserve' bgcolor=<?php print $Solo_flagColor?>>&nbsp;</td>
                              <td>&nbsp;</td>
                              <td><?php print $MemberName?></td>
-                             <td width="10%">
+                             <td style='width: 10%;'>
                                 <input type="radio" value="Gold" name=<?php print "\"$RadioSolo\" $Solo_Gold_Checked";?>>
                                    Gold
                                 </input>
                              </td>
-                             <td width="10%">
+                             <td style='width: 10%;'>
                                 <input type="radio" value="Silver" name=<?php print "\"$RadioSolo\" $Solo_Silver_Checked";?>>
                                    Silver
                                 </input>
                              </td>
-                             <td width="10%">
+                             <td style='width: 10%;'>
                                 <input type="radio" value="Bronze" name=<?php print "\"$RadioSolo\" $Solo_Bronze_Checked";?>>
                                    Bronze
                                 </input>
                              </td>
-                             <td width="10%">
+                             <td style='width: 10%;'>
                                 <input type="radio" value="No Award" name=<?php print "\"$RadioSolo\" $Solo_None_Checked";?>>
                                    No Award
                                 </input>
                              </td>
-                             <td width="10%">
+                             <td style='width: 10%;'>
                                 <input type="radio" value="No Show" name=<?php print "\"$RadioSolo\" $Solo_Noshow_Checked";?>>
                                    No Show
                                 </input>

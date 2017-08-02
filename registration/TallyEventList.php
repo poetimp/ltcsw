@@ -203,12 +203,12 @@ $prevTime = "";
                   $ReportWarn = '';
             ?>
             <tr>
-               <td width="2%" id="preserve" bgcolor="<?php  print $StatusColor; ?>">&nbsp;</td>
-               <td width="38%"><?php  print $EventName; ?></td>
-               <td width="10%"><?php  print "$numAwards/$numEvents"; ?></td>
-               <td width="20%"><?php  print $EventType; ?></td>
-               <td width="15%"><?php  print "<a href=TallyAssignAwards.php?EventID=$EventID&SchedID=$SchedID>Assign Awards</a>"; ?></td>
-               <td width="15%"><?php  print "<a href=TallyPrintAwards.php?EventID=$EventID&SchedID=$SchedID$ReportWarn target=_blank>Print Report</a>"; ?></td>
+               <td style='width: 2%' id="preserve" bgcolor="<?php  print $StatusColor; ?>">&nbsp;</td>
+               <td style='width: 38%;'><?php  print $EventName; ?></td>
+               <td style='width: 10%;'><?php  print "$numAwards/$numEvents"; ?></td>
+               <td style='width: 20%;'><?php  print $EventType; ?></td>
+               <td style='width: 15%;'><?php  print "<a href=TallyAssignAwards.php?EventID=$EventID&SchedID=$SchedID>Assign Awards</a>"; ?></td>
+               <td style='width: 15%;'><?php  print "<a href=TallyPrintAwards.php?EventID=$EventID&SchedID=$SchedID$ReportWarn target=_blank>Print Report</a>"; ?></td>
             </tr>
          <?php
             }
@@ -353,12 +353,12 @@ $prevTime = "";
                   $ReportWarn = '';
             ?>
             <tr>
-               <td width="2%" id="preserve" bgcolor="<?php  print $StatusColor; ?>">&nbsp;</td>
-               <td width="38%"><?php  print $EventName; ?></td>
-               <td width="10%"><?php  print "$numAwards/$numEvents"; ?></td>
-               <td width="20%"><?php  print $EventType; ?></td>
-               <td width="15%"><?php  print "<a href=TallyAssignAwards.php?EventID=$EventID&SchedID=0000>Assign Awards</a>"; ?></td>
-               <td width="15%"><?php  print "<a href=TallyPrintAwards.php?EventID=$EventID&SchedID=0000$ReportWarn target=_blank>Print Report</a>"; ?></td>
+               <td style='width: 2%' id="preserve" bgcolor="<?php  print $StatusColor; ?>">&nbsp;</td>
+               <td style='width: 38%;'><?php  print $EventName; ?></td>
+               <td style='width: 10%;'><?php  print "$numAwards/$numEvents"; ?></td>
+               <td style='width: 20%;'><?php  print $EventType; ?></td>
+               <td style='width: 15%;'><?php  print "<a href=TallyAssignAwards.php?EventID=$EventID&SchedID=0000>Assign Awards</a>"; ?></td>
+               <td style='width: 15%;'><?php  print "<a href=TallyPrintAwards.php?EventID=$EventID&SchedID=0000$ReportWarn target=_blank>Print Report</a>"; ?></td>
             </tr>
             <?php
             }

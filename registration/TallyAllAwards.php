@@ -73,8 +73,8 @@ if ($Admin != 'Y')
                   {
                   ?>
                      <tr>
-                        <td width="5%" colspan="1">&nbsp;</td>
-                        <th width="95%" colspan="4" ><?php  print $ParticipantName;  ?></th>
+                        <td style='width: 5%;' colspan="1">&nbsp;</td>
+                        <td style='width: 95%;' colspan="4" ><?php  print $ParticipantName;  ?></th>
                      </tr>
                      <?php
 
@@ -83,9 +83,9 @@ if ($Admin != 'Y')
                      {
                      ?>
                         <tr>
-                           <td width="10%" colspan="2">&nbsp;</td>
-                           <td width="40%" colspan="1"><?php  print $EventName;  ?></td>
-                           <td width="45%" colspan="1"><?php print ParticipantAward($ParticipantID,$EventID)?></td>
+                           <td style='width: 10%;' colspan="2">&nbsp;</td>
+                           <td style='width: 40%;' colspan="1"><?php  print $EventName;  ?></td>
+                           <td style='width: 45%;' colspan="1"><?php print ParticipantAward($ParticipantID,$EventID)?></td>
                         </tr>
                      <?php
                      }

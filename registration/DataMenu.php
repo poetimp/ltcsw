@@ -33,15 +33,15 @@ if ($Admin != 'Y')
 
          <table class='registrationTable' style='width: 95%'>
             <tr>
-               <TD align="center" colspan="2">
+               <td align="center" colspan="2">
                   <font size="+2">
                      <b>Download Data</b>
                   </font>
-               </TD>
+               </td>
             </tr>
             <tr>
-               <td width="50%">All active congregations listed along with their address and phone information</td>
-               <td width="50%"><a target="_blank" href="DataChurches.php"    >Congregational Information</a></td>
+               <td style='width: 50%;'>All active congregations listed along with their address and phone information</td>
+               <td style='width: 50%;'><a target="_blank" href="DataChurches.php"    >Congregational Information</a></td>
             </tr>
             <tr>
                <td>All Judges listed along with their complete contact information</td>

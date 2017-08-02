@@ -77,41 +77,41 @@ else
          ?>
          <table class='registrationTable' style='width: 95%'>
             <tr>
-               <th width="70" align="center">View</th>
-               <th width="70" align="center">Update</th>
-               <th width="70" align="center">Delete</th>
+               <th style='width: 70px; text-align: center;'>View</th>
+               <th style='width: 70px; text-align: center;'>Update</th>
+               <th style='width: 70px; text-align: center;'>Delete</th>
                <th>
-                  <a href="Users.php?sort=Userid&order=<?php print $order; ?>">
+                  <a style='color: white' href="Users.php?sort=Userid&order=<?php print $order; ?>">
                      Userid
                   </a>
                </th>
                <th>
-                  <a href="Users.php?sort=Name&order=<?php print $order; ?>">
+                  <a style='color: white' href="Users.php?sort=Name&order=<?php print $order; ?>">
                      User Name
                   </a>
                </th>
                <th>
-                  <a href="Users.php?sort=Email&order=<?php print $order; ?>">
+                  <a style='color: white' href="Users.php?sort=Email&order=<?php print $order; ?>">
                      Email
                   </a>
                </th>
                <th>
-                  <a href="Users.php?sort=ChurchName&order=<?php print $order; ?>">
+                  <a style='color: white' href="Users.php?sort=ChurchName&order=<?php print $order; ?>">
                      Church Name
                   </a>
                </th>
-               <th align="center">
-                  <a href="Users.php?sort=Status&order=<?php print $order; ?>">
+               <th style='text-align: center'>
+                  <a style='color: white' href="Users.php?sort=Status&order=<?php print $order; ?>">
                      Status
                   </a>
                </th>
-               <th align="center">
-                  <a href="Users.php?sort=Admin&order=<?php print $order; ?>">
+               <th style='text-align: center'>
+                  <a style='color: white' href="Users.php?sort=Admin&order=<?php print $order; ?>">
                      Administrator
                   </a>
                </th>
-               <th align="center">
-                  <a href="Users.php?sort=lastLogin&order=<?php print $order; ?>">
+               <th style='text-align: center'>
+                  <a style='color: white' href="Users.php?sort=lastLogin&order=<?php print $order; ?>">
                      Last Login
                   </a>
                </th>
@@ -144,9 +144,9 @@ else
             }
             ?>
             <tr>
-               <td width="70" align="center">[<a href="AdminUser.php?action=view<?php  print "&Userid=".$row['Userid']; ?>">View</a>]</td>
-               <td width="70" align="center">[<a href="AdminUser.php?action=update<?php  print "&Userid=".$row['Userid']; ?>">Update</a>]</td>
-               <td width="70" align="center">[<a href="DelUser.php?action=del<?php  print "&Userid=".$row['Userid']; ?>">Delete</a>]</td>
+               <td style='width: 70px; text-align: center;'>[<a href="AdminUser.php?action=view<?php  print "&Userid=".$row['Userid']; ?>">View</a>]</td>
+               <td style='width: 70px; text-align: center;'>[<a href="AdminUser.php?action=update<?php  print "&Userid=".$row['Userid']; ?>">Update</a>]</td>
+               <td style='width: 70px; text-align: center;'>[<a href="DelUser.php?action=del<?php  print "&Userid=".$row['Userid']; ?>">Delete</a>]</td>
                <td><?php  print $row['Userid']; ?></td>
                <td><?php  print $row['Name']; ?></td>
                <td><?php  print $row['Email']; ?></td>

@@ -43,8 +43,8 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
             ?>
             <table class='registrationTable' style='width: 95%'>
                <tr>
-                  <th width="70"  align="center"colspan=3>Action</th>
-                  <th width="100" align="center">ID Number</th>
+                  <th style='width: 70px; text-align: center;'colspan=3>Action</th>
+                  <th style='width: 100px; text-align: center;'>ID Number</th>
                   <th align="left">Participant Name</th>
                </tr>
             <?php
@@ -52,10 +52,10 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
             {
                ?>
                <tr>
-                  <td width="70" align="center">[<a href="AdminParticipant.php?action=view<?php  print "&ParticipantID=".$row['ParticipantID']; ?>">View</a>]</td>
-                  <td width="70" align="center">[<a href="AdminParticipant.php?action=update<?php  print "&ParticipantID=".$row['ParticipantID']; ?>">Update</a>]</td>
-                  <td width="70" align="center"> [<a href="DelParticipant.php?action=del<?php  print "&ParticipantID=".$row['ParticipantID']."&Name=".urlencode($row['LastName'].", ".$row['FirstName']); ?>">Delete</a>]</td>
-                  <td width="100" align="center"><?php  print $row['ParticipantID'];?></td>
+                  <td style='width: 70px; text-align: center;'>[<a href="AdminParticipant.php?action=view<?php  print "&ParticipantID=".$row['ParticipantID']; ?>">View</a>]</td>
+                  <td style='width: 70px; text-align: center;'>[<a href="AdminParticipant.php?action=update<?php  print "&ParticipantID=".$row['ParticipantID']; ?>">Update</a>]</td>
+                  <td style='width: 70px; text-align: center;'> [<a href="DelParticipant.php?action=del<?php  print "&ParticipantID=".$row['ParticipantID']."&Name=".urlencode($row['LastName'].", ".$row['FirstName']); ?>">Delete</a>]</td>
+                  <td style='width: 100px; text-align: center;'><?php  print $row['ParticipantID'];?></td>
                   <td><?php  print $row['LastName'].", ".$row['FirstName']; ?></td>
                </tr>
             <?php

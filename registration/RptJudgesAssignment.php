@@ -96,7 +96,7 @@ function constructJudgesTable($dayTimes,$day)
       </tr>
       <tr>
       <?php
-         print "<th width=\"15%\">&nbsp;</th>\n";
+         print "<th sty;e='width: 15%'>&nbsp;</th>\n";
          foreach ($allTimes as $StartTime => $displayTime)
          {
             if (substr($StartTime,0,1) == $dayInitial)

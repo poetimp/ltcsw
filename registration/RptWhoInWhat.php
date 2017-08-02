@@ -150,8 +150,8 @@ include 'include/RegFunctions.php';
             {
                 ?>
                 <tr>
-                    <td width=30%>&nbsp;</td>
-                    <td width=30% colspan="3"><?php  print "<b><i>Not signed up for any events</i></b>"; ?></td>
+                    <td style='width: 30%;'>&nbsp;</td>
+                    <td style='width: 30%;' colspan="3"><?php  print "<b><i>Not signed up for any events</i></b>"; ?></td>
                 </tr>
                 <?php
             }

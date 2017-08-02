@@ -117,10 +117,10 @@ if ($Admin != 'Y')
                  $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
                  ?>
                  <tr>
-                     <td width=30%>&nbsp;</td>
-                     <td width=30%><?php  print $EventName; ?></td>
-                     <td width=30%><?php  print "Individual"; ?></td>
-                     <td width=10%><?php  print $ConvEvent; ?></td>
+                     <td style='width: 30%;'>&nbsp;</td>
+                     <td style='width: 30%;'><?php  print $EventName; ?></td>
+                     <td style='width: 30%;'><?php  print "Individual"; ?></td>
+                     <td style='width: 10%;'><?php  print $ConvEvent; ?></td>
                  </tr>
                  <?php
                }
@@ -160,10 +160,10 @@ if ($Admin != 'Y')
                   $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
                   ?>
                   <tr>
-                      <td width=30%>&nbsp;</td>
-                      <td width=30%><?php  print $EventName; ?></td>
-                      <td width=30%><?php  print "Team: $TeamID"; ?></td>
-                      <td width=10%><?php  print $ConvEvent; ?></td>
+                      <td style='width: 30%;'>&nbsp;</td>
+                      <td style='width: 30%;'><?php  print $EventName; ?></td>
+                      <td style='width: 30%;'><?php  print "Team: $TeamID"; ?></td>
+                      <td style='width: 10%;'><?php  print $ConvEvent; ?></td>
                   </tr>
                   <?php
                 }
@@ -175,8 +175,8 @@ if ($Admin != 'Y')
             {
                 ?>
                 <tr>
-                    <td width=30%>&nbsp;</td>
-                    <td width=30% colspan="3"><?php  print "<b><i>Not signed up for any events</i></b>"; ?></td>
+                    <td style='width: 30%;'>&nbsp;</td>
+                    <td style='width: 30%;' colspan="3"><?php  print "<b><i>Not signed up for any events</i></b>"; ?></td>
                 </tr>
                 <?php
             }

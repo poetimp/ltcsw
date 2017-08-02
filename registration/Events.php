@@ -43,9 +43,9 @@ if (isset($_POST['AddNew']))
          {
             ?>
             <tr>
-               <td width="70" align="center">[<a href="AdminEvent.php?action=view<?php  print "&EventID=".$row['EventID']; ?>">View</a>]</td>
-               <td width="70" align="center">[<a href="AdminEvent.php?action=update<?php  print "&EventID=".$row['EventID']; ?>">Update</a>]</td>
-               <td width="70" align="center"> [<a href="DelEvent.php?action=del<?php  print "&EventID=".$row['EventID']."&EventName=".urlencode($row['EventName']); ?>">Delete</a>]</td>
+               <td style='width: 70px; text-align: center;'>[<a href="AdminEvent.php?action=view<?php  print "&EventID=".$row['EventID']; ?>">View</a>]</td>
+               <td style='width: 70px; text-align: center;'>[<a href="AdminEvent.php?action=update<?php  print "&EventID=".$row['EventID']; ?>">Update</a>]</td>
+               <td style='width: 70px; text-align: center;'> [<a href="DelEvent.php?action=del<?php  print "&EventID=".$row['EventID']."&EventName=".urlencode($row['EventName']); ?>">Delete</a>]</td>
                <td><?php  print $row['EventName']; ?></td>
             </tr>
          <?php

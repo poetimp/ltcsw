@@ -251,8 +251,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                <td colspan="2" align="center">Charmer Information</td>
             </tr>
             <tr>
-               <td width="15%">Charmer</td>
-               <td width="85%">
+               <td style='width: 15%'>Charmer</td>
+               <td style='width: 85%'>
                   <?php
                   if ($mode == 'view' or $mode == 'update')
                   {

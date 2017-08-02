@@ -42,8 +42,8 @@ if ($Admin != 'Y')
          $total += $ChurchCount;
          ?>
          <tr>
-            <td width=70%><?php  print $ChurchName;  ?>&nbsp;</td>
-            <td width=30% align=right><?php  print $ChurchCount; ?>&nbsp;</td>
+            <td style='width: 70%;'><?php  print $ChurchName;  ?>&nbsp;</td>
+            <td style='width: 30%; text-align: right;'><?php  print $ChurchCount; ?>&nbsp;</td>
          </tr>
          <?php
       }
@@ -52,8 +52,8 @@ if ($Admin != 'Y')
 
       <table class='registrationTable'  style='width: 40%; margin-left: auto; margin-right: auto'>
          <tr>
-            <td width=70%>Total</td>
-            <td width=30% align=right><?php  print $total; ?>&nbsp;</td>
+            <td style='width: 70%;'>Total</td>
+            <td style='width: 30%; text-align: right;'><?php  print $total; ?>&nbsp;</td>
          </tr>
       </table>
    </body>

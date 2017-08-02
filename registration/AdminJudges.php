@@ -262,8 +262,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             <th colspan="5"  align="center">Judge Information</th>
          </tr>
          <tr>
-            <td width="15%">First Name</td>
-            <td width="30%">
+            <th style='width: 15%;'>First Name</td>
+            <td style='width: 30%;'>
             <?php
             if ($mode == "view")
             {

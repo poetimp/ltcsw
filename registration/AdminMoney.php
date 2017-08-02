@@ -131,10 +131,10 @@ if ($ChurchID != "" and isset($_POST['TxType']))
                   <td colspan=4 style='text-align: center'><h3>History</h3></td>
                </tr>
                <tr>
-                  <td>Date</td>
-                  <td>Type</td>
-                  <td>Amount</td>
-                  <td>Annotation</td>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Annotation</td>
                </tr>
                <?php
 
@@ -215,17 +215,17 @@ if ($ChurchID != "" and isset($_POST['TxType']))
             ?>
             <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto'>
                <tr>
-                  <td width="130">Transaction Type:</td>
-                  <td width="80"><input type="radio" value="Credit" name="TxType" <?php print $creditChecked?>>Credit</td>
-                  <td width="80"><input type="radio" value="Refund" name="TxType" <?php print $debitChecked?>>Refund</td>
+                  <th style='width: 130px;'>Transaction Type:</th>
+                  <td style='width: 80px;'><input type="radio" value="Credit" name="TxType" <?php print $creditChecked?>>Credit</td>
+                  <td style='width: 80px;'><input type="radio" value="Refund" name="TxType" <?php print $debitChecked?>>Refund</td>
                </tr>
                <tr>
-                  <td width="130">Amount:</td>
-                  <td width=160 colspan=2><input type="text" name="Amount" size="20" <?php print $valueAmount?>></td>
+                  <th style='width: 130px;'>Amount:</th>
+                  <td style='width: 160px;' colspan=2><input type="text" name="Amount" size="20" <?php print $valueAmount?>></td>
                </tr>
                <tr>
-                  <td width="130">Annotation:</td>
-                  <td width=160 colspan=2><input type="text" name="Annotation" size="20" <?php print $valueAnnotation?>></td>
+                  <th style='width: 130px;'>Annotation:</th>
+                  <td style='width: 160px;' colspan=2><input type="text" name="Annotation" size="20" <?php print $valueAnnotation?>></td>
                </tr>
             </table>
             <?php

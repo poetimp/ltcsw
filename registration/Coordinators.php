@@ -50,9 +50,9 @@ if (isset($_POST['AddNew']))
                {
                   ?>
                   <tr>
-                     <td width="70" align="center">[<a href="AdminEventCoord.php?action=view<?php  print "&CoordID=".$row['CoordID']; ?>">View</a>]</td>
-                     <td width="70" align="center">[<a href="AdminEventCoord.php?action=update<?php  print "&CoordID=".$row['CoordID']; ?>">Update</a>]</td>
-                     <td width="70" align="center"> [<a href="DelEventCoord.php?action=del<?php  print "&CoordID=".$row['CoordID']."&CoordName=".urlencode($row['Name']); ?>">Delete</a>]</td>
+                     <td style='width: 70px; text-align: center;'>[<a href="AdminEventCoord.php?action=view<?php  print "&CoordID=".$row['CoordID']; ?>">View</a>]</td>
+                     <td style='width: 70px; text-align: center;'>[<a href="AdminEventCoord.php?action=update<?php  print "&CoordID=".$row['CoordID']; ?>">Update</a>]</td>
+                     <td style='width: 70px; text-align: center;'> [<a href="DelEventCoord.php?action=del<?php  print "&CoordID=".$row['CoordID']."&CoordName=".urlencode($row['Name']); ?>">Delete</a>]</td>
                      <td><?php  print $row['Name']; ?></td>
                   </tr>
                <?php

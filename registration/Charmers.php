@@ -59,9 +59,9 @@ include 'include/RegFunctions.php';
          ?>
                <table class='registrationTable' style='width: 95%'>
                   <tr>
-                     <th width="70" align="center">View</th>
-                     <th width="70" align="center">Update</th>
-                     <th width="70" align="center">Delete</th>
+                     <th style='width: 70px; text-align: center;'>View</th>
+                     <th style='width: 70px; text-align: center;'>Update</th>
+                     <th style='width: 70px; text-align: center;'>Delete</th>
                      <th>Name</th>
                      <th>Sex</th>
                      <th>Need Room</th>
@@ -76,9 +76,9 @@ include 'include/RegFunctions.php';
                {
                   ?>
                   <tr>
-                     <td width="70" align="center">[<a href="AdminCharmers.php?action=view<?php  print "&id=".$row['charmerID']; ?>">View</a>]</td>
-                     <td width="70" align="center">[<a href="AdminCharmers.php?action=update<?php  print "&id=".$row['charmerID']; ?>">Update</a>]</td>
-                     <td width="70" align="center">[<a href="DelCharmer.php?<?php  print "id=".$row['charmerID']."&name=".$row['charmerName']; ?>">Delete</a>]</td>
+                     <td style='width: 70px; text-align: center;'>[<a href="AdminCharmers.php?action=view<?php  print "&id=".$row['charmerID']; ?>">View</a>]</td>
+                     <td style='width: 70px; text-align: center;'>[<a href="AdminCharmers.php?action=update<?php  print "&id=".$row['charmerID']; ?>">Update</a>]</td>
+                     <td style='width: 70px; text-align: center;'>[<a href="DelCharmer.php?<?php  print "id=".$row['charmerID']."&name=".$row['charmerName']; ?>">Delete</a>]</td>
                      <td>               <?php  print $row['charmerName'];                                      ?></td>
                      <td align="center"><?php  print $row['charmerSex'];                                       ?></td>
                      <td align="center"><?php  print $row['charmerNeedRoom']     == 'on' ? "Yes" : "No";       ?></td>

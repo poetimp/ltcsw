@@ -154,12 +154,12 @@ if (isset($_POST['submit']))
             }
                ?>
                <tr>
-                  <td width="11%">Userid: </td>
-                     <td width="27%"> <input type="text" name="userid" size="28"/></td>
+                  <th style='width: 11%;'>Userid: </td>
+                  <td style='width: 27%;'><input type="text" name="userid" size="28"/></td>
                </tr>
                <tr>
-                  <td width="11%">Password: </td>
-                  <td width="27%"> <input type="password" name="pwd" size="28"/></td>
+                  <th style='width: 11%;'>Password: </td>
+                  <td style='width: 27%;'><input type="password" name="pwd" size="28"/></td>
                </tr>
                <tr>
                   <td colspan="2" style="text-align: center">
@@ -170,7 +170,7 @@ if (isset($_POST['submit']))
             if ($badPass)
             {
                ?>
-               <p align="center"><font color="#FF0000">Invalid username and/or password</font><br/></p>
+               <p align="center"><font color="#FF0000">Invalid user name and/or password</font><br/></p>
                <?php
             }
             ?>

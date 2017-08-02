@@ -39,11 +39,11 @@ include 'include/RegFunctions.php';
          ?>
          <table class='registrationTable' style='width: 95%'>
             <tr>
-               <th width="70" align=center>Team</th>
-               <th width="70" align=center>Individual</th>
-               <th width="70" align=center>Grade</th>
-               <th width="70" align=center>ID Number</th>
-               <th align="left">Participant</th>
+               <th style='width: 70px; text-align: center;'>Team</th>
+               <th style='width: 70px; text-align: center;'>Individual</th>
+               <th style='width: 70px; text-align: center;'>Grade</th>
+               <th style='width: 70px; text-align: center;'>ID Number</th>
+               <th style='text-align: left'>Participant</th>
             </tr>
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
@@ -55,10 +55,10 @@ include 'include/RegFunctions.php';
 
             ?>
             <tr>
-               <td width="70" align="center"> <?php  print $TeamEvents?></td>
-               <td width="70" align="center"> <?php  print $IndivEvents?></td>
-               <td width="70" align="center"> <?php  print $row['Grade']?></td>
-               <td width="70" align="center"> <?php  print $row['ParticipantID']?></td>
+               <td style='width: 70px; text-align: center;'> <?php  print $TeamEvents?></td>
+               <td style='width: 70px; text-align: center;'> <?php  print $IndivEvents?></td>
+               <td style='width: 70px; text-align: center;'> <?php  print $row['Grade']?></td>
+               <td style='width: 70px; text-align: center;'> <?php  print $row['ParticipantID']?></td>
                <td>
                   <a href="AdminSoloEvents.php?ID=<?php  print $row['ParticipantID']; ?>" >
                      <?php  print $row['LastName'].", ".$row['FirstName']; ?>

@@ -54,11 +54,11 @@ include 'include/RegFunctions.php';
             $numMembers = $cntRow['count'];
             ?>
             <tr>
-               <td width="70" align="center">[<a href="AdminTeamEvents.php?Action=View<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">View</a>]</td>
-               <td width="70" align="center">[<a href="AdminTeamEvents.php?Action=Update<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">Update</a>]</td>
-               <td width="70" align="center"> [<a href="DelTeam.php?<?php  print "&TeamID=".$row['TeamID']; ?>">Delete</a>]</td>
-               <td width="100" align="center"> <?php  print $numMembers?></td>
-               <td width="100" align="center"> <?php  print $row['TeamID']?></td>
+               <td style='width: 70px; text-align: center;'>[<a href="AdminTeamEvents.php?Action=View<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">View</a>]</td>
+               <td style='width: 70px; text-align: center;'>[<a href="AdminTeamEvents.php?Action=Update<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">Update</a>]</td>
+               <td style='width: 70px; text-align: center;'> [<a href="DelTeam.php?<?php  print "&TeamID=".$row['TeamID']; ?>">Delete</a>]</td>
+               <td style='width: 100px; text-align: center;'> <?php  print $numMembers?></td>
+               <td style='width: 100px; text-align: center;'> <?php  print $row['TeamID']?></td>
                <td>
                <?php
                      print $row['EventName'];
