@@ -245,7 +245,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             $requestString.="&id=".$_REQUEST['id'];
 
          ?>
-      <form method="post" action=AdminCharmers.php<?php print $requestString?>>
+      <form method="post" action="AdminCharmers.php<?php print $requestString?>">
          <table class='registrationTable' id="table1">
             <tr>
                <td colspan="2" align="center">Charmer Information</td>
@@ -314,8 +314,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   else
                   {
                   ?>
-                     <input type="Radio" name="charmerSex" value="F" <?php  print $charmerSex == "F" ? "checked" : ""; ?>> Female<br>
-                     <input type="Radio" name="charmerSex" value="M" <?php  print $charmerSex == "M" ? "checked" : ""; ?>> Male
+                     <input type="radio" name="charmerSex" value="F" <?php  print $charmerSex == "F" ? "checked" : ""; ?> /> Female<br>
+                     <input type="radio" name="charmerSex" value="M" <?php  print $charmerSex == "M" ? "checked" : ""; ?> /> Male
                   <?php
                   }
                ?>
@@ -405,18 +405,18 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                if ($mode == 'update')
                {?>
                   <input type="submit" value="Update" name="update">
-                  <input type="hidden" value="update" name=action>
+                  <input type="hidden" value="update" name="action">
                <?php
                }
                else if ($mode == 'add')
                {?>
                   <input type="submit" value="Add" name="add">
-                  <input type="hidden" value="add" name=action>
+                  <input type="hidden" value="add" name="action">
                <?php
                }
                else if ($mode == 'view')
                {?>
-                  <input type="hidden" value="update" name=action>
+                  <input type="hidden" value="update" name="action">
                <?php
                }
             ?>
