@@ -127,7 +127,7 @@ else
                if ($TeamID != $prevTeamID)
                {
                   print "<tr>";
-                  print "   <th><b>Team: $TeamID</b></th>";
+                  print "   <td><b>Team: $TeamID</b></td>";
                   print "</tr>";
                   $prevTeamID=$TeamID;
                }

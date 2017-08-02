@@ -126,9 +126,9 @@ if ($ChurchID != "" and isset($_POST['TxType']))
             <h2 align="center">for<br><?php  print "$ChurchName</h2>"; ?>
 
             <input type=hidden name=ChurchID <?php print "value=$ChurchID"?>>
-            <table class='registrationTable' border=1 width=100%>
+            <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto'>
                <tr>
-                  <td colspan=4 align=center><h3>History</h3></td>
+                  <td colspan=4 style='text-align: center'><h3>History</h3></td>
                </tr>
                <tr>
                   <td>Date</td>
@@ -213,7 +213,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
                $valueAnnotation = "";
 
             ?>
-            <table class='registrationTable' align=center border=1>
+            <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto'>
                <tr>
                   <td width="130">Transaction Type:</td>
                   <td width="80"><input type="radio" value="Credit" name="TxType" <?php print $creditChecked?>>Credit</td>

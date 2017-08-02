@@ -44,7 +44,7 @@ if (isset($_POST['AddNew']))
 
          $count = 0;
          ?>
-         <table class='registrationTable'>
+         <table class='registrationTable' style='width: 95%'>
             <tr>
                <th width=100 align="center" colspan="3">Action</th>
                <th width=10 align="center">Seats</th>

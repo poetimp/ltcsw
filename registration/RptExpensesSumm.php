@@ -93,44 +93,44 @@ if ($Admin != 'Y')
       ?>
       <h1 align="center">Summary Expense Report</h1>
 
-      <table class='registrationTable' style='width: 50%'>
+      <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto;'>
          <tr>
-            <th style='width: 25%'>Registered Participants</th>
-            <td style='width: 25%; text-align: center'><?php print $ParticipantCount;?></td>
+            <td style='width: 25%'><b>Registered Participants</b></td>
+            <td style='width: 25%; text-align: right'><?php print $ParticipantCount;?></td>
             <td style='width: 25%; text-align: center'>x <?php print FormatMoney($RegCost);?></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costParticipant);?></td>
          </tr>
          <tr>
-            <th style='width: 25%'>Extra Adult Meal Tickets</th>
-            <td style='width: 25%; text-align: center'><?php print $ExtraAdultMealCount;?></td>
+            <td style='width: 25%'><b>Extra Adult Meal Tickets</b></td>
+            <td style='width: 25%; text-align: right'><?php print $ExtraAdultMealCount;?></td>
             <td style='width: 25%; text-align: center'>x <?php print FormatMoney($AdultMealCost);?></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costExtraAdultMeals);?></td>
          </tr>
          <tr>
-            <th style='width: 25%'>Extra Child Meal Tickets</th>
-            <td style='width: 25%; text-align: center'><?php print $ExtraChildMealCount;?></td>
+            <td style='width: 25%'><b>Extra Child Meal Tickets</b></td>
+            <td style='width: 25%; text-align: right'><?php print $ExtraChildMealCount;?></td>
             <td style='width: 25%; text-align: center'>x <?php print FormatMoney($ChildMealCost);?></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costExtraChildMeals);?></td>
          </tr>
          <tr>
-            <th style='width: 25%'>Extra T-Shirts</th>
-            <td style='width: 25%; text-align: center'><?php print $ExtraShirtCount;?></td>
+            <td style='width: 25%'><b>Extra T-Shirts</b></td>
+            <td style='width: 25%; text-align: right'><?php print $ExtraShirtCount;?></td>
             <td style='width: 25%; text-align: center'>x <?php print FormatMoney($ShirtCost);?></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costExtraShirts);?></td>
          </tr>
          <tr>
             <td style='width: 50%' colspan=2>&nbsp;</td>
-            <th style='width: 25%; text-align: right'>Total:</th>
+            <td style='width: 25%; text-align: right'><b>Total:</b></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costTotal);?></td>
          </tr>
          <tr>
             <td style='width: 50%' colspan=2>&nbsp;</td>
-            <th style='width: 25%; text-align: right'>Monies Received:</th>
+            <td style='width: 25%; text-align: right'><b>Monies Received:</b></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($MoneyInOut)?></td>
          </tr>
          <tr>
             <td style='width: 50%' colspan=2>&nbsp;</td>
-            <th style='width: 25%; text-align: right'>Balance:</th>
+            <td style='width: 25%; text-align: right'><b>Balance:</b></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costBalance);?></td>
          </tr>
       </table>

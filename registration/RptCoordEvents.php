@@ -157,7 +157,7 @@ if ($Admin != 'Y')
             {
                ?>
                <tr>
-                  <td colspan="4"><b>No Participants Scheuled</b></td>
+                  <td colspan="4"><b>No Participants Scheduled</b></td>
                </tr>
             <?php
             }
@@ -221,7 +221,7 @@ if ($Admin != 'Y')
                   if ($TeamEvent == 'Team' and $prevTeamID != $TeamID)
                   {
                      print "<tr>";
-                     print "   <th>Team: $TeamID</th>";
+                     print "   <td><b>Team: $TeamID</b></td>";
                      print "   <td colspan=3>&nbsp;</td>";
                      print "</tr>";
                      $prevTeamID=$TeamID;

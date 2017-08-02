@@ -252,7 +252,7 @@ else
          <h2>T-Shirts</h2>
          Participant T-Shirts are covered in the cost of registration. Extra T-Shirts will be
          <?php print '$'.number_format($prices['Shirt'],2);?> each.
-         <table class='registrationTable' border="1" width="60%">
+         <table class='registrationTable' style='width: 60%'>
             <tr>
                <th width="20%">Size</th>
                <th width="15%">Participants</th>
@@ -303,7 +303,7 @@ else
          <br>
          <h2>Meal Tickets </h2>
          (<b>Note:</b> Event directors, Charmers and Board members are covered)
-         <table class='registrationTable' border="1" width="60%" id="table1">
+         <table class='registrationTable' style='width: 60%'>
             <tr>
                <th width="20%">Meal Ticket</th>
                <th width="15%" align="center">Cost</th>
@@ -326,7 +326,7 @@ else
             </tr>
          </table>
          <br>
-         <table class='registrationTable' border="0" width="60%" id="table2">
+         <table class='registrationTable' style='width: 60%'>
             <tr>
                <?php if ($UserStatus == 'O')
                {?>

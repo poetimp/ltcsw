@@ -44,7 +44,7 @@ else
       if (count($ChuchList) > 0)
       {
          ?>
-         <table class='registrationTable'>
+         <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto;'>
                <tr>
                   <th style='width: 40%; text-align: left'>  Church</th>
                   <th style='width: 10%; text-align: center'>Participants?</th>

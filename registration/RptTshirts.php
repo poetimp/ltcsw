@@ -28,7 +28,7 @@ if ($Admin != 'Y')
    </head>
    <body bgcolor="White">
       <h1 style='text-align: center'>T-Shirt Orders by Congregation</h1>
-      <table class='registrationTable' id="table1">
+      <table class='registrationTable' style='width: 95%' id="table1">
          <tr>
             <th style='width: 20%'><b>Church Name</b></th>
             <th style='width: 10%; text-align: center'><b>YM</b></th>

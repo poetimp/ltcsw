@@ -78,7 +78,7 @@ else
                                  ")
             or die ("Unable to obtain Judge List:" . sqlError());
             ?>
-            <table class='registrationTable'>
+            <table class='registrationTable' style='width: 95%'>
             <?php
 
             while ($row = $result->fetch(PDO::FETCH_ASSOC))

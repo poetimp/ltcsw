@@ -52,7 +52,7 @@ if ($Admin != 'Y')
                     or die ("Not found:" . sqlError());
          $first = 1;
          ?>
-         <table class='registrationTable'>
+         <table class='registrationTable' style='width: 95%'>
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {

@@ -239,7 +239,7 @@ $pageBreak='';
                   if ($EventType == 'Team' and $prevTeamID != $TeamID)
                   {
                      print "<tr>";
-                     print "   <th colspan=1><b>Team: $TeamID</b></th>";
+                     print "   <td colspan=1><b>Team: $TeamID</b></td>";
                      print "   <td colspan=3>&nbsp;</td>";
                      print "</tr>";
                      $prevTeamID=$TeamID;

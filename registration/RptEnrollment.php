@@ -29,7 +29,7 @@ if ($Admin != 'Y')
    <body bgcolor="White">
       <h1 align="center">Enrollment by Congregation</h1>
       <hr>
-      <table class='registrationTable' style='width: 40%'>
+      <table class='registrationTable' style='width: 40%;margin-left: auto;margin-right: auto'>
    <?php
       //=================================================================================================
       // For Each Church see how many kids are actively registered
@@ -50,7 +50,7 @@ if ($Admin != 'Y')
       ?>
       </table>
 
-      <table class='registrationTable'  style='width: 40%'>
+      <table class='registrationTable'  style='width: 40%; margin-left: auto; margin-right: auto'>
          <tr>
             <td width=70%>Total</td>
             <td width=30% align=right><?php  print $total; ?>&nbsp;</td>

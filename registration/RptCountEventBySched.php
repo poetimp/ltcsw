@@ -67,7 +67,7 @@ $prevTime = "";
                    or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table class='registrationTable'>
+         <table class='registrationTable' style='width: 95%'>
          <?php
          //--------------------------------------------------------------------
          // No loop through the events reporting on the details

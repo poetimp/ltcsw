@@ -297,7 +297,7 @@ $roomList  = getRoomList();
                   if ($TeamEvent == 'Team' and $prevTeamID != $TeamID)
                   {
                      print "<tr>";
-                     print "   <th><b>Team: $TeamID</b></th>";
+                     print "   <td><b>Team: $TeamID</b></td>";
                      print "   <td colspan=3>&nbsp;</td>";
                      print "</tr>";
                      $prevTeamID=$TeamID;

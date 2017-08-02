@@ -62,7 +62,7 @@ $awardsBronze = 0;
                     or die ("Unable to get award list:" . sqlError());
 
        ?>
-         <table class='registrationTable' id="table1" style='width: 95%'>
+         <table class='registrationTable' id="table1" style='width: 50%;margin-left: auto; margin-right: auto'>
             <tr>
                <th>Event Name</th>
                <th>Gold</th>
@@ -186,7 +186,7 @@ $awardsBronze = 0;
          }
          //print "<pre>";print_r($teamAwards); print "</pre>";
          ?>
-         <table class='registrationTable' id="table2" style='width: 95%'>
+         <table class='registrationTable' id="table2" style='width: 50%;margin-left: auto; margin-right: auto'>
             <tr>
                <th>Event Name</th>
                <th>Gold</th>

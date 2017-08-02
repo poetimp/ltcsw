@@ -65,7 +65,7 @@ $prevTime = "";
                    or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table class='registrationTable' border="1"
+         <table class='registrationTable' style='width: 95%' border="1"
                 width="100%"
                 onmouseover="javascript:trackTableHighlight(event, '#8888FF');"
                 onmouseout="javascript:highlightTableRow(0);"

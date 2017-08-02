@@ -58,7 +58,7 @@ if ($Admin != 'Y')
          {
             ?>
          <div <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>>
-         <table class='registrationTable' border="0" width="100%">
+         <table class='registrationTable' style='width: 95%'>
             <tr>
                <th colspan="5">
                      <b>

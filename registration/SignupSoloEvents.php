@@ -37,7 +37,7 @@ include 'include/RegFunctions.php';
 
          $count = 0;
          ?>
-         <table class='registrationTable'>
+         <table class='registrationTable' style='width: 95%'>
             <tr>
                <th width="70" align=center>Team</th>
                <th width="70" align=center>Individual</th>
