@@ -258,7 +258,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 	   <!------------------------------------------------------------------------------>
 		<tr>
       <!----------------------- Column 1-7 ------------------------------------------>
-			<th colspan="7" align="center">Coordinator Information</th>
+			<th colspan="7" style='text-align: center'>Coordinator Information</th>
 		</tr>
 	   <!------------------------------------------------------------------------------>
 	   <!-- Row 2                                                                   -->

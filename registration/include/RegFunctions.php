@@ -1059,7 +1059,7 @@ function dumpSysVars()
       ?>
       <table class='registrationTable' border=1>
          <tr>
-            <th colspan="2" align="center"><b>POST</b></th>
+            <th colspan="2" style='text-align: center'><b>POST</b></th>
          </tr>
          <tr>
             <td>Variable</td>
@@ -1084,7 +1084,7 @@ function dumpSysVars()
    ?>
       <table class='registrationTable' border=1>
          <tr>
-            <th colspan="2" align="center"><b>REQUEST</b></th>
+            <th colspan="2" style='text-align: center'><b>REQUEST</b></th>
          </tr>
          <tr>
             <td>Variable</td>
@@ -1109,7 +1109,7 @@ function dumpSysVars()
    ?>
       <table class='registrationTable' border=1>
          <tr>
-            <th colspan="2" align="center"><b>SESSION</b></th>
+            <th colspan="2" style='text-align: center'><b>SESSION</b></th>
          </tr>
          <tr>
             <td>Variable</td>
@@ -1134,7 +1134,7 @@ function dumpSysVars()
    ?>
       <table class='registrationTable'>
          <th>
-            <td colspan="2" align="center"<b>SERVER</b></th>
+            <td colspan="2" style='text-align: center'<b>SERVER</b></th>
          </th>
          <tr>
             <td>Variable</td>

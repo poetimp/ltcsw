@@ -79,7 +79,7 @@ if ($redirectMessage != '')
         <h1 align=center>Reset Password</h1>
         <form method="post" id="main" name="main">
             <center>
-                <table class='registrationTable' border="0" width="550px">
+                <table class='registrationTable' border="0" style='width: 550px'>
                     <tr>
                         <td>
                             <p style="text-align: Left">
@@ -98,29 +98,29 @@ if ($redirectMessage != '')
                     </tr>
                 </table>
 
-                <table class='registrationTable' border="1" width="625px" style="text-align: center">
+                <table class='registrationTable' style='width: 625px; text-align: center'>
                     <tr>
                         <td colspan="2"><b>Enter your new password:</b></td>
                     </tr>
                     <tr>
-                        <td align="right">New Password:&nbsp;&nbsp;</td>
-                        <td align="left"><input type="password" name="password" size="40" /></td>
+                        <td style='text-align: right'>New Password:&nbsp;&nbsp;</td>
+                        <td style='text-align: left'><input type="password" name="password" size="40" /></td>
                     </tr>
                     <tr>
-                        <td align="right">Repeat Password:&nbsp;&nbsp;</td>
-                        <td align="left"><input type="password" name="passwordr" size="40" /></td>
+                        <td style='text-align: right'>Repeat Password:&nbsp;&nbsp;</td>
+                        <td style='text-align: left'><input type="password" name="passwordr" size="40" /></td>
                     </tr>
                     <?php
                     if ($message != '') {
                         ?>
                         <tr>
-                            <td colspan="2" align="center"><font color=red><b><?php print $message ?></b></font></td>
+                            <td colspan="2" style='text-align: center'><font color=red><b><?php print $message ?></b></font></td>
                         </tr>
                         <?php
                     }
                     ?>
                     <tr>
-                        <td colspan="2" align="center"><input type="submit" name="reset" value="Reset Password"></td>
+                        <td colspan="2" style='text-align: center'><input type="submit" name="reset" value="Reset Password"></td>
                     </tr>
                 </table>
             </center>

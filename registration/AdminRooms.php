@@ -197,7 +197,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    <form method="post">
       <table class='registrationTable' id="table1">
          <tr>
-            <th colspan="4"  align="center">Room Information</th>
+            <th colspan="4" style='text-align: center'>Room Information</th>
          </tr>
          <tr>
             <th style='width: 12%;'>Name</td>

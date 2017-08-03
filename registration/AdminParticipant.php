@@ -354,8 +354,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    <form method="post" action=AdminParticipant.php>
       <table class='registrationTable' style='width: 95%' id="table1">
          <tr>
-            <th colspan="5" align="center">Participant Information
-            </th>
+            <th colspan="5" style='text-align: center'>Participant Information</th>
          </tr>
          <tr>
             <th style='width: 15%;'>First Name</td>
@@ -560,10 +559,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-            <td style='width: 14%;'>
-            <input type="radio" value="M" name="Gender" <?php  print ($Gender == "M") ? "checked" : "" ?>>Male</td>
-            <td style='width: 14%;'>
-            <input type="radio" value="F" name="Gender" <?php  print ($Gender == "F") ? "checked" : "" ?>>Female</td>
+            <td style='width: 14%;'><input type="radio" value="M" name="Gender" <?php  print ($Gender == "M") ? "checked" : "" ?>>Male</td>
+            <td style='width: 14%;'><input type="radio" value="F" name="Gender" <?php  print ($Gender == "F") ? "checked" : "" ?>>Female</td>
             <?php
             }
             ?>
@@ -631,8 +628,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             {
             ?>
             <th style='width: 28%;'>Attend Convention</td>
-            <td style='width: 14%;'<input type="radio" name="AttendConv" value="Y" <?php  print ($AttendConv == "Y") ? "checked" : "" ?>>Yes</td>
-            <td style='width: 14%;'<input type="radio" name="AttendConv" value="N" <?php  print ($AttendConv == "N") ? "checked" : "" ?>>No</td>
+            <td style='width: 14%;'><input type="radio" name="AttendConv" value="Y" <?php  print ($AttendConv == "Y") ? "checked" : "" ?>>Yes</td>
+            <td style='width: 14%;'><input type="radio" name="AttendConv" value="N" <?php  print ($AttendConv == "N") ? "checked" : "" ?>>No</td>
             <?php
             }
             ?>
@@ -664,8 +661,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             {
             ?>
             <th style='width: 28%;'>Notify Christian Universities</td>
-            <td style='width: 14%;'<input type="radio" name="InfoToUniv" value="Y" <?php  print ($InfoToUniv == "Y") ? "checked" : "" ?>>Yes</td>
-            <td style='width: 14%;'<input type="radio" name="InfoToUniv" value="N" <?php  print ($InfoToUniv == "N") ? "checked" : "" ?>>No</td>
+            <td style='width: 14%;'><input type="radio" name="InfoToUniv" value="Y" <?php  print ($InfoToUniv == "Y") ? "checked" : "" ?>>Yes</td>
+            <td style='width: 14%;'><input type="radio" name="InfoToUniv" value="N" <?php  print ($InfoToUniv == "N") ? "checked" : "" ?>>No</td>
             <?php
             }
             ?>
@@ -727,7 +724,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             ?>
          </tr>
          <tr>
-            <th style='width: 97%;' colspan="5" align="center">Comments</th>
+            <th style='width: 97%;' colspan="5" style='text-align: center'>Comments</th>
          </tr>
          <tr>
             <td style='width: 97%;' colspan="5">

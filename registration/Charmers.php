@@ -79,20 +79,20 @@ include 'include/RegFunctions.php';
                      <td style='width: 70px; text-align: center;'>[<a href="AdminCharmers.php?action=view<?php  print "&id=".$row['charmerID']; ?>">View</a>]</td>
                      <td style='width: 70px; text-align: center;'>[<a href="AdminCharmers.php?action=update<?php  print "&id=".$row['charmerID']; ?>">Update</a>]</td>
                      <td style='width: 70px; text-align: center;'>[<a href="DelCharmer.php?<?php  print "id=".$row['charmerID']."&name=".$row['charmerName']; ?>">Delete</a>]</td>
-                     <td>               <?php  print $row['charmerName'];                                      ?></td>
-                     <td align="center"><?php  print $row['charmerSex'];                                       ?></td>
-                     <td align="center"><?php  print $row['charmerNeedRoom']     == 'on' ? "Yes" : "No";       ?></td>
-                     <td align="center"><?php  print $row['charmerTshirtNeeded'] == 'on' ? "Yes" : "No";       ?></td>
-                     <td>               <?php  print $row['charmerTshirtSize'];                                ?></td>
-                     <td>               <?php  print $row['charmerPhone'];                                     ?></td>
-                     <td>               <?php  print $row['charmerEmail'];                                     ?></td>
-                     <td>               <?php  print preg_replace("/\n/","<br>\n",$row['charmerAvailibility']);?></td>
+                     <td>                           <?php  print $row['charmerName'];                                      ?></td>
+                     <td style='text-align: center'><?php  print $row['charmerSex'];                                       ?></td>
+                     <td style='text-align: center'><?php  print $row['charmerNeedRoom']     == 'on' ? "Yes" : "No";       ?></td>
+                     <td style='text-align: center'><?php  print $row['charmerTshirtNeeded'] == 'on' ? "Yes" : "No";       ?></td>
+                     <td>                           <?php  print $row['charmerTshirtSize'];                                ?></td>
+                     <td>                           <?php  print $row['charmerPhone'];                                     ?></td>
+                     <td>                           <?php  print $row['charmerEmail'];                                     ?></td>
+                     <td>                           <?php  print preg_replace("/\n/","<br>\n",$row['charmerAvailibility']);?></td>
                   </tr>
                <?php
                }
                ?>
                </table>
-         <p align="center"><input type="submit" value="Add New" name="AddNew"><br>
+         <p style='text-align: center'><input type="submit" value="Add New" name="AddNew"><br>
          <b>Don't forget to order extra meals for your charmer!</b>
          </p>
       </form>

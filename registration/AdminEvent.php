@@ -396,7 +396,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <th colspan="7" align="center"><h2>Event Information</h2></th>
+         <th colspan="7" style='text-align: center'><h2>Event Information</h2></th>
       </tr>
       <!------------------------------------------------------------------------------>
       <!-- Row 2                                                                    -->
@@ -633,7 +633,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <th style='width: 12%;'>Sex</td>
+         <th style='width: 12%;'>Sex</th>
          <?php
          if ($mode == "view")
          {
@@ -661,11 +661,11 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
          ?>
          <!----------------------- Column 2 ------------------------------------------>
-         <td style='width: 13%;'<input type="radio" name="Sex" value="E" <?php  print ($Sex == "E") ? "checked" : "" ?>>Either</td>
+         <td style='width: 13%;'><input type="radio" name="Sex" value="E" <?php  print ($Sex == "E") ? "checked" : "" ?>>Either</td>
          <!----------------------- Column 3 ------------------------------------------>
-         <td style='width: 13%;'<input type="radio" name="Sex" value="M" <?php  print ($Sex == "M") ? "checked" : "" ?>>Male</td>
+         <td style='width: 13%;'><input type="radio" name="Sex" value="M" <?php  print ($Sex == "M") ? "checked" : "" ?>>Male</td>
          <!----------------------- Column 4 ------------------------------------------>
-         <td style='width: 12%;'<input type="radio" name="Sex" value="F" <?php  print ($Sex == "F") ? "checked" : "" ?>>Female</td>
+         <td style='width: 12%;'><input type="radio" name="Sex" value="F" <?php  print ($Sex == "F") ? "checked" : "" ?>>Female</td>
          <?php
          }
          ?>

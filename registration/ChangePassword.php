@@ -86,15 +86,15 @@ if (isset($_POST['ChangePwd']))
                   <td style='text-align: center' colspan="2"><b>Change Password:</b></td>
                </tr>
                <tr>
-                  <td style='text-align: right'>Current Password:&nbsp;&nbsp;</td>
+                  <th style='text-align: right'>Current Password:&nbsp;&nbsp;</th>
                   <td style='text-align: left'><input type="password" name="oldPwd" size="40"></td>
                </tr>
                <tr>
-                  <td style='text-align: right'>New Password:&nbsp;&nbsp;</td>
+                  <th style='text-align: right'>New Password:&nbsp;&nbsp;</th>
                   <td style='text-align: left'><input type="password" name="newPwd1" size="40"></td>
                </tr>
                <tr>
-                  <td style='text-align: right'>New Password Again:&nbsp;&nbsp;</td>
+                  <th style='text-align: right'>New Password Again:&nbsp;&nbsp;</th>
                   <td style='text-align: left'><input type="password" name="newPwd2" size="40"></td>
                </tr>
                <?php

@@ -148,8 +148,8 @@ else if (isset($_POST['Close']))
                <td style='text-align:left'><?php  print $row['Userid']; ?></td>
                <td><?php  print $row['Name']; ?></td>
                <td><?php  print $ChurchName; ?></td>
-               <td align='center'><?php  print $row['Admin']; ?></td>
-               <td align='center'><?php  print $row['Status']; ?></td>
+               <td style='text-align: center'><?php  print $row['Admin']; ?></td>
+               <td style='text-align: center'><?php  print $row['Status']; ?></td>
             </tr>
          <?php
          }

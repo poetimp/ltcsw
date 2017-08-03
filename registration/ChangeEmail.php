@@ -105,8 +105,8 @@ if (isset($_POST['ChangeEmail']))
                   <td style='text-align: center' colspan="2"><b>Change Email:</b></td>
                </tr>
                <tr>
-                  <td align="right">New Email Address:&nbsp;&nbsp;</td>
-                  <td align="left"><input type="text" name="email" size="40"></td>
+                  <th style='text-align: right'>New Email Address:&nbsp;&nbsp;</th>
+                  <td style='text-align: left'><input type="text" name="email" size="40"></td>
                </tr>
                <?php
                if ($message != '')

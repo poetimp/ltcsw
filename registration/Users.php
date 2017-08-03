@@ -151,9 +151,9 @@ else
                <td><?php  print $row['Name']; ?></td>
                <td><?php  print $row['Email']; ?></td>
                <td><?php  print $ChurchName; ?></td>
-               <td align="center"><?php  print $row['Status'];    ?></td>
-               <td align="center"><?php  print $row['Admin'];     ?></td>
-               <td align="center"><?php  print $row['loginCount'] == 0 ? 'Never' : $row['lastLogin']; ?></td>
+               <td style='text-align: center'><?php  print $row['Status'];    ?></td>
+               <td style='text-align: center'><?php  print $row['Admin'];     ?></td>
+               <td style='text-align: center'><?php  print $row['loginCount'] == 0 ? 'Never' : $row['lastLogin']; ?></td>
                </tr>
          <?php
          }

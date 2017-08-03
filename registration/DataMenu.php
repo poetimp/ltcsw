@@ -33,7 +33,7 @@ if ($Admin != 'Y')
 
          <table class='registrationTable' style='width: 95%'>
             <tr>
-               <td align="center" colspan="2">
+               <td style='text-align: center' colspan="2">
                   <font size="+2">
                      <b>Download Data</b>
                   </font>

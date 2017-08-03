@@ -70,32 +70,32 @@ if (isset($_POST['submit']))
       <h1 align="center">Request Userid/Password</h1>
 
       <form method="post" action=ReqUserid.php>
-         <table class='registrationTable' align="center" border="1" width="425px" id="table1">
+         <table class='registrationTable' style='width: 425px; margin-left: auto; margin-right: auto' id="table1">
             <tr>
-               <th colspan="2" align="center">User Information</th>
+               <th colspan="2" style='text-align: center'>User Information</th>
             </tr>
             <tr>
 
-               <td>Userid</td>
+               <th>Userid</th>
                <td><input type="text" name="Userid" size="36" value="<?php print $Userid;?>"></td>
             </tr>
             <tr>
-               <td>Name</td>
+               <th>Name</th>
                <td><input type="text" name="Name" size="36" value="<?php print $Name;?>"></td>
             </tr>
             <tr>
-               <td>Church</td>
+               <th>Church</th>
                <td><input type="text" name="Church" size="36" value="<?php print $Church;?>"></td>
             </tr>
             <tr>
-               <td>Email Address</td>
+               <th>Email Address</th>
                <td><input type="text" name="Email" size="36" value="<?php print $Email;?>"></td>
             </tr>
             <tr>
-               <td colspan="2" align="center"><b>Any Additional Information</b></td>
+               <th colspan="2" style='text-align: center'><b>Any Additional Information</b></th>
             </tr>
             <tr>
-               <td colspan="2" align="center">
+               <td colspan="2" style='text-align: center'>
                   <textarea name="Comments" rows="10" cols="50"><?php print $Comments;?></textarea>
                </td>
             </tr>

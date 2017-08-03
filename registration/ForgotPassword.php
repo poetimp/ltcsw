@@ -122,8 +122,8 @@ if (isset($_POST['reset']))
                         <td colspan="2"><b>Enter your Email address:</b></td>
                     </tr>
                     <tr>
-                        <td align="right">Email Address:&nbsp;&nbsp;</td>
-                        <td align="left"><input type="text" name="email" size="40"></td>
+                        <th style='text-align: right'>Email Address:&nbsp;&nbsp;</th>
+                        <td style='text-align: left'><input type="text" name="email" size="40"></td>
                     </tr>
                     <?php
                     if ($message != '') {

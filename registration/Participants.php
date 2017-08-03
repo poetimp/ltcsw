@@ -45,7 +45,7 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
                <tr>
                   <th style='width: 70px; text-align: center;'colspan=3>Action</th>
                   <th style='width: 100px; text-align: center;'>ID Number</th>
-                  <th align="left">Participant Name</th>
+                  <th style='text-align: left'>Participant Name</th>
                </tr>
             <?php
             while ($row = $results->fetch(PDO::FETCH_ASSOC))

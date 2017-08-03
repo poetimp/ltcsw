@@ -319,7 +319,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    <form method="post" action="AdminChurch.php">
       <table class='registrationTable' style='width: 95%' id="table1">
          <tr>
-            <th colspan="2" align="center">Church Information</th>
+            <th colspan="2" style='text-align: center'>Church Information</th>
          </tr>
          <tr>
             <th style='width: 12%;'>Name</td>
@@ -503,7 +503,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <th colspan="2" align="center">Coordinator Information</th>
+            <th colspan="2" style='text-align: center'>Coordinator Information</th>
          </tr>
          <tr>
             <th style='width: 12%;'>Name</td>

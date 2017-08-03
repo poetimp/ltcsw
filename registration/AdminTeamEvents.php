@@ -536,7 +536,7 @@ if (isset($_POST['Apply']))
          }
          ?>
          <tr>
-            <th colspan=3 align='center'>Comments</th>
+            <th colspan=3 style='text-align: center'>Comments</th>
          </tr>
          <tr>
             <td colspan=3>

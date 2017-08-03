@@ -20,7 +20,7 @@ if ($Admin != 'Y')
    header("refresh: 0; URL=Admin.php");
    die();
 }
-die ("Already done for 2017");
+//die ("Already done for 2017");
 
 if (isset($_POST['Confirm']))
 {
@@ -160,7 +160,7 @@ else
                 </h1>
              </center>
              <p align="center">
-             <table class='registrationTable' width=60%>
+             <table class='registrationTable' style='width: 60%; margin-left: auto; margin-right: auto'>
                 <tr>
                    <td>
                    <b><p align=center><font color=red><h2>Warning!!!</h2></font></p></b>
@@ -175,10 +175,12 @@ else
                 </tr>
              </table>
              <br>
+             <center>
              <input type="submit" value="Confirm" name="Confirm">
              <font size="5"><br>
              or</font><br>
              <input type="submit" value="Cancel" name="Cancel">
+             </center>
              </p>
           </form>
        </body>

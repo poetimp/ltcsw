@@ -230,7 +230,7 @@ function constructJudgesTable($dayTimes,$day)
    ?>
    <table class='registrationTable' style='width: 95%'>
       <tr>
-         <th colspan="<?php print $dayTimes?>" align="center">
+         <th colspan="<?php print $dayTimes?>" style='text-align: center'>
             <h3><?php print $day;?></h3>
          </th>
       </tr>
@@ -296,7 +296,7 @@ function constructJudgesTable($dayTimes,$day)
                            $EventSex     = $row['Sex'];
                            $JudgeTrained = $row['JudgeTrained'];
 
-                           print "<td align=center><b>$EventName</b><br>\n";
+                           print "<td style='text-align: center'><b>$EventName</b><br>\n";
                            //----------------------------------------------------------
                            // If there are special notes for this event not it here
                            //----------------------------------------------------------
@@ -309,7 +309,7 @@ function constructJudgesTable($dayTimes,$day)
 
                            if ($JudgesNeeded >0)
                            {
-                              print "<table class='registrationTable' width=100% border=0>\n";
+                              print "<table class='registrationTable' style='width:95%'>\n";
                               for ($i=0;$i<$JudgesNeeded;$i++)
                               {
                                  $selectName = "judge_" .

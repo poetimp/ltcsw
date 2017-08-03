@@ -232,7 +232,7 @@ function selectTime($Timestr = '')
 
          ?>
          <tr>
-         <td align="center"><a href="<?php print $_SERVER['PHP_SELF']."?AddEventID=$EventID"?>">Add</a></td>
+         <td style='text-align: center'><a href="<?php print $_SERVER['PHP_SELF']."?AddEventID=$EventID"?>">Add</a></td>
          <th colspan="4"><?php  print $EventName; ?></th>
          </tr>
          <?php
@@ -241,8 +241,8 @@ function selectTime($Timestr = '')
          {
             ?>
             <tr>
-            <td colspan="2" width="100">&nbsp;</td>
-            <td style='width: 75px; text-align: center;' valign="middle">
+            <td colspan="2" style='width: 100px'>&nbsp;</td>
+            <td style='width: 75px; text-align: center; vertical-align: middle'>
                <input type="hidden" value="<?php print $EventID?>" name="EventID"/>
                <input type="submit" value="Save" name="Save"/>
             </td>
@@ -255,8 +255,8 @@ function selectTime($Timestr = '')
             $SchedID = isset($_REQUEST['SchedID'])    ? $_REQUEST['SchedID']    : "";
             ?>
             <tr>
-               <td colspan="2" width="100">&nbsp;</td>
-               <td style='width: 75px; text-align: center;' valign="middle">
+               <td colspan="2" style='width: 100px'>&nbsp;</td>
+               <td style='width: 75px; text-align: center; vertical-align: middle'>
                   <input type="hidden" value="<?php print $EventID?>" name="EventID"/>
                   <input type="hidden" value="<?php print $SchedID?>" name="SchedID"/>
                   <input type="submit" value="Update" name="Save"/>
@@ -312,11 +312,11 @@ function selectTime($Timestr = '')
 
                      ?>
                      <tr>
-                     <td style='width: 50px;'>&nbsp;</td>
-                     <td style='width: 75px; text-align: center;'><a href="<?php  print $_SERVER['PHP_SELF']."?DelEventID=$EventID&StartTime=$StartTime&RoomID=$RoomID"; ?>">Delete</a></td>
-                     <td style='width: 75px; text-align: center;'><a href="<?php  print $_SERVER['PHP_SELF']."?MoveEventID=$EventID&SchedID=$SchedID&StartTime=$StartTime&RoomID=$RoomID"; ?>">Move</a></td>
-                     <td style='width: 350px;'><?php print TimeToStr($StartTime)." to ".TimeToStr($EndTime)?></td>
-                     <td><?php print $RoomName?></td>
+                        <td style='width: 50px;'>&nbsp;</td>
+                        <td style='width: 75px; text-align: center;'><a href="<?php  print $_SERVER['PHP_SELF']."?DelEventID=$EventID&StartTime=$StartTime&RoomID=$RoomID"; ?>">Delete</a></td>
+                        <td style='width: 75px; text-align: center;'><a href="<?php  print $_SERVER['PHP_SELF']."?MoveEventID=$EventID&SchedID=$SchedID&StartTime=$StartTime&RoomID=$RoomID"; ?>">Move</a></td>
+                        <td style='width: 350;'><?php print TimeToStr($StartTime)." to ".TimeToStr($EndTime)?></td>
+                        <td><?php print $RoomName?></td>
                      </tr>
                      <?php
                   }

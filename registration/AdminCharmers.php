@@ -248,10 +248,10 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
       <form method="post" action="AdminCharmers.php<?php print $requestString?>">
          <table class='registrationTable' id="table1">
             <tr>
-               <td colspan="2" align="center">Charmer Information</td>
+               <th colspan="2" style='text-align: center'><h2>Charmer Information</h2></th>
             </tr>
             <tr>
-               <td style='width: 15%'>Charmer</td>
+               <th style='width: 15%'>Charmer</th>
                <td style='width: 85%'>
                   <?php
                   if ($mode == 'view' or $mode == 'update')
@@ -270,7 +270,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                ?>
             </tr>
             <tr>
-               <td>Phone</td>
+               <th>Phone</th>
                <td>
                <?php
                   if ($mode == 'view')
@@ -287,7 +287,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td>Email</td>
+               <th>Email</th>
                <td>
                   <?php
                   if ($mode == 'view')
@@ -304,7 +304,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td>Sex</td>
+               <th>Sex</th>
                <td>
                <?php
                   if ($mode == 'view')
@@ -322,7 +322,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td>Need Room</td>
+               <th>Need Room</th>
                <td>
                   <?php
                   if ($mode == 'view')
@@ -339,7 +339,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td>Need Shirt</td>
+               <th>Need Shirt</th>
                <td>
                   <?php
                   if ($mode == 'view')
@@ -356,7 +356,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td>TShirt Size</td>
+               <th>TShirt Size</th>
                <td>
                   <?php
                   if ($mode == 'view')
@@ -382,8 +382,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td valign="middle">Availabiity and comments</td>
-               <td valign="middle">
+               <th style='vertical-align: middle'>Availabiity and comments</th>
+               <td style='vertical-align: middle'>
                <?php
                if ($mode == 'view')
                {
