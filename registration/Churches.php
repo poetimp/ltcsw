@@ -26,11 +26,12 @@ if (isset($_POST['AddNew']))
    <head>
       <meta http-equiv="Content-Language" content="en-us">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
       <title>Maintain Churches</title>
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <h1 align="center">Church Maintenance </h1>
       <form method="post" action=Churches.php>
          <?php
@@ -42,15 +43,15 @@ if (isset($_POST['AddNew']))
 
             $count = 0;
             ?>
-            <table border="1" width="100%">
+            <table class='registrationTable' style='width: 95%'>
             <?php
             while ($row = $results->fetch(PDO::FETCH_ASSOC))
             {
                ?>
                <tr>
-                  <td width="70" align="center">[<a href="AdminChurch.php?action=view<?php  print "&ChurchID=".$row['ChurchID']; ?>">View</a>]</td>
-                  <td width="70" align="center">[<a href="AdminChurch.php?action=update<?php  print "&ChurchID=".$row['ChurchID']; ?>">Update</a>]</td>
-                  <td width="70" align="center"> [<a href="DelChurch.php?action=del<?php  print "&ChurchID=".$row['ChurchID']."&ChurchName=".urlencode($row['ChurchName']); ?>">Delete</a>]</td>
+                  <td style='width: 70px; text-align: center;'>[<a href="AdminChurch.php?action=view<?php  print "&ChurchID=".$row['ChurchID']; ?>">View</a>]</td>
+                  <td style='width: 70px; text-align: center;'>[<a href="AdminChurch.php?action=update<?php  print "&ChurchID=".$row['ChurchID']; ?>">Update</a>]</td>
+                  <td style='width: 70px; text-align: center;'> [<a href="DelChurch.php?action=del<?php  print "&ChurchID=".$row['ChurchID']."&ChurchName=".urlencode($row['ChurchName']); ?>">Delete</a>]</td>
                   <td><?php  print "[".$row['ChurchID']."]: ".$row['ChurchName']; ?></td>
                </tr>
             <?php

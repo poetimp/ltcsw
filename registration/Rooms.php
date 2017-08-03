@@ -25,11 +25,13 @@ if (isset($_POST['AddNew']))
 
 <head>
 <meta http-equiv="Content-Language" content="en-us">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel=stylesheet href="include/registration.css" type="text/css" />
 <title>Hotel Conference Rooms</title>
 
 </head>
 
-<body style="background-color: rgb(217, 217, 255);">
+<body>
 <h1 align="center">Conference Room Maintenance </h1>
 <form method="post">
       <?php
@@ -42,33 +44,21 @@ if (isset($_POST['AddNew']))
 
          $count = 0;
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable' style='width: 95%'>
             <tr>
-               <td width=100 align="center" colspan="3" bgcolor="#000000">
-                  <font color="#FFFF00">
-                     Action
-                  </font>
-               </td>
-               <td width=10 align="center" bgcolor="#000000">
-                  <font color="#FFFF00">
-                     Seats
-                  </font>
-               </td>
-               <td bgcolor="#000000">
-                  <font color="#FFFF00">
-                     Room Name
-                  </font>
-               </td>
+               <th style='width: 100px; text-align: center;' colspan="3">Action</th>
+               <th style='width: 10px; text-align: center;'>Seats</th>
+               <th>Room Name</th>
             </tr>
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
             ?>
             <tr>
-               <td width=5% align="center">[<a href="AdminRooms.php?action=view<?php  print "&RoomID=".$row['RoomID']; ?>">View</a>]</td>
-               <td width=5% align="center">[<a href="AdminRooms.php?action=update<?php  print "&RoomID=".$row['RoomID']; ?>">Update</a>]</td>
-               <td width=5% align="center">[<a href="DelRoom.php?action=del<?php  print "&RoomID=".$row['RoomID']; ?>">Delete</a>]</td>
-               <td width=5% align="center"><?php  print $row['RoomSeats']; ?></td>
+               <td style='width: 5%; text-align: center;'>[<a href="AdminRooms.php?action=view<?php  print "&RoomID=".$row['RoomID']; ?>">View</a>]</td>
+               <td style='width: 5%; text-align: center;'>[<a href="AdminRooms.php?action=update<?php  print "&RoomID=".$row['RoomID']; ?>">Update</a>]</td>
+               <td style='width: 5%; text-align: center;'>[<a href="DelRoom.php?action=del<?php  print "&RoomID=".$row['RoomID']; ?>">Delete</a>]</td>
+               <td style='width: 5%; text-align: center;'><?php  print $row['RoomSeats']; ?></td>
                <td><?php  print $row['RoomName']; ?></td>
             </tr>
          <?php

@@ -27,7 +27,9 @@ if (isset($_POST['Add']))
 
    <head>
       <title>Add New Team</title>
+      <meta http-equiv="Content-Language" content="en-us">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
       <h1 align="center">Add New Team</h1>
       <?php
@@ -37,11 +39,11 @@ if (isset($_POST['Add']))
       }
       ?>
    </head>
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <form method="post" action="AddTeam.php">
-         <table border="1" width="100%">
+         <table class='registrationTable'>
             <tr>
-               <td width="25%" bgcolor="#000000">
+               <th style='width: 25%;'>
                   <select size="1" name="EventID">
                      <option value="0">-- Please select event --</option>
                      <?php
@@ -56,14 +58,10 @@ if (isset($_POST['Add']))
                        print "<option value=\"".$Row['EventID']."\">".$Row['EventName']."</option>\n";
                      }
                      ?>
-                  </select></td>
-               <td width="50%" bgcolor="#000000">
-                  <p align="center"><font color="#FFFF00"> &lt;--- Select the type of
-                  event to add, then press Add ---&gt; </font>
-               </p></td>
-               <td width="25%" bgcolor="#000000">
-                  <p align="center"><input type="submit" value="Add" name="Add" /></p>
-               </td>
+                  </select>
+               </th>
+               <th style='width: 50%; text-align: center'>&lt;--- Select the type ofevent to add, then press Add ---&gt;</th>
+               <td style='width: 25%; text-align: center'><input type="submit" value="Add" name="Add" /></td>
             </tr>
          </table>
       </form>

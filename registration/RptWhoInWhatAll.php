@@ -22,6 +22,9 @@ if ($Admin != 'Y')
        <title>
           Participants with Events
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -42,7 +45,7 @@ if ($Admin != 'Y')
                     or die ("Unable to get participant List:" . sqlError());
          $first = 1;
          ?>
-         <table border="0" width="100%">
+         <table class='registrationTable' style='width: 95%'>
          <?php
        //======================================================================
        // For each participant in LTC ...
@@ -76,10 +79,10 @@ if ($Admin != 'Y')
             }
             ?>
             <tr>
-               <td width=30%><b><?php  print $Name;           ?></b></td>
-               <td width=30%><b><?php  print $ChurchName;     ?></b></td>
-               <td width=30%><b><?php  print "Grade: $Grade"; ?></b></td>
-               <td width=10%><b><?php  print "&nbsp;";        ?></b></td>
+               <th style='width: 30%'><b><?php  print $Name;           ?></b></th>
+               <th style='width: 30%'><b><?php  print $ChurchName;     ?></b></th>
+               <th style='width: 30%'><b><?php  print "Grade: $Grade"; ?></b></th>
+               <th style='width: 10%'><b><?php  print "&nbsp;";        ?></b></th>
             </tr>
             <?php
             //======================================================================
@@ -114,10 +117,10 @@ if ($Admin != 'Y')
                  $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
                  ?>
                  <tr>
-                     <td width=30%>&nbsp;</td>
-                     <td width=30%><?php  print $EventName; ?></td>
-                     <td width=30%><?php  print "Individual"; ?></td>
-                     <td width=10%><?php  print $ConvEvent; ?></td>
+                     <td style='width: 30%;'>&nbsp;</td>
+                     <td style='width: 30%;'><?php  print $EventName; ?></td>
+                     <td style='width: 30%;'><?php  print "Individual"; ?></td>
+                     <td style='width: 10%;'><?php  print $ConvEvent; ?></td>
                  </tr>
                  <?php
                }
@@ -157,10 +160,10 @@ if ($Admin != 'Y')
                   $ConvEvent = $row['ConvEvent'] == "C" ? "Convention" : "Preconvention";
                   ?>
                   <tr>
-                      <td width=30%>&nbsp;</td>
-                      <td width=30%><?php  print $EventName; ?></td>
-                      <td width=30%><?php  print "Team: $TeamID"; ?></td>
-                      <td width=10%><?php  print $ConvEvent; ?></td>
+                      <td style='width: 30%;'>&nbsp;</td>
+                      <td style='width: 30%;'><?php  print $EventName; ?></td>
+                      <td style='width: 30%;'><?php  print "Team: $TeamID"; ?></td>
+                      <td style='width: 10%;'><?php  print $ConvEvent; ?></td>
                   </tr>
                   <?php
                 }
@@ -172,8 +175,8 @@ if ($Admin != 'Y')
             {
                 ?>
                 <tr>
-                    <td width=30%>&nbsp;</td>
-                    <td width=30% colspan="3"><?php  print "<b><i>Not signed up for any events</i></b>"; ?></td>
+                    <td style='width: 30%;'>&nbsp;</td>
+                    <td style='width: 30%;' colspan="3"><?php  print "<b><i>Not signed up for any events</i></b>"; ?></td>
                 </tr>
                 <?php
             }

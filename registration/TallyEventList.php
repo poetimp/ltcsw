@@ -27,9 +27,12 @@ $prevTime = "";
        <title>
           Assign Awards
        </title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
     <h1 align="center">Select Event to Assign Awards</h1>
     <hr>
     <?php
@@ -62,8 +65,7 @@ $prevTime = "";
                    or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table border="1"
-                width="100%"
+         <table class='registrationTable' style='width: 95%'
                 onmouseover="javascript:trackTableHighlight(event, '#8888FF');"
                 onmouseout="javascript:highlightTableRow(0);"
          >
@@ -186,7 +188,7 @@ $prevTime = "";
             {
                ?>
                <tr id="header">
-                  <td bgcolor="#C0C0C0" colspan=6><b><?php  print $EventTime; ?></b></td>
+                  <th colspan=6><b><?php  print $EventTime; ?></b></th>
                </tr>
                <?php
                $prevTime = $EventTime;
@@ -200,12 +202,12 @@ $prevTime = "";
                   $ReportWarn = '';
             ?>
             <tr>
-               <td width="2%" id="preserve" bgcolor="<?php  print $StatusColor; ?>">&nbsp;</td>
-               <td width="38%"><?php  print $EventName; ?></td>
-               <td width="10%"><?php  print "$numAwards/$numEvents"; ?></td>
-               <td width="20%"><?php  print $EventType; ?></td>
-               <td width="15%"><?php  print "<a href=TallyAssignAwards.php?EventID=$EventID&SchedID=$SchedID>Assign Awards</a>"; ?></td>
-               <td width="15%"><?php  print "<a href=TallyPrintAwards.php?EventID=$EventID&SchedID=$SchedID$ReportWarn target=_blank>Print Report</a>"; ?></td>
+               <td style='width: 2%' id="preserve" bgcolor="<?php  print $StatusColor; ?>">&nbsp;</td>
+               <td style='width: 38%;'><?php  print $EventName; ?></td>
+               <td style='width: 10%;'><?php  print "$numAwards/$numEvents"; ?></td>
+               <td style='width: 20%;'><?php  print $EventType; ?></td>
+               <td style='width: 15%;'><?php  print "<a href=TallyAssignAwards.php?EventID=$EventID&SchedID=$SchedID>Assign Awards</a>"; ?></td>
+               <td style='width: 15%;'><?php  print "<a href=TallyPrintAwards.php?EventID=$EventID&SchedID=$SchedID$ReportWarn target=_blank>Print Report</a>"; ?></td>
             </tr>
          <?php
             }
@@ -241,8 +243,7 @@ $prevTime = "";
                    or die ("Unable to get Unscheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table border="1"
-                width="100%"
+         <table class='registrationTable' style='width: 95%'
                 onmouseover="javascript:trackTableHighlight(event, '#8888FF');"
                 onmouseout="javascript:highlightTableRow(0);"
          >
@@ -337,7 +338,7 @@ $prevTime = "";
             {
                ?>
                <tr>
-                  <td id="header" bgcolor="#C0C0C0" colspan=6><b><?php  print $ConvEvent; ?></b></td>
+                  <th id="header" colspan=6><b><?php  print $ConvEvent; ?></b></th>
                </tr>
                <?php
                $prevTime = $ConvEvent;
@@ -350,12 +351,12 @@ $prevTime = "";
                   $ReportWarn = '';
             ?>
             <tr>
-               <td width="2%" id="preserve" bgcolor="<?php  print $StatusColor; ?>">&nbsp;</td>
-               <td width="38%"><?php  print $EventName; ?></td>
-               <td width="10%"><?php  print "$numAwards/$numEvents"; ?></td>
-               <td width="20%"><?php  print $EventType; ?></td>
-               <td width="15%"><?php  print "<a href=TallyAssignAwards.php?EventID=$EventID&SchedID=0000>Assign Awards</a>"; ?></td>
-               <td width="15%"><?php  print "<a href=TallyPrintAwards.php?EventID=$EventID&SchedID=0000$ReportWarn target=_blank>Print Report</a>"; ?></td>
+               <td style='width: 2%' id="preserve" bgcolor="<?php  print $StatusColor; ?>">&nbsp;</td>
+               <td style='width: 38%;'><?php  print $EventName; ?></td>
+               <td style='width: 10%;'><?php  print "$numAwards/$numEvents"; ?></td>
+               <td style='width: 20%;'><?php  print $EventType; ?></td>
+               <td style='width: 15%;'><?php  print "<a href=TallyAssignAwards.php?EventID=$EventID&SchedID=0000>Assign Awards</a>"; ?></td>
+               <td style='width: 15%;'><?php  print "<a href=TallyPrintAwards.php?EventID=$EventID&SchedID=0000$ReportWarn target=_blank>Print Report</a>"; ?></td>
             </tr>
             <?php
             }

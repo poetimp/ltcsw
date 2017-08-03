@@ -17,6 +17,9 @@ include 'include/RegFunctions.php';
        <title>
           Participant Events
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -36,7 +39,7 @@ include 'include/RegFunctions.php';
                     or die ("Not found:" . sqlError());
          $first = 1;
          ?>
-         <table border="0" width="100%" id="table1">
+         <table class='registrationTable' style='width: 95%' id="table1">
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
@@ -63,11 +66,11 @@ include 'include/RegFunctions.php';
             }
             ?>
             <tr>
-               <td bgcolor="#CCCCCC" width=25%><b><?php  print $Name; ?></b></td>
-               <td bgcolor="#CCCCCC" width=25%><b><?php  print $Email; ?></b></td>
-               <td bgcolor="#CCCCCC" width=15%><b><?php  print $Phone; ?></b></td>
-               <td bgcolor="#CCCCCC" width=10%><b><?php  print "Grade: $Grade"; ?></b></td>
-               <td bgcolor="#CCCCCC" width=25%><b>Award</b></td>
+               <th style='width: 25%'><b><?php  print $Name; ?></b></th>
+               <th style='width: 25%'><b><?php  print $Email; ?></b></th>
+               <th style='width: 15%'><b><?php  print $Phone; ?></b></th>
+               <th style='width: 10%'><b><?php  print "Grade: $Grade"; ?></b></th>
+               <th style='width: 25%'><b>Award</b></th>
             </tr>
             <?php
             if ($SoloCount > 0)
@@ -147,8 +150,8 @@ include 'include/RegFunctions.php';
             {
                 ?>
                 <tr>
-                    <td width=30%>&nbsp;</td>
-                    <td width=30% colspan="3"><?php  print "<b><i>Not signed up for any events</i></b>"; ?></td>
+                    <td style='width: 30%;'>&nbsp;</td>
+                    <td style='width: 30%;' colspan="3"><?php  print "<b><i>Not signed up for any events</i></b>"; ?></td>
                 </tr>
                 <?php
             }

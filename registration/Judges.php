@@ -20,12 +20,12 @@ if (isset($_POST['AddNew']))
 <head>
 <meta http-equiv="Content-Language" content="en-us">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel=stylesheet href="include/registration.css" type="text/css" />
 <title>Maintain Judges</title>
 
 </head>
 
-<body style="background-color: rgb(217, 217, 255);">
+<body>
 <h1 align="center">Judges Maintenance </h1>
 <form method="post" action=Judges.php>
       <?php
@@ -39,21 +39,21 @@ if (isset($_POST['AddNew']))
 
          $count = 0;
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable' style='width: 95%'>
             <tr>
-               <TD align="center" colspan="3" bgcolor="Black"><font color="Yellow"><b>Action</b></font></TD>
-               <TD bgcolor="Black"><font color="Yellow"><b>Assignments</b></font></TD>
-               <TD bgcolor="Black"><font color="Yellow"><b>Name</b></font></TD>
+               <th style='text-align: center' colspan="3"><h3>Action</h3></th>
+               <th><h3>Assignments</h3></th>
+               <th><h3>Name</h3></th>
             </tr>
          <?php
          while ($row = $JudgeList->fetch(PDO::FETCH_ASSOC))
          {
             ?>
             <tr>
-               <td width="5%" align="center">[<a href="AdminJudges.php?action=view<?php  print "&JudgeID=".$row['JudgeID']; ?>">View</a>]</td>
-               <td width="5%" align="center">[<a href="AdminJudges.php?action=update<?php  print "&JudgeID=".$row['JudgeID']; ?>">Update</a>]</td>
-               <td width="5%" align="center"> [<a href="DelJudge.php?action=del<?php  print "&JudgeID=".$row['JudgeID']."&Name=".urlencode($row['LastName'].", ".$row['FirstName']); ?>">Delete</a>]</td>
-               <td width="5%" align="center">
+               <td style='width: 5%; text-align: center'>[<a href="AdminJudges.php?action=view<?php  print "&JudgeID=".$row['JudgeID']; ?>">View</a>]</td>
+               <td style='width: 5%; text-align: center'>[<a href="AdminJudges.php?action=update<?php  print "&JudgeID=".$row['JudgeID']; ?>">Update</a>]</td>
+               <td style='width: 5%; text-align: center'> [<a href="DelJudge.php?action=del<?php  print "&JudgeID=".$row['JudgeID']."&Name=".urlencode($row['LastName'].", ".$row['FirstName']); ?>">Delete</a>]</td>
+               <td style='width: 5%; text-align: center'>
                   <?php
                      $TimesList = $db->query("select   count(*) Count
                                              from     $JudgeAssignmentsTable
@@ -64,7 +64,7 @@ if (isset($_POST['AddNew']))
                      print $TimeRow['Count'];
                   ?>
                </td>
-               <td width="80%"><?php  print $row['LastName'].", ".$row['FirstName']; ?></td>
+               <td style='width: 80%;'><?php  print $row['LastName'].", ".$row['FirstName']; ?></td>
             </tr>
          <?php
          }

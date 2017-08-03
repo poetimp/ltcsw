@@ -22,12 +22,14 @@ if (isset($_POST['Confirm']))
        or die ("Unable to delete Room record from schedule table: " . sqlError());
        ?>
       <head>
+         <meta http-equiv="Content-Language" content="en-us">
          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
          <title>
             Room Deleted
          </title>
       </head>
-      <body style="background-color: rgb(217, 217, 255);">
+      <body>
          <h1 align="center">
             Room <?php  print $RoomName; ?> Deleted!
          </h1>
@@ -53,9 +55,12 @@ else
           <title>
              Delete Room
           </title>
+          <meta http-equiv="Content-Language" content="en-us">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel=stylesheet href="include/registration.css" type="text/css" />
        </head>
 
-       <body style="background-color: rgb(217, 217, 255);">
+       <body>
           <form method="post" action="DelRoom.php<?php  print "?RoomID=$RoomID"; ?>">
              <center>
                 <h1>

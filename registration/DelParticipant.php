@@ -42,8 +42,11 @@ if (isset($_POST['Confirm']))
          <title>
             Participant Deleted
          </title>
+         <meta http-equiv="Content-Language" content="en-us">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
       </head>
-      <body style="background-color: rgb(217, 217, 255);">
+      <body>
          <h1 align=center>
             Participant: <?php  print $_REQUEST['Name']; ?> Deleted!
          </h1>
@@ -64,9 +67,12 @@ else
           <title>
              Delete Participant
           </title>
+          <meta http-equiv="Content-Language" content="en-us">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel=stylesheet href="include/registration.css" type="text/css" />
        </head>
 
-       <body style="background-color: rgb(217, 217, 255);">
+       <body>
           <form method="post" action="DelParticipant.php<?php  print "?ParticipantID=".$_REQUEST['ParticipantID']."&Name=".urlencode($_REQUEST['Name']); ?>">
              <center>
                 <h1>

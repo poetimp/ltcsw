@@ -16,12 +16,13 @@ include 'include/RegFunctions.php';
 <head>
 <meta http-equiv="Content-Language" content="en-us">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel=stylesheet href="include/registration.css" type="text/css" />
 
 <title>Assign Individual Events</title>
 
 </head>
 
-<body style="background-color: rgb(217, 217, 255);">
+<body>
 <h1 align="center">Assign Individual Events</h1>
       <?php
          $results = $db->query("select FirstName,
@@ -36,13 +37,13 @@ include 'include/RegFunctions.php';
 
          $count = 0;
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable' style='width: 95%'>
             <tr>
-               <td width="70" align=center bgcolor="#000000"><font color="#FFFF00">Team</font></td>
-               <td width="70" align=center bgcolor="#000000"><font color="#FFFF00">Individual</font></td>
-               <td width="70" align=center bgcolor="#000000"><font color="#FFFF00">Grade</font></td>
-               <td width="70" align=center bgcolor="#000000"><font color="#FFFF00">ID Number</font></td>
-               <td align="left" bgcolor="#000000"><font color="#FFFF00">Participant</font></td>
+               <th style='width: 70px; text-align: center;'>Team</th>
+               <th style='width: 70px; text-align: center;'>Individual</th>
+               <th style='width: 70px; text-align: center;'>Grade</th>
+               <th style='width: 70px; text-align: center;'>ID Number</th>
+               <th style='text-align: left'>Participant</th>
             </tr>
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
@@ -54,10 +55,10 @@ include 'include/RegFunctions.php';
 
             ?>
             <tr>
-               <td width="70" align="center"> <?php  print $TeamEvents?></td>
-               <td width="70" align="center"> <?php  print $IndivEvents?></td>
-               <td width="70" align="center"> <?php  print $row['Grade']?></td>
-               <td width="70" align="center"> <?php  print $row['ParticipantID']?></td>
+               <td style='width: 70px; text-align: center;'> <?php  print $TeamEvents?></td>
+               <td style='width: 70px; text-align: center;'> <?php  print $IndivEvents?></td>
+               <td style='width: 70px; text-align: center;'> <?php  print $row['Grade']?></td>
+               <td style='width: 70px; text-align: center;'> <?php  print $row['ParticipantID']?></td>
                <td>
                   <a href="AdminSoloEvents.php?ID=<?php  print $row['ParticipantID']; ?>" >
                      <?php  print $row['LastName'].", ".$row['FirstName']; ?>

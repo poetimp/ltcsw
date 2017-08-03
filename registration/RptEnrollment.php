@@ -22,11 +22,14 @@ if ($Admin != 'Y')
       <title>
          Enrollment by Congregation
       </title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
    <body bgcolor="White">
       <h1 align="center">Enrollment by Congregation</h1>
       <hr>
-      <table border="0" width="40%">
+      <table class='registrationTable' style='width: 40%;margin-left: auto;margin-right: auto'>
    <?php
       //=================================================================================================
       // For Each Church see how many kids are actively registered
@@ -39,18 +42,18 @@ if ($Admin != 'Y')
          $total += $ChurchCount;
          ?>
          <tr>
-            <td width=70%><?php  print $ChurchName;  ?>&nbsp;</td>
-            <td width=30% align=right><?php  print $ChurchCount; ?>&nbsp;</td>
+            <td style='width: 70%;'><?php  print $ChurchName;  ?>&nbsp;</td>
+            <td style='width: 30%; text-align: right;'><?php  print $ChurchCount; ?>&nbsp;</td>
          </tr>
          <?php
       }
       ?>
       </table>
-      <hr>
-      <table width=40%>
+
+      <table class='registrationTable'  style='width: 40%; margin-left: auto; margin-right: auto'>
          <tr>
-            <td width=70%>Total</td>
-            <td width=30% align=right><?php  print $total; ?>&nbsp;</td>
+            <td style='width: 70%;'>Total</td>
+            <td style='width: 30%; text-align: right;'><?php  print $total; ?>&nbsp;</td>
          </tr>
       </table>
    </body>

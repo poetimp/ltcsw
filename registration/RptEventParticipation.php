@@ -23,6 +23,9 @@ if ($Admin != 'Y')
        <title>
           Event Participation
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -55,12 +58,12 @@ if ($Admin != 'Y')
                     or die ("Unable to get event list:" . sqlError());
        $first = 1;
        ?>
-       <table border="1" width="100%" id="table1">
+       <table class='registrationTable' id="table1" style='width: 50%;margin-left: auto; margin-right: auto'>
           <tr>
-             <td bgcolor=#CCCCCC><b>Event Name</b></td>
-             <td bgcolor=#CCCCCC><b>Convention Presence</b></td>
-             <td bgcolor=#CCCCCC><b>Event Type</b></td>
-             <td bgcolor=#CCCCCC><b>Participation</b></td>
+             <th>Event Name</th>
+             <th>Convention Presence</th>
+             <th>Event Type</th>
+             <th>Participation</th>
           </tr>
        <?php
        while ($row = $eventList->fetch(PDO::FETCH_ASSOC))

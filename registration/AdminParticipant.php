@@ -186,7 +186,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
       if ($mode == 'update')
       {
-//      	print "<pre>
+//         print "<pre>
 //                    update $ParticipantsTable
 //                    set FirstName      = '$FirstName'  ,
 //                        LastName       = '$LastName'   ,
@@ -205,7 +205,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 //                        Comments       = '$Comments'
 //                  where ParticipantId  = '$ParticipantID'
 //                  and   ChurchId       = '$ChurchID'
-//      	       </pre>";
+//                </pre>";
 //
          $sql = "update $ParticipantsTable
                     set FirstName      = '$FirstName'  ,
@@ -267,7 +267,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
       $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
    ?>
-         <body style="background-color: rgb(217, 217, 255);">
+         <body>
          <?php
               if ($mode == 'update')
               {
@@ -299,8 +299,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
    <head>
-   <meta http-equiv="Content-Language" content="en-us">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    <?php
       if ($mode == 'update')
       {
@@ -323,7 +324,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
    <?php
       if ($mode == 'update')
       {
@@ -351,21 +352,13 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
 
    <form method="post" action=AdminParticipant.php>
-      <table border="1" width="100%" id="table1">
+      <table class='registrationTable' style='width: 95%' id="table1">
          <tr>
-            <td colspan="5" bgcolor="#000000">
-               <p align="center">
-                  <font color="#FFFF00">
-                     <span style="background-color: #000000">
-                        Participant Information
-                     </span>
-                  </font>
-               </p>
-            </td>
+            <th colspan="5" style='text-align: center'>Participant Information</th>
          </tr>
          <tr>
-            <td width="15%">First Name</td>
-            <td width="30%">
+            <th style='width: 15%;'>First Name</td>
+            <td style='width: 30%;'>
             <?php
             if ($mode == "view")
             {
@@ -379,10 +372,10 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             }
             ?>
             </td>
-            <td width="15%">
+            <th style='width: 15%;'>
                Last Name
-            </td>
-            <td width="29%" colspan="2">
+            </th>
+            <td style='width: 29%;' colspan="2">
             <?php
             if ($mode == "view")
             {
@@ -398,8 +391,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">Address</td>
-            <td width="85%" colspan="4">
+            <th style='width: 12%;'>Address</td>
+            <td style='width: 85%;' colspan="4">
             <?php
             if ($mode == "view")
             {
@@ -415,8 +408,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">City</td>
-            <td width="36%">
+            <th style='width: 12%;'>City</td>
+            <td style='width: 36%;'>
             <?php
             if ($mode == "view")
             {
@@ -430,8 +423,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             }
             ?>
             </td>
-            <td width="12%">State</td>
-            <td width="30%" colspan="2">
+            <th style='width: 12%;'>State</td>
+            <td style='width: 30%;' colspan="2">
             <?php
             if ($mode == "view")
             {
@@ -508,10 +501,10 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">&nbsp;</td>
-            <td width="36%">&nbsp;</td>
-            <td width="12%">Zip</td>
-            <td width="37%" colspan="2">
+            <th style='width: 12%;'>&nbsp;</td>
+            <th style='width: 36%;'>&nbsp;</td>
+            <th style='width: 12%;'>Zip</td>
+            <td style='width: 37%;' colspan="2">
             <?php
             if ($mode == "view")
             {
@@ -527,8 +520,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">Grade</td>
-            <td width="29%">
+            <th style='width: 12%;'>Grade</td>
+            <td style='width: 29%;'>
             <?php
             if ($mode == "view")
             {
@@ -554,29 +547,27 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             }
             ?>
             </td>
-            <td width="28%">
+            <td style='width: 28%;'>
             Sex</td>
             <?php
             if ($mode == "view")
             {
-               print "<td width=28% colspan=2>";
+               print "<td style='width: 28%;' colspan=2>";
                print $Gender == "M" ? "Male" : "Female";
                print "</td>";
             }
             else
             {
             ?>
-            <td width="14%">
-            <input type="radio" value="M" name="Gender" <?php  print ($Gender == "M") ? "checked" : "" ?>>Male</td>
-            <td width="14%">
-            <input type="radio" value="F" name="Gender" <?php  print ($Gender == "F") ? "checked" : "" ?>>Female</td>
+            <td style='width: 14%;'><input type="radio" value="M" name="Gender" <?php  print ($Gender == "M") ? "checked" : "" ?>>Male</td>
+            <td style='width: 14%;'><input type="radio" value="F" name="Gender" <?php  print ($Gender == "F") ? "checked" : "" ?>>Female</td>
             <?php
             }
             ?>
          </tr>
          <tr>
-            <td width="12%">Shirt Size</td>
-            <td width="29%">
+            <th style='width: 12%;'>Shirt Size</td>
+            <td style='width: 29%;'>
             <?php
             if ($mode == "view")
             {
@@ -629,23 +620,23 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             <?php
             if ($mode == "view")
             {
-               print "<td width=56% colspan=3>";
+               print "<td style='width: 56%;' colspan=3>";
                print $AttendConv == "Y" ? "Attending Convention" : "Not Attending Convention";
                print "</td>";
             }
             else
             {
             ?>
-            <td width="28%">Attend Convention</td>
-            <td width="14%"><input type="radio" name="AttendConv" value="Y" <?php  print ($AttendConv == "Y") ? "checked" : "" ?>>Yes</td>
-            <td width="14%"><input type="radio" name="AttendConv" value="N" <?php  print ($AttendConv == "N") ? "checked" : "" ?>>No</td>
+            <th style='width: 28%;'>Attend Convention</td>
+            <td style='width: 14%;'><input type="radio" name="AttendConv" value="Y" <?php  print ($AttendConv == "Y") ? "checked" : "" ?>>Yes</td>
+            <td style='width: 14%;'><input type="radio" name="AttendConv" value="N" <?php  print ($AttendConv == "N") ? "checked" : "" ?>>No</td>
             <?php
             }
             ?>
          </tr>
          <tr>
-            <td width="12%">Email</td>
-            <td width="29%">
+            <th style='width: 12%;'>Email</td>
+            <td style='width: 29%;'>
             <?php
             if ($mode == "view")
             {
@@ -662,23 +653,23 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             <?php
             if ($mode == "view")
             {
-               print "<td width=56% colspan=3>";
+               print "<td style='width: 56%;' colspan=3>";
                print $InfoToUniv == "Y" ? "Send information to Universities" : "Do Not Send information to Universities";
                print "</td>";
             }
             else
             {
             ?>
-            <td width="28%">Notify Christian Universities</td>
-            <td width="14%"><input type="radio" name="InfoToUniv" value="Y" <?php  print ($InfoToUniv == "Y") ? "checked" : "" ?>>Yes</td>
-            <td width="14%"><input type="radio" name="InfoToUniv" value="N" <?php  print ($InfoToUniv == "N") ? "checked" : "" ?>>No</td>
+            <th style='width: 28%;'>Notify Christian Universities</td>
+            <td style='width: 14%;'><input type="radio" name="InfoToUniv" value="Y" <?php  print ($InfoToUniv == "Y") ? "checked" : "" ?>>Yes</td>
+            <td style='width: 14%;'><input type="radio" name="InfoToUniv" value="N" <?php  print ($InfoToUniv == "N") ? "checked" : "" ?>>No</td>
             <?php
             }
             ?>
          </tr>
          <tr>
-            <td width="12%">Phone</td>
-            <td width="29%" colspan="1">
+            <th style='width: 12%;'>Phone</td>
+            <td style='width: 29%;' colspan="1">
             <?php
             if ($mode == "view")
             {
@@ -695,7 +686,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             <?php
             if ($mode == "view")
             {
-               print "<td width=56% colspan=3>";
+               print "<td style='width: 56%;' colspan=3>";
 //               if ($MealTicket == "N")
 //               {
 //                  print "Meal Ticket Declined";
@@ -718,9 +709,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-                <td width="56%" colspan=3>&nbsp;</td>
-<!--            <td width="28%" colspan=1>Meal Ticket (<A href="http://www.ltcsw.org/faq.htm#13" target="_blank">help</A>)</td>-->
-<!--            <td width="28%" colspan=2>-->
+                <td style='width: 56%;' colspan=3>&nbsp;</td>
+<!--            <td style='width: 28%;' colspan=1>Meal Ticket (<A href="http://www.ltcsw.org/faq.htm#13" target="_blank">help</A>)</td>-->
+<!--            <td style='width: 28%;' colspan=2>-->
 <!--               <select name="MealTicket" size="1">-->
 <!--                  <option <?php  print ($MealTicket == "0")  ? "selected" : "" ?> value="0">Please Select</option>-->
 <!--                  <option value="N" <?php  print ($MealTicket == "N") ? "selected" : "" ?>>None</option>-->
@@ -733,12 +724,10 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             ?>
          </tr>
          <tr>
-            <td width="97%" colspan="5" bgcolor="#000000">
-         <p align="center"><font color="#FFFF00">
-         <span style="background-color: #000000">Comments</span></font></td>
+            <th style='width: 97%;' colspan="5" style='text-align: center'>Comments</th>
          </tr>
          <tr>
-            <td width="97%" colspan="5">
+            <td style='width: 97%;' colspan="5">
             <?php
             if ($mode == "view")
             {
@@ -748,11 +737,11 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             {
             ?>
                <p align="center">
-			      <textarea rows="4" name="Comments" cols="76" ><?php  print $Comments;?></textarea>
+               <textarea rows="4" name="Comments" cols="76" ><?php  print $Comments;?></textarea>
             <?php
             }
             ?>
-			   </td>
+            </td>
          </tr>
          </table>
       <p align="center">

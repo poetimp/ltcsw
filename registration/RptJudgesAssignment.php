@@ -88,22 +88,22 @@ function constructJudgesTable($dayTimes,$day)
 
    $dayInitial = substr($day,0,1) == "F" ? 6 : 7;
    ?>
-   <table width="100%" border="1">
+   <table class='registrationTable' style='width: 95%' border="1">
       <tr>
-         <td colspan="<?php print $dayTimes?>" align="center" bgcolor="Black">
-            <font color="Yellow"><b><?php print $day;?></b></font>
-         </td>
+         <th colspan="<?php print $dayTimes?>" style='text-align: center'>
+            <h3><?php print $day;?></h3>
+         </th>
       </tr>
       <tr>
       <?php
-         print "<TD bgcolor=\"#6699FF\" width=\"15%\">&nbsp;</TD>\n";
+         print "<th sty;e='width: 15%'>&nbsp;</th>\n";
          foreach ($allTimes as $StartTime => $displayTime)
          {
             if (substr($StartTime,0,1) == $dayInitial)
             {
-               print "<TD bgcolor=\"#6699FF\" align=\"center\">\n";
+               print "<th style='text-align: center'>\n";
                print "<b>$displayTime</b>\n";
-               print "</TD>\n";
+               print "</th>\n";
             }
          }
       ?>
@@ -123,8 +123,8 @@ function constructJudgesTable($dayTimes,$day)
             $count = $row['Count'];
             if ($count > 0)
             {
-               print "<TR>\n";
-               print "<TD bgcolor=\"#6699FF\"><b>".preg_replace('/\s*-\s*[a-zA-Z]\s*$/','',$RoomName)."</b></TD>\n";
+               print "<tr>\n";
+               print "<th ><b>".preg_replace('/\s*-\s*[a-zA-Z]\s*$/','',$RoomName)."</b></th>\n";
                foreach ($allTimes as $StartTime => $displayTime)
                {
                   if (substr($StartTime,0,1) == $dayInitial)
@@ -157,10 +157,10 @@ function constructJudgesTable($dayTimes,$day)
                         $EventName    = $row['EventName'];
                         $JudgesNeeded = $row['JudgesNeeded'];
                         $SchedID      = $row['SchedID'];
-                        print "<TD align=center><b>$EventName</b><br>\n";
+                        print "<td style='text-align: center'><b>$EventName</b><br>\n";
                         if ($JudgesNeeded >0)
                         {
-                           print "<TABLE width=100% border=0>\n";
+                           print "<table class='registrationTable'\n";
                            for ($i=0;$i<$JudgesNeeded;$i++)
                            {
                               $result = $db->query("select  a.JudgeID,
@@ -182,23 +182,23 @@ function constructJudgesTable($dayTimes,$day)
                               else
                                  $JudgeName = '-=-';
 
-                              print "<TR>\n";
-                              print "<TD>\n";
+                              print "<tr>\n";
+                              print "<td>\n";
                               print "<center>\n";
                               print $JudgeName;
                               print "</center>\n";
-                              print "</TD>\n";
-                              print "</TR>\n";
+                              print "</td>\n";
+                              print "</tr>\n";
                            }
-                           print "</TABLE>\n";
+                           print "</table>\n";
                         }
-                        print "</TD>\n";
+                        print "</td>\n";
                      }
                      else
-                        print "<TD>&nbsp;</TD>\n";
+                        print "<td>&nbsp;</td>\n";
                   }
                }
-               print "</TR>\n";
+               print "</tr>\n";
             }
          }
       ?>
@@ -211,9 +211,12 @@ function constructJudgesTable($dayTimes,$day)
 <html lang="en">
    <head>
       <title>Assigned Judges</title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <?php
       if (isset($_REQUEST['ID']) and !preg_match("/[^0-9]/",$_REQUEST['ID']))
       {

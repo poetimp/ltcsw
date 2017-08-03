@@ -151,7 +151,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       if ($ErrorMsg == "")
       {
       ?>
-         <body style="background-color: rgb(217, 217, 255);">
+         <body>
          <?php
               if ($mode == 'update')
               {
@@ -184,8 +184,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
    <head>
-   <meta http-equiv="Content-Language" content="en-us">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
    <?php
       if ($mode == 'update')
@@ -209,7 +210,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
    <?php
       if ($mode == 'update')
       {
@@ -244,16 +245,14 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             $requestString.="&id=".$_REQUEST['id'];
 
          ?>
-      <form method="post" action=AdminCharmers.php<?php print $requestString?>>
-         <table border="1" width="100%" id="table1">
+      <form method="post" action="AdminCharmers.php<?php print $requestString?>">
+         <table class='registrationTable' id="table1">
             <tr>
-               <td colspan="2" bgcolor="#000000">
-               <p align="center"><font color="#FFFF00">
-               <span style="background-color: #000000">Charmer Information</span></font></td>
+               <th colspan="2" style='text-align: center'><h2>Charmer Information</h2></th>
             </tr>
             <tr>
-               <td width="15%">Charmer</td>
-               <td width="85%">
+               <th style='width: 15%'>Charmer</th>
+               <td style='width: 85%'>
                   <?php
                   if ($mode == 'view' or $mode == 'update')
                   {
@@ -271,7 +270,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                ?>
             </tr>
             <tr>
-               <td>Phone</td>
+               <th>Phone</th>
                <td>
                <?php
                   if ($mode == 'view')
@@ -288,7 +287,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td>Email</td>
+               <th>Email</th>
                <td>
                   <?php
                   if ($mode == 'view')
@@ -305,7 +304,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td>Sex</td>
+               <th>Sex</th>
                <td>
                <?php
                   if ($mode == 'view')
@@ -315,15 +314,15 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   else
                   {
                   ?>
-                     <input type="Radio" name="charmerSex" value="F" <?php  print $charmerSex == "F" ? "checked" : ""; ?>> Female<br>
-                     <input type="Radio" name="charmerSex" value="M" <?php  print $charmerSex == "M" ? "checked" : ""; ?>> Male
+                     <input type="radio" name="charmerSex" value="F" <?php  print $charmerSex == "F" ? "checked" : ""; ?> /> Female<br>
+                     <input type="radio" name="charmerSex" value="M" <?php  print $charmerSex == "M" ? "checked" : ""; ?> /> Male
                   <?php
                   }
                ?>
                </td>
             </tr>
             <tr>
-               <td>Need Room</td>
+               <th>Need Room</th>
                <td>
                   <?php
                   if ($mode == 'view')
@@ -340,7 +339,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td>Need Shirt</td>
+               <th>Need Shirt</th>
                <td>
                   <?php
                   if ($mode == 'view')
@@ -357,7 +356,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td>TShirt Size</td>
+               <th>TShirt Size</th>
                <td>
                   <?php
                   if ($mode == 'view')
@@ -383,8 +382,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                </td>
             </tr>
             <tr>
-               <td valign="middle">Availabiity and comments</td>
-               <td valign="middle">
+               <th style='vertical-align: middle'>Availabiity and comments</th>
+               <td style='vertical-align: middle'>
                <?php
                if ($mode == 'view')
                {
@@ -406,18 +405,18 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                if ($mode == 'update')
                {?>
                   <input type="submit" value="Update" name="update">
-                  <input type="hidden" value="update" name=action>
+                  <input type="hidden" value="update" name="action">
                <?php
                }
                else if ($mode == 'add')
                {?>
                   <input type="submit" value="Add" name="add">
-                  <input type="hidden" value="add" name=action>
+                  <input type="hidden" value="add" name="action">
                <?php
                }
                else if ($mode == 'view')
                {?>
-                  <input type="hidden" value="update" name=action>
+                  <input type="hidden" value="update" name="action">
                <?php
                }
             ?>

@@ -342,7 +342,9 @@ if (isset($_POST['Apply']))
        <title>
           Manage Team Events
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
 
        <h1 align=center>Manage Team Members For</h1>
        <h2 align=center><?php  print $EventName; ?><br>
@@ -369,13 +371,13 @@ if (isset($_POST['Apply']))
        }
        ?>
     </head>
-    <body style="background-color: rgb(217, 217, 255);">
+    <body>
     <?php
     if ($TeamID > 0)
     {
     ?>
         <form method="post" action="AdminTeamEvents.php?EventID=<?php  print $EventID; ?>&TeamID=<?php  print $TeamID; ?><?php  if ($Admin == 'Y' and isset($_REQUEST['ChurchID'])) print "&ChurchID=$ChurchID"; if (isset($_REQUEST['Return'])) print '&Return='.$_REQUEST['Return']?>">
-          <table border="1" width="100%">
+          <table class='registrationTable' style='width: 95%'>
           <?php
          $EventResult = $db->query("select EventAttended
                                      from   $EventsTable
@@ -404,7 +406,7 @@ if (isset($_POST['Apply']))
          {
             ?>
             <tr>
-               <td width="10%" bgcolor="#000000">
+               <th style='width: 10%;'>
                <?php
                if ($Action == "View")
                {
@@ -418,7 +420,7 @@ if (isset($_POST['Apply']))
                                          and    s.EventID       = r.EventID")
                            or die("Unable to determing event time: ".sqlError());
                   $row    = $result->fetch(PDO::FETCH_ASSOC);
-                  print "<font color=#FFFF00>".TimeToStr($row['StartTime'])."</font>";
+                  print TimeToStr($row['StartTime']);
                }
                else
                {
@@ -514,9 +516,8 @@ if (isset($_POST['Apply']))
                <?php
                }
                ?>
-               </td>
-               <td colspan=2 bgcolor="#000000">
-                  <font color="#FFFF00">
+               </th>
+               <th colspan=2>
                      <?php
                      if ($Action == "View")
                      {
@@ -529,15 +530,13 @@ if (isset($_POST['Apply']))
                      <?php
                      }
                      ?>
-                  </font>
-               </td>
+               </th>
             </tr>
             <?php
          }
          ?>
          <tr>
-            <td bgcolor = "#000000" colspan=3><center><font color="#FFFF00">
-               Comments</font></center></td>
+            <th colspan=3 style='text-align: center'>Comments</th>
          </tr>
          <tr>
             <td colspan=3>
@@ -558,14 +557,14 @@ if (isset($_POST['Apply']))
             <?php
             if ($Action == "View")
             {
-               print "<td bgcolor=#000000 colspan=2><font color=#FFFF00><center>Participant Name</center></font></td>";
+               print "<th colspan=2 align=center>Participant Name</th>";
             }
             else
             {
             ?>
-               <td width="10%" bgcolor="#000000"><font color="#FFFF00">Selected</font></td>
-               <td width="10%" bgcolor="#000000"><font color="#FFFF00">Grade</font></td>
-               <td width=80% bgcolor="#000000"><font color="#FFFF00">Participant Name</font></td>
+               <th style='width: 10%;'>Selected</th>
+               <th style='width: 10%;'>Grade</th>
+               <td style='width: 80%;'>Participant Name</th>
             <?php
             }
             ?>
@@ -630,12 +629,12 @@ if (isset($_POST['Apply']))
                 {
                 ?>
                 <tr>
-                  <td width="10%">
+                  <td style='width: 10%;'>
                      <center>
                         <input type="checkbox" name="s<?php  print $ParticipantID; ?>" value="ON" <?php  print $selected == 1 ? 'checked' : '' ?>/>
                      </center>
                   </td>
-                  <td width="10%">
+                  <td style='width: 10%;'>
                      <div style="text-align:center">
                   <?php
                      print $ParticipantGrade;

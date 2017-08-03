@@ -21,8 +21,11 @@ if (isset($_POST['Confirm']))
          <title>
             Userid Deleted
          </title>
+         <meta http-equiv="Content-Language" content="en-us">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
       </head>
-      <body style="background-color: rgb(217, 217, 255);">
+      <body>
          <h1 align=center>
             Userid <?php  print $_REQUEST['Userid']; ?> Deleted!
          </h1>
@@ -45,9 +48,12 @@ else
           <title>
              Delete User
           </title>
+          <meta http-equiv="Content-Language" content="en-us">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel=stylesheet href="include/registration.css" type="text/css" />
        </head>
 
-       <body style="background-color: rgb(217, 217, 255);">
+       <body>
           <form method="post" action="DelUser.php<?php  print "?Userid=".$_REQUEST['Userid']; ?>">
              <center>
                 <h1>

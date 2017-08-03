@@ -25,6 +25,9 @@ $prevTime = "";
        <title>
           Event Participation
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -64,7 +67,7 @@ $prevTime = "";
                    or die ("Unable to get scheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable' style='width: 95%'>
          <?php
          //--------------------------------------------------------------------
          // No loop through the events reporting on the details
@@ -112,17 +115,17 @@ $prevTime = "";
             {
                ?>
                <tr>
-                  <td bgcolor="#C0C0C0" colspan=4><b><?php  print $EventTime; ?></b></td>
+                  <th colspan=4><b><?php  print $EventTime; ?></b></th>
                </tr>
                <?php
                $prevTime = $EventTime;
             }
             ?>
             <tr>
-               <td width="25%"><?php  print $EventName; ?></td>
-               <td width="25%"><?php  print preg_replace('/\s*-\s*[a-zA-Z]\s*$/','',$RoomName) ?></td>
-               <td width="10%"><?php  if ($numEvents > $MaxWebSlots){print "<font color=\"red\">";} print "$numEvents of $MaxWebSlots"; if ($numEvents > $MaxWebSlots){print "</font>";}?></td>
-               <td width="40%"><?php  print $EventType; ?></td>
+               <td style='width: 25%'><?php  print $EventName; ?></td>
+               <td style='width: 25%'><?php  print preg_replace('/\s*-\s*[a-zA-Z]\s*$/','',$RoomName) ?></td>
+               <td style='width: 10%'><?php  if ($numEvents > $MaxWebSlots){print "<font color=\"red\">";} print "$numEvents of $MaxWebSlots"; if ($numEvents > $MaxWebSlots){print "</font>";}?></td>
+               <td style='width: 40%'><?php  print $EventType; ?></td>
             </tr>
          <?php
          }
@@ -156,7 +159,7 @@ $prevTime = "";
                    or die ("Unable to get Unscheduled event list:" . sqlError());
          $first = 1;
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable'>
          <?php
          //--------------------------------------------------------------------
          // No loop through the events reporting on the details
@@ -198,16 +201,16 @@ $prevTime = "";
             {
                ?>
                <tr>
-                  <td bgcolor="#C0C0C0" colspan=3><b><?php  print $ConvEvent; ?></b></td>
+                  <th colspan=3><b><?php  print $ConvEvent; ?></b></th>
                </tr>
                <?php
                $prevTime = $ConvEvent;
             }
             ?>
             <tr>
-               <td width="35%"><?php  print $EventName; ?></td>
-               <td width="10%"><?php  print $numEvents; ?></td>
-               <td width="55%"><?php  print $EventType; ?></td>
+               <td style='width: 35%'><?php  print $EventName; ?></td>
+               <td style='width: 10%'><?php  print $numEvents; ?></td>
+               <td style='width: 55%'><?php  print $EventType; ?></td>
             </tr>
          <?php
          }

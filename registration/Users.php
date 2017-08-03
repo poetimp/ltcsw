@@ -41,15 +41,16 @@ else
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 
-<head>
-<meta http-equiv="Content-Language" content="en-us">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <head>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
-<title>Maintain Users</title>
+     <title>Maintain Users</title>
 
-</head>
+   </head>
 
-<body style="background-color: rgb(217, 217, 255);">
+<body>
 <h1 align="center">User Maintenance </h1>
 <form method="post" action=Users.php>
       <?php
@@ -74,52 +75,46 @@ else
             $order = "asc";
 
          ?>
-         <table border="1" width="100%">
+         <table class='registrationTable' style='width: 95%'>
             <tr>
-               <td width="70" align="center" bgcolor="#000000">
-                  <font color="#FFFF00">View</font>
-               </td>
-               <td width="70" align="center" bgcolor="#000000">
-                  <font color="#FFFF00">Update</font>
-               </td>
-               <td width="70" align="center" bgcolor="#000000">
-                  <font color="#FFFF00">Delete</font>
-               </td>
-               <td bgcolor="#000000">
-                  <a href="Users.php?sort=Userid&order=<?php print $order; ?>">
-                     <font color="#FFFF00">Userid</font>
+               <th style='width: 70px; text-align: center;'>View</th>
+               <th style='width: 70px; text-align: center;'>Update</th>
+               <th style='width: 70px; text-align: center;'>Delete</th>
+               <th>
+                  <a style='color: white' href="Users.php?sort=Userid&order=<?php print $order; ?>">
+                     Userid
                   </a>
-               </td>
-               <td bgcolor="#000000">
-                  <a href="Users.php?sort=Name&order=<?php print $order; ?>">
-                     <font color="#FFFF00">User Name</font>
+               </th>
+               <th>
+                  <a style='color: white' href="Users.php?sort=Name&order=<?php print $order; ?>">
+                     User Name
                   </a>
-               </td>
-               <td bgcolor="#000000">
-                  <a href="Users.php?sort=Email&order=<?php print $order; ?>">
-                     <font color="#FFFF00">Email</font>
+               </th>
+               <th>
+                  <a style='color: white' href="Users.php?sort=Email&order=<?php print $order; ?>">
+                     Email
                   </a>
-               </td>
-               <td bgcolor="#000000">
-                  <a href="Users.php?sort=ChurchName&order=<?php print $order; ?>">
-                     <font color="#FFFF00">Church Name</font>
+               </th>
+               <th>
+                  <a style='color: white' href="Users.php?sort=ChurchName&order=<?php print $order; ?>">
+                     Church Name
                   </a>
-               </td>
-               <td bgcolor="#000000" align="center">
-                  <a href="Users.php?sort=Status&order=<?php print $order; ?>">
-                     <font color="#FFFF00">Status</font>
+               </th>
+               <th style='text-align: center'>
+                  <a style='color: white' href="Users.php?sort=Status&order=<?php print $order; ?>">
+                     Status
                   </a>
-               </td>
-               <td bgcolor="#000000" align="center">
-                  <a href="Users.php?sort=Admin&order=<?php print $order; ?>">
-                     <font color="#FFFF00">Administrator</font>
+               </th>
+               <th style='text-align: center'>
+                  <a style='color: white' href="Users.php?sort=Admin&order=<?php print $order; ?>">
+                     Administrator
                   </a>
-               </td>
-               <td bgcolor="#000000" align="center">
-                  <a href="Users.php?sort=lastLogin&order=<?php print $order; ?>">
-                     <font color="#FFFF00">Last Login</font>
+               </th>
+               <th style='text-align: center'>
+                  <a style='color: white' href="Users.php?sort=lastLogin&order=<?php print $order; ?>">
+                     Last Login
                   </a>
-               </td>
+               </th>
             </tr>
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
@@ -149,16 +144,16 @@ else
             }
             ?>
             <tr>
-               <td width="70" align="center">[<a href="AdminUser.php?action=view<?php  print "&Userid=".$row['Userid']; ?>">View</a>]</td>
-               <td width="70" align="center">[<a href="AdminUser.php?action=update<?php  print "&Userid=".$row['Userid']; ?>">Update</a>]</td>
-               <td width="70" align="center">[<a href="DelUser.php?action=del<?php  print "&Userid=".$row['Userid']; ?>">Delete</a>]</td>
+               <td style='width: 70px; text-align: center;'>[<a href="AdminUser.php?action=view<?php  print "&Userid=".$row['Userid']; ?>">View</a>]</td>
+               <td style='width: 70px; text-align: center;'>[<a href="AdminUser.php?action=update<?php  print "&Userid=".$row['Userid']; ?>">Update</a>]</td>
+               <td style='width: 70px; text-align: center;'>[<a href="DelUser.php?action=del<?php  print "&Userid=".$row['Userid']; ?>">Delete</a>]</td>
                <td><?php  print $row['Userid']; ?></td>
                <td><?php  print $row['Name']; ?></td>
                <td><?php  print $row['Email']; ?></td>
                <td><?php  print $ChurchName; ?></td>
-               <td align="center"><?php  print $row['Status'];    ?></td>
-               <td align="center"><?php  print $row['Admin'];     ?></td>
-               <td align="center"><?php  print $row['loginCount'] == 0 ? 'Never' : $row['lastLogin']; ?></td>
+               <td style='text-align: center'><?php  print $row['Status'];    ?></td>
+               <td style='text-align: center'><?php  print $row['Admin'];     ?></td>
+               <td style='text-align: center'><?php  print $row['loginCount'] == 0 ? 'Never' : $row['lastLogin']; ?></td>
                </tr>
          <?php
          }

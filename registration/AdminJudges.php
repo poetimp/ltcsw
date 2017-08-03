@@ -171,7 +171,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       }
 
       ?>
-         <body style="background-color: rgb(217, 217, 255);">
+         <body>
          <?php
               if ($mode == 'update')
               {
@@ -203,8 +203,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
    <head>
-   <meta http-equiv="Content-Language" content="en-us">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
    <?php
       if ($mode == 'update')
@@ -228,7 +229,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
    <?php
       if ($mode == 'update')
       {
@@ -256,21 +257,13 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
 
    <form method="post" action=AdminJudges.php>
-      <table border="1" width="100%" id="table1">
+      <table class='registrationTable' id="table1">
          <tr>
-            <td colspan="5" bgcolor="#000000">
-               <p align="center">
-                  <font color="#FFFF00">
-                     <span style="background-color: #000000">
-                        Judge Information
-                     </span>
-                  </font>
-               </p>
-            </td>
+            <th colspan="5" style='text-align: center'>Judge Information</th>
          </tr>
          <tr>
-            <td width="15%">First Name</td>
-            <td width="30%">
+            <th style='width: 15%;'>First Name</td>
+            <td style='width: 30%;'>
             <?php
             if ($mode == "view")
             {
@@ -286,7 +279,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td>Last Name</td>
+            <th>Last Name</th>
             <td>
                <?php
                if ($mode == "view")
@@ -303,7 +296,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td>Address</td>
+            <th>Address</th>
             <td>
                <?php
                if ($mode == "view")
@@ -320,7 +313,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td>City</td>
+            <th>City</th>
             <td>
                <?php
                if ($mode == "view")
@@ -337,7 +330,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td>State</td>
+            <th>State</th>
             <td>
                <?php
                if ($mode == "view")
@@ -415,7 +408,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td>Zip</td>
+            <th>Zip</th>
             <td>
                <?php
                if ($mode == "view")
@@ -432,7 +425,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td>Email</td>
+            <th>Email</th>
             <td>
                <?php
                if ($mode == "view")
@@ -449,7 +442,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td>Phone</td>
+            <th>Phone</th>
             <td>
                <?php
                if ($mode == "view")

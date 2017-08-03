@@ -241,89 +241,92 @@ else
        <title>
           Extra Orders
        </title>
-          <h1 align=center>Extra Orders</h1>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
-       <body style="background-color: rgb(217, 217, 255);">
+       <body>
+          <h1 align=center>Extra Orders</h1>
 
     <form method="post" action=ExtraOrders.php>
          <h2>T-Shirts</h2>
          Participant T-Shirts are covered in the cost of registration. Extra T-Shirts will be
          <?php print '$'.number_format($prices['Shirt'],2);?> each.
-         <table border="1" width="60%">
+         <table class='registrationTable' style='width: 60%'>
             <tr>
-               <td width="20%" bgcolor="#000000"><font color="#FFFF00">Size</font></td>
-               <td width="15%" bgcolor="#000000"><font color="#FFFF00">Participants</font></td>
-               <td width="15%" bgcolor="#000000"><font color="#FFFF00">Extra Orders</font></td>
+               <th style='width: 20%;'>Size</th>
+               <th style='width: 15%;'>Participants</th>
+               <th style='width: 15%;'>Extra Orders</th>
             </tr>
             <tr>
-               <td width="20%">Youth Medium</td>
-               <td width="15%" align="center"><?php  print $shirt['YM']; ?></td>
-               <td width="15%"><input type="text" name="YM" size="5" <?php  print "value=\"".$extraShirt['YM']."\" ".$readOnly;?> ></td>
+               <th style='width: 20%;'>Youth Medium</th>
+               <td style='width: 15%; text-align: center;'><?php  print $shirt['YM']; ?></td>
+               <td style='width: 15%;'><input type="text" name="YM" size="5" <?php  print "value=\"".$extraShirt['YM']."\" ".$readOnly;?> ></td>
             </tr>
             <tr>
-               <td width="20%">Youth Large</td>
-               <td width="15%" align="center"><?php  print $shirt['YL']; ?></td>
-               <td width="15%"><input type="text" name="YL" size="5" <?php  print "value=\"".$extraShirt['YL']."\" ".$readOnly;?> ></td>
+               <th style='width: 20%;'>Youth Large</th>
+               <td style='width: 15%; text-align: center;'><?php  print $shirt['YL']; ?></td>
+               <td style='width: 15%;'><input type="text" name="YL" size="5" <?php  print "value=\"".$extraShirt['YL']."\" ".$readOnly;?> ></td>
             </tr>
             <tr>
-               <td width="20%">Adult Small</td>
-               <td width="15%" align="center"><?php  print $shirt['S']; ?></td>
-               <td width="15%"><input type="text" name="S" size="5" <?php  print "value=\"".$extraShirt['S']."\" ".$readOnly;?> ></td>
+               <th style='width: 20%;'>Adult Small</th>
+               <td style='width: 15%; text-align: center;'><?php  print $shirt['S']; ?></td>
+               <td style='width: 15%;'><input type="text" name="S" size="5" <?php  print "value=\"".$extraShirt['S']."\" ".$readOnly;?> ></td>
             </tr>
             <tr>
-               <td width="20%">Adult Medium</td>
-               <td width="15%" align="center"><?php  print $shirt['M']; ?></td>
-               <td width="15%"><input type="text" name="M" size="5" <?php  print "value=\"".$extraShirt['M']."\" ".$readOnly;?> ></td>
+               <th style='width: 20%;'>Adult Medium</th>
+               <td style='width: 15%; text-align: center;'><?php  print $shirt['M']; ?></td>
+               <td style='width: 15%;'><input type="text" name="M" size="5" <?php  print "value=\"".$extraShirt['M']."\" ".$readOnly;?> ></td>
             </tr>
             <tr>
-               <td width="20%">Adult Large</td>
-               <td width="15%" align="center"><?php  print $shirt['LG']; ?></td>
-               <td width="15%"><input type="text" name="LG" size="5" <?php  print "value=\"".$extraShirt['LG']."\" ".$readOnly;?> ></td>
+               <th style='width: 20%;'>Adult Large</th>
+               <td style='width: 15%; text-align: center;'><?php  print $shirt['LG']; ?></td>
+               <td style='width: 15%;'><input type="text" name="LG" size="5" <?php  print "value=\"".$extraShirt['LG']."\" ".$readOnly;?> ></td>
             </tr>
             <tr>
-               <td width="20%">Adult X-Large</td>
-               <td width="15%" align="center"><?php  print $shirt['XL']; ?></td>
-               <td width="15%"><input type="text" name="XL" size="5" <?php  print "value=\"".$extraShirt['XL']."\" ".$readOnly;?> ></td>
+               <th style='width: 20%;'>Adult X-Large</th>
+               <td style='width: 15%; text-align: center;'><?php  print $shirt['XL']; ?></td>
+               <td style='width: 15%;'><input type="text" name="XL" size="5" <?php  print "value=\"".$extraShirt['XL']."\" ".$readOnly;?> ></td>
             </tr>
             <tr>
-               <td width="20%">Adult XX-Large</td>
-               <td width="15%" align="center"><?php  print $shirt['XX']; ?></td>
-               <td width="15%"><input type="text" name="XX" size="5" <?php  print "value=\"".$extraShirt['XX']."\" ".$readOnly;?> ></td>
+               <th style='width: 20%;'>Adult XX-Large</th>
+               <td style='width: 15%; text-align: center;'><?php  print $shirt['XX']; ?></td>
+               <td style='width: 15%;'><input type="text" name="XX" size="5" <?php  print "value=\"".$extraShirt['XX']."\" ".$readOnly;?> ></td>
             </tr>
             <tr>
-               <td width="20%" bgcolor="#808080"><b>Totals</b></td>
-               <td width="15%" align="center" bgcolor="#808080"><b><?php  print $ParticipantTotal; ?></b></td>
-               <td width="15%" bgcolor="#808080"> <?php  print $extraShirtTotal; ?> </td>
+               <th style='width: 20%;' bgcolor="#808080"><b>Totals</b></th>
+               <td style='width: 15%; text-align: center;' bgcolor="#808080"><b><?php  print $ParticipantTotal; ?></b></td>
+               <td style='width: 15%;' bgcolor="#808080"> <?php  print $extraShirtTotal; ?> </td>
             </tr>
          </table>
 
          <br>
          <h2>Meal Tickets </h2>
          (<b>Note:</b> Event directors, Charmers and Board members are covered)
-         <table border="1" width="60%" id="table1">
+         <table class='registrationTable' style='width: 60%'>
             <tr>
-               <td width="20%" bgcolor="#000000"><font color="#FFFF00">Meal Ticket</font></td>
-               <td width="15%" bgcolor="#000000"><font color="#FFFF00" align="center">Cost</font></td>
-               <td width="15%" bgcolor="#000000"><font color="#FFFF00">Extra Orders</font></td>
+               <th style='width: 20%;'>Meal Ticket</th>
+               <th style='width: 15%; text-align: center;'>Cost</th>
+               <th style='width: 15%;'>Extra Orders</th>
             </tr>
             <tr>
-               <td width="20%">Adult Meal Tickets</td>
-               <td width="15%" align="center"><?php print '$'.number_format($prices['AdultMeal'],2);?></td>
-               <td width="15%"><input type="text" name="AdultMeal" size="5" <?php  print "value=\"".$extraMeal['AdultMeal']."\" ".$readOnly;?> ></td>
+               <th style='width: 20%;'>Adult Meal Tickets</th>
+               <td style='width: 15%; text-align: center;'><?php print '$'.number_format($prices['AdultMeal'],2);?></td>
+               <td style='width: 15%;'><input type="text" name="AdultMeal" size="5" <?php  print "value=\"".$extraMeal['AdultMeal']."\" ".$readOnly;?> ></td>
             </tr>
             <tr>
-               <td width="20%">Child Meal Tickets (7 and under)</td>
-               <td width="15%" align="center"><?php print '$'.number_format($prices['ChildMeal'],2);?></td>
-               <td width="15%"><input type="text" name="ChildMeal" size="5" <?php  print "value=\"".$extraMeal['ChildMeal']."\" ".$readOnly;?> ></td>
+               <th style='width: 20%;'>Child Meal Tickets (7 and under)</th>
+               <td style='width: 15%; text-align: center;'><?php print '$'.number_format($prices['ChildMeal'],2);?></td>
+               <td style='width: 15%;'><input type="text" name="ChildMeal" size="5" <?php  print "value=\"".$extraMeal['ChildMeal']."\" ".$readOnly;?> ></td>
             </tr>
             <tr>
-               <td width="20%" bgcolor="#808080"><b>Totals</b></td>
-               <td width="15%" align="center" bgcolor="#808080"><b><?php  print $ParticipantMealTotal; ?></b></td>
-               <td width="15%" bgcolor="#808080"> <?php  print $extraMealTotal; ?> </td>
+               <th style='width: 20%' bgcolor="#808080"><b>Totals</b></th>
+               <td style='width: 15%; text-align: center;' bgcolor="#808080"><b><?php  print $ParticipantMealTotal; ?></b></td>
+               <td style='width: 15%;' bgcolor="#808080"> <?php  print $extraMealTotal; ?> </td>
             </tr>
          </table>
          <br>
-         <table border="0" width="60%" id="table2">
+         <table class='registrationTable' style='width: 60%'>
             <tr>
                <?php if ($UserStatus == 'O')
                {?>
@@ -331,7 +334,6 @@ else
                <?php
                }
                ?>
-            </tr>
          </table>
       </form>
       <?php footer("","")?>

@@ -61,40 +61,41 @@ if (isset($_POST['submit']))
 
    <head>
       <title>Request Userid/Password</title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <h1 align="center">Request Userid/Password</h1>
 
       <form method="post" action=ReqUserid.php>
-         <table align="center" border="1" width="425px" id="table1">
+         <table class='registrationTable' style='width: 425px; margin-left: auto; margin-right: auto' id="table1">
             <tr>
-               <td colspan="2" bgcolor="#000000">
-               <p align="center"><font color="#FFFF00">
-               <span style="background-color: #000000">User Information</span></font></td>
+               <th colspan="2" style='text-align: center'>User Information</th>
             </tr>
             <tr>
 
-               <td>Userid</td>
+               <th>Userid</th>
                <td><input type="text" name="Userid" size="36" value="<?php print $Userid;?>"></td>
             </tr>
             <tr>
-               <td>Name</td>
+               <th>Name</th>
                <td><input type="text" name="Name" size="36" value="<?php print $Name;?>"></td>
             </tr>
             <tr>
-               <td>Church</td>
+               <th>Church</th>
                <td><input type="text" name="Church" size="36" value="<?php print $Church;?>"></td>
             </tr>
             <tr>
-               <td>Email Address</td>
+               <th>Email Address</th>
                <td><input type="text" name="Email" size="36" value="<?php print $Email;?>"></td>
             </tr>
             <tr>
-               <td colspan="2" align="center"><b>Any Additional Information</b></td>
+               <th colspan="2" style='text-align: center'><b>Any Additional Information</b></th>
             </tr>
             <tr>
-               <td colspan="2" align="center">
+               <td colspan="2" style='text-align: center'>
                   <textarea name="Comments" rows="10" cols="50"><?php print $Comments;?></textarea>
                </td>
             </tr>

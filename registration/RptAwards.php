@@ -6,6 +6,21 @@
 // Author: Paul Lemmons
 //----------------------------------------------------------------------------
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+
+    <head>
+       <meta http-equiv="Content-Language" content="en-us">
+       <title>
+          Scheduled Events Roster
+       </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
+    </head>
+
+    <body>
+
 <?php
 include 'include/RegFunctions.php';
 
@@ -45,11 +60,11 @@ if ($Admin != 'Y')
       	 if ($CurrentChurch != '')
       	    print "</table>\n";
 
-         print "<h1 align=\"center\" $pageBreak>\n";
+         print "<h1 align='center' $pageBreak>\n";
          print "   $ChurchName\n";
          print "</h1>\n";
          print "<hr>\n";
-         print "<table border=1 width=100%>\n";
+         print "<table class='registrationTable' style='width: 30%;margin-left: auto;margin-right: auto'>\n";
 
          $CurrentChurch = $ChurchName;
          $CurrentEvent  = '';
@@ -59,22 +74,26 @@ if ($Admin != 'Y')
       if ($CurrentEvent != $EventName)
       {
          print "   <tr>\n";
-         print "      <td align=left colspan=4>\n";
+         print "      <th style='text-align: left' colspan=4>\n";
          print "         <b>$EventName</b>\n";
-         print "      </td>\n";
+         print "      </th>\n";
          print "   </tr>\n";
          $CurrentEvent  = $EventName;
       }
       print "   <tr>\n";
-      print "      <td width=10%>&nbsp;</td>\n";
-      print "      <td width=10% align=left>\n";
+      print "      <td style='width: 10%;'>&nbsp;</td>\n";
+      print "      <td style='width: 10%; text-align: left;'>\n";
       print "         $Award\n";
       print "      </td>\n";
-      print "      <td width=10% align=left>\n";
+      print "      <td style='width: 10%; text-align: left;'>\n";
       print "         $AwardCount\n";
       print "      </td>\n";
-      print "      <td width=70%>&nbsp;</td>\n";
+      print "      <td style='width: 70%;'>&nbsp;</td>\n";
       print "   </tr>\n";
 
    }
 ?>
+
+    </body>
+
+</html>

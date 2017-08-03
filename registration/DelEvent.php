@@ -31,8 +31,11 @@ if (isset($_POST['Confirm']))
          <title>
             Event Deleted
          </title>
+         <meta http-equiv="Content-Language" content="en-us">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
       </head>
-      <body style="background-color: rgb(217, 217, 255);">
+      <body>
          <h1 align=center>
             Event <?php  print $_REQUEST['EventName']; ?> Deleted!
          </h1>
@@ -52,9 +55,12 @@ else
           <title>
              Delete Event
           </title>
+          <meta http-equiv="Content-Language" content="en-us">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel=stylesheet href="include/registration.css" type="text/css" />
        </head>
 
-       <body style="background-color: rgb(217, 217, 255);">
+       <body>
           <form method="post" action="DelEvent.php<?php  print "?EventID=".$_REQUEST['EventID']."&EventName=".urlencode($_REQUEST['EventName']); ?>">
              <center>
                 <h1>

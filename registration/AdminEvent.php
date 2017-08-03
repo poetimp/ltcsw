@@ -295,7 +295,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
    ?>
 <html lang="en">
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
 
    <?php
       if ($mode == 'update')
@@ -337,8 +337,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
 <html lang="en">
 
       <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <meta http-equiv="Content-Language" content="en-us">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
       <?php
       if ($mode == 'update')
       {
@@ -361,7 +362,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       ?>
       </head>
 
-      <body style="background-color: rgb(217, 217, 255);">
+      <body>
 
       <?php
       if ($mode == 'update')
@@ -389,26 +390,22 @@ if (isset($_POST['add']) or isset($_POST['update']))
       }
    ?>
 <form method="post" action="AdminEvent.php">
-   <table border="1" width="100%" id="table1">
+   <table class='registrationTable' id="table1">
       <!------------------------------------------------------------------------------>
       <!-- Row 1                                                                    -->
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <td colspan="7" bgcolor="#000000">
-         <p align="center"><span style="background-color: #000000">
-         <font color="#FFFF00">Event</font></span><font color="#FFFF00"><span style="background-color: #000000">
-         Information</span></font></p>
-         </td>
+         <th colspan="7" style='text-align: center'><h2>Event Information</h2></th>
       </tr>
       <!------------------------------------------------------------------------------>
       <!-- Row 2                                                                    -->
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <td width="12%">Event Name</td>
+         <th style='width: 12%;'>Event Name</td>
          <!----------------------- Column 2-4----------------------------------------->
-         <td width="38%" colspan="3">
+         <td style='width: 38%;' colspan="3">
             <?php
             if ($mode == "view")
             {
@@ -424,13 +421,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
          </td>
 
          <!----------------------- Column 5 ------------------------------------------>
-         <td width="25%">Team Event</td>
+         <th style='width: 25%;'>Team Event</td>
             <?php
             if ($mode == "view")
             {
                ?>
                <!----------------------- Column 6-7 ------------------------------------------>
-               <td width="25%" colspan="2">
+               <td style='width: 25%;' colspan="2">
                <?php
                   print $TeamEvent == "Y" ? "Yes" : "No";
                ?>
@@ -441,11 +438,11 @@ if (isset($_POST['add']) or isset($_POST['update']))
             {
             ?>
                <!----------------------- Column 6 ------------------------------------------>
-               <td width="12%">
+               <td style='width: 12%;'>
                   <input type="radio" name="TeamEvent" value="Y" <?php  print ($TeamEvent == "Y") ? "checked" : "" ?>>Yes
                </td>
                <!----------------------- Column 7 ------------------------------------------>
-               <td width="12%">
+               <td style='width: 12%;'>
                   <input type="radio" name="TeamEvent" value="N" <?php  print ($TeamEvent == "N") ? "checked" : "" ?>>No
                </td>
                <?php
@@ -457,9 +454,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <td width="12%">Min Grade</td>
+         <th style='width: 12%;'>Min Grade</td>
          <!----------------------- Column 2-4----------------------------------------->
-         <td width="38%" colspan="3">
+         <td style='width: 38%;' colspan="3">
             <?php
             if ($mode == "view")
             {
@@ -486,9 +483,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
             ?>
             </td>
          <!----------------------- Column 5 ------------------------------------------>
-         <td width="25%">Minimum Team Size</td>
+         <th style='width: 25%;'>Minimum Team Size</td>
          <!----------------------- Column 6-7 ---------------------------------------->
-         <td width="25%" colspan="2">
+         <td style='width: 25%;' colspan="2">
             <?php
             if ($mode == "view")
             {
@@ -508,9 +505,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <td width="12%">Max Grade</td>
+         <th style='width: 12%;'>Max Grade</td>
          <!----------------------- Column 2-4 ---------------------------------------->
-         <td width="38%" colspan="3">
+         <td style='width: 38%;' colspan="3">
             <?php
             if ($mode == "view")
             {
@@ -537,9 +534,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
             ?>
             </td>
          <!----------------------- Column 5 ------------------------------------------>
-         <td width="25%">Maximum Team Size</td>
+         <th style='width: 25%;'>Maximum Team Size</td>
          <!----------------------- Column 6-7 ------------------------------------------>
-         <td width="25%" colspan="2">
+         <td style='width: 25%;' colspan="2">
             <?php
             if ($mode == "view")
             {
@@ -559,9 +556,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <td width="13%" colspan="1">Duration</td>
+         <th style='width: 13%;' colspan="1">Duration</th>
          <!----------------------- Column 2-4 ---------------------------------------->
-         <td width="38%" colspan="3">
+         <td style='width: 38%;' colspan="3">
             <?php
             if ($mode == "view")
             {
@@ -607,13 +604,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
             ?>
          </td>
          <!----------------------- Column 5 ------------------------------------------>
-         <td width="25%" colspan="1">Number of Judges Needed</td>
+         <th style='width: 25%;' colspan="1">Number of Judges Needed</th>
             <?php
             if ($mode == "view")
             {
                ?>
                <!----------------------- Column 6-7 ------------------------------------------>
-               <td width="25%" colspan="2">
+               <td style='width: 25%;' colspan="2">
                <?php
                print "$JudgesNeeded";
                ?>
@@ -624,7 +621,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
             {
             ?>
                <!----------------------- Column 6-7 ------------------------------------------>
-               <td width="25%" colspan="2">
+               <td style='width: 25%;' colspan="2">
                   <input type="text" name="JudgesNeeded" size="20"<?php  print ($JudgesNeeded != "") ? "value=\"" . $JudgesNeeded . "\"" : ""; ?>>
                </td>
             <?php
@@ -636,13 +633,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <td width="12%">Sex</td>
+         <th style='width: 12%;'>Sex</th>
          <?php
          if ($mode == "view")
          {
             ?>
             <!----------------------- Column 2-4 ------------------------------------------>
-            <td width="38%" colspan="3">
+            <td style='width: 38%;' colspan="3">
             <?php
             if ($Sex == "E")
             {
@@ -664,26 +661,26 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
          ?>
          <!----------------------- Column 2 ------------------------------------------>
-         <td width="13%"><input type="radio" name="Sex" value="E" <?php  print ($Sex == "E") ? "checked" : "" ?>>Either</td>
+         <td style='width: 13%;'><input type="radio" name="Sex" value="E" <?php  print ($Sex == "E") ? "checked" : "" ?>>Either</td>
          <!----------------------- Column 3 ------------------------------------------>
-         <td width="13%"><input type="radio" name="Sex" value="M" <?php  print ($Sex == "M") ? "checked" : "" ?>>Male</td>
+         <td style='width: 13%;'><input type="radio" name="Sex" value="M" <?php  print ($Sex == "M") ? "checked" : "" ?>>Male</td>
          <!----------------------- Column 4 ------------------------------------------>
-         <td width="12%"><input type="radio" name="Sex" value="F" <?php  print ($Sex == "F") ? "checked" : "" ?>>Female</td>
+         <td style='width: 12%;'><input type="radio" name="Sex" value="F" <?php  print ($Sex == "F") ? "checked" : "" ?>>Female</td>
          <?php
          }
          ?>
          <!----------------------- Column 5 ------------------------------------------>
-         <td width="25%" colspan="1">Maximum Number of rooms</td>
+         <th style='width: 25%;' colspan="1">Maximum Number of rooms</th>
          <?php
          if ($mode == "view")
          {
-            print "<td width=25% colspan=2>$MaxRooms</td>";
+            print "<td style='width: 25%;' colspan=2>$MaxRooms</td>";
          }
          else
          {
          ?>
          <!----------------------- Column 6-7 ------------------------------------------>
-         <td width="25%" colspan="2"><input type="text" name="MaxRooms" size="20"<?php  print ($MaxRooms != "") ? "value=\"" . $MaxRooms . "\"" : ""; ?>></td>
+         <td style='width: 25%;' colspan="2"><input type="text" name="MaxRooms" size="20"<?php  print ($MaxRooms != "") ? "value=\"" . $MaxRooms . "\"" : ""; ?>></td>
           <?php
            }
            ?>
@@ -693,13 +690,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <td width="13%" colspan="1">Event Type</td>
+         <th style='width: 13%;' colspan="1">Event Type</th>
          <?php
          if ($mode == "view")
          {
             ?>
             <!----------------------- Column 2-4 ------------------------------------------>
-            <td width="25%" colspan="3">
+            <td style='width: 25%;' colspan="3">
             <?php
             if ($ConvEvent == 'C')
             {
@@ -717,24 +714,24 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
          ?>
             <!----------------------- Column 2 ------------------------------------------>
-            <td width="12%" colspan="1"><input type="radio" name="ConvEvent" value="C" <?php  print ($ConvEvent == "C") ? "checked" : "" ?>>Convention</td>
+            <td style='width: 12%;' colspan="1"><input type="radio" name="ConvEvent" value="C" <?php  print ($ConvEvent == "C") ? "checked" : "" ?>>Convention</td>
             <!----------------------- Column 3-4 ------------------------------------------>
-            <td width="25%" colspan="2"><input type="radio" name="ConvEvent" value="P" <?php  print ($ConvEvent == "P") ? "checked" : "" ?>>Pre-convention</td>
+            <td style='width: 25%;' colspan="2"><input type="radio" name="ConvEvent" value="P" <?php  print ($ConvEvent == "P") ? "checked" : "" ?>>Pre-convention</td>
           <?php
            }
            ?>
          <!----------------------- Column 5 ------------------------------------------>
-         <td width="25%" colspan="1">Maximum time slots per room</td>
+         <th style='width: 25%;' colspan="1">Maximum time slots per room</th>
          <?php
          if ($mode == "view")
          {
-            print "<td width=25% colspan=2>$MaxEventSlots</td>";
+            print "<td style='width: 25%;' colspan=2>$MaxEventSlots</td>";
          }
          else
          {
          ?>
          <!----------------------- Column 6-7 ------------------------------------------>
-         <td width="25%" colspan="2"><input type="text" name="MaxEventSlots" size="20"<?php  print ($MaxEventSlots != "") ? "value=\"" . $MaxEventSlots . "\"" : ""; ?>></td>
+         <td style='width: 25%;' colspan="2"><input type="text" name="MaxEventSlots" size="20"<?php  print ($MaxEventSlots != "") ? "value=\"" . $MaxEventSlots . "\"" : ""; ?>></td>
           <?php
            }
            ?>
@@ -744,13 +741,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <td width="13%" colspan="1">Judge Type</td>
+         <th style='width: 13%;' colspan="1">Judge Type</th>
          <?php
          if ($mode == "view")
          {
             ?>
             <!----------------------- Column 2-4 ------------------------------------------>
-            <td width="25%" colspan="3">
+            <td style='width: 25%;' colspan="3">
             <?php
             if ($JudgeTrained == 'Y')
             {
@@ -768,20 +765,20 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
          ?>
             <!----------------------- Column 2 ------------------------------------------>
-            <td width="12%" colspan="1"><input type="radio" name="JudgeTrained" value="Y" <?php  print ($JudgeTrained == "Y") ? "checked" : "" ?>>Special Skills</td>
+            <td style='width: 12%;' colspan="1"><input type="radio" name="JudgeTrained" value="Y" <?php  print ($JudgeTrained == "Y") ? "checked" : "" ?>>Special Skills</td>
             <!----------------------- Column 3-4 ------------------------------------------>
-            <td width="25%" colspan="2"><input type="radio" name="JudgeTrained" value="N" <?php  print ($JudgeTrained == "N") ? "checked" : "" ?>>No Special Training needed</td>
+            <td style='width: 25%;' colspan="2"><input type="radio" name="JudgeTrained" value="N" <?php  print ($JudgeTrained == "N") ? "checked" : "" ?>>No Special Training needed</td>
           <?php
            }
            ?>
          <!----------------------- Column 5 ------------------------------------------>
-         <td width="25%" colspan="1">Maximum Web Signups Slots per room</td>
+         <th style='width: 25%;' colspan="1">Maximum Web Signups Slots per room</th>
           <?php
          if ($mode == "view")
          {
             ?>
             <!----------------------- Column 6-7 ------------------------------------------>
-            <td width="25%" colspan="2">
+            <td style='width: 25%;' colspan="2">
             <?php
             print "$MaxWebSlots";
             ?>
@@ -792,7 +789,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
          ?>
             <!----------------------- Column 6-7 ------------------------------------------>
-            <td width="25%" colspan="2">
+            <td style='width: 25%;' colspan="2">
                <input type="text" name="MaxWebSlots" size="20"<?php  print ($MaxWebSlots != "") ? "value=\"" . $MaxWebSlots . "\"" : ""; ?>>
             </td>
              <?php
@@ -804,9 +801,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <td width="13%" colspan="1">Judging Catagory</td>
+         <th style='width: 13%;' colspan="1">Judging Catagory</th>
          <!----------------------- Column 1-4 ------------------------------------------>
-         <td width="37%" colspan="3">
+         <td style='width: 37%;' colspan="3">
           <?php
          if ($mode == "view")
          {
@@ -821,13 +818,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
          ?>
          </td>
          <!----------------------- Column 5 ------------------------------------------>
-         <td width="25%" colspan="1">Allow Teen Coordinators</td>
+         <th style='width: 25%;' colspan="1">Allow Teen Coordinators</th>
           <?php
          if ($mode == "view")
          {
             ?>
             <!----------------------- Column 6-7 ------------------------------------------>
-            <td width="25%" colspan="2">
+            <td style='width: 25%;' colspan="2">
             <?php
             if ($TeenCoord == "Y")
             {
@@ -845,9 +842,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
          ?>
             <!----------------------- Column 6 ------------------------------------------>
-         <td width="12%" colspan="1"><input type="radio" name="TeenCoord" value="Y" <?php  print ($TeenCoord == "Y") ? "checked" : "" ?>>Yes</td>
+         <td style='width: 12%;' colspan="1"><input type="radio" name="TeenCoord" value="Y" <?php  print ($TeenCoord == "Y") ? "checked" : "" ?>>Yes</td>
             <!----------------------- Column 7 ------------------------------------------>
-         <td width="13%" colspan="1"><input type="radio" name="TeenCoord" value="N" <?php  print ($TeenCoord == "N") ? "checked" : "" ?>>No</td>
+         <td style='width: 13%;' colspan="1"><input type="radio" name="TeenCoord" value="N" <?php  print ($TeenCoord == "N") ? "checked" : "" ?>>No</td>
           <?php
            }
            ?>
@@ -861,7 +858,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
             ?>
             <!----------------------- Column 1-4 ------------------------------------------>
-            <td width="25%" colspan="4">
+            <td style='width: 25%;' colspan="4">
             <?php
             if ($IndividualAwards == 'Y')
             {
@@ -879,22 +876,22 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
          ?>
          <!----------------------- Column 1 ------------------------------------------>
-            <td width="13%" colspan="1">Individual Awards?</td>
+            <th style='width: 13%;' colspan="1">Individual Awards?</th>
             <!----------------------- Column 2 ------------------------------------------>
-            <td width="12%" colspan="1"><input type="radio" name="IndividualAwards" value="Y" <?php  print ($IndividualAwards == "Y") ? "checked" : "" ?>>Yes</td>
+            <td style='width: 12%;' colspan="1"><input type="radio" name="IndividualAwards" value="Y" <?php  print ($IndividualAwards == "Y") ? "checked" : "" ?>>Yes</td>
             <!----------------------- Column 3-4 ------------------------------------------>
-            <td width="25%" colspan="2"><input type="radio" name="IndividualAwards" value="N" <?php  print ($IndividualAwards == "N") ? "checked" : "" ?>>No</td>
+            <td style='width: 25%;' colspan="2"><input type="radio" name="IndividualAwards" value="N" <?php  print ($IndividualAwards == "N") ? "checked" : "" ?>>No</td>
          <!----------------------- Column 5 ------------------------------------------>
          <?php
          }
          ?>
-         <td width="25%" colspan="1">Is this an attended event?</td>
+         <th style='width: 25%;' colspan="1">Is this an attended event?</th>
           <?php
          if ($mode == "view")
          {
             ?>
             <!----------------------- Column 6-7 ------------------------------------------>
-            <td width="25%" colspan="2">
+            <td style='width: 25%;' colspan="2">
             <?php
             if ($EventAttended == "Y")
             {
@@ -912,9 +909,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
          ?>
          <!----------------------- Column 6 ------------------------------------------>
-         <td width="12%" colspan="1"><input type="radio" name="EventAttended" value="Y" <?php  print ($EventAttended == "Y") ? "checked" : "" ?>>Yes</td>
+         <td style='width: 12%;' colspan="1"><input type="radio" name="EventAttended" value="Y" <?php  print ($EventAttended == "Y") ? "checked" : "" ?>>Yes</td>
          <!----------------------- Column 7 ------------------------------------------>
-         <td width="25%" colspan="2"><input type="radio" name="EventAttended" value="N" <?php  print ($EventAttended == "N") ? "checked" : "" ?>>No</td>
+         <td style='width: 25%;' colspan="2"><input type="radio" name="EventAttended" value="N" <?php  print ($EventAttended == "N") ? "checked" : "" ?>>No</td>
           <?php
            }
            ?>
@@ -927,7 +924,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
             ?>
             <!----------------------- Column 1-4 ------------------------------------------>
-            <td width="25%" colspan="4">
+            <td style='width: 25%;' colspan="4">
             <?php
                if ($CoordID != "")
                {
@@ -953,9 +950,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
          ?>
          <!----------------------- Column 1 ------------------------------------------>
-            <td width="13%" colspan="1">Event Coordinator?</td>
+            <th style='width: 13%;' colspan="1">Event Coordinator?</th>
             <!----------------------- Column 2 ------------------------------------------>
-            <td width="12%" colspan="1">
+            <td style='width: 12%;' colspan="1">
                <select name="CoordID">
                   <option value="">-Select-</option>
                   <?php
@@ -980,7 +977,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                </select>
             </td>
             <!----------------------- Column 3-4 ------------------------------------------>
-            <td width="25%" colspan="5">&nbsp;</td>
+            <td style='width: 25%;' colspan="5">&nbsp;</td>
          <!----------------------- Column 5 ------------------------------------------>
          <?php
          }

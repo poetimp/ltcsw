@@ -22,23 +22,26 @@ if ($Admin != 'Y')
       <title>
          Data Access
       </title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <h1 align=center>
          Data Access
       </h1>
 
-         <table border="1" width="100%">
+         <table class='registrationTable' style='width: 95%'>
             <tr>
-               <TD align="center" bgcolor="#C0C0C0" colspan="2">
+               <td style='text-align: center' colspan="2">
                   <font size="+2">
                      <b>Download Data</b>
                   </font>
-               </TD>
+               </td>
             </tr>
             <tr>
-               <td width="50%">All active congregations listed along with their address and phone information</td>
-               <td width="50%"><a target="_blank" href="DataChurches.php"    >Congregational Information</a></td>
+               <td style='width: 50%;'>All active congregations listed along with their address and phone information</td>
+               <td style='width: 50%;'><a target="_blank" href="DataChurches.php"    >Congregational Information</a></td>
             </tr>
             <tr>
                <td>All Judges listed along with their complete contact information</td>

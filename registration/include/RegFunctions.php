@@ -1073,21 +1073,21 @@ function dumpSysVars()
    if (isset($_POST))
    {
       ?>
-      <table border=1>
-         <TR>
-            <TD colspan="2" align="center" bgcolor="Silver"><b>POST</b></TD>
-         </TR>
-         <TR>
-            <TD>Variable</TD>
-            <TD>Value</TD>
-         </TR>
+      <table class='registrationTable' border=1>
+         <tr>
+            <th colspan="2" style='text-align: center'><b>POST</b></th>
+         </tr>
+         <tr>
+            <td>Variable</td>
+            <td>Value</td>
+         </tr>
          <?php
             foreach ($_POST as $varName => $varValue)
             {
-               print "<TR>\n";
-               print "   <TD>$varName</TD>\n";
-               print "   <TD>$varValue&nbsp;</TD>\n";
-               print "</TR>\n";
+               print "<tr>\n";
+               print "   <td>$varName</td>\n";
+               print "   <td>$varValue&nbsp;</td>\n";
+               print "</tr>\n";
             }
          ?>
       </table>
@@ -1098,21 +1098,21 @@ function dumpSysVars()
    if (isset($_REQUEST))
    {
    ?>
-      <table border=1>
-         <TR>
-            <TD colspan="2" align="center" bgcolor="Silver"><b>REQUEST</b></TD>
-         </TR>
-         <TR>
-            <TD>Variable</TD>
-            <TD>Value</TD>
-         </TR>
+      <table class='registrationTable' border=1>
+         <tr>
+            <th colspan="2" style='text-align: center'><b>REQUEST</b></th>
+         </tr>
+         <tr>
+            <td>Variable</td>
+            <td>Value</td>
+         </tr>
          <?php
             foreach ($_REQUEST as $varName => $varValue)
             {
-               print "<TR>\n";
-               print "   <TD>$varName</TD>\n";
-               print "   <TD>$varValue&nbsp;</TD>\n";
-               print "</TR>\n";
+               print "<tr>\n";
+               print "   <td>$varName</td>\n";
+               print "   <td>$varValue&nbsp;</td>\n";
+               print "</tr>\n";
             }
          ?>
       </table>
@@ -1123,21 +1123,21 @@ function dumpSysVars()
    if (isset($_SESSION))
    {
    ?>
-      <table border=1>
-         <TR>
-            <TD colspan="2" align="center" bgcolor="Silver"><b>SESSION</b></TD>
-         </TR>
-         <TR>
-            <TD>Variable</TD>
-            <TD>Value</TD>
-         </TR>
+      <table class='registrationTable' border=1>
+         <tr>
+            <th colspan="2" style='text-align: center'><b>SESSION</b></th>
+         </tr>
+         <tr>
+            <td>Variable</td>
+            <td>Value</td>
+         </tr>
          <?php
             foreach ($_SESSION as $varName => $varValue)
             {
-               print "<TR>\n";
-               print "   <TD>$varName</TD>\n";
-               print "   <TD>$varValue&nbsp;</TD>\n";
-               print "</TR>\n";
+               print "<tr>\n";
+               print "   <td>$varName</td>\n";
+               print "   <td>$varValue&nbsp;</td>\n";
+               print "</tr>\n";
             }
          ?>
       </table>
@@ -1148,21 +1148,21 @@ function dumpSysVars()
    if (isset($_SERVER))
    {
    ?>
-      <table border=1>
-         <TR>
-            <TD colspan="2" align="center" bgcolor="Silver"><b>SERVER</b></TD>
-         </TR>
-         <TR>
-            <TD>Variable</TD>
-            <TD>Value</TD>
-         </TR>
+      <table class='registrationTable'>
+         <th>
+            <td colspan="2" style='text-align: center'<b>SERVER</b></th>
+         </th>
+         <tr>
+            <td>Variable</td>
+            <td>Value</td>
+         </tr>
          <?php
             foreach ($_SERVER as $varName => $varValue)
             {
-               print "<TR>\n";
-               print "   <TD>$varName</TD>\n";
-               print "   <TD>$varValue&nbsp;</TD>\n";
-               print "</TR>\n";
+               print "<tr>\n";
+               print "   <td>$varName</td>\n";
+               print "   <td>$varValue&nbsp;</td>\n";
+               print "</tr>\n";
             }
          ?>
       </table>

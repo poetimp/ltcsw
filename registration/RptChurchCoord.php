@@ -25,6 +25,9 @@ if ($Admin != 'Y')
        <title>
           Church Coordinators
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
     <body bgcolor="White">
@@ -44,7 +47,7 @@ if ($Admin != 'Y')
                      or die ("Unable to obtain coordinator list:" . sqlError());
          $first = 1;
          ?>
-         <table border="1" width="100%" id="table1">
+         <table class='registrationTable' style='width: 95%' id="table1">
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {
@@ -71,13 +74,14 @@ if ($Admin != 'Y')
             }
             ?>
             <tr>
-               <td><b><?php  print $CoordName; ?></b></td>
+               <th colspan='3'><?php  print $CoordName;  ?></th>
+            </tr>
+            <tr>
                <td><?php  print $CoordPhone; ?></td>
                <td><?php  print $CoordEmail; ?></td>
                <td><?php  print $ChurchName; ?></td>
             </tr>
             <tr>
-               <td>&nbsp;</td>
                <td><?php  print $CoordAddr; ?></td>
                <td><?php  print $CoordCity; ?></td>
                <td><?php  print "$CoordState, $CoordZip"; ?></td>

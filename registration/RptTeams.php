@@ -26,6 +26,9 @@ else
       <title>
          Participants with Events
       </title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
    <body bgcolor="White">
    <?php
@@ -59,7 +62,7 @@ else
                  or die ("Not found:" . sqlError());
       $first = 1;
       ?>
-      <table border="0" width="100%" id="table1">
+      <table class='registrationTable' style='width: 95%' id='table1'>
       <?php
       while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {
@@ -91,8 +94,8 @@ else
             }
             ?>
             <tr>
-               <td bgcolor="Silver"><b><?php  print $EventName; ?></b></td>
-               <td bgcolor="Silver" colspan="2"><b><?php  print $ConvEvent; ?></b></td>
+               <th><b><?php  print $EventName; ?></b></th>
+               <th colspan="2"><b><?php  print $ConvEvent; ?></b></th>
             </tr>
             <?php
             $members = $db->query("SELECT p.FirstName,
@@ -124,7 +127,7 @@ else
                if ($TeamID != $prevTeamID)
                {
                   print "<tr>";
-                  print "   <td><b><u>Team: $TeamID</u></b></td>";
+                  print "   <td><b>Team: $TeamID</b></td>";
                   print "</tr>";
                   $prevTeamID=$TeamID;
                }

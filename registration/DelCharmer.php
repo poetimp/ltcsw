@@ -21,8 +21,11 @@ if (isset($_POST['Confirm']))
          <title>
             Charmer Deleted
          </title>
+         <meta http-equiv="Content-Language" content="en-us">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel=stylesheet href="include/registration.css" type="text/css" />
       </head>
-      <body style="background-color: rgb(217, 217, 255);">
+      <body>
          <h1 align=center>
             Charmer <?php  print $_REQUEST['name']; ?> Deleted!
          </h1>
@@ -46,9 +49,12 @@ else
           <title>
              Delete Charmer
           </title>
+          <meta http-equiv="Content-Language" content="en-us">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel=stylesheet href="include/registration.css" type="text/css" />
        </head>
 
-       <body style="background-color: rgb(217, 217, 255);">
+       <body>
           <form method="post" action="DelCharmer.php<?php  print "?id=".$_REQUEST['id']."&name=".$_REQUEST['name']; ?>">
              <center>
                 <h1>

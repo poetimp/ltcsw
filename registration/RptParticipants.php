@@ -25,9 +25,12 @@ else
        <title>
           LTC Participants
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
-    <body bgcolor="White">
+    <body>
     <?php
       $pageBreak='';
       function PrintRoster($ChurchID)
@@ -89,13 +92,13 @@ else
                ?>
                <h1 align="center" <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>="<?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>"><?php print $Church; ?></h1>
                <hr />
-               <table border="0" width="100%">
+               <table class='registrationTable' style='width: 95%'>
                   <tr>
-                     <td width="10%" bgcolor="#CCCCCC">ID</td>
-                     <td width="10%" bgcolor="#CCCCCC">Grade</td>
-                     <td width="25%" bgcolor="#CCCCCC">T-Shirt Size</td>
-                     <td width="25%" bgcolor="#CCCCCC">Meal Ticket</td>
-                     <td width="30%" bgcolor="#CCCCCC">Name</td>
+                     <th style='width: 10%'>ID          </th>
+                     <th style='width: 10%'>Grade       </th>
+                     <th style='width: 25%'>T-Shirt Size</th>
+                     <th style='width: 25%'>Meal Ticket </th>
+                     <th style='width: 30%'>Name        </th>
                   </tr>
                <?php
             }

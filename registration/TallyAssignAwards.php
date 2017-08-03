@@ -86,8 +86,11 @@ else
       <title>
          Assign Awards
       </title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
       <h1 align="center">Assign Awards</h1>
       <h2 align="center"><?php print $EventName?></h2>
       <hr>
@@ -96,53 +99,27 @@ else
                  if (isset($_REQUEST['View']))
                     print "&View=".$_REQUEST['View'];?>"
             method="post">
-         <table border="1"
-                width="100%"
+         <table class='registrationTable'"
                 onmouseover="javascript:trackTableHighlight(event, '#8888FF');"
                 onmouseout="javascript:highlightTableRow(0);"
          >
            <tr id="header">
-               <TD width="2%" bgcolor="#000000">
-                  <span style="background-color: #000000">
-                     <font color="#FFFF00">
-                        &nbsp;
-                     </font>
-                  </span>
-               </TD>
-               <TD width="20%" bgcolor="#000000">
-                  <span style="background-color: #000000">
-                     <font color="#FFFF00">
-                        Church
-                     </font>
-                  </span>
-               </TD>
-               <TD width="18%" bgcolor="#000000">
-                  <span style="background-color: #000000">
-                     <font color="#FFFF00">
-                        <?php
-                           if ($TeamEvent)
-                              print "Team Number";
-                           else
-                              print "Participant";
-                        ?>
-                     </font>
-                  </span>
-               </TD>
-               <TD width="80%" colspan="5" bgcolor="#000000">
-                  <span style="background-color: #000000">
-                     <font color="#FFFF00">
-                        <div align="center">
-                           Award
-                        </div>
-                     </font>
-                  </span>
-               </TD>
+               <th style='width: 2%;'>&nbsp;</th>
+               <th style='width: 20%;'>Church</th>
+               <th style='width: 18%;'>
+                  <?php
+                     if ($TeamEvent)
+                        print "Team Number";
+                     else
+                        print "Participant";
+                  ?>
+               </th>
+               <th style='width: 80%; text-align: center' colspan='5'>Award</th>
            </tr>
          <?php
            //--------------------------------------------------------------------
            // No loop through the events reporting on the details
            //--------------------------------------------------------------------
-           $Stripe = '"#D9D9FF"';
            while ($row = $results->fetch(PDO::FETCH_ASSOC))
            {
                $ChurchName      = $row['ChurchName'];
@@ -233,36 +210,36 @@ else
 
                   ?>
                   <tr>
-                    <TD width="2%" id="preserve" bgcolor=<?php print $flagColor?>>
+                    <td style='width: 2%' id="preserve" bgcolor=<?php print $flagColor?>>
                         &nbsp;
-                    </TD>
-                    <TD width="28%" bgcolor=<?php print $Stripe?>><?php print $ChurchName;?></TD>
-                    <TD width="20%" bgcolor=<?php print $Stripe?>><?php print "$ViewMembers$PatricipantName";?></TD>
-                    <TD width="10%" bgcolor=<?php print $Stripe?>>
+                    </td>
+                    <td style='width: 28%;'><?php print $ChurchName;?></td>
+                    <td style='width: 20%;'><?php print "$ViewMembers$PatricipantName";?></td>
+                    <td style='width: 10%;'>
                         <input type="radio" value="Gold" name=<?php print "\"$RadioName\" $Gold_Checked";?>>
                           Gold
                         </input>
-                    </TD>
-                    <TD width="10%" bgcolor=<?php print $Stripe?>>
+                    </td>
+                    <td style='width: 10%;'>
                         <input type="radio" value="Silver" name=<?php print "\"$RadioName\" $Silver_Checked";?>>
                           Silver
                         </input>
-                    </TD>
-                    <TD width="10%" bgcolor=<?php print $Stripe?>>
+                    </td>
+                    <td style='width: 10%;'>
                         <input type="radio" value="Bronze" name=<?php print "\"$RadioName\" $Bronze_Checked";?>>
                           Bronze
                         </input>
-                    </TD>
-                    <TD width="10%" bgcolor=<?php print $Stripe?>>
+                    </td>
+                    <td style='width: 10%;'>
                         <input type="radio" value="No Award" name=<?php print "\"$RadioName\" $None_Checked";?>>
                           No Award
                         </input>
-                    </TD>
-                    <TD width="10%" bgcolor=<?php print $Stripe?>>
+                    </td>
+                    <td style='width: 10%;'>
                         <input type="radio" value="No Show" name=<?php print "\"$RadioName\" $Noshow_Checked";?>>
                           No Show
                         </input>
-                    </TD>
+                    </td>
                   </tr>
                   <?php
 //                  if ($IndividualAwards or ($TeamEvent and isset($_REQUEST['View']) and $_REQUEST['View'] == $ParticipantID))
@@ -301,11 +278,11 @@ else
                           if (!$IndividualAwards)
                           {
                           ?>
-                             <td width="2%" id="preserve" bgcolor=<?php print $flagColor?>>
+                             <td style='width: 2%' id="preserve" bgcolor=<?php print $flagColor?>>
                                 &nbsp;
                              </td>
-                             <td colspan="1" bgcolor=<?php print $Stripe?>>&nbsp;</td>
-                             <td colspan="6" bgcolor=<?php print $Stripe?>><?php print $MemberName?></td>
+                             <td colspan="1">&nbsp;</td>
+                             <td colspan="6"><?php print $MemberName?></td>
                           <?php
                           }
                           else
@@ -361,45 +338,39 @@ else
                                  $Solo_flagColor = '"red"';
                           ?>
                              <td id='preserve' bgcolor=<?php print $Solo_flagColor?>>&nbsp;</td>
-                             <td bgcolor=<?php print $Stripe?>>&nbsp;</td>
-                             <td bgcolor=<?php print $Stripe?>><?php print $MemberName?></td>
-                             <TD width="10%" bgcolor=<?php print $Stripe?>>
+                             <td>&nbsp;</td>
+                             <td><?php print $MemberName?></td>
+                             <td style='width: 10%;'>
                                 <input type="radio" value="Gold" name=<?php print "\"$RadioSolo\" $Solo_Gold_Checked";?>>
                                    Gold
                                 </input>
-                             </TD>
-                             <TD width="10%" bgcolor=<?php print $Stripe?>>
+                             </td>
+                             <td style='width: 10%;'>
                                 <input type="radio" value="Silver" name=<?php print "\"$RadioSolo\" $Solo_Silver_Checked";?>>
                                    Silver
                                 </input>
-                             </TD>
-                             <TD width="10%" bgcolor=<?php print $Stripe?>>
+                             </td>
+                             <td style='width: 10%;'>
                                 <input type="radio" value="Bronze" name=<?php print "\"$RadioSolo\" $Solo_Bronze_Checked";?>>
                                    Bronze
                                 </input>
-                             </TD>
-                             <TD width="10%" bgcolor=<?php print $Stripe?>>
+                             </td>
+                             <td style='width: 10%;'>
                                 <input type="radio" value="No Award" name=<?php print "\"$RadioSolo\" $Solo_None_Checked";?>>
                                    No Award
                                 </input>
-                             </TD>
-                             <TD width="10%" bgcolor=<?php print $Stripe?>>
+                             </td>
+                             <td style='width: 10%;'>
                                 <input type="radio" value="No Show" name=<?php print "\"$RadioSolo\" $Solo_Noshow_Checked";?>>
                                    No Show
                                 </input>
-                             </TD>
+                             </td>
                           <?php
                           }
                           ?>
                         </tr>
                         <?php
                     }
-//                  }
-
-                  if ($Stripe == '"#D9D9FF"')
-                    $Stripe = '"#C5C5FF"';
-                  else
-                    $Stripe = '"#D9D9FF"';
               }
            }
          ?>

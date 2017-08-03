@@ -231,7 +231,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
       $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
    ?>
-         <body style="background-color: rgb(217, 217, 255);">
+         <body>
          <?php
               if ($mode == 'update')
               {
@@ -263,8 +263,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
    <head>
-   <meta http-equiv="Content-Language" content="en-us" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
 
    <?php
       if ($mode == 'update')
@@ -288,7 +289,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
    </head>
 
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
    <?php
       if ($mode == 'update')
       {
@@ -316,15 +317,13 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
 
    <form method="post" action="AdminChurch.php">
-      <table border="1" width="100%" id="table1">
+      <table class='registrationTable' style='width: 95%' id="table1">
          <tr>
-            <td colspan="4" bgcolor="#000000">
-            <p align="center"><font color="#FFFF00">
-            <span style="background-color: #000000">Church Information</span></font></p></td>
+            <th colspan="2" style='text-align: center'>Church Information</th>
          </tr>
          <tr>
-            <td width="12%">Name</td>
-            <td width="85%" colspan="3">
+            <th style='width: 12%;'>Name</td>
+            <td style='width: 85%;'>
             <?php
             if ($mode == "view")
             {
@@ -339,8 +338,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             ?>
          </tr>
          <tr>
-            <td width="12%">Address</td>
-            <td width="85%" colspan="3">
+            <th style='width: 12%;'>Address</td>
+            <td style='width: 85%;'>
             <?php
             if ($mode == "view")
             {
@@ -355,8 +354,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             ?>
          </tr>
          <tr>
-            <td width="12%">City</td>
-            <td width="36%">
+            <th style='width: 12%;'>City</td>
+            <td style='width: 36%;'>
             <?php
             if ($mode == "view")
             {
@@ -370,8 +369,10 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             }
             ?>
             </td>
-            <td width="19%">State</td>
-            <td width="30%">
+         </th>
+         <tr>
+            <th style='width: 19%;'>State</td>
+            <td style='width: 30%;'>
             <?php
             if ($mode == "view")
             {
@@ -451,10 +452,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">&nbsp;</td>
-            <td width="36%">&nbsp;</td>
-            <td width="19%">Zip</td>
-            <td width="30%">
+            <th style='width: 19%;'>Zip</th>
+            <td style='width: 30%;'>
             <?php
             if ($mode == "view")
             {
@@ -470,8 +469,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">Email</td>
-            <td width="85%" colspan="3">
+            <th style='width: 12%;'>Email</td>
+            <td style='width: 85%;'>
             <?php
             if ($mode == "view")
             {
@@ -487,8 +486,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">Phone</td>
-            <td width="85%" colspan="3">
+            <th style='width: 12%;'>Phone</td>
+            <td style='width: 85%;'>
             <?php
             if ($mode == "view")
             {
@@ -504,12 +503,11 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td colspan="4" align="center" bgcolor="#000000"><font color="#FFFF00">
-            Coordinator Information</font></td>
+            <th colspan="2" style='text-align: center'>Coordinator Information</th>
          </tr>
          <tr>
-            <td width="12%">Name</td>
-            <td width="85%" colspan="3">
+            <th style='width: 12%;'>Name</td>
+            <td style='width: 85%;'>
             <?php
             if ($mode == "view")
             {
@@ -525,8 +523,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">Address</td>
-            <td width="85%" colspan="3">
+            <th style='width: 12%;'>Address</td>
+            <td style='width: 85%;'>
             <?php
             if ($mode == "view")
             {
@@ -542,8 +540,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">City</td>
-            <td width="36%">
+            <th style='width: 12%;'>City</td>
+            <td style='width: 36%;'>
             <?php
             if ($mode == "view")
             {
@@ -557,8 +555,10 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             }
             ?>
             </td>
-            <td width="19%">State</td>
-            <td width="30%">
+         </th>
+         <tr>
+            <th style='width: 19%;'>State</td>
+            <td style='width: 30%;'>
             <?php
             if ($mode == "view")
             {
@@ -638,10 +638,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">&nbsp;</td>
-            <td width="36%">&nbsp;</td>
-            <td width="19%">Zip</td>
-            <td width="30%">
+            <th style='width: 19%;'>Zip</th>
+            <td style='width: 30%;'>
             <?php
             if ($mode == "view")
             {
@@ -657,8 +655,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">Email</td>
-            <td width="85%" colspan="3">
+            <th style='width: 12%;'>Email</td>
+            <td style='width: 85%;'>
             <?php
             if ($mode == "view")
             {
@@ -674,8 +672,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <td width="12%">Phone</td>
-            <td width="85%" colspan="3">
+            <th style='width: 12%;'>Phone</td>
+            <td style='width: 85%;'>
             <?php
             if ($mode == "view")
             {

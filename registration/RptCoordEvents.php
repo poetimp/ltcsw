@@ -22,9 +22,12 @@ if ($Admin != 'Y')
        <title>
           Coordinators Participants report
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
-    <body bgcolor="White">
+    <body>
     <?php
 //         print "<pre>
 //                                 select   c.Name CoordName,
@@ -112,13 +115,7 @@ if ($Admin != 'Y')
                <h2 align="center"><?php print $EventCoord?></h2>
                <hr>
 
-               <table border="0" width="100%">
-               <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-               </tr>
+               <table class='registrationTable' style='width: 95%'>
                <?php
             }
             if ($TeamEvent == 'Team')
@@ -150,17 +147,17 @@ if ($Admin != 'Y')
             $numEvents = $cntRow['count'];
             ?>
                <tr>
-                  <td bgcolor=#CCCCCC><b><?php  print $EventName; ?></b></td>
-                  <td bgcolor=#CCCCCC><b><?php  print $EventTime; ?></b></td>
-                  <td bgcolor=#CCCCCC><b><?php  print $ConvEvent; ?></b></td>
-                  <td bgcolor=#CCCCCC><b><?php  print $TeamEvent; ?></b></td>
+                  <th><?php  print $EventName; ?></th>
+                  <th><?php  print $EventTime; ?></th>
+                  <th><?php  print $ConvEvent; ?></th>
+                  <th><?php  print $TeamEvent; ?></th>
                </tr>
             <?php
             if ($numEvents <= 0)
             {
                ?>
                <tr>
-                  <td colspan="4"><b>No Participants Scheuled</b></td>
+                  <td colspan="4"><b>No Participants Scheduled</b></td>
                </tr>
             <?php
             }
@@ -224,7 +221,7 @@ if ($Admin != 'Y')
                   if ($TeamEvent == 'Team' and $prevTeamID != $TeamID)
                   {
                      print "<tr>";
-                     print "   <td bgcolor=#EAEAEA><b>Team: $TeamID</b></td>";
+                     print "   <td><b>Team: $TeamID</b></td>";
                      print "   <td colspan=3>&nbsp;</td>";
                      print "</tr>";
                      $prevTeamID=$TeamID;

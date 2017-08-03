@@ -22,20 +22,23 @@ if ($Admin != 'Y')
       <title>
          T-Shirts by Congregation
       </title>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
    <body bgcolor="White">
-      <h1 align="center">T-Shirt Orders by Congregation</h1>
-      <table border="1" width="100%" id="table1">
+      <h1 style='text-align: center'>T-Shirt Orders by Congregation</h1>
+      <table class='registrationTable' style='width: 95%' id="table1">
          <tr>
-            <td width="20%" bgcolor="#C0C0C0"><b>Church Name</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>YM</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>YL</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>S</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>M</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>LG</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>XL</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>XX</b></td>
-            <td align="center" width="10%" bgcolor="#C0C0C0"><b>Total</b></td>
+            <th style='width: 20%'><b>Church Name</b></th>
+            <th style='width: 10%; text-align: center'><b>YM</b></th>
+            <th style='width: 10%; text-align: center'><b>YL</b></th>
+            <th style='width: 10%; text-align: center'><b>S </b></th>
+            <th style='width: 10%; text-align: center'><b>M </b></th>
+            <th style='width: 10%; text-align: center'><b>LG</b></th>
+            <th style='width: 10%; text-align: center'><b>XL</b></th>
+            <th style='width: 10%; text-align: center'><b>XX</b></th>
+            <th style='width: 10%; text-align: center'><b>Total</b></th>
          </tr>
    <?php
 //=================================================================================================
@@ -134,14 +137,14 @@ if ($Admin != 'Y')
          ?>
             <tr>
                <td ><?php  print $ChurchName; ?></td>
-               <td align="center"><?php  print $shirt['YM'];?></td>
-               <td align="center"><?php  print $shirt['YL'];?></td>
-               <td align="center"><?php  print $shirt['S'] ;?></td>
-               <td align="center"><?php  print $shirt['M'] ;?></td>
-               <td align="center"><?php  print $shirt['LG'];?></td>
-               <td align="center"><?php  print $shirt['XL'];?></td>
-               <td align="center"><?php  print $shirt['XX'];?></td>
-               <td align="center" bgcolor="#C0C0C0"><?php  print $rowTotal   ;?></td>
+               <td style='text-align: center'><?php  print $shirt['YM'];?></td>
+               <td style='text-align: center'><?php  print $shirt['YL'];?></td>
+               <td style='text-align: center'><?php  print $shirt['S'] ;?></td>
+               <td style='text-align: center'><?php  print $shirt['M'] ;?></td>
+               <td style='text-align: center'><?php  print $shirt['LG'];?></td>
+               <td style='text-align: center'><?php  print $shirt['XL'];?></td>
+               <td style='text-align: center'><?php  print $shirt['XX'];?></td>
+               <td style='text-align: center'><?php  print $rowTotal   ;?></td>
             </tr>
          <?php
          }
@@ -156,16 +159,18 @@ if ($Admin != 'Y')
          // Print the totals
          //=================================================================================================
          ?>
+      </table>
+      <table class='registrationTable' id="table2">
          <tr>
-            <td bgcolor="#C0C0C0">Total</td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['YM'];?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['YL'];?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['S']; ?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['M']; ?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['LG'];?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['XL'];?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['XX'];?></td>
-            <td align="center" bgcolor="#C0C0C0"><?php  print $total['grand'];?></td>
+            <td style='width: 20%;'>Total</td>
+            <td style='width: 10%; text-align: center'><?php  print $total['YM'];?></td>
+            <td style='width: 10%; text-align: center'><?php  print $total['YL'];?></td>
+            <td style='width: 10%; text-align: center'><?php  print $total['S']; ?></td>
+            <td style='width: 10%; text-align: center'><?php  print $total['M']; ?></td>
+            <td style='width: 10%; text-align: center'><?php  print $total['LG'];?></td>
+            <td style='width: 10%; text-align: center'><?php  print $total['XL'];?></td>
+            <td style='width: 10%; text-align: center'><?php  print $total['XX'];?></td>
+            <td style='width: 10%; text-align: center'><?php  print $total['grand'];?></td>
          </tr>
       </table>
    </body>

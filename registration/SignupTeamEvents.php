@@ -16,46 +16,21 @@ include 'include/RegFunctions.php';
 <head>
 <meta http-equiv="Content-Language" content="en-us">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel=stylesheet href="include/registration.css" type="text/css" />
 
 <title>Signup for Team Events</title>
 
 </head>
 
-<body style="background-color: rgb(217, 217, 255);">
+<body>
 <h1 align="center">Signup for Team Events</h1>
       <form action=AddTeam.php>
-         <table border="1" width="100%">
+         <table class='registrationTable' style='width: 95%'>
             <tr>
-               <td width="70" align="left" bgcolor="#000000" colspan=3>
-                  <span style="background-color: #000000">
-                     <font color="#FFFF00">
-                        Action
-                     </font>
-                  </span>
-               </td>
-               <td width="105" align="left" bgcolor="#000000">
-                  <span style="background-color: #000000">
-                     <font color="#FFFF00">
-                        Participants
-                     </font>
-                  </span>
-               </td>
-
-               <td align="left" bgcolor="#000000">
-                  <span style="background-color: #000000">
-                     <font color="#FFFF00">
-                        Team Number
-                     </font>
-                  </span>
-               </td>
-
-               <td align="left" bgcolor="#000000">
-                  <span style="background-color: #000000">
-                     <font color="#FFFF00">
-                        Event Name
-                     </font>
-                  </span>
-               </td>
+               <th style='width: 70px;  text-align: center' colspan=3>Action</th>
+               <th style='width: 105px; text-align: left'>Participants</th>
+               <th style='text-align: left'>Team Number</th>
+               <th style='text-align: left'>Event Name</th>
             </tr>
          <?php
          $ChurchTeams = $db->query("SELECT E.EventName,
@@ -79,11 +54,11 @@ include 'include/RegFunctions.php';
             $numMembers = $cntRow['count'];
             ?>
             <tr>
-               <td width="70" align="center">[<a href="AdminTeamEvents.php?Action=View<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">View</a>]</td>
-               <td width="70" align="center">[<a href="AdminTeamEvents.php?Action=Update<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">Update</a>]</td>
-               <td width="70" align="center"> [<a href="DelTeam.php?<?php  print "&TeamID=".$row['TeamID']; ?>">Delete</a>]</td>
-               <td width="100" align="center"> <?php  print $numMembers?></td>
-               <td width="100" align="center"> <?php  print $row['TeamID']?></td>
+               <td style='width: 70px; text-align: center;'>[<a href="AdminTeamEvents.php?Action=View<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">View</a>]</td>
+               <td style='width: 70px; text-align: center;'>[<a href="AdminTeamEvents.php?Action=Update<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">Update</a>]</td>
+               <td style='width: 70px; text-align: center;'> [<a href="DelTeam.php?<?php  print "&TeamID=".$row['TeamID']; ?>">Delete</a>]</td>
+               <td style='width: 100px; text-align: center;'> <?php  print $numMembers?></td>
+               <td style='width: 100px; text-align: center;'> <?php  print $row['TeamID']?></td>
                <td>
                <?php
                      print $row['EventName'];

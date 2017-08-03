@@ -130,7 +130,9 @@ if (isset($_POST['Apply']))
        <title>
           Manage Individual Events
        </title>
+       <meta http-equiv="Content-Language" content="en-us">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel=stylesheet href="include/registration.css" type="text/css" />
 
        <h1 align="center">Update Individual Events For</h1>
        <h2 align="center"><?php  print $ParticipantName; ?></h2>
@@ -149,12 +151,12 @@ if (isset($_POST['Apply']))
        }
        ?>
     </head>
-    <body style="background-color: rgb(217, 217, 255);">
+    <body>
         <form method="post" action="AdminSoloEvents.php?ID=<?php  print $ParticipantID; ?>">
-           <table border="1" width="100%" id="table1">
+           <table class='registrationTable' style='width: 95%' id="table1">
               <tr>
-                 <td width="78" bgcolor="#000000"><font color="#FFFF00">Selected</font></td>
-                 <td bgcolor="#000000"><font color="#FFFF00">Event Name</font></td>
+                 <th style='width: 15%;'>Selected</th>
+                 <th >Event Name</th>
               </tr>
               <?php
 //                      print "<pre>
@@ -216,7 +218,7 @@ if (isset($_POST['Apply']))
                $selected = $cntRow['count'];
                ?>
                <tr>
-                  <td width="78">
+                  <td style='width: 15%;'>
                      <?php
                      if ($EventAttended == 'Y')
                      {

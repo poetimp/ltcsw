@@ -47,12 +47,15 @@ if (isset($_POST['verify']))
 <html lang="en">
    <head>
       <title>Change Password</title>
-      <h1 align=center>Change Password</h1>
+      <meta http-equiv="Content-Language" content="en-us">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
-   <body style="background-color: rgb(217, 217, 255);">
+   <body>
+      <h1 align=center>Change Password</h1>
       <form method="post" id="main" name="main">
          <center>
-            <table border="0" width="550px">
+            <table class='registrationTable' style='width:550px'>
                <tr>
                   <td>
                      <p style="text-align: Left">
@@ -64,26 +67,25 @@ if (isset($_POST['verify']))
                </tr>
             </table>
 
-            <table border="1" width="625px" style="text-align: center">
+            <table class='registrationTable' style='width: 625px; text-align: center'>
                <tr>
                   <td colspan="2"><b>Change Email:</b></td>
-               </tr>
                <tr>
-                  <td align="right">Verification Code:&nbsp;&nbsp;</td>
-                  <td align="left"><input type="text" name="code" size="40"></td>
+                  <td style='text-align: right'>Verification Code:&nbsp;&nbsp;</td>
+                  <td style='text-align: left'><input type="text" name="code" size="40"></td>
                </tr>
                <?php
                if ($message != '')
                {
                ?>
                <tr>
-                  <td colspan="2" align="center"><font color=red><b><?php print $message?></b></font></td>
+                  <td colspan="2" style='text-align: center'><font color=red><b><?php print $message?></b></font></td>
                </tr>
                <?php
                }
                ?>
                <tr>
-                  <td colspan="2" align="center"><input type="submit" name="verify" value="Verify code"></td>
+                  <td colspan="2" style='text-align: center'><input type="submit" name="verify" value="Verify code"></td>
                </tr>
                </table>
          </center>
