@@ -74,7 +74,7 @@ if ($Admin != 'Y')
       if ($CurrentEvent != $EventName)
       {
          print "   <tr>\n";
-         print "      <th align=left colspan=4>\n";
+         print "      <th style='text-align: left' colspan=4>\n";
          print "         <b>$EventName</b>\n";
          print "      </th>\n";
          print "   </tr>\n";
