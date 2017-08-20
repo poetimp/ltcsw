@@ -45,7 +45,7 @@ if ($Admin != 'Y')
                     or die ("Unable to get participant List:" . sqlError());
          $first = 1;
          ?>
-         <table class='registrationTable' style='width: 95%'>
+         <table class='registrationTable'>
          <?php
        //======================================================================
        // For each participant in LTC ...

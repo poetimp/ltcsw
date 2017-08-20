@@ -37,7 +37,7 @@ if (isset($_POST['AddNew']))
 
          $count = 0;
          ?>
-         <table class='registrationTable' style='width: 95%'>
+         <table class='registrationTable'>
          <?php
          while ($row = $results->fetch(PDO::FETCH_ASSOC))
          {

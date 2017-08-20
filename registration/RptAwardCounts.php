@@ -213,7 +213,7 @@ $awardsBronze = 0;
     <hr>
     <h1 align="center">Summary Award Counts</h1>
     <hr>
-    <table class='registrationTable' id="table3" style='width: 95%'>
+    <table class='registrationTable' id="table3">
        <tr>
           <th>Gold</th>
           <th>Silver</th>

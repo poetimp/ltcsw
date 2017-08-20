@@ -92,7 +92,7 @@ else
                ?>
                <h1 align="center" <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>="<?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>"><?php print $Church; ?></h1>
                <hr />
-               <table class='registrationTable' style='width: 95%'>
+               <table class='registrationTable'>
                   <tr>
                      <th style='width: 10%'>ID          </th>
                      <th style='width: 10%'>Grade       </th>

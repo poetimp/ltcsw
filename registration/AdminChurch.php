@@ -317,7 +317,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
 
    <form method="post" action="AdminChurch.php">
-      <table class='registrationTable' style='width: 95%' id="table1">
+      <table class='registrationTable' id="table1">
          <tr>
             <th colspan="2" style='text-align: center'>Church Information</th>
          </tr>

@@ -352,7 +352,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
    ?>
 
    <form method="post" action=AdminParticipant.php>
-      <table class='registrationTable' style='width: 95%' id="table1">
+      <table class='registrationTable' id="table1">
          <tr>
             <th colspan="5" style='text-align: center'>Participant Information</th>
          </tr>

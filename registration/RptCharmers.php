@@ -49,7 +49,7 @@ if ($Admin != 'Y')
                     or die ("Unable to get charmer list:" . sqlError());
 
          ?>
-               <table class='registrationTable' style='width: 95%'>
+               <table class='registrationTable'>
                   <tr>
                      <th><b>Church        </b></th>
                      <th><b>Name          </b></th>

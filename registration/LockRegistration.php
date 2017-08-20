@@ -104,7 +104,7 @@ else if (isset($_POST['Close']))
                     or die ("Unable to get user list:" . sqlError());
 
          ?>
-         <table class='registrationTable' style='width: 95%'>
+         <table class='registrationTable'>
             <tr>
                <th style='text-align:left'>Userid</th>
                <th>User Name</th>

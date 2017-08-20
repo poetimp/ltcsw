@@ -228,7 +228,7 @@ function constructJudgesTable($dayTimes,$day)
    global $db;
    $dayInitial = substr($day,0,1) == 'F' ? 6 : 7;
    ?>
-   <table class='registrationTable' style='width: 95%'>
+   <table class='registrationTable'>
       <tr>
          <th colspan="<?php print $dayTimes?>" style='text-align: center'>
             <h3><?php print $day;?></h3>

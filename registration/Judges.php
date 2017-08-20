@@ -39,7 +39,7 @@ if (isset($_POST['AddNew']))
 
          $count = 0;
          ?>
-         <table class='registrationTable' style='width: 95%'>
+         <table class='registrationTable'>
             <tr>
                <th style='text-align: center' colspan="3"><h3>Action</h3></th>
                <th><h3>Assignments</h3></th>

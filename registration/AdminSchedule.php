@@ -223,7 +223,7 @@ function selectTime($Timestr = '')
                  or die ("Unable to obtain convention event list:" . sqlError());
       ?>
       <form method="post">
-      <table class='registrationTable' style='width: 95%'>
+      <table class='registrationTable'>
       <?php
       while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {

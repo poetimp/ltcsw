@@ -31,7 +31,7 @@ if ($Admin != 'Y')
          Data Access
       </h1>
 
-         <table class='registrationTable' style='width: 95%'>
+         <table class='registrationTable'>
             <tr>
                <td style='text-align: center' colspan="2">
                   <font size="+2">

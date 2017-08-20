@@ -377,7 +377,7 @@ if (isset($_POST['Apply']))
     {
     ?>
         <form method="post" action="AdminTeamEvents.php?EventID=<?php  print $EventID; ?>&TeamID=<?php  print $TeamID; ?><?php  if ($Admin == 'Y' and isset($_REQUEST['ChurchID'])) print "&ChurchID=$ChurchID"; if (isset($_REQUEST['Return'])) print '&Return='.$_REQUEST['Return']?>">
-          <table class='registrationTable' style='width: 95%'>
+          <table class='registrationTable'>
           <?php
          $EventResult = $db->query("select EventAttended
                                      from   $EventsTable

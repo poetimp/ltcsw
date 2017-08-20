@@ -57,7 +57,7 @@ include 'include/RegFunctions.php';
                     or die ("Unable to get charmer list:" . sqlError());
 
          ?>
-               <table class='registrationTable' style='width: 95%'>
+               <table class='registrationTable'>
                   <tr>
                      <th style='width: 70px; text-align: center;'>View</th>
                      <th style='width: 70px; text-align: center;'>Update</th>

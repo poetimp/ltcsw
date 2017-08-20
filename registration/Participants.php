@@ -41,7 +41,7 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
 
             $count = 0;
             ?>
-            <table class='registrationTable' style='width: 95%'>
+            <table class='registrationTable'>
                <tr>
                   <th style='width: 70px; text-align: center;'colspan=3>Action</th>
                   <th style='width: 100px; text-align: center;'>ID Number</th>

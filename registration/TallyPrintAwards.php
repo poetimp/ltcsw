@@ -138,7 +138,7 @@ else
                         print "<h2 align=\"center\">*** Warning there are entries without awards Assigned ***</h2>"
                   ?>
                   <hr>
-                  <table class='registrationTable' style='width: 95%'>
+                  <table class='registrationTable'>
                <?php
                   $prevChurchName = $ChurchName;
                }

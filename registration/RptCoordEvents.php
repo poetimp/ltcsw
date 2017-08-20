@@ -115,7 +115,7 @@ if ($Admin != 'Y')
                <h2 align="center"><?php print $EventCoord?></h2>
                <hr>
 
-               <table class='registrationTable' style='width: 95%'>
+               <table class='registrationTable'>
                <?php
             }
             if ($TeamEvent == 'Team')

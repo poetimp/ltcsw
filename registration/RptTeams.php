@@ -62,7 +62,7 @@ else
                  or die ("Not found:" . sqlError());
       $first = 1;
       ?>
-      <table class='registrationTable' style='width: 95%' id='table1'>
+      <table class='registrationTable' id='table1'>
       <?php
       while ($row = $results->fetch(PDO::FETCH_ASSOC))
       {

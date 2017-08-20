@@ -153,7 +153,7 @@ if (isset($_POST['Apply']))
     </head>
     <body>
         <form method="post" action="AdminSoloEvents.php?ID=<?php  print $ParticipantID; ?>">
-           <table class='registrationTable' style='width: 95%' id="table1">
+           <table class='registrationTable' id="table1">
               <tr>
                  <th style='width: 15%;'>Selected</th>
                  <th >Event Name</th>

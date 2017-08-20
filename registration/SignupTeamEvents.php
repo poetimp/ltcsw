@@ -25,7 +25,7 @@ include 'include/RegFunctions.php';
 <body>
 <h1 align="center">Signup for Team Events</h1>
       <form action=AddTeam.php>
-         <table class='registrationTable' style='width: 95%'>
+         <table class='registrationTable'>
             <tr>
                <th style='width: 70px;  text-align: center' colspan=3>Action</th>
                <th style='width: 105px; text-align: left'>Participants</th>
