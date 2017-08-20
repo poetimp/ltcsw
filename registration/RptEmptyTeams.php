@@ -27,7 +27,7 @@ if ($Admin != 'Y')
        </title>
     </head>
 
-    <body bgcolor="White">
+    <body>
     <h1 align="center">Empty Teams</h1>
     <hr>
     <?php

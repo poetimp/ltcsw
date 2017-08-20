@@ -30,7 +30,7 @@ else
        <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
-    <body bgcolor="White">
+    <body>
     <?php
       $pageBreak='';
 

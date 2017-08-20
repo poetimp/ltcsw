@@ -26,7 +26,7 @@ if ($Admin != 'Y')
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
-   <body bgcolor="White">
+   <body>
       <h1 style='text-align: center'>T-Shirt Orders by Congregation</h1>
       <table class='registrationTable' style='width: 95%' id="table1">
          <tr>

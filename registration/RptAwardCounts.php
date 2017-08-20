@@ -32,7 +32,7 @@ $awardsBronze = 0;
        <link rel=stylesheet href="include/registration.css" type="text/css" />
     </head>
 
-    <body bgcolor="White">
+    <body>
 
     <h1 align="center">Award Counts By Individual Event</h1>
     <hr>

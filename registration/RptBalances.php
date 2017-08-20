@@ -36,7 +36,7 @@ else
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel=stylesheet href="include/registration.css" type="text/css" />
    </head>
-   <body bgcolor="White">
+   <body>
    <h1 align="center">Expense Balance Report</h1>
 
    <?php
