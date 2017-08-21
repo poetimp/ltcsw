@@ -211,21 +211,22 @@ function selectTime($Timestr = '')
 
    </head>
    <script>
+      //When the window loads check to see if the scree's scroll position was noted. If so go there
       window.onload = function ()
       {
          <?php
          if (isset($_POST['scrollPos']))
          {
          ?>
-            //document.documentElement.scrollTop = document.body.scrollTop = <?php print $_POST['scrollPos']?>;
             window.scrollTo(0, <?php print $_POST['scrollPos']?>);
          <?php
          }
          ?>
       }
+
+      // Submit the form but before you do mark our position on the page so we can get back to it
       function submitForm()
       {
-         //var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
          var scrollPos = window.scrollY;
          var input = document.createElement( 'input' );
          input.type = 'hidden';
@@ -236,6 +237,8 @@ function selectTime($Timestr = '')
          document.mainForm.submit() ;
       }
 
+      // The functions below take the place of a submit or href anchor. This is priparily so that they can
+      // call the submitForm function but also to cleanup the links so they don't use request variables on the url line
       function addEvent(EventID)
       {
          var input = document.createElement( 'input' );
@@ -286,23 +289,23 @@ function selectTime($Timestr = '')
       }
       function delEvent(EventID,StartTime,RoomID)
       {
-         var fldDelEventID = document.createElement( 'input' );
-         fldDelEventID.type = 'hidden';
-         fldDelEventID.name = 'DelEventID';
-         fldDelEventID.value = EventID;
-         document.forms.mainForm.appendChild(fldDelEventID);
+         var input = document.createElement( 'input' );
+         input.type = 'hidden';
+         input.name = 'DelEventID';
+         input.value = EventID;
+         document.forms.mainForm.appendChild(input);
 
-         var fldStartTime = document.createElement( 'input' );
-         fldStartTime.type = 'hidden';
-         fldStartTime.name = 'StartTime';
-         fldStartTime.value = StartTime;
-         document.forms.mainForm.appendChild(fldStartTime);
+         var input = document.createElement( 'input' );
+         input.type = 'hidden';
+         input.name = 'StartTime';
+         input.value = StartTime;
+         document.forms.mainForm.appendChild(input);
 
-         var fldRoomID = document.createElement( 'input' );
-         fldRoomID.type = 'hidden';
-         fldRoomID.name = 'RoomID';
-         fldRoomID.value = RoomID;
-         document.forms.mainForm.appendChild(fldRoomID);
+         var input = document.createElement( 'input' );
+         input.type = 'hidden';
+         input.name = 'RoomID';
+         input.value = RoomID;
+         document.forms.mainForm.appendChild(input);
 
          submitForm();
       }
@@ -388,62 +391,62 @@ function selectTime($Timestr = '')
          <?php
          }
 
-            $cntResult = $db->query("select    count(*)
+         $cntResult = $db->query("select    count(*)
+                                   from     $EventScheduleTable s,
+                                            $RoomsTable         r
+                                   where    s.EventID = '$EventID'
+                                   and      s.RoomID  = r.RoomID
+                                   order by StartTime")
+                      or die ("Unable to get schedule information for event:" . sqlError());
+         if ($cntResult->fetchColumn() > 0)
+         {
+            $cntResult = $db->query("select    s.StartTime,
+                                               s.EndTime,
+                                               r.RoomName,
+                                               s.RoomID,
+                                               s.SchedID
                                       from     $EventScheduleTable s,
                                                $RoomsTable         r
                                       where    s.EventID = '$EventID'
                                       and      s.RoomID  = r.RoomID
                                       order by StartTime")
                          or die ("Unable to get schedule information for event:" . sqlError());
-            if ($cntResult->fetchColumn() > 0)
-            {
-               $cntResult = $db->query("select    s.StartTime,
-                                                  s.EndTime,
-                                                  r.RoomName,
-                                                  s.RoomID,
-                                                  s.SchedID
-                                         from     $EventScheduleTable s,
-                                                  $RoomsTable         r
-                                         where    s.EventID = '$EventID'
-                                         and      s.RoomID  = r.RoomID
-                                         order by StartTime")
-                            or die ("Unable to get schedule information for event:" . sqlError());
-               while ($cntRow = $cntResult->fetch(PDO::FETCH_ASSOC))
-               {// $moveSuccessful or
-                // $_POST['MoveEventID'] != $EventID
-                // $_POST['StartTime'] != $cntRow['StartTime']
-                // $_POST['RoomID'] != $cntRow['RoomID']
-                  if (isset($_POST['MoveEventID']))
-                  {
-                     if     ($moveSuccessful)                                  $ShowRow=1;
-                     elseif ($_POST['MoveEventID'] != $EventID)                $ShowRow=1;
-                     elseif ($_POST['StartTime']   != $cntRow['StartTime'])    $ShowRow=1;
-                     elseif ($_POST['RoomID']      != $cntRow['RoomID'])       $ShowRow=1;
-                     else                                                      $ShowRow=0;
-                  }
-                  else
-                     $ShowRow = 1;
+            while ($cntRow = $cntResult->fetch(PDO::FETCH_ASSOC))
+            {// $moveSuccessful or
+             // $_POST['MoveEventID'] != $EventID
+             // $_POST['StartTime'] != $cntRow['StartTime']
+             // $_POST['RoomID'] != $cntRow['RoomID']
+               if (isset($_POST['MoveEventID']))
+               {
+                  if     ($moveSuccessful)                                  $ShowRow=1;
+                  elseif ($_POST['MoveEventID'] != $EventID)                $ShowRow=1;
+                  elseif ($_POST['StartTime']   != $cntRow['StartTime'])    $ShowRow=1;
+                  elseif ($_POST['RoomID']      != $cntRow['RoomID'])       $ShowRow=1;
+                  else                                                      $ShowRow=0;
+               }
+               else
+                  $ShowRow = 1;
 
-                  if ($ShowRow)
-                  {
-                     $RoomID    = $cntRow['RoomID'];
-                     $RoomName  = $cntRow['RoomName'];
-                     $StartTime = $cntRow['StartTime'];
-                     $EndTime   = $cntRow['EndTime'];
-                     $SchedID   = $cntRow['SchedID'];
+               if ($ShowRow)
+               {
+                  $RoomID    = $cntRow['RoomID'];
+                  $RoomName  = $cntRow['RoomName'];
+                  $StartTime = $cntRow['StartTime'];
+                  $EndTime   = $cntRow['EndTime'];
+                  $SchedID   = $cntRow['SchedID'];
 
-                     ?>
-                     <tr>
-                        <td style='width: 50px;'>&nbsp;</td>
-                        <td style='width: 75px; text-align: center;'><a href='javascript:void(0)' onclick='javascript:delEvent(<?php print "\"$EventID\",\"$StartTime\",\"$RoomID\""?>)'>Delete</a></td>
-                        <td style='width: 75px; text-align: center;'><a href='javascript:void(0)' onclick='javascript:moveEvent(<?php print "\"$EventID\",\"$SchedID\",\"$StartTime\",\"$RoomID\""?>)'>Move</a></td>
-                        <td style='width: 350;'><?php print TimeToStr($StartTime)." to ".TimeToStr($EndTime)?></td>
-                        <td><?php print $RoomName?></td>
-                     </tr>
-                     <?php
-                  }
+                  ?>
+                  <tr>
+                     <td style='width: 50px;'>&nbsp;</td>
+                     <td style='width: 75px; text-align: center;'><a href='javascript:void(0)' onclick='javascript:delEvent(<?php print "\"$EventID\",\"$StartTime\",\"$RoomID\""?>)'>Delete</a></td>
+                     <td style='width: 75px; text-align: center;'><a href='javascript:void(0)' onclick='javascript:moveEvent(<?php print "\"$EventID\",\"$SchedID\",\"$StartTime\",\"$RoomID\""?>)'>Move</a></td>
+                     <td style='width: 350;'><?php print TimeToStr($StartTime)." to ".TimeToStr($EndTime)?></td>
+                     <td><?php print $RoomName?></td>
+                  </tr>
+                  <?php
                }
             }
+         }
       }
       ?>
 
