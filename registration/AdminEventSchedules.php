@@ -81,7 +81,7 @@ function ScheduleEventGet($EventID)
          ?>
             <tr>
                <th style='width: 5%;'>&nbsp;</td>
-               <td style='width: 15%;'<?php print $StartTime; ?></td>
+               <td style='width: 15%;'><?php print $StartTime; ?></td>
                <td><?php print $RoomName; ?></td>
             </tr>
          <?php
