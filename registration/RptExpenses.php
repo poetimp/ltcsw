@@ -87,6 +87,7 @@ else
             <td style='width: 25%; text-align: center'>x <?php print FormatMoney($RegCost);?></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costParticipant);?></td>
          </tr>
+         <!--
          <tr>
             <td style='width: 25%'><b>Extra Adult Meal Tickets</b></td>
             <td style='width: 25%; text-align: right'><?php print $ExtraAdultMealCount;?></td>
@@ -99,6 +100,7 @@ else
             <td style='width: 25%; text-align: center'>x <?php print FormatMoney($ChildMealCost);?></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costExtraChildMeals);?></td>
          </tr>
+          -->
          <tr>
             <td style='width: 25%'><b>Extra T-Shirts</b></td>
             <td style='width: 25%; text-align: right'><?php print $ExtraShirtCount;?></td>

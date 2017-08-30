@@ -238,7 +238,7 @@ $charmerCount = $row['Count'];
                   }
                   ?>
                   <table class='registrationTable'>
-                     <tr><td><a href="ExtraOrders.php">Order Extra T-Shirts and Meal Tickets</a></td></tr>
+                     <tr><td><a href="ExtraOrders.php">Order Extra T-Shirts</a></td></tr>
                      <tr><td><a href="Charmers.php">Manage C.H.A.R.M.ers</a></td></tr>
                      <tr><td><a href="/">LTCSW Home</a></td></tr>
                      <tr><td><a href="mailto:paul@lemmons.name">Feedback: Comments or Report a problem</a></td></tr>

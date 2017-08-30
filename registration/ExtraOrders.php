@@ -301,6 +301,7 @@ else
          </table>
 
          <br>
+         <!--  Removed the ability to order extra meal tickets... but let code just in case it comes back
          <h2>Meal Tickets </h2>
          (<b>Note:</b> Event directors, Charmers and Board members are covered)
          <table class='registrationTable' style='width: 60%'>
@@ -326,6 +327,7 @@ else
             </tr>
          </table>
          <br>
+         -->
          <table class='registrationTable' style='width: 60%'>
             <tr>
                <?php if ($UserStatus == 'O')
