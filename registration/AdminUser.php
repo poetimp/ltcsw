@@ -439,8 +439,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                else
                {
                   ?>
-                  <td style='width: 8%;' <input type="radio" name="Admin" value="Y" <?php  print ($IsAdmin == 'Y') ? "checked" : ""; ?>>Yes</td>
-                  <td style='width: 8%;' <input type="radio" name="Admin" value="N" <?php  print ($IsAdmin == 'N') ? "checked" : ""; ?>>No</td>
+                  <td style='width: 8%;'><input type="radio" name="Admin" value="Y" <?php  print ($IsAdmin == 'Y') ? "checked" : ""; ?>>Yes</td>
+                  <td style='width: 8%;'><input type="radio" name="Admin" value="N" <?php  print ($IsAdmin == 'N') ? "checked" : ""; ?>>No</td>
                   <td style='width: 70%;' colspan="4">&nbsp;</td>
                   <?php
                }
