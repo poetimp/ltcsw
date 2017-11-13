@@ -113,10 +113,10 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
    if ($ErrorMsg == "")
    {
-      $Name     = $db->quote($Name);
-      $Password = $db->quote($Password);
-
       $newPassword = password_hash($Password,PASSWORD_DEFAULT);
+      $Name        = $db->quote($Name);
+      $Password    = $db->quote($Password);
+
       if ($mode == 'update')
       {
          if (isset($_POST['updPwd']) and $_POST['updPwd'] == 'on')
