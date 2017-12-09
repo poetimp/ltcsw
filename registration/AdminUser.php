@@ -129,7 +129,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
          else
             $emailSet = '';
 
-         $results = $db->query("update $UsersTable
+         $sql = "update $UsersTable
                                  set    ChurchID  = '$NewChurchID',
                                         $pwdSet
                                         $emailSet
@@ -137,8 +137,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
                                         Admin     = '$IsAdmin',
                                         Status    = '$Status'
                                  where  Userid    = '$NewUserid'
-                                ")
-                    or die ("Unable to process update: " . sqlError());
+                                ";
+
+         $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
       }
       else
       {
