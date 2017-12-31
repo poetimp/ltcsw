@@ -23,7 +23,7 @@ if (isset($_POST['verify']))
       if ($row['verificationCode'] == $_POST['code'])
       {
          $address = $_SESSION['newemail'];
-         $_SESSION['newemail'] = undef;
+         unset($_SESSION['newemail']);
 
          if ($db->query("update $UsersTable set email='$address' where Userid='$Userid'"))
          {
