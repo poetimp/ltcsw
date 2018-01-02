@@ -112,10 +112,9 @@ if (isset($_POST['submit']))
       }
       else
       {?>
-      <b><font size="+1" color="Red"><p align="center">Registration will open on Wednesday, January 3rd</p></font></b>
+      <b><font size="+1" color="Red"><p align="center">Registration will open tonight (1/2/18) at 10:00pm</p></font></b>
 <!--  <b><font size="+1" color="Red"><p align="center">Registration is currently down in preparation for for 2017 convention</p></font></b> -->
 <!--  <b><font size="+1" color="Red"><p align="center">There will be a delay in opening registration</p></font></b> -->
-      <b><font size="+1" color="Red"><p align="center">Be sure to check our <a href="https://www.facebook.com/groups/ltcsw/">Facebook page</a> for updates</p></font></b>
 <!--  <b><font size="+1" color="Red"><p align="center">2016 Registration Reports and Awards are Ready</p></font></b> -->
 <!--  <b><font size="+1" color="Red"><p align="center">See you in April of 2017!</p></font></b> -->
 
@@ -179,10 +178,11 @@ if (isset($_POST['submit']))
             <p align="center">Forgot Password<br/>
                <a href="ForgotPassword.php">Click Here</a>
             </p>
+            <br>
             <table>
                <tr>
                   <td><a href='https://www.facebook.com/groups/ltcsw'><img src="images/facebook.png" alt="Follow us on Facebook" title="Follow us on Facebook" style='height: 32px' /></a></td>
-                  <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  <td>&nbsp;Be A Follower&nbsp;</td>
                   <td><a href='https://www.twitter.com/LTC_Southwest'><img src="images/twitter.png" alt="Follow us on Twitter" title="Follow us on Twitter" style='height: 32px' /></a></td>
                </tr>
             </table>
