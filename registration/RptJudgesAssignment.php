@@ -157,7 +157,7 @@ function constructJudgesTable($dayTimes,$day)
                         $EventName    = $row['EventName'];
                         $JudgesNeeded = $row['JudgesNeeded'];
                         $SchedID      = $row['SchedID'];
-                        print "<td style='text-align: center'><b>$EventName</b><br>\n";
+                        print "<td style='text-align: center; vertical-align: top'><b>$EventName</b><br>\n";
                         if ($JudgesNeeded >0)
                         {
                            print "<table class='registrationTable'\n";

@@ -296,7 +296,7 @@ function constructJudgesTable($dayTimes,$day)
                            $EventSex     = $row['Sex'];
                            $JudgeTrained = $row['JudgeTrained'];
 
-                           print "<td style='text-align: center'><b>$EventName</b><br>\n";
+                           print "<td style='text-align: center; vertical-align: top'><b>$EventName</b><br>\n";
                            //----------------------------------------------------------
                            // If there are special notes for this event not it here
                            //----------------------------------------------------------
