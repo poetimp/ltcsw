@@ -179,7 +179,13 @@ if (isset($_POST['submit']))
             <p align="center">Forgot Password<br/>
                <a href="ForgotPassword.php">Click Here</a>
             </p>
-
+            <table>
+               <tr>
+                  <td><a href='https://www.facebook.com/groups/ltcsw'><img src="images/facebook.png" alt="Follow us on Facebook" title="Follow us on Facebook" style='height: 32px' /></a></td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  <td><a href='https://www.twitter.com/LTC_Southwest'><img src="images/twitter.png" alt="Follow us on Twitter" title="Follow us on Twitter" style='height: 32px' /></a></td>
+               </tr>
+            </table>
          </div>
       </form>
    </body>
