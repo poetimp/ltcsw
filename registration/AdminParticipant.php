@@ -272,16 +272,16 @@ if (isset($_POST['add']) or isset($_POST['update']))
               if ($mode == 'update')
               {
                 ?>
-                  <h1 align=center>
-                     Participant <br>"<?php  print $LastName . ", " . $FirstName; ?>"<br>Updated!
+                  <h1 align="center">
+                     Participant <br />"<?php  print $LastName . ", " . $FirstName; ?>"<br />Updated!
                   </h1>
                 <?php
               }
               else
               {
                 ?>
-                  <h1 align=center>
-                     Participant<br>"<?php  print $LastName . ", " . $FirstName; ?>"<br>Added!
+                  <h1 align="center">
+                     Participant<br />"<?php  print $LastName . ", " . $FirstName; ?>"<br />Added!
                   </h1>
                 <?php
               }
@@ -299,9 +299,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
    <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
    <?php
       if ($mode == 'update')
       {
@@ -351,13 +351,13 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
       }
    ?>
 
-   <form method="post" action=AdminParticipant.php>
+   <form method="post">
       <table class='registrationTable' id="table1">
          <tr>
             <th colspan="5" style='text-align: center'>Participant Information</th>
          </tr>
          <tr>
-            <th style='width: 15%;'>First Name</td>
+            <th style='width: 15%;'>First Name</th>
             <td style='width: 30%;'>
             <?php
             if ($mode == "view")
@@ -367,7 +367,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-               <input type="text" name="FirstName" size="36" <?php  print ($FirstName != "") ? "value=\"" . $FirstName . "\"" : ""; ?>>
+               <input type="text" name="FirstName" size="36" <?php  print ($FirstName != "") ? "value=\"" . $FirstName . "\"" : ""; ?> />
             <?php
             }
             ?>
@@ -384,14 +384,14 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-               <input type="text" name="LastName" size="36" <?php  print ($LastName != "") ? "value=\"" . $LastName . "\"" : ""; ?>>
+               <input type="text" name="LastName" size="36" <?php  print ($LastName != "") ? "value=\"" . $LastName . "\"" : ""; ?> />
             <?php
             }
             ?>
             </td>
          </tr>
          <tr>
-            <th style='width: 12%;'>Address</td>
+            <th style='width: 12%;'>Address</th>
             <td style='width: 85%;' colspan="4">
             <?php
             if ($mode == "view")
@@ -401,14 +401,14 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-               <input type="text" name="Address" size="36" <?php  print ($Address != "") ? "value=\"" . $Address . "\"" : ""; ?>>
+               <input type="text" name="Address" size="36" <?php  print ($Address != "") ? "value=\"" . $Address . "\"" : ""; ?> />
             <?php
             }
             ?>
             </td>
          </tr>
          <tr>
-            <th style='width: 12%;'>City</td>
+            <th style='width: 12%;'>City</th>
             <td style='width: 36%;'>
             <?php
             if ($mode == "view")
@@ -418,12 +418,12 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-               <input type="text" name="City" size="36" <?php  print ($City != "") ? "value=\"" . $City . "\"" : ""; ?>>
+               <input type="text" name="City" size="36" <?php  print ($City != "") ? "value=\"" . $City . "\"" : ""; ?> />
             <?php
             }
             ?>
             </td>
-            <th style='width: 12%;'>State</td>
+            <th style='width: 12%;'>State</th>
             <td style='width: 30%;' colspan="2">
             <?php
             if ($mode == "view")
@@ -501,9 +501,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <th style='width: 12%;'>&nbsp;</td>
-            <th style='width: 36%;'>&nbsp;</td>
-            <th style='width: 12%;'>Zip</td>
+            <th style='width: 12%;'>&nbsp;</th>
+            <th style='width: 36%;'>&nbsp;</th>
+            <th style='width: 12%;'>Zip</th>
             <td style='width: 37%;' colspan="2">
             <?php
             if ($mode == "view")
@@ -513,14 +513,14 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-               <input type="text" name="Zip" size="20" <?php  print ($Zip != "") ? "value=\"" . $Zip . "\"" : ""; ?>>
+               <input type="text" name="Zip" size="20" <?php  print ($Zip != "") ? "value=\"" . $Zip . "\"" : ""; ?> />
             <?php
             }
             ?>
             </td>
          </tr>
          <tr>
-            <th style='width: 12%;'>Grade</td>
+            <th style='width: 12%;'>Grade</th>
             <td style='width: 29%;'>
             <?php
             if ($mode == "view")
@@ -548,7 +548,8 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             ?>
             </td>
             <td style='width: 28%;'>
-            Sex</td>
+               Sex
+            </td>
             <?php
             if ($mode == "view")
             {
@@ -559,14 +560,14 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-            <td style='width: 14%;'><input type="radio" value="M" name="Gender" <?php  print ($Gender == "M") ? "checked" : "" ?>>Male</td>
-            <td style='width: 14%;'><input type="radio" value="F" name="Gender" <?php  print ($Gender == "F") ? "checked" : "" ?>>Female</td>
+            <td style='width: 14%;'><input type="radio" value="M" name="Gender" <?php  print ($Gender == "M") ? "checked" : "" ?> />Male</td>
+            <td style='width: 14%;'><input type="radio" value="F" name="Gender" <?php  print ($Gender == "F") ? "checked" : "" ?> />Female</td>
             <?php
             }
             ?>
          </tr>
          <tr>
-            <th style='width: 12%;'>Shirt Size</td>
+            <th style='width: 12%;'>Shirt Size</th>
             <td style='width: 29%;'>
             <?php
             if ($mode == "view")
@@ -627,15 +628,15 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-            <th style='width: 28%;'>Attend Convention</td>
-            <td style='width: 14%;'><input type="radio" name="AttendConv" value="Y" <?php  print ($AttendConv == "Y") ? "checked" : "" ?>>Yes</td>
-            <td style='width: 14%;'><input type="radio" name="AttendConv" value="N" <?php  print ($AttendConv == "N") ? "checked" : "" ?>>No</td>
+            <th style='width: 28%;'>Attend Convention</th>
+            <td style='width: 14%;'><input type="radio" name="AttendConv" value="Y" <?php  print ($AttendConv == "Y") ? "checked" : "" ?> />Yes</td>
+            <td style='width: 14%;'><input type="radio" name="AttendConv" value="N" <?php  print ($AttendConv == "N") ? "checked" : "" ?> />No</td>
             <?php
             }
             ?>
          </tr>
          <tr>
-            <th style='width: 12%;'>Email</td>
+            <th style='width: 12%;'>Email</th>
             <td style='width: 29%;'>
             <?php
             if ($mode == "view")
@@ -645,7 +646,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-               <input type="text" name="Email" size="36" <?php  print ($Email != "") ? "value=\"" . $Email . "\"" : ""; ?>>
+               <input type="text" name="Email" size="36" <?php  print ($Email != "") ? "value=\"" . $Email . "\"" : ""; ?> />
             <?php
             }
             ?>
@@ -660,15 +661,15 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-            <th style='width: 28%;'>Notify Christian Universities</td>
-            <td style='width: 14%;'><input type="radio" name="InfoToUniv" value="Y" <?php  print ($InfoToUniv == "Y") ? "checked" : "" ?>>Yes</td>
-            <td style='width: 14%;'><input type="radio" name="InfoToUniv" value="N" <?php  print ($InfoToUniv == "N") ? "checked" : "" ?>>No</td>
+            <th style='width: 28%;'>Notify Christian Universities</th>
+            <td style='width: 14%;'><input type="radio" name="InfoToUniv" value="Y" <?php  print ($InfoToUniv == "Y") ? "checked" : "" ?> />Yes</td>
+            <td style='width: 14%;'><input type="radio" name="InfoToUniv" value="N" <?php  print ($InfoToUniv == "N") ? "checked" : "" ?> />No</td>
             <?php
             }
             ?>
          </tr>
          <tr>
-            <th style='width: 12%;'>Phone</td>
+            <th style='width: 12%;'>Phone</th>
             <td style='width: 29%;' colspan="1">
             <?php
             if ($mode == "view")
@@ -678,7 +679,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-               <input type="text" name="Phone" size="36" <?php  print ($Phone != "") ? "value=\"" . $Phone . "\"" : ""; ?>> <br>(xxx) xxx-xxxx
+               <input type="text" name="Phone" size="36" <?php  print ($Phone != "") ? "value=\"" . $Phone . "\"" : ""; ?> /> <br />(xxx) xxx-xxxx
             <?php
             }
             ?>
@@ -709,7 +710,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-                <td style='width: 56%;' colspan=3>&nbsp;</td>
+                <td style='width: 56%;' colspan='3'>&nbsp;</td>
 <!--            <td style='width: 28%;' colspan=1>Meal Ticket (<A href="http://www.ltcsw.org/faq.htm#13" target="_blank">help</A>)</td>-->
 <!--            <td style='width: 28%;' colspan=2>-->
 <!--               <select name="MealTicket" size="1">-->
@@ -738,6 +739,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             ?>
                <p align="center">
                <textarea rows="4" name="Comments" cols="76" ><?php  print $Comments;?></textarea>
+               </p>
             <?php
             }
             ?>
@@ -748,25 +750,25 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
          <?php
             if ($mode == 'update')
             {?>
-               <input type="submit" value="Update" name="update">
-               <input type="hidden" value="<?php  print $ParticipantID; ?>" name=ParticipantID>
-               <input type="hidden" value="update" name=action>
+               <input type="submit" value="Update" name="update" />
+               <input type="hidden" value="<?php  print $ParticipantID; ?>" name="ParticipantID" />
+               <input type="hidden" value="update" name="action" />
              <?php
             }
             else if ($mode == 'add')
             {?>
-               <input type="submit" value="Add" name="add">
-               <input type="hidden" value="add" name=action>
+               <input type="submit" value="Add" name="add" />
+               <input type="hidden" value="add" name="action" />
              <?php
             }
             else if ($mode == 'view')
             {?>
-               <input type="hidden" value="update" name=action>
+               <input type="hidden" value="update" name="action" />
              <?php
             }
 
          ?>
-         <br>
+         <br />
       </p>
    </form>
    <?php footer("Return to Participant List","Participants.php")?>   </body>

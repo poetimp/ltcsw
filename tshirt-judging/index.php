@@ -10,7 +10,7 @@
 $picColumns = 4;
 $picWidth   = 300;
 
-$picDir   = "/webroot/l/t/ltcsw001/www/tshirt-judging/shirts-2017";
+$picDir   = "/webroot/l/t/ltcsw001/www/tshirt-judging/shirts-2018";
 $picFiles = scandir($picDir);
 
 ?>
@@ -33,6 +33,9 @@ $picFiles = scandir($picDir);
             {
                if ($pics % $picColumns == 0 and $pics != 0)
                {
+                  print "   </tr>\n";
+                  print "   <tr height='5px'>\n";
+                  print "      <td colspan='$picColumns' bgcolor='#4d004d'>&nbsp;</td>\n";
                   print "   </tr>\n";
                   print "   <tr>\n";
                }
