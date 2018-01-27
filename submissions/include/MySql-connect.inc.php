@@ -12,14 +12,14 @@
 //-----------------------------------------------------------------------------
 // Return a formatted string of a PDR Database error array
 //-----------------------------------------------------------------------------
-function sqlError()
+function sqlError($sql='')
 {
 global $db;
 
    $pdoErrString='PDOError: ';
    foreach ($db->errorInfo() as $pdoErr)
    {
-      $pdoErrString.="[".$pdoErr."]";
+      $pdoErrString.="[".$pdoErr."]"."<br><pre>$sql</pre>";
    }
    return $pdoErrString;
 }

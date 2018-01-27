@@ -9,9 +9,14 @@
 ?>
 <?php
 session_start();
+require __DIR__.'/include/vendor/autoload.php';
 require __DIR__.'/include/config.php';
 require __DIR__.'/include/MySql-connect.inc.php';
-use \Dropbox as dbx;
+
+use Kunnu\Dropbox\Dropbox;
+use Kunnu\Dropbox\DropboxApp;
+use Kunnu\Dropbox\DropboxFile;
+use Kunnu\Dropbox\Exceptions\DropboxClientException;
 
 //===================================================================
 // Pickup and validate variables
@@ -459,21 +464,25 @@ if ($_POST)
    //          print "[$dropboxDirectory]<br>[$target_name]<br>\n";
 
                //Login to dropbox
-               $dbxClient = new dbx\Client($accessToken, "LTCSW-Submit");
-
-               // Upload the file to dropbox
-               $f = fopen($target_name, "rb");
-               $result = $dbxClient->uploadFile("$dropboxDirectory/".$_FILES['File']['name'], dbx\WriteMode::force(), $f);
-               fclose($f);
+               $dbxClient    = new DropboxApp($dropboxApp, $appSecret, $accessToken);
+               $dropbox      = new Dropbox($dbxClient);
+               try
+               {
+                  $dropboxFile  = new DropboxFile($target_name);
+                  $uploadedFile = $dropbox->upload($dropboxFile, "$dropboxDirectory/" . $_FILES['File']['name'], ['autorename' => true]);
+               }
+               catch (DropboxClientException $e)
+               {
+                  print "Upload failed with error: ". $e->getMessage()."<br>Please let Paul know that you got this error. Thank you!";
+                  die();
+               }
 
                //============================
                // Send note to IS to process
                //============================
-
-               $toWho   =  'jan.lemmons@gmail.com';
-               $toWho  .= ',blacksv@juno.com';
-               $toWho  .= ',paul.lemmons@gmail.com';
-             //$toWho   = 'paul.lemmons@gmail.com';
+               $toWho  = 'paul.lemmons@gmail.com';
+               //$toWho  = ',jan.lemmons@gmail.com';
+               //$toWho  .= ',blacksv@juno.com';
 
                $from    = 'MIME-Version: 1.0' . "\r\n";
                $from   .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";

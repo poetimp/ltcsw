@@ -8,9 +8,14 @@
 ?>
 <?php
 session_start();
+require __DIR__.'/include/vendor/autoload.php';
 require __DIR__.'/include/config.php';
 require __DIR__.'/include/MySql-connect.inc.php';
-use \Dropbox as dbx;
+
+use Kunnu\Dropbox\Dropbox;
+use Kunnu\Dropbox\DropboxApp;
+use Kunnu\Dropbox\DropboxFile;
+use Kunnu\Dropbox\Exceptions\DropboxClientException;
 
 //===================================================================
 // Pickup and validate variables
@@ -43,7 +48,7 @@ $query = "select   distinct
           and      r.EventID=e.EventID
           and      e.ConvEvent='P'
           order    by ChurchName";
-$result = $db->query($query)or die ("Unable to obtain church list:" . sqlError());
+$result = $db->query($query)or die ("Unable to obtain church list:" . sqlError($query));
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $churches[] = array("id" => $row['ChurchID'], "val" => $row['ChurchName']);
    $church[$row['ChurchID']] = $row['ChurchName'];
@@ -64,7 +69,7 @@ $query   = "SELECT distinct
             and   r.EventID=e.EventID
             and   e.ConvEvent='P'
             order by ParticipantName";
-$result = $db->query($query)or die ("Unable to obtain participant list:" . sqlError());
+$result = $db->query($query)or die ("Unable to obtain participant list:" . sqlError($query));
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $participants[$row['ChurchID']][] = array("id" => $row['ParticipantID'], "val" => $row['ParticipantName']);
    $participant[$row['ParticipantID']] = $row['ParticipantName'];
@@ -75,6 +80,7 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
 $query   = "SELECT distinct
                    r.ChurchID,
                    t.TeamID,
+                   e.EventName,
                    concat('[',t.TeamID,'] ',e.EventName) TeamName
             FROM   $RegistrationTable r,
                    $EventsTable       e,
@@ -85,7 +91,7 @@ $query   = "SELECT distinct
             and    e.ConvEvent='P'
             and    e.EventID=t.EventID
             order by e.EventName,t.TeamID;";
-$result = $db->query($query)or die ("Unable to obtain team list:" . sqlError());
+$result = $db->query($query)or die ("Unable to obtain team list:" . sqlError($query));
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $participants[$row['ChurchID']][] = array("id" => ltrim($row['TeamID'],'0'), "val" => $row['TeamName']);
    $participant[ltrim($row['TeamID'],'0')] = $row['TeamName'];
@@ -103,7 +109,7 @@ $query   = "SELECT distinct
               where   r.EventID=e.EventID
               and     e.ConvEvent = 'P'
               order   by EventName";
-$result = $db->query($query)or die ("Unable to obtain events list:" . sqlError());
+$result = $db->query($query)or die ("Unable to obtain events list:" . sqlError($query));
 while($row = $result->fetch(PDO::FETCH_ASSOC)){
    $events[$row['ParticipantID']][] = array("id" => $row['EventID'], "val" => $row['EventName']);
    $event[$row['EventID']] = $row['EventName'];
@@ -444,19 +450,25 @@ if ($_POST)
    //          print "[$dropboxDirectory]<br>[$target_name]<br>\n";
 
                //Login to dropbox
-               $dbxClient = new dbx\Client($accessToken, "LTCSW-Submit");
-
-               // Upload the file to dropbox
-               $f = fopen($target_name, "rb");
-               $result = $dbxClient->uploadFile("$dropboxDirectory/".$_FILES['File']['name'], dbx\WriteMode::force(), $f);
-               fclose($f);
+               $dbxClient    = new DropboxApp($dropboxApp, $appSecret, $accessToken);
+               $dropbox      = new Dropbox($dbxClient);
+               try
+               {
+                  $dropboxFile  = new DropboxFile($target_name);
+                  $uploadedFile = $dropbox->upload($dropboxFile, "$dropboxDirectory/" . $_FILES['File']['name'], ['autorename' => true]);
+               }
+               catch (DropboxClientException $e)
+               {
+                  print "Upload failed with error: ". $e->getMessage()."<br>Please let Paul know that you got this error. Thank you!";
+                  die();
+               }
 
                //============================
                // Send note to IS to process
                //============================
 
-               $toWho   =  'mamasaidsew@cox.net';
-               $toWho  .= ',paul.lemmons@gmail.com';
+               $toWho   = 'paul.lemmons@gmail.com';
+               $toWho  .= ',mamasaidsew@cox.net';
              //$toWho   = 'paul.lemmons@gmail.com';
 
                $from    = 'MIME-Version: 1.0' . "\r\n";
