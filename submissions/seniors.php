@@ -480,9 +480,9 @@ if ($_POST)
                //============================
                // Send note to IS to process
                //============================
-               $toWho  = 'paul.lemmons@gmail.com';
-               //$toWho  = ',jan.lemmons@gmail.com';
-               //$toWho  .= ',blacksv@juno.com';
+               $toWho   = 'paul.lemmons@gmail.com';
+               $toWho  .= ',jan.lemmons@gmail.com';
+               $toWho  .= ',blacksv@juno.com';
 
                $from    = 'MIME-Version: 1.0' . "\r\n";
                $from   .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
