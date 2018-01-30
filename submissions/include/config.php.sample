@@ -40,20 +40,9 @@ $db_prefix            = "LTC_";
 //===================================================================
 // load the dropbox api and establish the credentials.
 //===================================================================
-require __DIR__.'dropbox-sdk/Dropbox/autoload.php';
-
-use \Dropbox as dbx;
-
-//your access token from the Dropbox App Panel: https://www.dropbox.com/developers/apps
-
-$accessToken = 'This Token is established at the Dropbox App Panel noted above. ';
-
-// load the dropbox credentials the app key and the secret key are also found at the URL above
-
-$appInfo = dbx\AppInfo::loadFromJson(array("key"    => "*****",
-                                           "secret" => "*******"
-                                           )
-                                     );
+$dropboxApp  = '<dropbox application name>';
+$accessToken = '<>dropbx V2 access token';
+$appSecret   = "<dropbix secret key>";
 
 //===================================================================
 // Establish the names of all of the tables.
