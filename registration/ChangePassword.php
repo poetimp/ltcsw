@@ -52,16 +52,16 @@ if (isset($_POST['ChangePwd']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
    <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
       <title>Change Password</title>
       <h1 align=center>Change Password</h1>
    </head>
    <body>
       <form method="post" id="main" name="main">
-         <center>
+         <div style="text-align: center">
             <table class='registrationTable' style="width: 550px">
                <tr>
                   <td>
@@ -111,7 +111,7 @@ if (isset($_POST['ChangePwd']))
                   <td colspan="2" style='text-align: center'><input type="submit" name="ChangePwd" value="Change Password"></td>
                </tr>
                </table>
-         </center>
+         </div>
       </form>
       <?php footer("Return to Login","login.php")?>
    </body>

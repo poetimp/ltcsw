@@ -21,9 +21,9 @@ if (isset($_POST['Confirm']))
          <title>
             Userid Deleted
          </title>
-         <meta http-equiv="Content-Language" content="en-us">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel=stylesheet href="include/registration.css" type="text/css" />
+         <meta http-equiv="Content-Language" content="en-us" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <link rel="stylesheet" href="include/registration.css" type="text/css" />
       </head>
       <body>
          <h1 align=center>
@@ -44,29 +44,29 @@ else
 
 
        <head>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>
              Delete User
           </title>
-          <meta http-equiv="Content-Language" content="en-us">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel=stylesheet href="include/registration.css" type="text/css" />
+          <meta http-equiv="Content-Language" content="en-us" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link rel="stylesheet" href="include/registration.css" type="text/css" />
        </head>
 
        <body>
           <form method="post" action="DelUser.php<?php  print "?Userid=".$_REQUEST['Userid']; ?>">
-             <center>
+             <div style="text-align: center">
                 <h1>
                    Deleting Userid
                 </h1>
                 <h2>
                    "<?php  print $_REQUEST['Userid']; ?>"
                 </h2>
-             </center>
+             </div>
              <p align="center">
              <input type="submit" value="Confirm Delete!" name="Confirm">
-             <font size="5"><br>
-             or</font><br>
+             <font size="5"><br />
+             or</font><br />
              <input type="submit" value="Cancel" name="Cancel">
              </p>
           </form>

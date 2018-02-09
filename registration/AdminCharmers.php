@@ -157,7 +157,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
               {
                 ?>
                   <h1 align="center">
-                     Charmer <br>"<?php  print $charmerName; ?>"<br>Updated!
+                     Charmer <br />"<?php  print $charmerName; ?>"<br />Updated!
                   </h1>
                 <?php
               }
@@ -165,13 +165,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
               {
                 ?>
                   <h1 align="center">
-                     Charmer<br>"<?php  print $charmerName; ?>"<br>Added!
+                     Charmer<br />"<?php  print $charmerName; ?>"<br />Added!
                   </h1>
                 <?php
               }
 
          ?>
-            <center><a href="Charmers.php">Return to Charmer List</a></center>
+            <div style="text-align: center"><a href="Charmers.php">Return to Charmer List</a></div>
          </body>
       </html>
 
@@ -184,9 +184,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
    <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
    <?php
       if ($mode == 'update')
@@ -233,7 +233,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 
       if ($ErrorMsg != "")
       {
-         print "<center><font color=\"#FF0000\"><b>" . $ErrorMsg . "</b></font></center><br>";
+         print "<div style='text-align: center'><font color=\"#FF0000\"><b>" . $ErrorMsg . "</b></font></div><br />";
       }
    ?>
 
@@ -264,7 +264,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   else
                   {
                   ?>
-                     <input type="text" name="charmerName" size="36" <?php  print ($charmerName != "") ? "value=\"" . $charmerName . "\"" : ""; ?>></td>
+                     <input type="text" name="charmerName" size="36" <?php  print ($charmerName != "") ? "value=\"" . $charmerName . "\"" : ""; ?> /></td>
                   <?php
                   }
                ?>
@@ -280,7 +280,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   else
                   {
                   ?>
-                     <input type="text" name="charmerPhone" size="36" <?php  print ($charmerPhone != "") ? "value=\"" . $charmerPhone . "\"" : ""; ?>>
+                     <input type="text" name="charmerPhone" size="36" <?php  print ($charmerPhone != "") ? "value=\"" . $charmerPhone . "\"" : ""; ?> />
                   <?php
                   }
                ?>
@@ -297,7 +297,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   else
                   {
                   ?>
-                     <input type="text" name="charmerEmail" size="36" <?php  print ($charmerEmail != "") ? "value=\"" . $charmerEmail . "\"" : ""; ?>>
+                     <input type="text" name="charmerEmail" size="36" <?php  print ($charmerEmail != "") ? "value=\"" . $charmerEmail . "\"" : ""; ?> />
                   <?php
                   }
                   ?>
@@ -314,7 +314,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   else
                   {
                   ?>
-                     <input type="radio" name="charmerSex" value="F" <?php  print $charmerSex == "F" ? "checked" : ""; ?> /> Female<br>
+                     <input type="radio" name="charmerSex" value="F" <?php  print $charmerSex == "F" ? "checked" : ""; ?> /> Female<br />
                      <input type="radio" name="charmerSex" value="M" <?php  print $charmerSex == "M" ? "checked" : ""; ?> /> Male
                   <?php
                   }
@@ -332,7 +332,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   else
                   {
                   ?>
-                     <input type="checkbox" name="charmerNeedRoom" <?php if ($charmerNeedRoom == 'on') print 'checked'?>></td>
+                     <input type="checkbox" name="charmerNeedRoom" <?php if ($charmerNeedRoom == 'on') print 'checked'?> /></td>
                   <?php
                   }
                   ?>
@@ -349,7 +349,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   else
                   {
                   ?>
-                     <input type="checkbox" name="charmerTshirtNeeded" <?php if ($charmerTshirtNeeded == 'on') print 'checked'?>></td>
+                     <input type="checkbox" name="charmerTshirtNeeded" <?php if ($charmerTshirtNeeded == 'on') print 'checked'?> /></td>
                   <?php
                   }
                   ?>
@@ -387,12 +387,12 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                <?php
                if ($mode == 'view')
                {
-                  print preg_replace("/\n/","<br>\n",$charmerAvailibility);
+                  print preg_replace("/\n/","<br />\n",$charmerAvailibility);
                }
                else
                {
                ?>
-                  <textarea name="charmerAvailibility" rows="2" cols="65"><?php print $charmerAvailibility?></textarea><br>
+                  <textarea name="charmerAvailibility" rows="2" cols="65"><?php print $charmerAvailibility?></textarea><br />
                   Please supply when available and any specific information that would be helpful
                <?php
                }
@@ -404,23 +404,23 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             <?php
                if ($mode == 'update')
                {?>
-                  <input type="submit" value="Update" name="update">
-                  <input type="hidden" value="update" name="action">
+                  <input type="submit" value="Update" name="update" />
+                  <input type="hidden" value="update" name="action" />
                <?php
                }
                else if ($mode == 'add')
                {?>
-                  <input type="submit" value="Add" name="add">
-                  <input type="hidden" value="add" name="action">
+                  <input type="submit" value="Add" name="add" />
+                  <input type="hidden" value="add" name="action" />
                <?php
                }
                else if ($mode == 'view')
                {?>
-                  <input type="hidden" value="update" name="action">
+                  <input type="hidden" value="update" name="action" />
                <?php
                }
             ?>
-            <br>
+            <br />
          </p>
       </form>
       <?php footer("Return to Charmer List","Charmers.php")?>

@@ -41,9 +41,9 @@ if ($Admin != 'Y')
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
    <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
       <title>
          Awards Report
       </title>

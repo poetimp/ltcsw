@@ -23,9 +23,9 @@ if ($Admin != 'Y')
        <title>
           Charmers
        </title>
-       <meta http-equiv="Content-Language" content="en-us">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel=stylesheet href="include/registration.css" type="text/css" />
+       <meta http-equiv="Content-Language" content="en-us" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="stylesheet" href="include/registration.css" type="text/css" />
     </head>
 
     <body>
@@ -74,7 +74,7 @@ if ($Admin != 'Y')
                      <td>                           <?php  print $row['charmerTshirtSize'];                                ?></td>
                      <td>                           <?php  print $row['charmerPhone'];                                     ?></td>
                      <td>                           <?php  print $row['charmerEmail'];                                     ?></td>
-                     <td>                           <?php  print preg_replace("/\n/","<br>\n",$row['charmerAvailibility']);?></td>
+                     <td>                           <?php  print preg_replace("/\n/","<br />\n",$row['charmerAvailibility']);?></td>
                   </tr>
                <?php
                }

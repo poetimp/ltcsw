@@ -37,13 +37,13 @@ if (isset($_POST['Confirm']))
    }
    ?>
       <head>
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <title>
             Team Deleted
          </title>
-         <meta http-equiv="Content-Language" content="en-us">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel=stylesheet href="include/registration.css" type="text/css" />
+         <meta http-equiv="Content-Language" content="en-us" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <link rel="stylesheet" href="include/registration.css" type="text/css" />
       </head>
       <body>
          <h1 align=center>
@@ -68,22 +68,22 @@ else
           <title>
              Delete Team
           </title>
-          <meta http-equiv="Content-Language" content="en-us">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel=stylesheet href="include/registration.css" type="text/css" />
+          <meta http-equiv="Content-Language" content="en-us" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link rel="stylesheet" href="include/registration.css" type="text/css" />
        </head>
 
        <body>
           <form method="post" action="DelTeam.php<?php  print "?TeamID=".$_REQUEST['TeamID']; ?>">
-             <center>
+             <div style="text-align: center">
                 <h1>
                    Deleting Team
                 </h1>
-             </center>
+             </div>
              <p align="center">
              <input type="submit" value="Confirm Delete!" name="Confirm">
-             <font size="5"><br>
-             or</font><br>
+             <font size="5"><br />
+             or</font><br />
              <input type="submit" value="Cancel" name="Cancel">
              </p>
           </form>

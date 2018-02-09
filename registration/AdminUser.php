@@ -93,7 +93,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
          $ErrorMsg = "Please enter the required field: Password";
 
    elseif ($Password != "" and !verifyPasswordFormat($Password))
-      $ErrorMsg="Sorry, chosen password is too easily hacked.<br>Must be:<br>7 or more characters long<br>Mixed Case<br>Include at least 1 number<br>Include at least 1 special Character";
+      $ErrorMsg="Sorry, chosen password is too easily hacked.<br />Must be:<br />7 or more characters long<br />Mixed Case<br />Include at least 1 number<br />Include at least 1 special Character";
 
    elseif ($NewChurchID == "" or $NewChurchID == '0')
       $ErrorMsg = "Please enter the required field: Church";
@@ -190,7 +190,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
               {
                 ?>
                   <h1 align="center">
-                     User <br>"<?php  print $Name; ?>"<br>Updated!
+                     User <br />"<?php  print $Name; ?>"<br />Updated!
                   </h1>
                 <?php
               }
@@ -198,13 +198,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
               {
                 ?>
                   <h1 align="center">
-                     User<br>"<?php  print $Name; ?>"<br>Added!
+                     User<br />"<?php  print $Name; ?>"<br />Added!
                   </h1>
                 <?php
               }
 
          ?>
-            <center><a href="Users.php">Return to User List</a></center>
+            <div style="text-align: center"><a href="Users.php">Return to User List</a></div>
          </body>
       </html>
 
@@ -217,9 +217,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
    <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
    <?php
       if ($mode == 'update')
@@ -266,7 +266,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 
       if ($ErrorMsg != "")
       {
-         print "<center><font color=\"#FF0000\"><b>" . $ErrorMsg . "</b></font></center><br>";
+         print "<div style='text-align: center'><font color=\"#FF0000\"><b>" . $ErrorMsg . "</b></font></div><br />";
       }
    ?>
 
@@ -469,7 +469,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                <?php
                }
             ?>
-            <br>
+            <br />
          </p>
       </form>
       <?php footer("Return to User List","Users.php")?>

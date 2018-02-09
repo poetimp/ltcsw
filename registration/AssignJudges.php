@@ -110,11 +110,11 @@ if (isset($_POST['Submit']))
                                  $AssignedJudgeName     .
                                  " was not added to schedule at: ".
                                  $NewSchedTime .
-                                 "<br> in room: ".
+                                 "<br /> in room: ".
                                  $NewRoomName.
                                  " because $AssignedJudgeFirstName is already assigned in room: ".
                                  $AssignedRoomName.
-                                 "<br><br>";
+                                 "<br /><br />";
                ;
             }
          }
@@ -296,16 +296,16 @@ function constructJudgesTable($dayTimes,$day)
                            $EventSex     = $row['Sex'];
                            $JudgeTrained = $row['JudgeTrained'];
 
-                           print "<td style='text-align: center; vertical-align: top'><b>$EventName</b><br>\n";
+                           print "<td style='text-align: center; vertical-align: top'><b>$EventName</b><br />\n";
                            //----------------------------------------------------------
                            // If there are special notes for this event not it here
                            //----------------------------------------------------------
                            if ($EventSex == 'M')
-                              print "<font size=-1><center><i>(Male Judges only)</i></center></font>";
+                              print "<font size=-1><div style='text-align: center'><i>(Male Judges only)</i></div></font>";
                            if ($EventSex == 'F')
-                              print "<font size=-1><center><i>(Female Judges only)</i></center></font>";
+                              print "<font size=-1><div style='text-align: center'><i>(Female Judges only)</i></div></font>";
                            if ($JudgeTrained == 'Y')
-                              print "<font size=-1><center><i>(Special Skill Needed)</i></center></font>";
+                              print "<font size=-1><div style='text-align: center'><i>(Special Skill Needed)</i></div></font>";
 
                            if ($JudgesNeeded >0)
                            {
@@ -326,7 +326,7 @@ function constructJudgesTable($dayTimes,$day)
 
                                  print "<tr>\n";
                                  print "<td>\n";
-                                 print "<center>\n";
+                                 print "<div style='text-align: center'>\n";
                                  if ($AssignedJudgeChurch == $ChurchID)
                                  {
 
@@ -354,7 +354,7 @@ function constructJudgesTable($dayTimes,$day)
                                  {
                                     print "-- Judge Assigned --\n";
                                  }
-                                 print "</center>\n";
+                                 print "</div>\n";
                                  print "</td>\n";
                                  print "</tr>\n";
                               }
@@ -372,16 +372,16 @@ function constructJudgesTable($dayTimes,$day)
          }
       ?>
    </table>
-   <br>
+   <br />
 <?php
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
    <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
       <title>Assign Judges</title>
    </head>
@@ -402,12 +402,12 @@ function constructJudgesTable($dayTimes,$day)
             <?php
          }
       ?>
-      <form method="post" action=AssignJudges.php>
+      <form method="post" action="AssignJudges.php">
          <?php
             constructJudgesTable($fridayTimes,'Friday');
             constructJudgesTable($saturdayTimes,'Saturday');
          ?>
-         <p align="center"><input type="submit" value="Submit" name="Submit"></p>
+         <p align="center"><input type="submit" value="Submit" name="Submit" /></p>
       </form>
       <?php footer("","")?>
    </body>

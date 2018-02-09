@@ -204,8 +204,8 @@ function selectTime($Timestr = '')
 
    <head>
       <meta http-equiv="Content-Language" content="en-us"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
       <title>Schedule Events</title>
 
@@ -363,7 +363,7 @@ function selectTime($Timestr = '')
             <th colspan="4"><?php  print $EventName; ?></th>
          </tr>
          <?php
-         //print "<br>errorID: [$errorID], EventID: [$EventID], AddEventID: [".$_POST['AddEventID']."]<br>\n";
+         //print "<br />errorID: [$errorID], EventID: [$EventID], AddEventID: [".$_POST['AddEventID']."]<br />\n";
          if ((isset($_POST['EventID']) and $errorID == $EventID) or
              (isset($_POST['AddEventID']) and $_POST['AddEventID'] == $EventID and !isset($_POST['Save'])))
          {

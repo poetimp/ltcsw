@@ -19,22 +19,22 @@ $email           = GET('email');
 $code            = GET('code');
 
 if (empty($email))
-    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: missing email</font></b><br>';
+    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: missing email</font></b><br />';
 
 if (empty($code))
-    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: missing code</font></b><br>';
+    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: missing code</font></b><br />';
 
 $User = user_by_email($email);
 if (!$User)
-    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: bad email</font></b><br>';
+    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: bad email</font></b><br />';
 
 $Reset = reset_by_code($code);
 
 if(!$Reset)
-    $redirectMessage .= '<b><font color="red">I am sorry, it appears that the link you used has expired. Please try again.</font></b><br>';
+    $redirectMessage .= '<b><font color="red">I am sorry, it appears that the link you used has expired. Please try again.</font></b><br />';
 
 if ($Reset['Userid'] != $User['Userid'])
-    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: mismatched parameters</font></b><br>';
+    $redirectMessage .= '<b><font color="red">error: Incorrect call to program: mismatched parameters</font></b><br />';
 
 if (POST('password') and $redirectMessage == '')
 {
@@ -58,10 +58,10 @@ if ($redirectMessage != '')
    header("refresh: 5; URL=login.php");
    print "<html>
              <body style=\"background-color: rgb(217, 217, 255);\">
-                <center>
+                <div style='text-align: center'>
                    $redirectMessage<br/>
                    Redirecting in 5 seconds.
-                </center>
+                </div>
              </body>
           </html>";
     die();
@@ -71,14 +71,14 @@ if ($redirectMessage != '')
 <html lang="en">
     <head>
         <title>Reset Password</title>
-        <meta http-equiv="Content-Language" content="en-us">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel=stylesheet href="include/registration.css" type="text/css" />
+        <meta http-equiv="Content-Language" content="en-us" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="include/registration.css" type="text/css" />
     </head>
     <body>
         <h1 align=center>Reset Password</h1>
         <form method="post" id="main" name="main">
-            <center>
+            <div style="text-align: center">
                 <table class='registrationTable' border="0" style='width: 550px'>
                     <tr>
                         <td>
@@ -123,7 +123,7 @@ if ($redirectMessage != '')
                         <td colspan="2" style='text-align: center'><input type="submit" name="reset" value="Reset Password"></td>
                     </tr>
                 </table>
-            </center>
+            </div>
         </form>
         <?php footer("Return to Login", "login.php") ?>
     </body>

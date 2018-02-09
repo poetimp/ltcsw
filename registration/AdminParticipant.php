@@ -156,7 +156,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 //   }
    else if ($Grade == 12 and preg_match("/^\s*$/",$Comments))
    {
-      $ErrorMsg = "Comments required for Seniors.<br>Please indicate how many years they have been in LTC and what their college plans are.<br>Thank you!";
+      $ErrorMsg = "Comments required for Seniors.<br />Please indicate how many years they have been in LTC and what their college plans are.<br />Thank you!";
    }
    else if (!preg_match("/^[0-9]{5}$/",$Zip) and !preg_match("/^[0-9]{5}-[0-9]{4}$/",$Zip))
    {
@@ -287,7 +287,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
               }
 
          ?>
-            <center><a href="Participants.php">Return to Participant List</a></center>
+            <div style="text-align: center"><a href="Participants.php">Return to Participant List</a></div>
          </body>
       </html>
 
@@ -347,7 +347,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 
       if ($ErrorMsg != "")
       {
-         print "<center><font color=\"FF0000\"><b>" . $ErrorMsg . "</b></font></center><br>";
+         print "<div style='text-align: center'><font color=\"FF0000\"><b>" . $ErrorMsg . "</b></font></div><br />";
       }
    ?>
 
@@ -732,7 +732,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             <?php
             if ($mode == "view")
             {
-               print str_replace("\n","<br>",$Comments);
+               print str_replace("\n","<br />",$Comments);
             }
             else
             {

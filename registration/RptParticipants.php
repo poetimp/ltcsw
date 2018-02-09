@@ -25,9 +25,9 @@ else
        <title>
           LTC Participants
        </title>
-       <meta http-equiv="Content-Language" content="en-us">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel=stylesheet href="include/registration.css" type="text/css" />
+       <meta http-equiv="Content-Language" content="en-us" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="stylesheet" href="include/registration.css" type="text/css" />
     </head>
 
     <body>
@@ -130,10 +130,10 @@ else
          else
          {
             ?>
-               <center>
+               <div style="text-align: center">
                <h1>No churches with participating registrants have been defined</h1>
                <h2>Participants report is empty</h2>
-               </center>
+               </div>
             <?php
          }
       }

@@ -130,9 +130,9 @@ if (isset($_POST['Apply']))
        <title>
           Manage Individual Events
        </title>
-       <meta http-equiv="Content-Language" content="en-us">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel=stylesheet href="include/registration.css" type="text/css" />
+       <meta http-equiv="Content-Language" content="en-us" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
        <h1 align="center">Update Individual Events For</h1>
        <h2 align="center"><?php  print $ParticipantName; ?></h2>
@@ -262,7 +262,7 @@ if (isset($_POST['Apply']))
 
                         if ($selected == 0 and !$freeSlots)
                         {
-                           print "<center>Full</center>";
+                           print "<div style='text-align: center'>Full</div>";
                         }
                         else
                         {
@@ -335,11 +335,11 @@ if (isset($_POST['Apply']))
                         $regCount = $cntRow['count'];
                         if ($selected == 0 and $regCount >= $MaxWebSlots)
                         {
-                           print "<center>Full</center>";
+                           print "<div style='text-align: center'>Full</div>";
                         }
                         else
                         {
-                           print "<center><input type=\"checkbox\" name=\"s$EventID\" value=\"ON\""; print $selected > 0 ? " checked" : ""; print"></center>";
+                           print "<div style='text-align: center'><input type=\"checkbox\" name=\"s$EventID\" value=\"ON\""; print $selected > 0 ? " checked" : ""; print"></div>";
                         }
                      }
                      ?>

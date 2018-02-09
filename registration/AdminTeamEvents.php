@@ -181,7 +181,7 @@ if (isset($_POST['Apply']))
    $row           = $EventResult->fetch(PDO::FETCH_ASSOC);
    $EventAttended = $row['EventAttended'];
    $SchedID = isset($_POST['SchedID']) ? $_POST['SchedID'] : "0000";
-   //print "EventAttended: $EventAttended, SchedID: $SchedID<br>";
+   //print "EventAttended: $EventAttended, SchedID: $SchedID<br />";
    if ($EventAttended == 'Y' and $SchedID == 0)
    {
       $message = "Not Applied: You must select a time";
@@ -314,9 +314,9 @@ if (isset($_POST['Apply']))
                $teamSize++;
                if ($teamSize <= $MaxSize)
                {
-                  //print "<br>Award: "; print_r($Award); print "<br>";
+                  //print "<br />Award: "; print_r($Award); print "<br />";
                   $AwardStr = isset($Award[$ParticipantID]) ? $Award[$ParticipantID] : "null";
-                  //print "<br>ParticipantID: $ParticipantID, AwardStr: $AwardStr<br><hr>";
+                  //print "<br />ParticipantID: $ParticipantID, AwardStr: $AwardStr<br /><hr>";
                   $db->query("insert into $TeamMembersTable
                                       ( TeamID , ParticipantID,  ChurchID,  Award)
                                values ($TeamID ,$ParticipantID, $ChurchID, $AwardStr)");
@@ -342,12 +342,12 @@ if (isset($_POST['Apply']))
        <title>
           Manage Team Events
        </title>
-       <meta http-equiv="Content-Language" content="en-us">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel=stylesheet href="include/registration.css" type="text/css" />
+       <meta http-equiv="Content-Language" content="en-us" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
        <h1 align=center>Manage Team Members For</h1>
-       <h2 align=center><?php  print $EventName; ?><br>
+       <h2 align=center><?php  print $EventName; ?><br />
            <?php  if ($TeamID > 0)
               {
                  print "Team # $TeamID";
@@ -543,7 +543,7 @@ if (isset($_POST['Apply']))
                <?php
                if ($Action == "View")
                {
-                  print str_replace("\n","<br>",$TeamComment)."&nbsp;";
+                  print str_replace("\n","<br />",$TeamComment)."&nbsp;";
                }
                else
                {
@@ -630,9 +630,9 @@ if (isset($_POST['Apply']))
                 ?>
                 <tr>
                   <td style='width: 10%;'>
-                     <center>
+                     <div style="text-align: center">
                         <input type="checkbox" name="s<?php  print $ParticipantID; ?>" value="ON" <?php  print $selected == 1 ? 'checked' : '' ?>/>
-                     </center>
+                     </div>
                   </td>
                   <td style='width: 10%;'>
                      <div style="text-align:center">

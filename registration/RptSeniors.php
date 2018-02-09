@@ -22,9 +22,9 @@ if ($Admin != 'Y')
        <title>
           Seniors
        </title>
-       <meta http-equiv="Content-Language" content="en-us">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel=stylesheet href="include/registration.css" type="text/css" />
+       <meta http-equiv="Content-Language" content="en-us" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="stylesheet" href="include/registration.css" type="text/css" />
     </head>
 
     <body>
@@ -94,7 +94,7 @@ if ($Admin != 'Y')
             		<th style='width: 33%'><b><?php  print $Phone; ?></b></td>
          		</tr>
          		<tr>
-            		<td style='width: 33%' colspan=1><b><?php  print "$Address<br>$City, $State $Zip"; ?></b></td>
+            		<td style='width: 33%' colspan=1><b><?php  print "$Address<br />$City, $State $Zip"; ?></b></td>
             		<td style='width: 33%' colspan=2><b><?php  print $Comment; ?></b></td>
          		</tr>
          		<?php

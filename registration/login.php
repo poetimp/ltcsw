@@ -97,9 +97,9 @@ if (isset($_POST['submit']))
 <html lang="en">
    <head>
       <title>LTCSW Registration Sign In</title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
    </head>
 
    <body>
@@ -178,7 +178,7 @@ if (isset($_POST['submit']))
             <p align="center">Forgot Password<br/>
                <a href="ForgotPassword.php">Click Here</a>
             </p>
-            <br>
+            <br />
             <table>
                <tr>
                   <td><a href='https://www.facebook.com/groups/ltcsw'><img src="images/facebook.png" alt="Follow us on Facebook" title="Follow us on Facebook" style='height: 32px' /></a></td>

@@ -291,7 +291,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                          )";
          WriteToLog("Event $EventName Added");
       }
-      $results = $db->query($sql) or die ("Unable to process update: " . sqlError()."<br>$sql<br>");
+      $results = $db->query($sql) or die ("Unable to process update: " . sqlError()."<br />$sql<br />");
    ?>
 <html lang="en">
 
@@ -301,28 +301,28 @@ if (isset($_POST['add']) or isset($_POST['update']))
       if ($mode == 'update')
       {
          ?>
-         <center>
+         <div style="text-align: center">
             <h1>Event</h1>
-            <h2>&quot;<?php  print $EventName; ?>&quot;<br>
+            <h2>&quot;<?php  print $EventName; ?>&quot;<br />
             Updated!</h2>
-         </center>
+         </div>
          <?php
       }
       else
       {
          ?>
-         <center>
+         <div style="text-align: center">
             <h1>Event</h1>
-            <h2>&quot;<?php  print $EventName; ?>&quot;<br>
+            <h2>&quot;<?php  print $EventName; ?>&quot;<br />
             Added!</h2>
-         </center>
+         </div>
          <?php
       }
 
       ?>
-      <center>
+      <div style="text-align: center">
          <a href="Events.php">Return to Event List</a>
-      </center>
+      </div>
 
       </body>
 
@@ -337,9 +337,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
 <html lang="en">
 
       <head>
-         <meta http-equiv="Content-Language" content="en-us">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel=stylesheet href="include/registration.css" type="text/css" />
+         <meta http-equiv="Content-Language" content="en-us" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <link rel="stylesheet" href="include/registration.css" type="text/css" />
       <?php
       if ($mode == 'update')
       {
@@ -386,7 +386,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
       if ($ErrorMsg != "")
       {
-         print "<center><font color=\"FF0000\"><b>" . $ErrorMsg . "</b></font></center><br>";
+         print "<div style='text-align: center'><font color=\"FF0000\"><b>" . $ErrorMsg . "</b></font></div><br />";
       }
    ?>
 <form method="post" action="AdminEvent.php">
@@ -403,7 +403,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <th style='width: 12%;'>Event Name</td>
+         <th style='width: 12%;'>Event Name</th>
          <!----------------------- Column 2-4----------------------------------------->
          <td style='width: 38%;' colspan="3">
             <?php
@@ -421,7 +421,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
          </td>
 
          <!----------------------- Column 5 ------------------------------------------>
-         <th style='width: 25%;'>Team Event</td>
+         <th style='width: 25%;'>Team Event</th>
             <?php
             if ($mode == "view")
             {
@@ -454,7 +454,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <th style='width: 12%;'>Min Grade</td>
+         <th style='width: 12%;'>Min Grade</th>
          <!----------------------- Column 2-4----------------------------------------->
          <td style='width: 38%;' colspan="3">
             <?php
@@ -483,7 +483,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
             ?>
             </td>
          <!----------------------- Column 5 ------------------------------------------>
-         <th style='width: 25%;'>Minimum Team Size</td>
+         <th style='width: 25%;'>Minimum Team Size</th>
          <!----------------------- Column 6-7 ---------------------------------------->
          <td style='width: 25%;' colspan="2">
             <?php
@@ -505,7 +505,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       <!------------------------------------------------------------------------------>
       <tr>
          <!----------------------- Column 1 ------------------------------------------>
-         <th style='width: 12%;'>Max Grade</td>
+         <th style='width: 12%;'>Max Grade</th>
          <!----------------------- Column 2-4 ---------------------------------------->
          <td style='width: 38%;' colspan="3">
             <?php
@@ -534,7 +534,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
             ?>
             </td>
          <!----------------------- Column 5 ------------------------------------------>
-         <th style='width: 25%;'>Maximum Team Size</td>
+         <th style='width: 25%;'>Maximum Team Size</th>
          <!----------------------- Column 6-7 ------------------------------------------>
          <td style='width: 25%;' colspan="2">
             <?php
@@ -950,6 +950,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
          {
          ?>
          <!----------------------- Column 1 ------------------------------------------>
+         <tr>
             <th style='width: 13%;' colspan="1">Event Coordinator?</th>
             <!----------------------- Column 2 ------------------------------------------>
             <td style='width: 12%;' colspan="1">
@@ -978,6 +979,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
             </td>
             <!----------------------- Column 3-4 ------------------------------------------>
             <td style='width: 25%;' colspan="5">&nbsp;</td>
+         </tr>
          <!----------------------- Column 5 ------------------------------------------>
          <?php
          }
@@ -999,7 +1001,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                <input type="hidden" value="update" name="action"><?php
             }
          ?>
-         <br>
+         <br />
       </p>
 </form>
 <?php footer("Return to Event List","Events.php")?>

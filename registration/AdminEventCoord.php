@@ -164,28 +164,28 @@ if (isset($_POST['add']) or isset($_POST['update']))
       if ($mode == 'update')
       {
          ?>
-         <center>
+         <div style="text-align: center">
             <h1>Coordinator</h1>
-            <h2>&quot;<?php  print $CoordName; ?>&quot;<br>
+            <h2>&quot;<?php  print $CoordName; ?>&quot;<br />
             Updated!</h2>
-         </center>
+         </div>
          <?php
       }
       else
       {
          ?>
-         <center>
+         <div style="text-align: center">
             <h1>Coordinator</h1>
-            <h2>&quot;<?php  print $CoordName; ?>&quot;<br>
+            <h2>&quot;<?php  print $CoordName; ?>&quot;<br />
             Added!</h2>
-         </center>
+         </div>
          <?php
       }
 
       ?>
-      <center>
+      <div style="text-align: center">
          <a href="Coordinators.php">Return to Coordinator List</a>
-      </center>
+      </div>
 
       </body>
 
@@ -198,9 +198,9 @@ if (isset($_POST['add']) or isset($_POST['update']))
    {
       ?>
       <head>
-         <meta http-equiv="Content-Language" content="en-us">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel=stylesheet href="include/registration.css" type="text/css" />
+         <meta http-equiv="Content-Language" content="en-us" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
       <?php
       if ($mode == 'update')
@@ -248,7 +248,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
       if ($ErrorMsg != "")
       {
-         print "<center><font color=\"FF0000\"><b>" . $ErrorMsg . "</b></font></center><br>";
+         print "<div style='text-align: center'><font color=\"FF0000\"><b>" . $ErrorMsg . "</b></font></div><br />";
       }
    ?>
 <form method="post" action="AdminEventCoord.php">
@@ -490,7 +490,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 	            <input type="hidden" value="update" name="action"><?php
             }
          ?>
-         <br>
+         <br />
       </p>
 </form>
 <?php footer("Return to Coordinator List","Coordinators.php")?>

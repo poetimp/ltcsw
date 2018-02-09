@@ -48,17 +48,17 @@ if (isset($_POST['reset']))
           $email .= "      </title>\n";
           $email .= "      <meta http-equiv=\"Content-Language\" content=\"en-us\">\n";
           $email .= "      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
-          $email .= "      <link rel=stylesheet href=\"include/registration.css\" type=\"text/css\" />\n";
+          $email .= "      <link rel=\"stylesheet\" href=\"include/registration.css\" type=\"text/css\" />\n";
           $email .= "      <h1 align=center>\n";
           $email .= "         LTC Password Reset\n";
           $email .= "      </h1>\n";
           $email .= "   </head>\n";
           $email .= "   <body>\n";
           $email .= "      <p>\n";
-          $email .= "         So, it appears that you have forgotten your password. No problem. This will be easy.<br>\n";
-          $email .= "         Click the link below to reset your password.<br>\n";
-          $email .= "         <br>\n";
-          $email .= "         <a href=$url>Reset Password</a><br>\n";
+          $email .= "         So, it appears that you have forgotten your password. No problem. This will be easy.<br />\n";
+          $email .= "         Click the link below to reset your password.<br />\n";
+          $email .= "         <br />\n";
+          $email .= "         <a href=$url>Reset Password</a><br />\n";
           $email .= "      </p>\n";
           $email .= "   </body>\n";
           $email .= "</html>\n";
@@ -72,10 +72,10 @@ if (isset($_POST['reset']))
              header("refresh: 5; URL=login.php");
              print "<html>
                         <body style=\"background-color: rgb(217, 217, 255);\">
-                           <center>
-                              Please check your email for instructions.<br>
+                           <div style='text-align: center'>
+                              Please check your email for instructions.<br />
                               (Page will refresh in 5 seconds)
-                           </center>
+                           </div>
                         </body>
                      </html>";
              die();
@@ -91,15 +91,15 @@ if (isset($_POST['reset']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
     <head>
-       <meta http-equiv="Content-Language" content="en-us">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel=stylesheet href="include/registration.css" type="text/css" />
+       <meta http-equiv="Content-Language" content="en-us" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="stylesheet" href="include/registration.css" type="text/css" />
        <title>Forgot Password</title>
     </head>
     <body>
         <h1 align=center>Forgot Password</h1>
         <form method="post" id="main" name="main">
-            <center>
+            <div style="text-align: center">
                 <table class='registrationTable' style='width: 550px'>
                     <tr>
                         <td>
@@ -138,7 +138,7 @@ if (isset($_POST['reset']))
                         <td colspan="2" style='text-align: center'><input type="submit" name="reset" value="Reset Password"></td>
                     </tr>
                 </table>
-            </center>
+            </div>
         </form>
         <?php footer("Return to Login", "login.php") ?>
     </body>

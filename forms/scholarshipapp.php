@@ -71,7 +71,7 @@ if ($Submit != '')
    $appbstsch = stripslashes ( $appspcl );
    $appbstsch = htmlspecialchars ( $appspcl, ENT_QUOTES );
    $appbstsch = str_replace ( "\r\n", "\n", $appspcl );
-   $appbstsch = str_replace ( "\n", "<br>", $appspcl );
+   $appbstsch = str_replace ( "\n", "<br />", $appspcl );
 
    $message = "<html>\n";
    $message .= "   <head>\n";
@@ -82,7 +82,7 @@ if ($Submit != '')
    $message .= "      <h1 align=center>\n";
    $message .= "         Scholarship Application\n";
    $message .= "      </h1>\n";
-   $message .= "      <b>Personal Data<br></b>\n";
+   $message .= "      <b>Personal Data<br /></b>\n";
    $message .= "      <hr style=\"width: 100%; height: 2px; font-weight: bold;\">\n";
    $message .= "      <table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">\n";
    $message .= "         <tr>\n";
@@ -106,9 +106,9 @@ if ($Submit != '')
    $message .= "            <td>$appemail</td>\n";
    $message .= "         </tr>\n";
    $message .= "      </table>\n";
-   $message .= "      <br>\n";
-   $message .= "      <br>\n";
-   $message .= "      <b>School Information</b><br>\n";
+   $message .= "      <br />\n";
+   $message .= "      <br />\n";
+   $message .= "      <b>School Information</b><br />\n";
    $message .= "      <hr style=\"width: 100%; height: 2px; font-weight: bold;\">\n";
    $message .= "      <table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">\n";
    $message .= "         <tr>\n";
@@ -137,11 +137,11 @@ if ($Submit != '')
    $message .= "            <td>$appsat</td>\n";
    $message .= "         </tr>\n";
    $message .= "      </table>\n";
-   $message .= "      <br>\n";
-   $message .= "      <br>\n";
-   $message .= "      <b>Church Information</b><br>\n";
+   $message .= "      <br />\n";
+   $message .= "      <br />\n";
+   $message .= "      <b>Church Information</b><br />\n";
    $message .= "      <hr style=\"width: 100%; height: 2px; font-weight: bold;\">\n";
-   $message .= "      <br>\n";
+   $message .= "      <br />\n";
    $message .= "      <table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">\n";
    $message .= "         <tr>\n";
    $message .= "            <td width=\"25px\">&nbsp;</td>\n";
@@ -154,11 +154,11 @@ if ($Submit != '')
    $message .= "            <td>$appcongph</td>\n";
    $message .= "         </tr>\n";
    $message .= "      </table>\n";
-   $message .= "      <br>\n";
-   $message .= "      <br>\n";
-   $message .= "      <b>LTC Information</b><br>\n";
+   $message .= "      <br />\n";
+   $message .= "      <br />\n";
+   $message .= "      <b>LTC Information</b><br />\n";
    $message .= "      <hr style=\"width: 100%; height: 2px; font-weight: bold;\">\n";
-   $message .= "      <br>\n";
+   $message .= "      <br />\n";
    $message .= "      <table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">\n";
    $message .= "         <tr>\n";
    $message .= "            <td width=\"25px\">&nbsp;</td>\n";
@@ -181,13 +181,13 @@ if ($Submit != '')
    $message .= "            <td>$appevctr</td>\n";
    $message .= "         </tr>\n";
    $message .= "      </table>\n";
-   $message .= "      <br>\n";
-   $message .= "      <b><u>Special Circumstances</u></b><br>\n";
-   $message .= "      $appspcl<br>\n";
-   $message .= "      <br>\n";
-   $message .= "      <br>\n";
-   $message .= "      <br>\n";
-   $message .= "      <b>References</b><br>\n";
+   $message .= "      <br />\n";
+   $message .= "      <b><u>Special Circumstances</u></b><br />\n";
+   $message .= "      $appspcl<br />\n";
+   $message .= "      <br />\n";
+   $message .= "      <br />\n";
+   $message .= "      <br />\n";
+   $message .= "      <b>References</b><br />\n";
    $message .= "      <hr style=\"width: 100%; height: 2px; font-weight: bold;\">\n";
    $message .= "      <table border=0>\n";
    $message .= "          <tr><td vidth=25px><td>\n";
@@ -213,13 +213,13 @@ if ($Submit != '')
    $message .= "             </table>\n";
    $message .= "          </td></td></tr>\n";
    $message .= "      </table>\n";
-   $message .= "      <br>\n";
-   $message .= "      <br>\n";
-   $message .= "      <br>\n";
-   $message .= "      <b>College Preference</b><br>\n";
+   $message .= "      <br />\n";
+   $message .= "      <br />\n";
+   $message .= "      <br />\n";
+   $message .= "      <b>College Preference</b><br />\n";
    $message .= "      <hr style=\"width: 100%; height: 2px; font-weight: bold;\">\n";
-   $message .= "      <br>\n";
-   $message .= "      <b><u>College Rank (Junior):</u></b><br>\n";
+   $message .= "      <br />\n";
+   $message .= "      <b><u>College Rank (Junior):</u></b><br />\n";
    $message .= "      <table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">\n";
    $message .= "         <tr>\n";
    $message .= "            <td width=\"25px\">&nbsp;</td>\n";
@@ -242,10 +242,10 @@ if ($Submit != '')
    $message .= "            <td>$appahu</td>\n";
    $message .= "         </tr>\n";
    $message .= "      </table>\n";
-   $message .= "      <br>\n";
-   $message .= "      <br>\n";
-   $message .= "      <b><u>College Preference (Senior):</u></b><br>\n";
-   $message .= "      <br>\n";
+   $message .= "      <br />\n";
+   $message .= "      <br />\n";
+   $message .= "      <b><u>College Preference (Senior):</u></b><br />\n";
+   $message .= "      <br />\n";
    $message .= "      <table border=\"0\" cellpadding=\"2\" cellspacing=\"2\">\n";
    $message .= "         <tr>\n";
    $message .= "            <td width=\"25px\">&nbsp;</td>\n";
@@ -268,11 +268,11 @@ if ($Submit != '')
    $message .= "            <td>$appihu</td>\n";
    $message .= "         </tr>\n";
    $message .= "      </table>\n";
-   $message .= "      <br>\n";
-   $message .= "      <b><u>Intended Major:</u></b><br>\n";
-   $message .= "      $appmajor<br>\n";
-   $message .= "      <br>\n";
-   $message .= "      <center><i><small>Form submitted: $todayis</small></i></center><br>\n";
+   $message .= "      <br />\n";
+   $message .= "      <b><u>Intended Major:</u></b><br />\n";
+   $message .= "      $appmajor<br />\n";
+   $message .= "      <br />\n";
+   $message .= "      <div style='text-align: center'><i><small>Form submitted: $todayis</small></i></div><br />\n";
    $message .= "   </body>\n";
    $message .= "</html>\n";
    print "$message";
@@ -321,17 +321,12 @@ if ($Submit != '')
    </head>
    <body class="page_bg">
       <div class="wrapper">
-         <header>
-            <div class="sitename">
-               <!-- <h1><a href="/j3">Leadership Training for Christ Southwest Region</a></h1> -->
-            </div>
-         </header>
-         <div class="nopad" align=center>
+         <div class="nopad" align='center'>
             <table class="blog" cellpadding="0" cellspacing="0" style="border: 0">
                <tr>
                   <td>
                      <h2 style="text-align:center" >
-                        Online Application for Scholarships<br>
+                        Online Application for Scholarships<br />
                         (High School Junior and Seniors Only)
                      </h2>
                      <table class="contentpaneopen">
@@ -342,25 +337,25 @@ if ($Submit != '')
                               action="<?php print $referring_page?>">
                               <fieldset class="input">
                                  <p>
-                                    <b><u>Home Information:</u></b><br><br>
+                                    <b><u>Home Information:</u></b><br /><br />
                                  </p>
                                  <p>
-                                    Name:   <br><input type="text" name="appname"  size="50"><br>
-                                    Phone:  <br><input type="text" name="appphone" size="24" maxlength="24"><br>
-                                    Address:<br><input type="text" name="appaddr"  size="50" maxlength="50"><br><br>
+                                    Name:   <br /><input type="text" name="appname"  size="50"><br />
+                                    Phone:  <br /><input type="text" name="appphone" size="24" maxlength="24"><br />
+                                    Address:<br /><input type="text" name="appaddr"  size="50" maxlength="50"><br /><br />
                                     City:       <input type="text" name="appcity"  size="20">&nbsp;
                                     State:      <input type="text" name="appstate" size="2"  maxlength="2">
                                     Zip:        <input type="text" name="appzip"   size="5"  maxlength="5">
                                  </p>
                                  <p>
-                                    E-mail<i> (optional)</i>:<br> <input type="text" name="appemail" size="50" maxlength="63">
+                                    E-mail<i> (optional)</i>:<br /> <input type="text" name="appemail" size="50" maxlength="63">
                                  </p>
                                  <p>
-                                    <br><b><u>School Information:</u></b><br><br>
+                                    <br /><b><u>School Information:</u></b><br /><br />
                                  </p>
                                  <p>
-                                    High School Currently Attending:<br> <input type="text" name="apphs" size="50"><br>
-                                    Your Classification:            <br>
+                                    High School Currently Attending:<br /> <input type="text" name="apphs" size="50"><br />
+                                    Your Classification:            <br />
                                     <input type="radio" name="apphsc" value="Senior">Senior
                                     <input type="radio" name="apphsc" value="Junior">Junior
                                     <input type="radio" name="apphsc" value="Sophomore">Sophomore
@@ -372,23 +367,23 @@ if ($Submit != '')
                                     ACT: &nbsp;<input type="text" name="appact" size="6" maxlength="6">
                                  </p>
                                  <p>
-                                    <br><b><u>Church Information:</u><br></b><br>
-                                    Home Congregation:<br><input type="text" name="appcong"   size="50"><br>
-                                    Phone:            <br><input type="text" name="appcongph" size="24" maxlength="24">
+                                    <br /><b><u>Church Information:</u><br /></b><br />
+                                    Home Congregation:<br /><input type="text" name="appcong"   size="50"><br />
+                                    Phone:            <br /><input type="text" name="appcongph" size="24" maxlength="24">
                                  </p>
                                  <p>
-                                    <br><b><u>Leadership Training for Christ Information:</u></b><br><br>
+                                    <br /><b><u>Leadership Training for Christ Information:</u></b><br /><br />
                                  </p>
                                  <p>
-                                    Your Church LTC Sponsor:<br><input type="text" name="sponsname" size="50"><br>
-                                    LTC Sponsor's Phone:    <br><input type="text" name="sponsph"   size="24" maxlength="24"><br><br>
+                                    Your Church LTC Sponsor:<br /><input type="text" name="sponsname" size="50"><br />
+                                    LTC Sponsor's Phone:    <br /><input type="text" name="sponsph"   size="24" maxlength="24"><br /><br />
                                     How many years have you attended LTC Conventions?
-                                                            <br><input type="text" name="appattend" size="2"><br><br>
+                                                            <br /><input type="text" name="appattend" size="2"><br /><br />
                                     How many events are you entered in this year (pre-convention and convention combined)?
-                                                                <input type="text" name="appevctr" size="5"><br><br>
+                                                                <input type="text" name="appevctr" size="5"><br /><br />
                                  </p>
                                  <p>
-                                    <b><u>Essay</u></b><br><br>
+                                    <b><u>Essay</u></b><br /><br />
                                     Write a one page essay
                                     using a word processor describing how LTC has
                                     helped you in your school, church and community.
@@ -400,24 +395,24 @@ if ($Submit != '')
                                  </p>
                                  <p>
                                     <b>Please email the document to the
-                                    Scholarship Coordinator at:<br>
-                                    </b><br>
+                                    Scholarship Coordinator at:<br />
+                                    </b><br />
                                     <a href=mailto:<?php print $emailToWho?>><?php print $emailToWho?></a>
                                  </p>
                                  <p>
-                                    <br>If there are special circumstances that
+                                    <br />If there are special circumstances that
                                     would help the scholarship committee please
-                                    include those here: <br><br>
+                                    include those here: <br /><br />
                                     <textarea rows="7" name="appspcl" cols="50"></textarea>
                                  </p>
 
                                  <p>
-                                    <br><b><u>References</u></b><br><br>
+                                    <br /><b><u>References</u></b><br /><br />
                                     Please list two
                                     individuals and their phone numbers and/or
                                     e-mails who would be willing to give you a
                                     reference for this scholarship. Please give one
-                                    from church and one from school.<br><br>
+                                    from church and one from school.<br /><br />
                                  </p>
                                  <table border=0>
                                     <tr>
@@ -454,9 +449,9 @@ if ($Submit != '')
                                  </table>
                                  <p>&nbsp;</p>
                                  <p>
-                                    <b><u>College Preference</u> (JUNIORS):</b><br><br>
+                                    <b><u>College Preference</u> (JUNIORS):</b><br /><br />
                                     List your 1st, 2nd, and 3rd choices for schools
-                                    you would seriously consider attending:<br><br>
+                                    you would seriously consider attending:<br /><br />
                                  </p>
 
                                  <table border="0" width="100%">
@@ -525,8 +520,8 @@ if ($Submit != '')
                                     </tr>
                                  </table>
                                  <p>
-                                    <b><u>College Preference</u> (SENIORS):</b><br><br>
-                                    Indicate the school you are planning to attend:<br><br>
+                                    <b><u>College Preference</u> (SENIORS):</b><br /><br />
+                                    Indicate the school you are planning to attend:<br /><br />
                                  </p>
                                  <table border="0" width="100%">
                                     <tr>
@@ -534,7 +529,7 @@ if ($Submit != '')
                                           College
                                        </th>
                                        <th width="56%" colspan="2" valign="bottom" align="left">
-                                          Are you planning to&nbsp;<br>
+                                          Are you planning to&nbsp;<br />
                                           attend this school?
                                        </th>
                                     </tr>
@@ -588,7 +583,7 @@ if ($Submit != '')
                                     University.</i></b>
                                  </p>
                                  <p>
-                                    <br>What is your college major? (if known):<br><br>
+                                    <br />What is your college major? (if known):<br /><br />
                                     <input type="text" name="appmajor" size="50">
                                  </p>
                                  <p><b>Note:</b> Most leadership scholarships
@@ -605,7 +600,7 @@ if ($Submit != '')
                                     <input type="submit" value="Submit" name="Submit">
                                  </p>
                               </form>
-                              <br>
+                              <br />
                            </td>
                         </tr>
                      </table>

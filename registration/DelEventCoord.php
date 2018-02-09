@@ -19,13 +19,13 @@ if (isset($_POST['Confirm']))
    WriteToLog("Coordinator ".$_REQUEST['CoordID']." was deleted");
    ?>
       <head>
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <title>
             Coordinator Deleted
          </title>
-         <meta http-equiv="Content-Language" content="en-us">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel=stylesheet href="include/registration.css" type="text/css" />
+         <meta http-equiv="Content-Language" content="en-us" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <link rel="stylesheet" href="include/registration.css" type="text/css" />
       </head>
       <body>
          <h1 align=center>
@@ -47,25 +47,25 @@ else
           <title>
              Delete Coordinator
           </title>
-          <meta http-equiv="Content-Language" content="en-us">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel=stylesheet href="include/registration.css" type="text/css" />
+          <meta http-equiv="Content-Language" content="en-us" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link rel="stylesheet" href="include/registration.css" type="text/css" />
        </head>
 
        <body>
           <form method="post" action="DelEventCoord.php<?php  print "?CoordID=".$_REQUEST['CoordID']."&CordName=".urlencode($_REQUEST['CoordName']); ?>">
-             <center>
+             <div style="text-align: center">
                 <h1>
                    Deleting Coordinator
                 </h1>
                 <h2>
                    "<?php  print $_REQUEST['CoordName']; ?>"
                 </h2>
-             </center>
+             </div>
              <p align="center">
              <input type="submit" value="Confirm Delete!" name="Confirm">
-             <font size="5"><br>
-             or</font><br>
+             <font size="5"><br />
+             or</font><br />
              <input type="submit" value="Cancel" name="Cancel">
              </p>
           </form>

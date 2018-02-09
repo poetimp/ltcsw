@@ -27,10 +27,12 @@ if (isset($_POST['Add']))
 
    <head>
       <title>Add New Team</title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
+   </head>
+   <body>
       <h1 align="center">Add New Team</h1>
       <?php
       if (isset($message) and $message != "")
@@ -38,8 +40,6 @@ if (isset($_POST['Add']))
       print "<h3><font color=\"#FF0000\">$message</font></h3>\n";
       }
       ?>
-   </head>
-   <body>
       <form method="post" action="AddTeam.php">
          <table class='registrationTable'>
             <tr>

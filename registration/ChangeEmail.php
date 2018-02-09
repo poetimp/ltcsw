@@ -37,12 +37,12 @@ if (isset($_POST['ChangeEmail']))
       $email  .= "   </head>\n";
       $email  .= "   <body>\n";
       $email  .= "      <p>\n";
-      $email  .= "         You have requested to change your email address on the LTC Registration site.<br>\n";
-      $email  .= "         On your browser the page should be asking you to enter a 6 digit code\n<br>";
-      $email  .= "         <br>\n";
-      $email  .= "         The code is: <b>$code</b><br>\n";
-      $email  .= "         <br>\n";
-      $email  .= "         <br>\n";
+      $email  .= "         You have requested to change your email address on the LTC Registration site.<br />\n";
+      $email  .= "         On your browser the page should be asking you to enter a 6 digit code\n<br />";
+      $email  .= "         <br />\n";
+      $email  .= "         The code is: <b>$code</b><br />\n";
+      $email  .= "         <br />\n";
+      $email  .= "         <br />\n";
       $email  .= "      </p>\n";
       $email  .= "   </body>\n";
       $email  .= "</html>\n";
@@ -73,16 +73,16 @@ if (isset($_POST['ChangeEmail']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
    <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
       <title>Change Email Address</title>
       <h1 align=center>Change Email Address</h1>
    </head>
    <body>
       <form method="post" id="main" name="main">
-         <center>
+         <div style="text-align: center">
             <table class='registrationTable' style='width: 550px'>
                <tr>
                   <td>
@@ -122,7 +122,7 @@ if (isset($_POST['ChangeEmail']))
                   <td colspan="2" style='text-align: center'><input type="submit" name="ChangeEmail" value="Change Email"></td>
                </tr>
                </table>
-         </center>
+         </div>
       </form>
       <?php footer("Return to Login","login.php")?>
    </body>

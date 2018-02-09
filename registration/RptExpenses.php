@@ -27,9 +27,9 @@ else
       <title>
          Expense Report
       </title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
    </head>
    <body>
    <?php
@@ -108,19 +108,19 @@ else
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costExtraShirts);?></td>
          </tr>
          <tr>
-            <td style='width: 50%' colspan=2>&nbsp;</td>
+            <td style='width: 50%' colspan='2'>&nbsp;</td>
             <td style='width: 25%; text-align: right'><b>Total:</b></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costTotal);?></td>
          </tr>
          <tr>
-            <td style='width: 50%' colspan=2>&nbsp;</td>
+            <td style='width: 50%' colspan='2'>&nbsp;</td>
             <td style='width: 25%; text-align: right'><b>Monies Received:</b></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($MoneyInOut)?></td>
          </tr>
          <tr>
-            <td style='width: 50%' colspan=2>&nbsp;</td>
+            <td style='width: 50%' colspan='2'>&nbsp;</td>
             <td style='width: 25%; text-align: right'><b>Balance <?php print $balanceCarity?>:</b></td>
-            <td style='width: 25%; text-align: right"'<?php print FormatMoney($costBalance);?></td>
+            <td style='width: 25%; text-align: right'><?php print FormatMoney($costBalance);?></td>
          </tr>
       </table>
       <?php
@@ -141,16 +141,16 @@ else
          foreach ($ChuchList as $ChurchID=>$ChurchName)
          {
             PrintReport($ChurchID);
-            print "<br><hr>";
+            print "<br /><hr>";
          }
       }
       else
       {
          ?>
-            <center>
+            <div style="text-align: center">
             <h1>No churches with participating registrants have been defined</h1>
             <h2>Expense report is empty</h2>
-            </center>
+            </div>
          <?php
       }
    }

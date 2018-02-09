@@ -38,13 +38,13 @@ if (isset($_POST['Confirm']))
    }
    ?>
       <head>
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
          <title>
             Participant Deleted
          </title>
-         <meta http-equiv="Content-Language" content="en-us">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel=stylesheet href="include/registration.css" type="text/css" />
+         <meta http-equiv="Content-Language" content="en-us" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <link rel="stylesheet" href="include/registration.css" type="text/css" />
       </head>
       <body>
          <h1 align=center>
@@ -67,25 +67,25 @@ else
           <title>
              Delete Participant
           </title>
-          <meta http-equiv="Content-Language" content="en-us">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel=stylesheet href="include/registration.css" type="text/css" />
+          <meta http-equiv="Content-Language" content="en-us" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link rel="stylesheet" href="include/registration.css" type="text/css" />
        </head>
 
        <body>
           <form method="post" action="DelParticipant.php<?php  print "?ParticipantID=".$_REQUEST['ParticipantID']."&Name=".urlencode($_REQUEST['Name']); ?>">
-             <center>
+             <div style="text-align: center">
                 <h1>
                    Deleting Participant
                 </h1>
                 <h2>
                    "<?php  print $_REQUEST['Name']; ?>"
                 </h2>
-             </center>
+             </div>
              <p align="center">
              <input type="submit" value="Confirm Delete!" name="Confirm">
-             <font size="5"><br>
-             or</font><br>
+             <font size="5"><br />
+             or</font><br />
              <input type="submit" value="Cancel" name="Cancel">
              </p>
           </form>

@@ -52,7 +52,7 @@ $picFiles = scandir($picDir);
                }
 
                print "      <td width=\"$picWidth\" align=\"center\" valign=\"top\">\n";
-               print "         $fileName: Judged $judgedCount times<br>\n";
+               print "         $fileName: Judged $judgedCount times<br />\n";
                print "         <a href=judge-entry.php?entry=".urlencode("$fileName")." target=_blank>\n";
                print "            <img src=./printImage.php?fileName=".urlencode("$picDir/$fileName")." alt='$fileName' width='$picWidth'>\n";
                print "         </a>\n";

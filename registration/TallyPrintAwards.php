@@ -86,9 +86,9 @@ else
       <title>
          Awards Report
       </title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
    </head>
    <body>
          <?php
@@ -137,7 +137,7 @@ else
                      if (isset($_REQUEST['Warn']))
                         print "<h2 align=\"center\">*** Warning there are entries without awards Assigned ***</h2>"
                   ?>
-                  <hr>
+                  <hr />
                   <table class='registrationTable'>
                <?php
                   $prevChurchName = $ChurchName;
@@ -150,11 +150,11 @@ else
                   <td colspan="4">&nbsp;</td>
                </tr>
                <tr>
-               <td style='width: 30%;'<b><?php print $ChurchName;?></b></TD>
-               <td style='width: 30%;'<b><?php print $EventName;?></b></TD>
-               <td style='width: 25%;'<b><?php print $PatricipantName;?></b></TD>
-               <td style='width: 15%;'<b><?php print $Award;?></b></TD>
-               <tr>
+                  <td style='width: 30%;'><b><?php print $ChurchName;?></b></td>
+                  <td style='width: 30%;'><b><?php print $EventName;?></b></td>
+                  <td style='width: 25%;'><b><?php print $PatricipantName;?></b></td>
+                  <td style='width: 15%;'><b><?php print $Award;?></b></td>
+               </tr>
 
             <?php
                if ($TeamEvent)

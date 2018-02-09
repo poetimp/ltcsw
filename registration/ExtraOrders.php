@@ -237,13 +237,13 @@ else
 <html lang="en">
 
     <head>
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
        <title>
           Extra Orders
        </title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
     </head>
        <body>
           <h1 align=center>Extra Orders</h1>
@@ -300,7 +300,7 @@ else
             </tr>
          </table>
 
-         <br>
+         <br />
          <!--  Removed the ability to order extra meal tickets... but let code just in case it comes back
          <h2>Meal Tickets </h2>
          (<b>Note:</b> Event directors, Charmers and Board members are covered)
@@ -326,7 +326,7 @@ else
                <td style='width: 15%;' bgcolor="#808080"> <?php  print $extraMealTotal; ?> </td>
             </tr>
          </table>
-         <br>
+         <br />
          -->
          <table class='registrationTable' style='width: 60%'>
             <tr>

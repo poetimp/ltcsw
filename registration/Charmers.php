@@ -18,9 +18,9 @@ include 'include/RegFunctions.php';
 <html lang="en">
 
    <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
       <title>Charmers</title>
    </head>
@@ -86,13 +86,13 @@ include 'include/RegFunctions.php';
                      <td>                           <?php  print $row['charmerTshirtSize'];                                ?></td>
                      <td>                           <?php  print $row['charmerPhone'];                                     ?></td>
                      <td>                           <?php  print $row['charmerEmail'];                                     ?></td>
-                     <td>                           <?php  print preg_replace("/\n/","<br>\n",$row['charmerAvailibility']);?></td>
+                     <td>                           <?php  print preg_replace("/\n/","<br />\n",$row['charmerAvailibility']);?></td>
                   </tr>
                <?php
                }
                ?>
                </table>
-         <p style='text-align: center'><input type="submit" value="Add New" name="AddNew"><br>
+         <p style='text-align: center'><input type="submit" value="Add New" name="AddNew"><br />
          <b>Don't forget to order extra meals for your charmer!</b>
          </p>
       </form>

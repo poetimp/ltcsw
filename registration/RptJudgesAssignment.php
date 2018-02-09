@@ -157,7 +157,7 @@ function constructJudgesTable($dayTimes,$day)
                         $EventName    = $row['EventName'];
                         $JudgesNeeded = $row['JudgesNeeded'];
                         $SchedID      = $row['SchedID'];
-                        print "<td style='text-align: center; vertical-align: top'><b>$EventName</b><br>\n";
+                        print "<td style='text-align: center; vertical-align: top'><b>$EventName</b><br />\n";
                         if ($JudgesNeeded >0)
                         {
                            print "<table class='registrationTable'\n";
@@ -184,9 +184,9 @@ function constructJudgesTable($dayTimes,$day)
 
                               print "<tr>\n";
                               print "<td>\n";
-                              print "<center>\n";
+                              print "<div style='text-align: center'>\n";
                               print $JudgeName;
-                              print "</center>\n";
+                              print "</div>\n";
                               print "</td>\n";
                               print "</tr>\n";
                            }
@@ -211,9 +211,9 @@ function constructJudgesTable($dayTimes,$day)
 <html lang="en">
    <head>
       <title>Assigned Judges</title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
    </head>
 
    <body>

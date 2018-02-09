@@ -82,9 +82,9 @@ if ($ChurchID != "" and isset($_POST['TxType']))
 
    <head>
       <title>Administer Monies</title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
       <h1 align=center>Administer Monies</h1>
    </head>
 
@@ -123,7 +123,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
             // First show current transaction history
             //==================================================================================
             ?>
-            <h2 align="center">for<br><?php  print "$ChurchName</h2>"; ?>
+            <h2 align="center">for<br /><?php  print "$ChurchName</h2>"; ?>
 
             <input type=hidden name=ChurchID <?php print "value=$ChurchID"?>>
             <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto'>
@@ -173,7 +173,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
                }
                ?>
             </table>
-            <br>
+            <br />
             <?php
             //==================================================================================
             // Now show the data entry form

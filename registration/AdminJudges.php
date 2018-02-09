@@ -177,7 +177,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
               {
                 ?>
                   <h1 align=center>
-                     Judge <br>"<?php  print $LastName . ", " . $FirstName; ?>"<br>Updated!
+                     Judge <br />"<?php  print $LastName . ", " . $FirstName; ?>"<br />Updated!
                   </h1>
                 <?php
               }
@@ -185,13 +185,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
               {
                 ?>
                   <h1 align=center>
-                     Judge<br>"<?php  print $LastName . ", " . $FirstName; ?>"<br>Added!
+                     Judge<br />"<?php  print $LastName . ", " . $FirstName; ?>"<br />Added!
                   </h1>
                 <?php
               }
 
          ?>
-            <center><a href="Judges.php">Return to Judge List</a></center>
+            <div style="text-align: center"><a href="Judges.php">Return to Judge List</a></div>
          </body>
       </html>
 
@@ -203,9 +203,9 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 {
    ?>
    <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
    <?php
       if ($mode == 'update')
@@ -252,7 +252,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
 
       if ($ErrorMsg != "")
       {
-         print "<center><font color=\"FF0000\"><b>" . $ErrorMsg . "</b></font></center><br>";
+         print "<div style='text-align: center'><font color=\"FF0000\"><b>" . $ErrorMsg . "</b></font></div><br />";
       }
    ?>
 
@@ -459,7 +459,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          </table>
-         <br>
+         <br />
       <p align="center">
          <?php
             if ($mode == 'update')
@@ -482,7 +482,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             }
 
          ?>
-         <br>
+         <br />
       </p>
    </form>
    <?php footer("Return to Judge List","Judges.php")?>

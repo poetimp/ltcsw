@@ -34,7 +34,7 @@ if (isset($_POST['Confirm']))
       foreach ($ChuchList as $ChurchID=>$ChurchName)
       {
          $costDetail = ChurchExpenses($ChurchID);
-         //print "<hr><pre>Churchid = $ChurchID<br>ChurchName = $ChurchName<br>";print_r ($costDetail);print "</pre>";
+         //print "<hr><pre>Churchid = $ChurchID<br />ChurchName = $ChurchName<br />";print_r ($costDetail);print "</pre>";
          if ($costDetail["Balance"] != 0)
             $balanceCaryForward[$ChurchID] = $costDetail["Balance"];
       }
@@ -69,7 +69,7 @@ if (isset($_POST['Confirm']))
                            $Amount,
                            'Balance carried forward',
                            $ChurchID)
-                  <br>"; */
+                  <br />"; */
    }
    //die ("Exiting");
    //=========================================================================================
@@ -119,9 +119,9 @@ if (isset($_POST['Confirm']))
    WriteToLog("Database reinitalized");
    ?>
       <head>
-         <meta http-equiv="Content-Language" content="en-us">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel=stylesheet href="include/registration.css" type="text/css" />
+         <meta http-equiv="Content-Language" content="en-us" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <link rel="stylesheet" href="include/registration.css" type="text/css" />
          <title>
             Database prepared
          </title>
@@ -147,18 +147,18 @@ else
           <title>
              Prepare database for new year
           </title>
-          <meta http-equiv="Content-Language" content="en-us">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <link rel=stylesheet href="include/registration.css" type="text/css" />
+          <meta http-equiv="Content-Language" content="en-us" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link rel="stylesheet" href="include/registration.css" type="text/css" />
        </head>
 
        <body>
           <form method="post" action="NewDatabase.php">
-             <center>
+             <div style="text-align: center">
                 <h1>
                    Prepare database for new year
                 </h1>
-             </center>
+             </div>
              <p align="center">
              <table class='registrationTable' style='width: 60%; margin-left: auto; margin-right: auto'>
                 <tr>
@@ -174,13 +174,13 @@ else
                    </td>
                 </tr>
              </table>
-             <br>
-             <center>
+             <br />
+             <div style="text-align: center">
              <input type="submit" value="Confirm" name="Confirm">
-             <font size="5"><br>
-             or</font><br>
+             <font size="5"><br />
+             or</font><br />
              <input type="submit" value="Cancel" name="Cancel">
-             </center>
+             </div>
              </p>
           </form>
        </body>

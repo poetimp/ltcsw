@@ -30,9 +30,9 @@ $charmerCount = $row['Count'];
       <title>
          LTC Registration
       </title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
    </head>
    <body>
@@ -86,7 +86,7 @@ $charmerCount = $row['Count'];
 
                         <tr><td style='padding-left: 5%'>Rosters</td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptWhoInWhatAll.php">                  Participant List by Participant with event details  </a></td></tr>
-                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptParticipants.php?Admin=1">          Participant List by Church with Shirt, Meal & Grade </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptParticipants.php?Admin=1">          Participant List by Church with Shirt, Meal &amp; Grade </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptWhoByEvent.php?Admin=1">            All Events Rosters                                  </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptTeams.php?Admin=1">                 Team Rosters by Church                              </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptWhoBySched.php?Admin=1">            Scheduled events roster by event                    </a></td></tr>
@@ -187,7 +187,7 @@ $charmerCount = $row['Count'];
                             }
                             else
                             {
-                               print "<b>&nbsp;&nbsp;&nbsp;&nbsp;Your email address is : $Email</b><br><br>";
+                               print "<b>&nbsp;&nbsp;&nbsp;&nbsp;Your email address is : $Email</b><br /><br />";
                             }
                             ?>
                          </td>
@@ -233,7 +233,7 @@ $charmerCount = $row['Count'];
                   else
                   {
                   ?>
-                  <font color='red'><b>Please consider adding some charmers.<br>We need 20 for LTC to run smoothly and currently have <?php print $charmerCount?> signed up</b></font>
+                  <font color='red'><b>Please consider adding some charmers.<br />We need 20 for LTC to run smoothly and currently have <?php print $charmerCount?> signed up</b></font>
                   <?php
                   }
                   ?>

@@ -23,13 +23,13 @@ $awardsBronze = 0;
 <html lang="en">
 
     <head>
-       <meta http-equiv="Content-Language" content="en-us">
+       <meta http-equiv="Content-Language" content="en-us" />
        <title>
           Award Counts
        </title>
-       <meta http-equiv="Content-Language" content="en-us">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel=stylesheet href="include/registration.css" type="text/css" />
+       <meta http-equiv="Content-Language" content="en-us" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="stylesheet" href="include/registration.css" type="text/css" />
     </head>
 
     <body>
@@ -48,7 +48,7 @@ $awardsBronze = 0;
                     or die ("Unable to get award list:" . sqlError());
          $row = $count->fetch(PDO::FETCH_ASSOC);
          $numRows = $row['count'];
-         //print "<br>[$numRows]\n";
+         //print "<br />[$numRows]\n";
          $results = $db->query("select   e.EventName,
                                          r.Award,
                                          count(*) as AwardCount

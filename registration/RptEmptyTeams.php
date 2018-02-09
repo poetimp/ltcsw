@@ -21,7 +21,7 @@ if ($Admin != 'Y')
 <html lang="en">
 
     <head>
-       <meta http-equiv="Content-Language" content="en-us">
+       <meta http-equiv="Content-Language" content="en-us" />
        <title>
           Empty Teams
        </title>

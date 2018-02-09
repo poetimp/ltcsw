@@ -72,7 +72,7 @@
                   <table border="1" width="100%">
                      <tr>
                         <td colspan="2" align="center" bgcolor="silver">
-                           <b>T-Shirt Design Contest<br>
+                           <b>T-Shirt Design Contest<br />
                            Board Evaluation Form</b>
                         </td>
                      </tr>
@@ -100,7 +100,7 @@
                         </td>
                         <td>
                            <b>Technical Review</b> – How well did the submission
-                           meet the requirements as laid out in the Rules?<br>
+                           meet the requirements as laid out in the Rules?<br />
                            <i><b>Very Well - OK or Does Not</b></i>
                         </td>
                      </tr>
@@ -111,7 +111,7 @@
                         <td>
                            <b>Transfer</b> – How well will this design
                            transfer to a T-shirt? Level and
-                           consistency of detail and simplicity<br>
+                           consistency of detail and simplicity<br />
                            <i><b>Very Well - OK or Does Not</b></i>
                         </td>
                      </tr>
@@ -122,7 +122,7 @@
                         <td>
                            <b>Theme</b> – How well is the <i>current LTC theme</i>
                            depicted through the entry itself? Is the message of the
-                           artist clearly and easily conveyed?<br>
+                           artist clearly and easily conveyed?<br />
                            <i><b>Very Well - OK or Does Not</b></i>
                         </td>
                      </tr>
@@ -135,7 +135,7 @@
                            is it that the participant spend time
                            and effort on developing a creative
                            submission vs. quickly drawing the first
-                           idea that came to mind?<br>
+                           idea that came to mind?<br />
                            <i><b>Very Apparent - Not Sure or Clearly not</b></i>
                         </td>
                      </tr>
@@ -145,7 +145,7 @@
                         </td>
                         <td>
                            <b>Wearability</b> – How likely is it likely that the
-                           t-shirt be worn after convention?<br>
+                           t-shirt be worn after convention?<br />
                            <i><b>Very Likely, Maybe or Probably Not</b></i>
                         </td>
                      </tr>
@@ -157,7 +157,7 @@
                            <b>Appeal</b> – How well does the design
                            and message appeal to you? Is it
                            consistent with the overall mission and
-                           purpose of LTCSW.<br>
+                           purpose of LTCSW.<br />
                            <i><b>Very Well - OK or Does Not</b></i>
                         </td>
                      </tr>
@@ -167,7 +167,7 @@
                         </td>
                         <td>
                            <b>Rank</b> – Is this one of your top three choices from
-                           all of the entries and if so, is it <br>
+                           all of the entries and if so, is it <br />
                            <i><b>Not, 1, 2 or 3?</b></i>
                         </td>
                      </tr>
@@ -182,15 +182,15 @@
                   <table border="1" width="100%">
                      <tr>
                         <td align="center" bgcolor="silver">
-                           <b>T-Shirt Design Contest<br>
+                           <b>T-Shirt Design Contest<br />
                            Participant’s Take Home Judge’s Critique</b>
                         </td>
                      </tr>
                      <tr>
                         <td>
-                           Artist Name:  <input type="hidden" name="Artist" id="Artist" value="'.$Artist.'"><br>
-                           Congregation: <input type="hidden" name="Church" id="Church" value="'.$Church.'"><br>
-                           Grade:        <input type="hidden" name="Grade"  id="Grade"  value="'.$Grade.'"><br>
+                           Artist Name:  <input type="hidden" name="Artist" id="Artist" value="'.$Artist.'"><br />
+                           Congregation: <input type="hidden" name="Church" id="Church" value="'.$Church.'"><br />
+                           Grade:        <input type="hidden" name="Grade"  id="Grade"  value="'.$Grade.'"><br />
                         </td>
                      </tr>
                      <tr>
@@ -245,23 +245,23 @@
          {
 
             $errormsg = '';
-            if ($Judge == '')      $errormsg .= "Missing Judge name<br>";
-            if ($Tech  == '')      $errormsg .= "Missing Technical Review<br>";
-            if ($Transfer == '')   $errormsg .= "Missing Transferability evaluation<br>";
-            if ($Theme == '')      $errormsg .= "Missing adherence to Theme evaluation<br>";
-            if ($Creative == '')   $errormsg .= "Missing creativity evaluation<br>";
-            if ($Wearable == '')   $errormsg .= "Missing wearability evaluation<br>";
-            if ($Appeal == '')     $errormsg .= "Missing Appeal evaluation<br>";
-            if ($Top3 == '')       $errormsg .= "Missing is it a top three<br>";
-            if ($DoneWell == '')   $errormsg .= "Missing what the artist did well<br>";
-            if ($Focus == '')      $errormsg .= "Missing what artist should focus on<br>";
-            if ($Impression == '') $errormsg .= "Missing your overall impression<br>";
+            if ($Judge == '')      $errormsg .= "Missing Judge name<br />";
+            if ($Tech  == '')      $errormsg .= "Missing Technical Review<br />";
+            if ($Transfer == '')   $errormsg .= "Missing Transferability evaluation<br />";
+            if ($Theme == '')      $errormsg .= "Missing adherence to Theme evaluation<br />";
+            if ($Creative == '')   $errormsg .= "Missing creativity evaluation<br />";
+            if ($Wearable == '')   $errormsg .= "Missing wearability evaluation<br />";
+            if ($Appeal == '')     $errormsg .= "Missing Appeal evaluation<br />";
+            if ($Top3 == '')       $errormsg .= "Missing is it a top three<br />";
+            if ($DoneWell == '')   $errormsg .= "Missing what the artist did well<br />";
+            if ($Focus == '')      $errormsg .= "Missing what artist should focus on<br />";
+            if ($Impression == '') $errormsg .= "Missing your overall impression<br />";
 
             if ($errormsg == '')
             {
-               $DoneWell   = preg_replace("/\n/","<br>\n",$DoneWell);
-               $Focus      = preg_replace("/\n/","<br>\n",$Focus);
-               $Impression = preg_replace("/\n/","<br>\n",$Impression);
+               $DoneWell   = preg_replace("/\n/","<br />\n",$DoneWell);
+               $Focus      = preg_replace("/\n/","<br />\n",$Focus);
+               $Impression = preg_replace("/\n/","<br />\n",$Impression);
 
                $headers  = 'MIME-Version: 1.0' . "\r\n";
                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
@@ -296,15 +296,15 @@
                      fclose($JudgedInfo);
                   }
                   ?>
-                  Thank You! Your message has been successfully sent.<br>
+                  Thank You! Your message has been successfully sent.<br />
                   You may close this window.
                <?php
                }
                else
                {
                ?>
-                  Your message has not been successfully sent. <br>
-                  Please click on your back button and try again.<br>
+                  Your message has not been successfully sent. <br />
+                  Please click on your back button and try again.<br />
                <?php
                }
             }
@@ -313,7 +313,7 @@
          {?>
             <p align="center">
                Please fill out both sides of the form and when complete click on submit.
-               You can leave the fields on the right side at the top blank.<br>
+               You can leave the fields on the right side at the top blank.<br />
                The artwork is at the bottom of the page for reference.
             </p>
             <?php
@@ -325,10 +325,10 @@
             <form method="post">
                <?php print $theForm;?>
             </form>
-            <br><br>
-            <center>
+            <br /><br />
+            <div style="text-align: center">
                <img src="./printImage.php?fileName=<?php print urlencode("$picDir/$imageName");?>" width="576px">
-            </center>
+            </div>
          <?php
          }
       ?>

@@ -21,13 +21,13 @@ $prevTime = "";
 <html lang="en">
 
     <head>
-       <meta http-equiv="Content-Language" content="en-us">
+       <meta http-equiv="Content-Language" content="en-us" />
        <title>
           Event Participation
        </title>
-       <meta http-equiv="Content-Language" content="en-us">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link rel=stylesheet href="include/registration.css" type="text/css" />
+       <meta http-equiv="Content-Language" content="en-us" />
+       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       <link rel="stylesheet" href="include/registration.css" type="text/css" />
     </head>
 
     <body>

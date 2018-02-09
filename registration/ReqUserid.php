@@ -46,8 +46,8 @@ if (isset($_POST['submit']))
 
       if (mail($to, $subject, $body, $headers))
       {
-         $ErrorMsg  = "Request submitted.<br>You can expect a response in less than 24 hours<br>";
-         $ErrorMsg .= "<a href=/>Click Here to return to the LTC Home page</a><br>";
+         $ErrorMsg  = "Request submitted.<br />You can expect a response in less than 24 hours<br />";
+         $ErrorMsg .= "<a href=/>Click Here to return to the LTC Home page</a><br />";
       }
       else
       {
@@ -61,9 +61,9 @@ if (isset($_POST['submit']))
 
    <head>
       <title>Request Userid/Password</title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
    </head>
 
    <body>
@@ -105,7 +105,7 @@ if (isset($_POST['submit']))
                if ($ErrorMsg != "")
                {
                   print "<font color=red>\n";
-                  print "<b>$ErrorMsg</b><br>\n";
+                  print "<b>$ErrorMsg</b><br />\n";
                   print "</font>\n";
                }
             ?>

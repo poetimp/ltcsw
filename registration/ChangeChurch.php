@@ -26,9 +26,9 @@ if (isset($_POST['Update']))
 <html lang="en">
 
    <head>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
    <title>Change Church</title>
 
@@ -44,7 +44,7 @@ if (isset($_POST['Update']))
                                     order by ChurchName")
                        or die ("Unable to obtain church list:" . sqlError());
             ?>
-            <center>
+            <div style="text-align: center">
             <select name=ChurchID>
             <?php
             while ($row = $results->fetch(PDO::FETCH_ASSOC))
@@ -56,7 +56,7 @@ if (isset($_POST['Update']))
             }
             ?>
             </select>
-            </center>
+            </div>
       <p align="center"><input type="submit" value="Update" name="Update"></p>
    </form>
    <?php footer("","")?>

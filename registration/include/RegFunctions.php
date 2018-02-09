@@ -922,13 +922,13 @@ function ScheduleGetEventName($checkSchedID,$ParticipantID)
                             ")
       or die ("Unable to get team schedule for participant $ParticipantID:" . sqlError());
 
-//      print "CheckStartTime: $checkStartTime, CheckEndTime: $checkEndTime<br>";
+//      print "CheckStartTime: $checkStartTime, CheckEndTime: $checkEndTime<br />";
       while (! $conflict and $row = $result->fetch(PDO::FETCH_ASSOC))
       {
          $StartTime = $row['StartTime'];
          $EndTime   = $row['EndTime'];
          $EventName = $row['EventName'];
-//         print "EventName: $EventName, StartTime: $StartTime, EndTime: $EndTime<br>";
+//         print "EventName: $EventName, StartTime: $StartTime, EndTime: $EndTime<br />";
          if (($checkStartTime >= $StartTime and $checkStartTime <= $EndTime) or
              ($checkEndTime   >= $StartTime and $checkEndTime   <= $EndTime))
             $conflict=TRUE;
@@ -1091,7 +1091,7 @@ function dumpSysVars()
             }
          ?>
       </table>
-      <br>
+      <br />
       <?php
    }
 
@@ -1116,7 +1116,7 @@ function dumpSysVars()
             }
          ?>
       </table>
-      <br>
+      <br />
       <?php
    }
 
@@ -1141,7 +1141,7 @@ function dumpSysVars()
             }
          ?>
       </table>
-      <br>
+      <br />
       <?php
    }
 
@@ -1166,7 +1166,7 @@ function dumpSysVars()
             }
          ?>
       </table>
-      <br>
+      <br />
       <?php
    }
 }
@@ -1183,25 +1183,25 @@ function verifyPasswordFormat($password)
 {
    if (strlen($password) < 7)
       return False;
-//   print "Pass min len<br>\n";
+//   print "Pass min len<br />\n";
    if (strlen($password) > 32)
       return False;
-//   print "Pass max len<br>\n";
+//   print "Pass max len<br />\n";
    if(!preg_match("/[a-z]/",$password))
       return False;
-//   print "Pass lower leters<br>\n";
+//   print "Pass lower leters<br />\n";
    if(!preg_match("/[A-Z]/",$password))
       return False;
-//   print "Pass upper letters<br>\n";
+//   print "Pass upper letters<br />\n";
    if(!preg_match("/[0-9]/",$password))
       return False;
-//   print "Pass number<br>\n";
+//   print "Pass number<br />\n";
    if(!preg_match("/[`~!@#\$%^&*\(\)_+?\"';:,.<>\/\\\\[\]\{\}\|\-\=]/",$password)) // 123abc!@$XYZ
       return False;
-//   print "Pass special chars<br>\n";
+//   print "Pass special chars<br />\n";
    if(preg_match("/\s+/",$password))
       return False;
-//   print "Pass no spaces<br>\n";
+//   print "Pass no spaces<br />\n";
 
    return true;
 }

@@ -32,9 +32,9 @@ else
       <title>
          Expense Ballance Report
       </title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
    </head>
    <body>
    <h1 align="center">Expense Balance Report</h1>
@@ -87,10 +87,10 @@ else
       else
       {
          ?>
-            <center>
+            <div style="text-align: center">
             <h1>No churches have been defined</h1>
             <h2>Expense report is empty</h2>
-            </center>
+            </div>
          <?php
       }
    ?>

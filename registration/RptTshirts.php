@@ -22,9 +22,9 @@ if ($Admin != 'Y')
       <title>
          T-Shirts by Congregation
       </title>
-      <meta http-equiv="Content-Language" content="en-us">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel=stylesheet href="include/registration.css" type="text/css" />
+      <meta http-equiv="Content-Language" content="en-us" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="include/registration.css" type="text/css" />
    </head>
    <body>
       <h1 style='text-align: center'>T-Shirt Orders by Congregation</h1>
@@ -73,7 +73,7 @@ if ($Admin != 'Y')
          //====================================================================
          // Get shirt count from Participants list
          //====================================================================
- //        print "<br><pre>select   distinct
+ //        print "<br /><pre>select   distinct
  //                                        p.ShirtSize,
  //                                        count(p.ShirtSize) ShirtCount
  //                               from     $ParticipantsTable p

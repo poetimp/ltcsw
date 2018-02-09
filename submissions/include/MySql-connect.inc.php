@@ -19,7 +19,7 @@ global $db;
    $pdoErrString='PDOError: ';
    foreach ($db->errorInfo() as $pdoErr)
    {
-      $pdoErrString.="[".$pdoErr."]"."<br><pre>$sql</pre>";
+      $pdoErrString.="[".$pdoErr."]"."<br /><pre>$sql</pre>";
    }
    return $pdoErrString;
 }

@@ -16,9 +16,9 @@ include 'include/RegFunctions.php';
          print "<pre>";
          print "_SERVER:";
          print_r($_SERVER);
-         print "<br><br>_SESSION:";
+         print "<br /><br />_SESSION:";
          print_r($_SESSION);
-         print "</pre><br><hr><br>";
+         print "</pre><br /><hr><br />";
          ?>
    </body>
 </html>
@@ -30,27 +30,27 @@ $RoomID     =     2;
 
 if (ScheduleEventAdd($EventID,$StartTime,$RoomID))
 {
-   print "<br>Add Success!<br>";
+   print "<br />Add Success!<br />";
 }
 else
 {
-   print "<br>Add Bummer!<br>";
+   print "<br />Add Bummer!<br />";
 }
 if (ScheduleEventAdd($EventID,"61450",5))
 {
-   print "<br>Add Success!<br>";
+   print "<br />Add Success!<br />";
 }
 else
 {
-   print "<br>Add Bummer!<br>";
+   print "<br />Add Bummer!<br />";
 }
 if (ScheduleEventAdd($EventID,$StartTime,4))
 {
-   print "<br>Add Success!<br>";
+   print "<br />Add Success!<br />";
 }
 else
 {
-   print "<br>Add Bummer!<br>";
+   print "<br />Add Bummer!<br />";
 }
 
 $eventSchedule= ScheduleEventGet(100);
@@ -58,18 +58,18 @@ print("<table class='registrationTable' border=1>");
 foreach ($eventSchedule as $RoomName=>$StartTime)
    print("<tr><td>$RoomName</td><td>".TimeToStr($StartTime)."</td></tr>");
 print("</table>");
-print("<br><br>");
+print("<br /><br />");
 
 $EventID    =   100;
 $StartTime  = 61430;
 $RoomID     =     2;
 if (ScheduleEventDel($EventID,$StartTime,$RoomID))
 {
-   print "<br>Del Success!<br>";
+   print "<br />Del Success!<br />";
 }
 else
 {
-   print "<br>Del Bummer!<br>";
+   print "<br />Del Bummer!<br />";
 }
 
 //$church_list = ChurchesRegistered();
@@ -77,7 +77,7 @@ else
 //foreach ($church_list as $ChurchID=>$ChurchName)
 //   print("<tr><td>$ChurchID</td><td>$ChurchName</td></tr>");
 //print("</table>");
-//print("<br><br>");
+//print("<br /><br />");
 //$ParticipantIDs = ActiveParticipants(108);
 //print("<table class='registrationTable' border=1>");
 //foreach ($ParticipantIDs as $ParticipantID=>$ParticipantName)

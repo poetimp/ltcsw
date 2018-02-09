@@ -235,7 +235,7 @@ function showSysVars()
             }
          ?>
       </table>
-      <br>
+      <br />
       <?php
    }
 
@@ -260,7 +260,7 @@ function showSysVars()
             }
          ?>
       </table>
-      <br>
+      <br />
       <?php
    }
 
@@ -285,7 +285,7 @@ function showSysVars()
             }
          ?>
       </table>
-      <br>
+      <br />
       <?php
    }
 
@@ -310,7 +310,7 @@ function showSysVars()
             }
          ?>
       </table>
-      <br>
+      <br />
       <?php
    }
    if (isset($_FILES))
@@ -335,7 +335,7 @@ function showSysVars()
             }
          ?>
       </table>
-      <br>
+      <br />
       <?php
    }
 }
@@ -461,7 +461,7 @@ if ($_POST)
                $dropboxDirectory.= '/'.trim($church[$SubmitterCong]);
                $dropboxDirectory.= '/'.trim($participant[$SubmitterID]);
                $dropboxDirectory = trim($dropboxDirectory);
-   //          print "[$dropboxDirectory]<br>[$target_name]<br>\n";
+   //          print "[$dropboxDirectory]<br />[$target_name]<br />\n";
 
                //Login to dropbox
                $dbxClient    = new DropboxApp($dropboxApp, $appSecret, $accessToken);
@@ -473,7 +473,7 @@ if ($_POST)
                }
                catch (DropboxClientException $e)
                {
-                  print "Upload failed with error: ". $e->getMessage()."<br>Please let Paul know that you got this error. Thank you!";
+                  print "Upload failed with error: ". $e->getMessage()."<br />Please let Paul know that you got this error. Thank you!";
                   die();
                }
 
@@ -500,24 +500,24 @@ if ($_POST)
                          ."However, The file can also be found any time on the ltc "
                          ."<a href=\"https://www.dropbox.com/login\">dropbox</a> account."
                          ."Where it will be filed by church and participant for easier "
-                         ."reconciliation.<br><br>"
+                         ."reconciliation.<br /><br />"
                          ."If you need to contact the submitter they can be reached at: "
-                         ."$SubmitterEmail <br>"
-                         ."<br>"
-                         ."Congregation: ".$church[$SubmitterCong]."<br>"
-                         ."Participant: ".$participant[$SubmitterID]."<br>"
-                         ."Event: SeniorsFiles<br>"
+                         ."$SubmitterEmail <br />"
+                         ."<br />"
+                         ."Congregation: ".$church[$SubmitterCong]."<br />"
+                         ."Participant: ".$participant[$SubmitterID]."<br />"
+                         ."Event: SeniorsFiles<br />"
                          ."</body></html>\n";
 
                $ret= mail($toWho, $subject, $message, $from);
 
                if ($ret=='' or $ret)
                {
-                  $errorMsg = "File successfully uploaded<br>";
+                  $errorMsg = "File successfully uploaded<br />";
                }
                else
                {
-                  $errorMsg = "Notification Message to coordinator was not sent<br>";
+                  $errorMsg = "Notification Message to coordinator was not sent<br />";
                   print "<pre>";print_r($ret);print "</pre>";
                }
             }
