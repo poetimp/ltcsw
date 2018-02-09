@@ -1149,9 +1149,9 @@ function dumpSysVars()
    {
    ?>
       <table class='registrationTable'>
-         <th>
-            <td colspan="2" style='text-align: center'<b>SERVER</b></th>
-         </th>
+         <tr>
+            <td colspan="2" style='text-align: center'><b>SERVER</b></td>
+         </tr>
          <tr>
             <td>Variable</td>
             <td>Value</td>
