@@ -24,10 +24,10 @@ include 'include/RegFunctions.php';
 
 <body>
 <h1 align="center">Signup for Team Events</h1>
-      <form action=AddTeam.php>
+      <form method="post" action="AddTeam.php">
          <table class='registrationTable'>
             <tr>
-               <th style='width: 70px;  text-align: center' colspan=3>Action</th>
+               <th style='width: 70px;  text-align: center' colspan='3'>Action</th>
                <th style='width: 105px; text-align: left'>Participants</th>
                <th style='text-align: left'>Team Number</th>
                <th style='text-align: left'>Event Name</th>
@@ -81,7 +81,7 @@ include 'include/RegFunctions.php';
          }
          ?>
          </table>
-         <p align="center"><input type="submit" value="Add" name="Add"></p>
+         <p align="center"><input type="submit" value="Add" name="Add" /></p>
          <?php footer("","")?>
       </form>
 </body>

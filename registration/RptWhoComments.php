@@ -30,7 +30,7 @@ if ($Admin != 'Y')
 
     <body>
     <h1 align="center">LTC Participants With Comments</h1>
-    <hr>
+    <hr />
     <?php
          $results = $db->query("select   p.ParticipantID,
                                           p.FirstName,
@@ -64,7 +64,7 @@ if ($Admin != 'Y')
             {
                ?>
                <tr>
-                  <td colspan=4>&nbsp;</td>
+                  <td colspan='4'>&nbsp;</td>
                </tr>
                <?php
             }
@@ -80,7 +80,7 @@ if ($Admin != 'Y')
                <th style='width: 30%'><b><?php  print $Grade; ?></b></th>
             </tr>
             <tr>
-               <td  style='width: 100%' colspan=4><b><?php  print $Comment; ?></b></td>
+               <td  style='width: 100%' colspan='4'><b><?php  print $Comment; ?></b></td>
             </tr>
          <?php
          }

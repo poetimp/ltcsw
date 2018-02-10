@@ -32,7 +32,7 @@ $prevTime = "";
 
     <body>
     <h1 align="center">Scheduled Event Counts</h1>
-    <hr>
+    <hr />
     <?php
          //--------------------------------------------------------------------
          // First get a list of all scheduled events
@@ -115,7 +115,7 @@ $prevTime = "";
             {
                ?>
                <tr>
-                  <th colspan=4><b><?php  print $EventTime; ?></b></th>
+                  <th colspan='4'><b><?php  print $EventTime; ?></b></th>
                </tr>
                <?php
                $prevTime = $EventTime;
@@ -133,7 +133,7 @@ $prevTime = "";
          </table>
 
     <h1 align="center">Unscheduled Event Counts</h1>
-    <hr>
+    <hr />
     <?php
          //--------------------------------------------------------------------
          // First get a list of all Unscheduled events
@@ -201,7 +201,7 @@ $prevTime = "";
             {
                ?>
                <tr>
-                  <th colspan=3><b><?php  print $ConvEvent; ?></b></th>
+                  <th colspan='3'><b><?php  print $ConvEvent; ?></b></th>
                </tr>
                <?php
                $prevTime = $ConvEvent;

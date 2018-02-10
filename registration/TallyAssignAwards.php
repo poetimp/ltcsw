@@ -93,13 +93,13 @@ else
    <body>
       <h1 align="center">Assign Awards</h1>
       <h2 align="center"><?php print $EventName?></h2>
-      <hr>
+      <hr />
       <form action="TallyAssignAwards.php?EventID=<?php print $EventID?>&SchedID=<?php
                  print $SchedID;
                  if (isset($_REQUEST['View']))
                     print "&View=".$_REQUEST['View'];?>"
             method="post">
-         <table class='registrationTable'"
+         <table class='registrationTable'
                 onmouseover="javascript:trackTableHighlight(event, '#8888FF');"
                 onmouseout="javascript:highlightTableRow(0);"
          >
@@ -210,35 +210,30 @@ else
 
                   ?>
                   <tr>
-                    <td style='width: 2%' id="preserve" bgcolor=<?php print $flagColor?>>
+                    <td style='width: 2%' id="preserve" bgcolor="<?php print $flagColor?>">
                         &nbsp;
                     </td>
                     <td style='width: 28%;'><?php print $ChurchName;?></td>
                     <td style='width: 20%;'><?php print "$ViewMembers$PatricipantName";?></td>
                     <td style='width: 10%;'>
-                        <input type="radio" value="Gold" name=<?php print "\"$RadioName\" $Gold_Checked";?>>
+                        <input type="radio" value="Gold" name="<?php print "\"$RadioName\" $Gold_Checked";?>" />
                           Gold
-                        </input>
                     </td>
                     <td style='width: 10%;'>
-                        <input type="radio" value="Silver" name=<?php print "\"$RadioName\" $Silver_Checked";?>>
+                        <input type="radio" value="Silver" name="<?php print "\"$RadioName\" $Silver_Checked";?>" />
                           Silver
-                        </input>
                     </td>
                     <td style='width: 10%;'>
-                        <input type="radio" value="Bronze" name=<?php print "\"$RadioName\" $Bronze_Checked";?>>
+                        <input type="radio" value="Bronze" name="<?php print "\"$RadioName\" $Bronze_Checked";?>" />
                           Bronze
-                        </input>
                     </td>
                     <td style='width: 10%;'>
-                        <input type="radio" value="No Award" name=<?php print "\"$RadioName\" $None_Checked";?>>
+                        <input type="radio" value="No Award" name="<?php print "\"$RadioName\" $None_Checked";?>" />
                           No Award
-                        </input>
                     </td>
                     <td style='width: 10%;'>
-                        <input type="radio" value="No Show" name=<?php print "\"$RadioName\" $Noshow_Checked";?>>
+                        <input type="radio" value="No Show" name="<?php print "\"$RadioName\" $Noshow_Checked";?>" />
                           No Show
-                        </input>
                     </td>
                   </tr>
                   <?php
@@ -278,7 +273,7 @@ else
                           if (!$IndividualAwards)
                           {
                           ?>
-                             <td style='width: 2%' id="preserve" bgcolor=<?php print $flagColor?>>
+                             <td style='width: 2%' id="preserve" bgcolor="<?php print $flagColor?>">
                                 &nbsp;
                              </td>
                              <td colspan="1">&nbsp;</td>
@@ -337,33 +332,28 @@ else
                               else
                                  $Solo_flagColor = '"red"';
                           ?>
-                             <td id='preserve' bgcolor=<?php print $Solo_flagColor?>>&nbsp;</td>
+                             <td id='preserve' bgcolor="<?php print $Solo_flagColor?>">&nbsp;</td>
                              <td>&nbsp;</td>
                              <td><?php print $MemberName?></td>
                              <td style='width: 10%;'>
-                                <input type="radio" value="Gold" name=<?php print "\"$RadioSolo\" $Solo_Gold_Checked";?>>
+                                <input type="radio" value="Gold" name="<?php print "\"$RadioSolo\" $Solo_Gold_Checked";?>" />
                                    Gold
-                                </input>
                              </td>
                              <td style='width: 10%;'>
-                                <input type="radio" value="Silver" name=<?php print "\"$RadioSolo\" $Solo_Silver_Checked";?>>
+                                <input type="radio" value="Silver" name="<?php print "\"$RadioSolo\" $Solo_Silver_Checked";?>" />
                                    Silver
-                                </input>
                              </td>
                              <td style='width: 10%;'>
-                                <input type="radio" value="Bronze" name=<?php print "\"$RadioSolo\" $Solo_Bronze_Checked";?>>
+                                <input type="radio" value="Bronze" name="<?php print "\"$RadioSolo\" $Solo_Bronze_Checked";?>" />
                                    Bronze
-                                </input>
                              </td>
                              <td style='width: 10%;'>
-                                <input type="radio" value="No Award" name=<?php print "\"$RadioSolo\" $Solo_None_Checked";?>>
+                                <input type="radio" value="No Award" name="<?php print "\"$RadioSolo\" $Solo_None_Checked";?>" />
                                    No Award
-                                </input>
                              </td>
                              <td style='width: 10%;'>
-                                <input type="radio" value="No Show" name=<?php print "\"$RadioSolo\" $Solo_Noshow_Checked";?>>
+                                <input type="radio" value="No Show" name="<?php print "\"$RadioSolo\" $Solo_Noshow_Checked";?>" />
                                    No Show
-                                </input>
                              </td>
                           <?php
                           }
@@ -375,7 +365,7 @@ else
            }
          ?>
          </table>
-         <p align="center"><INPUT type="submit" name="Submit" value="Update"></p>
+         <p align="center"><input type="submit" name="Submit" value="Update" /></p>
       </form>
    <?php footer("Return to Event List","TallyEventList.php")?>
    </body>

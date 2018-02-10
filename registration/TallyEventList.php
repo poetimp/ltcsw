@@ -34,7 +34,7 @@ $prevTime = "";
 
    <body>
     <h1 align="center">Select Event to Assign Awards</h1>
-    <hr>
+    <hr />
     <?php
          //--------------------------------------------------------------------
          // First get a list of all scheduled events
@@ -188,7 +188,7 @@ $prevTime = "";
             {
                ?>
                <tr id="header">
-                  <th colspan=6><b><?php  print $EventTime; ?></b></th>
+                  <th colspan='6'><b><?php  print $EventTime; ?></b></th>
                </tr>
                <?php
                $prevTime = $EventTime;
@@ -217,7 +217,7 @@ $prevTime = "";
          <?php footer("","")?>
 
     <h1 align="center">Unscheduled Events</h1>
-    <hr>
+    <hr />
     <?php
          //--------------------------------------------------------------------
          // First get a list of all Unscheduled events
@@ -338,7 +338,7 @@ $prevTime = "";
             {
                ?>
                <tr>
-                  <th id="header" colspan=6><b><?php  print $ConvEvent; ?></b></th>
+                  <th id="header" colspan='6'><b><?php  print $ConvEvent; ?></b></th>
                </tr>
                <?php
                $prevTime = $ConvEvent;

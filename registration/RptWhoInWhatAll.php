@@ -29,7 +29,7 @@ if ($Admin != 'Y')
 
     <body>
     <h1 align="center">LTC Participation</h1>
-    <hr>
+    <hr />
     <?php
     //=========================================================================
     // This is the driver select. It will select all of the participants
@@ -69,7 +69,7 @@ if ($Admin != 'Y')
             {
                ?>
                <tr>
-                  <td colspan=4>&nbsp;</td>
+                  <td colspan='4'>&nbsp;</td>
                </tr>
                <?php
             }

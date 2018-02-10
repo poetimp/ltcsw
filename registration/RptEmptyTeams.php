@@ -29,7 +29,7 @@ if ($Admin != 'Y')
 
     <body>
     <h1 align="center">Empty Teams</h1>
-    <hr>
+    <hr />
     <?php
          $results = $db->query("select t.TeamID,
                                         e.EventName,

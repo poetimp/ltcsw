@@ -121,17 +121,17 @@ if ($Admin != 'Y')
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costExtraShirts);?></td>
          </tr>
          <tr>
-            <td style='width: 50%' colspan=2>&nbsp;</td>
+            <td style='width: 50%' colspan='2'>&nbsp;</td>
             <td style='width: 25%; text-align: right'><b>Total:</b></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costTotal);?></td>
          </tr>
          <tr>
-            <td style='width: 50%' colspan=2>&nbsp;</td>
+            <td style='width: 50%' colspan='2'>&nbsp;</td>
             <td style='width: 25%; text-align: right'><b>Monies Received:</b></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($MoneyInOut)?></td>
          </tr>
          <tr>
-            <td style='width: 50%' colspan=2>&nbsp;</td>
+            <td style='width: 50%' colspan='2'>&nbsp;</td>
             <td style='width: 25%; text-align: right'><b>Balance:</b></td>
             <td style='width: 25%; text-align: right'><?php print FormatMoney($costBalance);?></td>
          </tr>

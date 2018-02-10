@@ -113,7 +113,7 @@ if ($Admin != 'Y')
                ?>
                <h1 align="center" <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>>Roster For Director</h1>
                <h2 align="center"><?php print $EventCoord?></h2>
-               <hr>
+               <hr />
 
                <table class='registrationTable'>
                <?php

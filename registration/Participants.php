@@ -28,7 +28,7 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
 
    <body>
    <h1 align="center">Participant Maintenance </h1>
-   <form method="post" action=Participants.php>
+   <form method="post">
          <?php
             $results = $db->query("select   FirstName,
                                              LastName,
@@ -43,7 +43,7 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
             ?>
             <table class='registrationTable'>
                <tr>
-                  <th style='width: 70px; text-align: center;'colspan=3>Action</th>
+                  <th style='width: 70px; text-align: center;'colspan='3'>Action</th>
                   <th style='width: 100px; text-align: center;'>ID Number</th>
                   <th style='text-align: left'>Participant Name</th>
                </tr>
@@ -66,7 +66,7 @@ if ($UserStatus == 'O' and isset($_POST['AddNew']))
       if ($UserStatus == 'O')
       {
       ?>
-      <p align="center"><input type="submit" value="Add New" name="AddNew"></p>
+      <p align="center"><input type="submit" value="Add New" name="AddNew" /></p>
       <?php
       }
       ?>

@@ -24,7 +24,7 @@ include 'include/RegFunctions.php';
 
     <body>
     <h1 align="center">LTC Participation</h1>
-    <hr>
+    <hr />
     <?php
          $results = $db->query("select   ParticipantID,
                                           FirstName,
@@ -56,7 +56,7 @@ include 'include/RegFunctions.php';
             {
                ?>
                <tr>
-                  <td colspan=5>&nbsp;</td>
+                  <td colspan='5'>&nbsp;</td>
                </tr>
                <?php
             }

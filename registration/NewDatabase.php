@@ -163,8 +163,8 @@ else
              <table class='registrationTable' style='width: 60%; margin-left: auto; margin-right: auto'>
                 <tr>
                    <td>
-                   <b><p align="center"><font color=red><h2>Warning!!!</h2></font></p></b>
-                   <p align=left>
+                   <b><p align="center"><font color='red'><h2>Warning!!!</h2></font></p></b>
+                   <p align='left'>
                          If you confirm this action you will be removing all registration and accounting
                          data from the database and will age-up all participants. You should only do this
                          one time just prior to opening registration for a new year. If you are absolutely
@@ -176,10 +176,10 @@ else
              </table>
              <br />
              <div style="text-align: center">
-             <input type="submit" value="Confirm" name="Confirm">
+             <input type="submit" value="Confirm" name="Confirm" />
              <font size="5"><br />
              or</font><br />
-             <input type="submit" value="Cancel" name="Cancel">
+             <input type="submit" value="Cancel" name="Cancel" />
              </div>
              </p>
           </form>

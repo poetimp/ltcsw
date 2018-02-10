@@ -40,7 +40,7 @@ $roomList  = getRoomList();
 
     <body>
     <h1 align="center">Schedule Roster</h1>
-    <hr>
+    <hr />
     <?php
          if ($byTime)
             $sortBy="s.StartTime,e.EventName";
@@ -186,13 +186,13 @@ $roomList  = getRoomList();
                   }
                   else
                   {?>
-                     <th><b><?php  print $EventName; ?></b></td>
-                     <th><b><?php  print "$EventTime ($RoomNameList)"; ?></b></td>
+                     <th><b><?php  print $EventName; ?></b></th>
+                     <th><b><?php  print "$EventTime ($RoomNameList)"; ?></b></th>
                   <?php
                   }
                   ?>
-                  <th><b><?php  print $ConvEvent; ?></b></td>
-                  <th><b><?php  print $TeamEvent; ?></b></td>
+                  <th><b><?php  print $ConvEvent; ?></b></th>
+                  <th><b><?php  print $TeamEvent; ?></b></th>
                </tr>
                <?php
                if ($AdminReport)

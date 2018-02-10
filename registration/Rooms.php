@@ -65,7 +65,7 @@ if (isset($_POST['AddNew']))
          }
          ?>
          </table>
-   <p align="center"><input type="submit" value="Add New" name="AddNew"></p>
+   <p align="center"><input type="submit" value="Add New" name="AddNew" /></p>
    <p align="center"><a href="Admin.php">Back to Administration Home</a></p>
 </form>
 

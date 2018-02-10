@@ -70,22 +70,23 @@ if (isset($_POST['verify']))
             <table class='registrationTable' style='width: 625px; text-align: center'>
                <tr>
                   <td colspan="2"><b>Change Email:</b></td>
+               </tr>
                <tr>
                   <td style='text-align: right'>Verification Code:&nbsp;&nbsp;</td>
-                  <td style='text-align: left'><input type="text" name="code" size="40"></td>
+                  <td style='text-align: left'><input type="text" name="code" size="40" /></td>
                </tr>
                <?php
                if ($message != '')
                {
                ?>
                <tr>
-                  <td colspan="2" style='text-align: center'><font color=red><b><?php print $message?></b></font></td>
+                  <td colspan="2" style='text-align: center'><font color='red'><b><?php print $message?></b></font></td>
                </tr>
                <?php
                }
                ?>
                <tr>
-                  <td colspan="2" style='text-align: center'><input type="submit" name="verify" value="Verify code"></td>
+                  <td colspan="2" style='text-align: center'><input type="submit" name="verify" value="Verify code" /></td>
                </tr>
                </table>
          </div>

@@ -50,7 +50,7 @@ if ($Admin != 'Y')
    </head>
    <body>
       <h1 align="center">Awards Report</h1>
-      <hr>
+      <hr />
       <?php
          $ChurchList = ChurchesRegistered();
          $pageBreak='';
@@ -64,7 +64,6 @@ if ($Admin != 'Y')
                      <b>
                         <?php  print $ChurchName;  ?>
                      </b>
-                  </div>
                </th>
             </tr>
                <?php
@@ -74,7 +73,7 @@ if ($Admin != 'Y')
                   ?>
                      <tr>
                         <td style='width: 5%;' colspan="1">&nbsp;</td>
-                        <td style='width: 95%;' colspan="4" ><?php  print $ParticipantName;  ?></th>
+                        <td style='width: 95%;' colspan="4" ><?php  print $ParticipantName;  ?></td>
                      </tr>
                      <?php
 
@@ -92,6 +91,7 @@ if ($Admin != 'Y')
                   }
                ?>
          </table>
+         </div>
          <?php
          }
       ?>

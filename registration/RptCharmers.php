@@ -30,7 +30,7 @@ if ($Admin != 'Y')
 
     <body>
     <h1 align="center">Charmers</h1>
-    <hr>
+    <hr />
     <?php
          $results = $db->query("select    c.charmerID,
                                           c.charmerName,
@@ -53,7 +53,7 @@ if ($Admin != 'Y')
                   <tr>
                      <th><b>Church        </b></th>
                      <th><b>Name          </b></th>
-                     <th><b>Sex           </b></td>
+                     <th><b>Sex           </b></th>
                      <th><b>Need Room     </b></th>
                      <th><b>Shirt Needed  </b></th>
                      <th><b>Shirt Size    </b></th>

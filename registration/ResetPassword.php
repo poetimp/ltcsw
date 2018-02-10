@@ -114,13 +114,13 @@ if ($redirectMessage != '')
                     if ($message != '') {
                         ?>
                         <tr>
-                            <td colspan="2" style='text-align: center'><font color=red><b><?php print $message ?></b></font></td>
+                            <td colspan="2" style='text-align: center'><font color='red'><b><?php print $message ?></b></font></td>
                         </tr>
                         <?php
                     }
                     ?>
                     <tr>
-                        <td colspan="2" style='text-align: center'><input type="submit" name="reset" value="Reset Password"></td>
+                        <td colspan="2" style='text-align: center'><input type="submit" name="reset" value="Reset Password" /></td>
                     </tr>
                 </table>
             </div>

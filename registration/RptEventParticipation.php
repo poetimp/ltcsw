@@ -30,7 +30,7 @@ if ($Admin != 'Y')
 
     <body>
     <h1 align="center">Event Participation</h1>
-    <hr>
+    <hr />
     <?php
        //--------------------------------------------------------------------
        // First collect a list of all of the events

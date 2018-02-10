@@ -69,7 +69,7 @@ if (isset($_POST['submit']))
    <body>
       <h1 align="center">Request Userid/Password</h1>
 
-      <form method="post" action=ReqUserid.php>
+      <form method="post">
          <table class='registrationTable' style='width: 425px; margin-left: auto; margin-right: auto' id="table1">
             <tr>
                <th colspan="2" style='text-align: center'>User Information</th>
@@ -77,19 +77,19 @@ if (isset($_POST['submit']))
             <tr>
 
                <th>Userid</th>
-               <td><input type="text" name="Userid" size="36" value="<?php print $Userid;?>"></td>
+               <td><input type="text" name="Userid" size="36" value="<?php print $Userid;?>" /></td>
             </tr>
             <tr>
                <th>Name</th>
-               <td><input type="text" name="Name" size="36" value="<?php print $Name;?>"></td>
+               <td><input type="text" name="Name" size="36" value="<?php print $Name;?>" /></td>
             </tr>
             <tr>
                <th>Church</th>
-               <td><input type="text" name="Church" size="36" value="<?php print $Church;?>"></td>
+               <td><input type="text" name="Church" size="36" value="<?php print $Church;?>" /></td>
             </tr>
             <tr>
                <th>Email Address</th>
-               <td><input type="text" name="Email" size="36" value="<?php print $Email;?>"></td>
+               <td><input type="text" name="Email" size="36" value="<?php print $Email;?>" /></td>
             </tr>
             <tr>
                <th colspan="2" style='text-align: center'><b>Any Additional Information</b></th>
@@ -109,7 +109,7 @@ if (isset($_POST['submit']))
                   print "</font>\n";
                }
             ?>
-            <input type="submit" value="Submit Request" name="submit">
+            <input type="submit" value="Submit Request" name="submit" />
          </p>
       </form>
    </body>

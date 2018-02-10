@@ -52,7 +52,7 @@ else
 
 <body>
 <h1 align="center">User Maintenance </h1>
-<form method="post" action=Users.php>
+<form method="post">
       <?php
          $results = $db->query("select   u.Userid,
                                           c.ChurchName,
@@ -159,7 +159,7 @@ else
          }
          ?>
          </table>
-   <p align="center"><input type="submit" value="Add New" name="AddNew"></p>
+   <p align="center"><input type="submit" value="Add New" name="AddNew" /></p>
 </form>
 <?php footer("","")?>
 

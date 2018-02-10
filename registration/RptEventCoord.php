@@ -24,7 +24,7 @@ include 'include/RegFunctions.php';
 
     <body>
     <h1 align="center">Event Coordinators</h1>
-    <hr>
+    <hr />
     <?php
          $results = $db->query("select   c.Name,
                                           c.Phone,

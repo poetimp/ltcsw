@@ -32,7 +32,7 @@ if ($Admin != 'Y')
 
     <body>
     <h1 align="center">Church Coordinators</h1>
-    <hr>
+    <hr />
     <?php
          $results = $db->query("select   CoordName,
                                           CoordPhone,

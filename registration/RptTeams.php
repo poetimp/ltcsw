@@ -51,7 +51,7 @@ else
       ?>
          <h1 align="center" <?php print $pageBreak;$pageBreak="style=\"page-break-before:always;\"";?>>Team Rosters</h1>
          <h1 align="center"><?php  print "$ChurchName";?></h1>
-         <hr>
+         <hr />
       <?php
       $results = $db->query("select   EventID,
                                        EventName,

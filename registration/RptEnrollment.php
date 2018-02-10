@@ -28,7 +28,7 @@ if ($Admin != 'Y')
    </head>
    <body>
       <h1 align="center">Enrollment by Congregation</h1>
-      <hr>
+      <hr />
       <table class='registrationTable' style='width: 40%;margin-left: auto;margin-right: auto'>
    <?php
       //=================================================================================================

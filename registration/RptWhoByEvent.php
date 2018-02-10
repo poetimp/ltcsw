@@ -34,7 +34,7 @@ $pageBreak='';
 
     <body>
     <h1 align="center">Event Rosters</h1>
-    <hr>
+    <hr />
     <?php
        //--------------------------------------------------------------------
        // First collect a list of all of the events
