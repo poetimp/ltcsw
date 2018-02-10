@@ -26,7 +26,7 @@ if (isset($_POST['Confirm']))
          <link rel="stylesheet" href="include/registration.css" type="text/css" />
       </head>
       <body>
-         <h1 align=center>
+         <h1 align="center">
             Charmer <?php  print $_REQUEST['name']; ?> Deleted!
          </h1>
          <?php footer("Return to Charmers List","Charmers.php")?>

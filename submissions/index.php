@@ -608,7 +608,7 @@ if ($_POST)
             </div>
          </header>
 
-         <div class="nopad" align=center>
+         <div class="nopad" align="center">
             <table class="blog" cellpadding="0" cellspacing="0" style=border:0>
                <tr>
                   <td valign="top">

@@ -332,7 +332,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   else
                   {
                   ?>
-                     <input type="checkbox" name="charmerNeedRoom" <?php if ($charmerNeedRoom == 'on') print 'checked'?> /></td>
+                     <input type="checkbox" name="charmerNeedRoom" <?php if ($charmerNeedRoom == 'on') print 'checked'?> />
                   <?php
                   }
                   ?>
@@ -349,7 +349,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                   else
                   {
                   ?>
-                     <input type="checkbox" name="charmerTshirtNeeded" <?php if ($charmerTshirtNeeded == 'on') print 'checked'?> /></td>
+                     <input type="checkbox" name="charmerTshirtNeeded" <?php if ($charmerTshirtNeeded == 'on') print 'checked'?> />
                   <?php
                   }
                   ?>

@@ -47,7 +47,7 @@ if (isset($_POST['Confirm']))
          <link rel="stylesheet" href="include/registration.css" type="text/css" />
       </head>
       <body>
-         <h1 align=center>
+         <h1 align="center">
             Participant: <?php  print $_REQUEST['Name']; ?> Deleted!
          </h1>
          <?php footer("Return to Participant List","Participants.php")?>

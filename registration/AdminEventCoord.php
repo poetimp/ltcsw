@@ -265,7 +265,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 	   <!------------------------------------------------------------------------------>
 		<tr>
          <!----------------------- Column 1 ------------------------------------------>
- 			<th style='width: 12%;'>Name</td>
+ 			<th style='width: 12%;'>Name</th>
          <!----------------------- Column 2-7 ------------------------------------------>
 			<td style='width: 88%;' colspan="6">
  			<?php
@@ -276,7 +276,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 			else
 			{
 			?>
-			   <input type="text" name="CoordName" size="36" <?php  print ($CoordName != "") ? "value=\"" . $CoordName . "\"" : ""; ?>>
+			   <input type="text" name="CoordName" size="36" <?php  print ($CoordName != "") ? "value=\"" . $CoordName . "\"" : ""; ?> />
  			<?php
   			}
   			?>
@@ -287,7 +287,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 	   <!------------------------------------------------------------------------------>
 		<tr>
          <!----------------------- Column 1 ------------------------------------------>
-			<th style='width: 12%;'>Address</td>
+			<th style='width: 12%;'>Address</th>
          <!----------------------- Column 2-7 ------------------------------------------>
 			<td style='width: 88%;' colspan="6">
  			<?php
@@ -298,7 +298,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 			else
 			{
 			?>
-			   <input type="text" name="CoordAddr" size="36" <?php  print ($CoordAddr != "") ? "value=\"" . $CoordAddr . "\"" : ""; ?>>
+			   <input type="text" name="CoordAddr" size="36" <?php  print ($CoordAddr != "") ? "value=\"" . $CoordAddr . "\"" : ""; ?> />
  			<?php
   			}
   			?>
@@ -309,7 +309,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 	   <!------------------------------------------------------------------------------>
 		<tr>
          <!----------------------- Column 1 ------------------------------------------>
-			<th style='width: 12%;'>City</td>
+			<th style='width: 12%;'>City</th>
          <!----------------------- Column 2-4 ------------------------------------------>
 			<td style='width: 38%;' colspan="3">
  			<?php
@@ -320,13 +320,13 @@ if (isset($_POST['add']) or isset($_POST['update']))
 			else
 			{
 			?>
-			   <input type="text" name="CoordCity" size="36" <?php  print ($CoordCity != "") ? "value=\"" . $CoordCity . "\"" : ""; ?>>
+			   <input type="text" name="CoordCity" size="36" <?php  print ($CoordCity != "") ? "value=\"" . $CoordCity . "\"" : ""; ?> />
  			<?php
   			}
   			?>
 			</td>
          <!----------------------- Column 5 ------------------------------------------>
-			<th style='width: 25%;'>State</td>
+			<th style='width: 25%;'>State</th>
          <!----------------------- Column 6-7 ------------------------------------------>
 			<td style='width: 25%;' colspan="2">
  			<?php
@@ -409,11 +409,11 @@ if (isset($_POST['add']) or isset($_POST['update']))
 	   <!------------------------------------------------------------------------------>
 		<tr>
          <!----------------------- Column 1 ------------------------------------------>
-			<th style='width: 12%;'>&nbsp;</td>
+			<th style='width: 12%;'>&nbsp;</th>
          <!----------------------- Column 2-4 ------------------------------------------>
 			<td style='width: 38%;' colspan="3">&nbsp;</td>
          <!----------------------- Column 5 ------------------------------------------>
-			<th style='width: 25%;'>Zip</td>
+			<th style='width: 25%;'>Zip</th>
          <!----------------------- Column 6-7 ------------------------------------------>
 			<td style='width: 25%;' colspan="2">
  			<?php
@@ -424,7 +424,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 			else
 			{
 			?>
-			   <input type="text" name="CoordZip" size="20" <?php  print ($CoordZip != "") ? "value=\"" . $CoordZip . "\"" : ""; ?>>
+			   <input type="text" name="CoordZip" size="20" <?php  print ($CoordZip != "") ? "value=\"" . $CoordZip . "\"" : ""; ?> />
  			<?php
   			}
   			?>
@@ -435,7 +435,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 	   <!------------------------------------------------------------------------------>
 		<tr>
          <!----------------------- Column 1 ------------------------------------------>
-			<th style='width: 12%;'>Email</td>
+			<th style='width: 12%;'>Email</th>
          <!----------------------- Column 2-7 ------------------------------------------>
 			<td style='width: 88%;' colspan="6">
  			<?php
@@ -446,7 +446,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 			else
 			{
 			?>
-			   <input type="text" name="CoordEmail" size="36" <?php  print ($CoordEmail != "") ? "value=\"" . $CoordEmail . "\"" : ""; ?>> (Enter <b>None</b> for no email address
+			   <input type="text" name="CoordEmail" size="36" <?php  print ($CoordEmail != "") ? "value=\"" . $CoordEmail . "\"" : ""; ?> /> (Enter <b>None</b> for no email address
  			<?php
   			}
   			?>
@@ -457,7 +457,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 	   <!------------------------------------------------------------------------------>
 		<tr>
          <!----------------------- Column 1 ------------------------------------------>
-			<th style='width: 12%;'>Phone</td>
+			<th style='width: 12%;'>Phone</th>
          <!----------------------- Column 2-7 ------------------------------------------>
 			<td style='width: 88%;' colspan="6">
  			<?php
@@ -468,7 +468,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 			else
 			{
 			?>
-            <input type="text" name="CoordPhone" size="36" <?php  print ($CoordPhone != "") ? "value=\"" . $CoordPhone . "\"" : ""; ?>>(xxx) xxx-xxxx
+            <input type="text" name="CoordPhone" size="36" <?php  print ($CoordPhone != "") ? "value=\"" . $CoordPhone . "\"" : ""; ?> /> (xxx) xxx-xxxx
  			<?php
   			}
   			?>
@@ -477,17 +477,20 @@ if (isset($_POST['add']) or isset($_POST['update']))
 	</table>
 	<p align="center"><?php
             if ($mode == 'update')
-            {?> <input type="submit" value="Update" name="update">
-	            <input type="hidden" value="<?php  print $CoordID; ?>" name="CoordID">
-	            <input type="hidden" value="update" name="action"><?php
+            {?> <input type="submit" value="Update" name="update" />
+	             <input type="hidden" value="<?php  print $CoordID; ?>" name="CoordID" />
+	             <input type="hidden" value="update" name="action" />
+             <?php
             }
             else if ($mode == 'add')
-            {?> <input type="submit" value="Add" name="add">
-             	<input type="hidden" value="add" name="action"><?php
+            {?> <input type="submit" value="Add" name="add" />
+                <input type="hidden" value="add" name="action" />
+             <?php
             }
             else if ($mode == 'view')
             {?>
-	            <input type="hidden" value="update" name="action"><?php
+	            <input type="hidden" value="update" name="action" />
+            <?php
             }
          ?>
          <br />

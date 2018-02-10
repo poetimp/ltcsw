@@ -127,7 +127,7 @@ if (isset($_POST['Confirm']))
          </title>
       </head>
       <body>
-         <h1 align=center>
+         <h1 align="center">
             Database has been cleared of previous year's data
          </h1>
          <?php footer("","")?>
@@ -163,7 +163,7 @@ else
              <table class='registrationTable' style='width: 60%; margin-left: auto; margin-right: auto'>
                 <tr>
                    <td>
-                   <b><p align=center><font color=red><h2>Warning!!!</h2></font></p></b>
+                   <b><p align="center"><font color=red><h2>Warning!!!</h2></font></p></b>
                    <p align=left>
                          If you confirm this action you will be removing all registration and accounting
                          data from the database and will age-up all participants. You should only do this

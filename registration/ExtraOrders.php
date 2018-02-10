@@ -246,7 +246,7 @@ else
       <link rel="stylesheet" href="include/registration.css" type="text/css" />
     </head>
        <body>
-          <h1 align=center>Extra Orders</h1>
+          <h1 align="center">Extra Orders</h1>
 
     <form method="post" action=ExtraOrders.php>
          <h2>T-Shirts</h2>

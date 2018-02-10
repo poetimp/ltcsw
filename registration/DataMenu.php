@@ -27,7 +27,7 @@ if ($Admin != 'Y')
       <link rel="stylesheet" href="include/registration.css" type="text/css" />
    </head>
    <body>
-      <h1 align=center>
+      <h1 align="center">
          Data Access
       </h1>
 

@@ -346,8 +346,10 @@ if (isset($_POST['Apply']))
        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
        <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
-       <h1 align=center>Manage Team Members For</h1>
-       <h2 align=center><?php  print $EventName; ?><br />
+    </head>
+    <body>
+       <h1 align="center">Manage Team Members For</h1>
+       <h2 align="center"><?php  print $EventName; ?><br />
            <?php  if ($TeamID > 0)
               {
                  print "Team # $TeamID";
@@ -370,8 +372,6 @@ if (isset($_POST['Apply']))
           print "<h3><font color=\"#FF0000\">$message</font></h3>\n";
        }
        ?>
-    </head>
-    <body>
     <?php
     if ($TeamID > 0)
     {
@@ -517,7 +517,7 @@ if (isset($_POST['Apply']))
                }
                ?>
                </th>
-               <th colspan=2>
+               <th colspan='2'>
                      <?php
                      if ($Action == "View")
                      {
@@ -536,10 +536,10 @@ if (isset($_POST['Apply']))
          }
          ?>
          <tr>
-            <th colspan=3 style='text-align: center'>Comments</th>
+            <th colspan='3' style='text-align: center'>Comments</th>
          </tr>
          <tr>
-            <td colspan=3>
+            <td colspan='3'>
                <?php
                if ($Action == "View")
                {
@@ -548,7 +548,7 @@ if (isset($_POST['Apply']))
                else
                {
                ?>
-                  <p align="center"><textarea rows="4" name="TeamComment" cols="71"><?php print $TeamComment;?></textarea></td>
+                  <p align="center"><textarea rows="4" name="TeamComment" cols="71"><?php print $TeamComment;?></textarea></p></td>
                <?php
                }
                ?>
@@ -557,14 +557,14 @@ if (isset($_POST['Apply']))
             <?php
             if ($Action == "View")
             {
-               print "<th colspan=2 align=center>Participant Name</th>";
+               print "<th colspan=2 align='center'>Participant Name</th>";
             }
             else
             {
             ?>
                <th style='width: 10%;'>Selected</th>
                <th style='width: 10%;'>Grade</th>
-               <td style='width: 80%;'>Participant Name</th>
+               <th style='width: 80%;'>Participant Name</th>
             <?php
             }
             ?>

@@ -49,7 +49,7 @@ if (isset($_POST['reset']))
           $email .= "      <meta http-equiv=\"Content-Language\" content=\"en-us\">\n";
           $email .= "      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
           $email .= "      <link rel=\"stylesheet\" href=\"include/registration.css\" type=\"text/css\" />\n";
-          $email .= "      <h1 align=center>\n";
+          $email .= "      <h1 align='center'>\n";
           $email .= "         LTC Password Reset\n";
           $email .= "      </h1>\n";
           $email .= "   </head>\n";
@@ -97,7 +97,7 @@ if (isset($_POST['reset']))
        <title>Forgot Password</title>
     </head>
     <body>
-        <h1 align=center>Forgot Password</h1>
+        <h1 align="center">Forgot Password</h1>
         <form method="post" id="main" name="main">
             <div style="text-align: center">
                 <table class='registrationTable' style='width: 550px'>
@@ -123,19 +123,19 @@ if (isset($_POST['reset']))
                     </tr>
                     <tr>
                         <th style='text-align: right'>Email Address:&nbsp;&nbsp;</th>
-                        <td style='text-align: left'><input type="text" name="email" size="40"></td>
+                        <td style='text-align: left'><input type="text" name="email" size="40" /></td>
                     </tr>
                     <?php
                     if ($message != '') {
                         ?>
                         <tr>
-                            <td colspan="2" style='text-align: center'><font color=red><b><?php print $message ?></b></font></td>
+                            <td colspan="2" style='text-align: center'><font color='red'><b><?php print $message ?></b></font></td>
                         </tr>
                         <?php
                     }
                     ?>
                     <tr>
-                        <td colspan="2" style='text-align: center'><input type="submit" name="reset" value="Reset Password"></td>
+                        <td colspan="2" style='text-align: center'><input type="submit" name="reset" value="Reset Password" /></td>
                     </tr>
                 </table>
             </div>

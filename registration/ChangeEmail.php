@@ -31,7 +31,7 @@ if (isset($_POST['ChangeEmail']))
       $email  .= "      <title>\n";
       $email  .= "         Verify Email Change\n";
       $email  .= "      </title>\n";
-      $email  .= "      <h1 align=center>\n";
+      $email  .= "      <h1 align='center'>\n";
       $email  .= "         Verify Email Change\n";
       $email  .= "      </h1>\n";
       $email  .= "   </head>\n";
@@ -78,9 +78,9 @@ if (isset($_POST['ChangeEmail']))
       <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
       <title>Change Email Address</title>
-      <h1 align=center>Change Email Address</h1>
    </head>
    <body>
+      <h1 align="center">Change Email Address</h1>
       <form method="post" id="main" name="main">
          <div style="text-align: center">
             <table class='registrationTable' style='width: 550px'>
@@ -106,20 +106,20 @@ if (isset($_POST['ChangeEmail']))
                </tr>
                <tr>
                   <th style='text-align: right'>New Email Address:&nbsp;&nbsp;</th>
-                  <td style='text-align: left'><input type="text" name="email" size="40"></td>
+                  <td style='text-align: left'><input type="text" name="email" size="40" /></td>
                </tr>
                <?php
                if ($message != '')
                {
                ?>
                <tr>
-                  <td colspan="2" style='text-align: center'><font color=red><b><?php print $message?></b></font></td>
+                  <td colspan="2" style='text-align: center'><font color="red"><b><?php print $message?></b></font></td>
                </tr>
                <?php
                }
                ?>
                <tr>
-                  <td colspan="2" style='text-align: center'><input type="submit" name="ChangeEmail" value="Change Email"></td>
+                  <td colspan="2" style='text-align: center'><input type="submit" name="ChangeEmail" value="Change Email" /></td>
                </tr>
                </table>
          </div>

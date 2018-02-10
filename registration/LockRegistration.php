@@ -74,24 +74,24 @@ else if (isset($_POST['Close']))
 <?php
 if (isset($_POST['Lock']))
 {
-   print "<h3 align=center><font color=\"#FF0000\">All non-administrative users have been locked</font></h3>";
+   print "<h3 align='center'><font color=\"#FF0000\">All non-administrative users have been locked</font></h3>";
 }
 else if (isset($_POST['Unlock']))
 {
-   print "<h3 align=center><font color=\"#FF0000\">All non-administrative users have been unlocked</font></h3>";
+   print "<h3 align='center'><font color=\"#FF0000\">All non-administrative users have been unlocked</font></h3>";
 }
 else if (isset($_POST['Open']))
 {
-   print "<h3 align=center><font color=\"#FF0000\">Registration is opened</font></h3>";
-   print "<h3 align=center><font color=\"#FF0000\">All unlocked users may now register new participants</font></h3>";
+   print "<h3 align='center'><font color=\"#FF0000\">Registration is opened</font></h3>";
+   print "<h3 align='center'><font color=\"#FF0000\">All unlocked users may now register new participants</font></h3>";
 }
 else if (isset($_POST['Close']))
 {
-   print "<h3 align=center><font color=\"#FF0000\">Registration is closed</font></h3>";
-   print "<h3 align=center><font color=\"#FF0000\">Only Administrative users may now add new participants</font></h3>";
+   print "<h3 align='center'><font color=\"#FF0000\">Registration is closed</font></h3>";
+   print "<h3 align='center'><font color=\"#FF0000\">Only Administrative users may now add new participants</font></h3>";
 }
 ?>
-<form method="post" action=LockRegistration.php>
+<form method="post">
       <?php
          $results = $db->query("select   Userid,
                                           ChurchID,
@@ -156,15 +156,15 @@ else if (isset($_POST['Close']))
          ?>
          </table>
    <p align="center">
-      <input type="submit" value="Close Registration" name="Close">
-      <input type="submit" value="Open Registration" name="Open">
+      <input type="submit" value="Close Registration" name="Close" />
+      <input type="submit" value="Open Registration" name="Open" />
    </p>
    <p align="center">
-      <input type="submit" value="Lock Users" name="Lock">
-      <input type="submit" value="Unlock Users" name="Unlock">
+      <input type="submit" value="Lock Users" name="Lock" />
+      <input type="submit" value="Unlock Users" name="Unlock" />
    </p>
    <p align="center">
-      <input type="submit" value="Reports Only" name="Reports">
+      <input type="submit" value="Reports Only" name="Reports" />
    </p>
 </form>
 <?php footer("","")?>

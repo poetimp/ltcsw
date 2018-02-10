@@ -57,7 +57,7 @@ if (isset($_POST['ChangePwd']))
       <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
       <title>Change Password</title>
-      <h1 align=center>Change Password</h1>
+      <h1 align="center">Change Password</h1>
    </head>
    <body>
       <form method="post" id="main" name="main">

@@ -76,7 +76,7 @@ if ($redirectMessage != '')
         <link rel="stylesheet" href="include/registration.css" type="text/css" />
     </head>
     <body>
-        <h1 align=center>Reset Password</h1>
+        <h1 align="center">Reset Password</h1>
         <form method="post" id="main" name="main">
             <div style="text-align: center">
                 <table class='registrationTable' border="0" style='width: 550px'>

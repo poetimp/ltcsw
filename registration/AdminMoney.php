@@ -85,11 +85,11 @@ if ($ChurchID != "" and isset($_POST['TxType']))
       <meta http-equiv="Content-Language" content="en-us" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="stylesheet" href="include/registration.css" type="text/css" />
-      <h1 align=center>Administer Monies</h1>
    </head>
 
    <body>
-      <form method="post" action=AdminMoney.php>
+      <h1 align="center">Administer Monies</h1>
+      <form method="post">
          <?php
          if ($ChurchID == "")
          {
@@ -98,9 +98,9 @@ if ($ChurchID != "" and isset($_POST['TxType']))
          //==================================================================================
             $ChuchList = ChurchesDefined();
             ?>
-            <p align=center>
-               <select name=ChurchID size=1>
-                  <option value=0 selected>----- Select Church -----</option>
+            <p align="center">
+               <select name='ChurchID' size='1'>
+                  <option value='0' selected>----- Select Church -----</option>
                   <?php
                   foreach ($ChuchList as $ChurchID=>$ChurchName)
                   {
@@ -123,18 +123,18 @@ if ($ChurchID != "" and isset($_POST['TxType']))
             // First show current transaction history
             //==================================================================================
             ?>
-            <h2 align="center">for<br /><?php  print "$ChurchName</h2>"; ?>
+            <h2 align="center">for<br /><?php  print "$ChurchName"; ?></h2>
 
-            <input type=hidden name=ChurchID <?php print "value=$ChurchID"?>>
+            <input type='hidden' name='ChurchID' <?php print "value='$ChurchID'"?> />
             <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto'>
                <tr>
-                  <td colspan=4 style='text-align: center'><h3>History</h3></td>
+                  <td colspan='4' style='text-align: center'><h3>History</h3></td>
                </tr>
                <tr>
                   <th>Date</th>
                   <th>Type</th>
                   <th>Amount</th>
-                  <th>Annotation</td>
+                  <th>Annotation</th>
                </tr>
                <?php
 
@@ -216,16 +216,16 @@ if ($ChurchID != "" and isset($_POST['TxType']))
             <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto'>
                <tr>
                   <th style='width: 130px;'>Transaction Type:</th>
-                  <td style='width: 80px;'><input type="radio" value="Credit" name="TxType" <?php print $creditChecked?>>Credit</td>
-                  <td style='width: 80px;'><input type="radio" value="Refund" name="TxType" <?php print $debitChecked?>>Refund</td>
+                  <td style='width: 80px;'><input type="radio" value="Credit" name="TxType" <?php print $creditChecked?> />Credit</td>
+                  <td style='width: 80px;'><input type="radio" value="Refund" name="TxType" <?php print $debitChecked?> />Refund</td>
                </tr>
                <tr>
                   <th style='width: 130px;'>Amount:</th>
-                  <td style='width: 160px;' colspan=2><input type="text" name="Amount" size="20" <?php print $valueAmount?>></td>
+                  <td style='width: 160px;' colspan='2'><input type="text" name="Amount" size="20" <?php print $valueAmount?> /></td>
                </tr>
                <tr>
                   <th style='width: 130px;'>Annotation:</th>
-                  <td style='width: 160px;' colspan=2><input type="text" name="Annotation" size="20" <?php print $valueAnnotation?>></td>
+                  <td style='width: 160px;' colspan='2'><input type="text" name="Annotation" size="20" <?php print $valueAnnotation?> /></td>
                </tr>
             </table>
             <?php
@@ -234,12 +234,12 @@ if ($ChurchID != "" and isset($_POST['TxType']))
             //==================================================================================
             if ($errorMsg != "")
             {
-               print "<p align=center><font color=#FF0000><b>$errorMsg</b></font></p>";
+               print "<p align='center'><font color=#FF0000><b>$errorMsg</b></font></p>";
             }
          }
          ?>
-         <p align=center>
-            <input type="submit" value="Submit" name="Submit">
+         <p align="center">
+            <input type="submit" value="Submit" name="Submit" />
          </p>
 
       </form>

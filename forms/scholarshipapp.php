@@ -79,7 +79,7 @@ if ($Submit != '')
    $message .= "      <title>Scholarship Application</title>\n";
    $message .= "   </head>\n";
    $message .= "   <body>\n";
-   $message .= "      <h1 align=center>\n";
+   $message .= "      <h1 align='center'>\n";
    $message .= "         Scholarship Application\n";
    $message .= "      </h1>\n";
    $message .= "      <b>Personal Data<br /></b>\n";

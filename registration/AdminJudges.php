@@ -176,7 +176,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
               if ($mode == 'update')
               {
                 ?>
-                  <h1 align=center>
+                  <h1 align='center'>
                      Judge <br />"<?php  print $LastName . ", " . $FirstName; ?>"<br />Updated!
                   </h1>
                 <?php
@@ -184,7 +184,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
               else
               {
                 ?>
-                  <h1 align=center>
+                  <h1 align='center'>
                      Judge<br />"<?php  print $LastName . ", " . $FirstName; ?>"<br />Added!
                   </h1>
                 <?php
@@ -256,13 +256,13 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
       }
    ?>
 
-   <form method="post" action=AdminJudges.php>
+   <form method="post">
       <table class='registrationTable' id="table1">
          <tr>
             <th colspan="5" style='text-align: center'>Judge Information</th>
          </tr>
          <tr>
-            <th style='width: 15%;'>First Name</td>
+            <th style='width: 15%;'>First Name</th>
             <td style='width: 30%;'>
             <?php
             if ($mode == "view")
@@ -272,7 +272,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             else
             {
             ?>
-               <input type="text" name="FirstName" size="36" <?php  print ($FirstName != "") ? "value=\"" . $FirstName . "\"" : ""; ?>>
+               <input type="text" name="FirstName" size="36" <?php  print ($FirstName != "") ? "value=\"" . $FirstName . "\"" : ""; ?> />
             <?php
             }
             ?>
@@ -289,7 +289,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                else
                {
                ?>
-                  <input type="text" name="LastName" size="36" <?php  print ($LastName != "") ? "value=\"" . $LastName . "\"" : ""; ?>>
+                  <input type="text" name="LastName" size="36" <?php  print ($LastName != "") ? "value=\"" . $LastName . "\"" : ""; ?> />
                <?php
                }
                ?>
@@ -306,7 +306,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                else
                {
                ?>
-                  <input type="text" name="Address" size="36" <?php  print ($Address != "") ? "value=\"" . $Address . "\"" : ""; ?>>
+                  <input type="text" name="Address" size="36" <?php  print ($Address != "") ? "value=\"" . $Address . "\"" : ""; ?> />
                <?php
                }
                ?>
@@ -323,7 +323,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                else
                {
                ?>
-                  <input type="text" name="City" size="36" <?php  print ($City != "") ? "value=\"" . $City . "\"" : ""; ?>>
+                  <input type="text" name="City" size="36" <?php  print ($City != "") ? "value=\"" . $City . "\"" : ""; ?> />
                <?php
                }
                ?>
@@ -418,7 +418,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                else
                {
                ?>
-                  <input type="text" name="Zip" size="20" <?php  print ($Zip != "") ? "value=\"" . $Zip . "\"" : ""; ?>>
+                  <input type="text" name="Zip" size="20" <?php  print ($Zip != "") ? "value=\"" . $Zip . "\"" : ""; ?> />
                <?php
                }
                ?>
@@ -435,7 +435,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                else
                {
                ?>
-                  <input type="text" name="Email" size="36" <?php  print ($Email != "") ? "value=\"" . $Email . "\"" : ""; ?>>
+                  <input type="text" name="Email" size="36" <?php  print ($Email != "") ? "value=\"" . $Email . "\"" : ""; ?> />
                <?php
                }
                ?>
@@ -452,7 +452,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
                else
                {
                ?>
-                  <input type="text" name="Phone" size="36" <?php  print ($Phone != "") ? "value=\"" . $Phone . "\"" : ""; ?>> (xxx) xxx-xxxx
+                  <input type="text" name="Phone" size="36" <?php  print ($Phone != "") ? "value=\"" . $Phone . "\"" : ""; ?> /> (xxx) xxx-xxxx
                <?php
                }
                ?>
@@ -464,20 +464,20 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
          <?php
             if ($mode == 'update')
             {?>
-               <input type="submit" value="Update" name="update">
-               <input type="hidden" value="<?php  print $JudgeID; ?>" name=JudgeID>
-               <input type="hidden" value="update" name=action>
+               <input type="submit" value="Update" name="update" />
+               <input type="hidden" value="<?php  print $JudgeID; ?>" name="JudgeID" />
+               <input type="hidden" value="update" name="action" />
              <?php
             }
             else if ($mode == 'add')
             {?>
-               <input type="submit" value="Add" name="add">
-               <input type="hidden" value="add" name=action>
+               <input type="submit" value="Add" name="add" />
+               <input type="hidden" value="add" name="action" />
              <?php
             }
             else if ($mode == 'view')
             {?>
-               <input type="hidden" value="update" name=action>
+               <input type="hidden" value="update" name="action" />
              <?php
             }
 
