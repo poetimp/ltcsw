@@ -200,7 +200,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             <th colspan="4" style='text-align: center'>Room Information</th>
          </tr>
          <tr>
-            <th style='width: 12%;'>Name</td>
+            <th style='width: 12%;'>Name</th>
             <td style='width: 85%;' colspan="3">
                <?php
                   if ($mode == 'view')
@@ -216,7 +216,7 @@ if ((!isset($_POST['add']) and !isset($_POST['update'])) or $ErrorMsg != "")
             </td>
          </tr>
          <tr>
-            <th style='width: 12%;'>Seats</td>
+            <th style='width: 12%;'>Seats</th>
             <td style='width: 85%;' colspan="3">
             <?php
             if ($mode == "view")

@@ -371,7 +371,7 @@ function selectTime($Timestr = '')
             <tr>
                <td colspan="2" style='width: 100px'>&nbsp;</td>
                <td style='width: 75px; text-align: center; vertical-align: middle'>
-                  <a href='javascript:void(0)' onclick='javascript:saveEvent(<?php print "\"$EventID\""?>)'><input type='button' value='Save'></input></a></td>
+                  <a href='javascript:void(0)' onclick='javascript:saveEvent(<?php print "\"$EventID\""?>)'><input type='button' value='Save'></input></a>
                </td>
                <td colspan="2">Day: <?php selectDay()?>Time: <?php selectTime()?>Room<?php selectRoom(); print $error?></td>
             </tr>
@@ -384,7 +384,7 @@ function selectTime($Timestr = '')
             <tr>
                <td colspan="2" style='width: 100px'>&nbsp;</td>
                <td style='width: 75px; text-align: center; vertical-align: middle'>
-                  <a href='javascript:void(0)' onclick='javascript:updateEvent(<?php print "\"$EventID\",\"$SchedID\""?>)'><input type='button' value='Update'></a></td>
+                  <a href='javascript:void(0)' onclick='javascript:updateEvent(<?php print "\"$EventID\",\"$SchedID\""?>)'><input type='button' value='Update' /></a>
                </td>
                <td colspan="2">Day: <?php selectDay(substr($_POST['StartTime'],0,1))?>Time: <?php selectTime($_POST['StartTime'])?>Room<?php selectRoom($_POST['RoomID']); print $error?></td>
             </tr>

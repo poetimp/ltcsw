@@ -33,7 +33,7 @@ if (isset($_POST['AddNew']))
 
    <body>
       <h1 align="center">Church Maintenance </h1>
-      <form method="post" action=Churches.php>
+      <form method="post">
          <?php
             $results = $db->query("select   ChurchName,
                                              ChurchID
@@ -58,7 +58,7 @@ if (isset($_POST['AddNew']))
             }
             ?>
             </table>
-         <p align="center"><input type="submit" value="Add New" name="AddNew"></p>
+         <p align="center"><input type="submit" value="Add New" name="AddNew" /></p>
       </form>
       <?php footer("","")?>
 

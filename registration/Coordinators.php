@@ -34,7 +34,7 @@ if (isset($_POST['AddNew']))
 
    <body>
       <h1 align="center">Coordinator Maintenance </h1>
-      <form method="post" action=Coordinators.php>
+      <form method="post">
             <?php
                $results = $db->query("select   Name,
                                                 CoordID
@@ -59,7 +59,7 @@ if (isset($_POST['AddNew']))
                }
                ?>
                </table>
-         <p align="center"><input type="submit" value="Add New" name="AddNew"></p>
+         <p align="center"><input type="submit" value="Add New" name="AddNew" /></p>
       </form>
       <?php footer("","")?>
 

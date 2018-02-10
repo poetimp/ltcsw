@@ -134,6 +134,8 @@ if (isset($_POST['Apply']))
        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
        <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
+    </head>
+    <body>
        <h1 align="center">Update Individual Events For</h1>
        <h2 align="center"><?php  print $ParticipantName; ?></h2>
        <?php
@@ -150,8 +152,6 @@ if (isset($_POST['Apply']))
        <?php
        }
        ?>
-    </head>
-    <body>
         <form method="post" action="AdminSoloEvents.php?ID=<?php  print $ParticipantID; ?>">
            <table class='registrationTable' id="table1">
               <tr>

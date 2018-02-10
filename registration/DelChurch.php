@@ -90,10 +90,10 @@ else
                 </h2>
              </div>
              <p align="center">
-             <input type="submit" value="Confirm Delete!" name="Confirm">
+             <input type="submit" value="Confirm Delete!" name="Confirm" />
              <font size="5"><br />
              or</font><br />
-             <input type="submit" value="Cancel" name="Cancel">
+             <input type="submit" value="Cancel" name="Cancel" />
              </p>
           </form>
        </body>

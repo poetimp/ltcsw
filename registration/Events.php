@@ -27,7 +27,7 @@ if (isset($_POST['AddNew']))
 
 <body>
 <h1 align="center">Event Maintenance </h1>
-<form method="post" action=Events.php>
+<form method="post">
       <?php
          $results = $db->query("select   EventName,
                                           EventID
@@ -52,7 +52,7 @@ if (isset($_POST['AddNew']))
          }
          ?>
          </table>
-   <p align="center"><input type="submit" value="Add New" name="AddNew"></p>
+   <p align="center"><input type="submit" value="Add New" name="AddNew" /></p>
 </form>
 <?php footer("","")?>
 

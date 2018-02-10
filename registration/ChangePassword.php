@@ -57,9 +57,9 @@ if (isset($_POST['ChangePwd']))
       <link rel="stylesheet" href="include/registration.css" type="text/css" />
 
       <title>Change Password</title>
-      <h1 align="center">Change Password</h1>
    </head>
    <body>
+      <h1 align="center">Change Password</h1>
       <form method="post" id="main" name="main">
          <div style="text-align: center">
             <table class='registrationTable' style="width: 550px">
@@ -87,28 +87,28 @@ if (isset($_POST['ChangePwd']))
                </tr>
                <tr>
                   <th style='text-align: right'>Current Password:&nbsp;&nbsp;</th>
-                  <td style='text-align: left'><input type="password" name="oldPwd" size="40"></td>
+                  <td style='text-align: left'><input type="password" name="oldPwd" size="40" /></td>
                </tr>
                <tr>
                   <th style='text-align: right'>New Password:&nbsp;&nbsp;</th>
-                  <td style='text-align: left'><input type="password" name="newPwd1" size="40"></td>
+                  <td style='text-align: left'><input type="password" name="newPwd1" size="40" /></td>
                </tr>
                <tr>
                   <th style='text-align: right'>New Password Again:&nbsp;&nbsp;</th>
-                  <td style='text-align: left'><input type="password" name="newPwd2" size="40"></td>
+                  <td style='text-align: left'><input type="password" name="newPwd2" size="40" /></td>
                </tr>
                <?php
                if ($message != '')
                {
                ?>
                <tr>
-                  <td colspan="2" style='text-align: center'><font color=red><b><?php print $message?></b></font></td>
+                  <td colspan="2" style='text-align: center'><font color='red'><b><?php print $message?></b></font></td>
                </tr>
                <?php
                }
                ?>
                <tr>
-                  <td colspan="2" style='text-align: center'><input type="submit" name="ChangePwd" value="Change Password"></td>
+                  <td colspan="2" style='text-align: center'><input type="submit" name="ChangePwd" value="Change Password" /></td>
                </tr>
                </table>
          </div>

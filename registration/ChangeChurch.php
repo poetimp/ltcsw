@@ -36,7 +36,7 @@ if (isset($_POST['Update']))
 
    <body>
    <h1 align="center">Change Church</h1>
-   <form method="post" action=ChangeChurch.php>
+   <form method="post">
          <?php
             $results = $db->query("select   ChurchName,
                                              ChurchID
@@ -45,19 +45,18 @@ if (isset($_POST['Update']))
                        or die ("Unable to obtain church list:" . sqlError());
             ?>
             <div style="text-align: center">
-            <select name=ChurchID>
+            <select name="ChurchID">
             <?php
             while ($row = $results->fetch(PDO::FETCH_ASSOC))
             {
                ?>
-                  <option value=<?php  print $row['ChurchID']; ?>><?php  print $row['ChurchName']; ?></option>
-               </tr>
+                  <option value="<?php  print $row['ChurchID']; ?>"><?php  print $row['ChurchName']; ?></option>
             <?php
             }
             ?>
             </select>
             </div>
-      <p align="center"><input type="submit" value="Update" name="Update"></p>
+      <p align="center"><input type="submit" value="Update" name="Update" /></p>
    </form>
    <?php footer("","")?>
 

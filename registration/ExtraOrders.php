@@ -248,7 +248,7 @@ else
        <body>
           <h1 align="center">Extra Orders</h1>
 
-    <form method="post" action=ExtraOrders.php>
+    <form method="post">
          <h2>T-Shirts</h2>
          Participant T-Shirts are covered in the cost of registration. Extra T-Shirts will be
          <?php print '$'.number_format($prices['Shirt'],2);?> each.
@@ -261,37 +261,37 @@ else
             <tr>
                <th style='width: 20%;'>Youth Medium</th>
                <td style='width: 15%; text-align: center;'><?php  print $shirt['YM']; ?></td>
-               <td style='width: 15%;'><input type="text" name="YM" size="5" <?php  print "value=\"".$extraShirt['YM']."\" ".$readOnly;?> ></td>
+               <td style='width: 15%;'><input type="text" name="YM" size="5" <?php  print "value=\"".$extraShirt['YM']."\" ".$readOnly;?> /></td>
             </tr>
             <tr>
                <th style='width: 20%;'>Youth Large</th>
                <td style='width: 15%; text-align: center;'><?php  print $shirt['YL']; ?></td>
-               <td style='width: 15%;'><input type="text" name="YL" size="5" <?php  print "value=\"".$extraShirt['YL']."\" ".$readOnly;?> ></td>
+               <td style='width: 15%;'><input type="text" name="YL" size="5" <?php  print "value=\"".$extraShirt['YL']."\" ".$readOnly;?> /></td>
             </tr>
             <tr>
                <th style='width: 20%;'>Adult Small</th>
                <td style='width: 15%; text-align: center;'><?php  print $shirt['S']; ?></td>
-               <td style='width: 15%;'><input type="text" name="S" size="5" <?php  print "value=\"".$extraShirt['S']."\" ".$readOnly;?> ></td>
+               <td style='width: 15%;'><input type="text" name="S" size="5" <?php  print "value=\"".$extraShirt['S']."\" ".$readOnly;?> /></td>
             </tr>
             <tr>
                <th style='width: 20%;'>Adult Medium</th>
                <td style='width: 15%; text-align: center;'><?php  print $shirt['M']; ?></td>
-               <td style='width: 15%;'><input type="text" name="M" size="5" <?php  print "value=\"".$extraShirt['M']."\" ".$readOnly;?> ></td>
+               <td style='width: 15%;'><input type="text" name="M" size="5" <?php  print "value=\"".$extraShirt['M']."\" ".$readOnly;?> /></td>
             </tr>
             <tr>
                <th style='width: 20%;'>Adult Large</th>
                <td style='width: 15%; text-align: center;'><?php  print $shirt['LG']; ?></td>
-               <td style='width: 15%;'><input type="text" name="LG" size="5" <?php  print "value=\"".$extraShirt['LG']."\" ".$readOnly;?> ></td>
+               <td style='width: 15%;'><input type="text" name="LG" size="5" <?php  print "value=\"".$extraShirt['LG']."\" ".$readOnly;?> /></td>
             </tr>
             <tr>
                <th style='width: 20%;'>Adult X-Large</th>
                <td style='width: 15%; text-align: center;'><?php  print $shirt['XL']; ?></td>
-               <td style='width: 15%;'><input type="text" name="XL" size="5" <?php  print "value=\"".$extraShirt['XL']."\" ".$readOnly;?> ></td>
+               <td style='width: 15%;'><input type="text" name="XL" size="5" <?php  print "value=\"".$extraShirt['XL']."\" ".$readOnly;?> /></td>
             </tr>
             <tr>
                <th style='width: 20%;'>Adult XX-Large</th>
                <td style='width: 15%; text-align: center;'><?php  print $shirt['XX']; ?></td>
-               <td style='width: 15%;'><input type="text" name="XX" size="5" <?php  print "value=\"".$extraShirt['XX']."\" ".$readOnly;?> ></td>
+               <td style='width: 15%;'><input type="text" name="XX" size="5" <?php  print "value=\"".$extraShirt['XX']."\" ".$readOnly;?> /></td>
             </tr>
             <tr>
                <th style='width: 20%;' bgcolor="#808080"><b>Totals</b></th>
@@ -332,10 +332,11 @@ else
             <tr>
                <?php if ($UserStatus == 'O')
                {?>
-               <td><p align="center"><input type="submit" value="Update" name="Update"></p></td>
+               <td><p align="center"><input type="submit" value="Update" name="Update" /></p></td>
                <?php
                }
                ?>
+            </tr>
          </table>
       </form>
       <?php footer("","")?>

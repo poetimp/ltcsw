@@ -40,7 +40,7 @@ include 'include/RegFunctions.php';
          people that are willing to help then please add their names below.
       </p>
 
-      <form method="post" action=AdminCharmers.php>
+      <form method="post">
       <?php
          $results = $db->query("select    charmerID,
                                           charmerName,
@@ -92,7 +92,7 @@ include 'include/RegFunctions.php';
                }
                ?>
                </table>
-         <p style='text-align: center'><input type="submit" value="Add New" name="AddNew"><br />
+         <p style='text-align: center'><input type="submit" value="Add New" name="AddNew" /><br />
          <b>Don't forget to order extra meals for your charmer!</b>
          </p>
       </form>
