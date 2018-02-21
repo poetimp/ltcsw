@@ -40,7 +40,7 @@ include 'include/RegFunctions.php';
          people that are willing to help then please add their names below.
       </p>
 
-      <form method="post">
+      <form method="post" action="AdminCharmers.php">
       <?php
          $results = $db->query("select    charmerID,
                                           charmerName,
