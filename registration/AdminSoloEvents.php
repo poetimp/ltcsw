@@ -260,7 +260,16 @@ if (isset($_POST['Apply']))
                            $freeSlots    = (($SchedRow['MaxWebSlots'] - slotsFilledInRoom($SchedRow['RoomName'],$SchedRow['StartTime']) > 0) or $freeSlots);
                         }
 
-                        if ($selected == 0 and !$freeSlots)
+                        if ($UserStatus != 'O')
+                        {
+                           print "<div style='text-align: center'>";
+                           if ($selected > 0)
+                              print "Registered";
+                           else
+                              print "&nbsp;";
+                           print "</div>";
+                        }
+                        elseif ($selected == 0 and !$freeSlots)
                         {
                            print "<div style='text-align: center'>Full</div>";
                         }
@@ -339,7 +348,14 @@ if (isset($_POST['Apply']))
                         }
                         else
                         {
-                           print "<div style='text-align: center'><input type=\"checkbox\" name=\"s$EventID\" value=\"ON\""; print $selected > 0 ? " checked" : ""; print"></div>";
+                           if ($UserStatus == 'O')
+                           {
+                              print "<div style='text-align: center'><input type=\"checkbox\" name=\"s$EventID\" value=\"ON\""; print $selected > 0 ? " checked" : ""; print"></div>";
+                           }
+                           else
+                           {
+                              print "<div style='text-align: center'>";print $selected > 0 ? " Registered" : "&nbsp;";print "</div>";
+                           }
                         }
                      }
                      ?>
@@ -359,9 +375,16 @@ if (isset($_POST['Apply']))
 
          ?>
       </table>
-        <p align="center">
-        <input type="submit" value="Apply" name="Apply"/>
-      </p>
+      <?php
+      if ($UserStatus == 'O')
+      {
+         ?>
+         <p align="center">
+            <input type="submit" value="Apply" name="Apply"/>
+         </p>
+         <?php
+      }
+      ?>
       </form>
       <?php footer("Return to Participant List","SignupSoloEvents.php")?>
     </body>
