@@ -67,6 +67,10 @@ if ($Admin != 'Y')
                <td>All Participants and Event Directors</td>
                <td><a target="_blank" href="DataMealTickets.php" >Participants and Directors Meal Ticket Info</a></td>
             </tr>
+            <tr>
+               <td>Tally Room Awards</td>
+               <td><a target="_blank" href="DataTallyAwards.php" >A data download (CSV Format suitable for spreadsheet) of all awards</a></td>
+            </tr>
          </table>
       <?php footer("","")?>
    </body>
