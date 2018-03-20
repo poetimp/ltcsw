@@ -15,6 +15,7 @@ if ($Admin != 'Y')
    die();
 }
 
+
 $EventID = isset($_REQUEST['EventID']) ? $_REQUEST['EventID'] : "";
 $SchedID = isset($_REQUEST['SchedID']) ? $_REQUEST['SchedID'] : "";
 $Closed=1;
@@ -40,41 +41,45 @@ $IndividualAwards = ($row['IndividualAwards'] == 'Y');
 if ($TeamEvent)
 {
 
-   $results = $db->query("Select  c.ChurchName,
-                                   c.ChurchID,
-                                   concat('Team No: ',t.TeamID) Name,
-                                   IFNULL(r.Award,'Not Assigned') Award,
-                                   t.TeamID ParticipantID
-                           from    $RegistrationTable r,
-                                   $EventsTable       e,
-                                   $ChurchesTable     c,
-                                   $TeamsTable        t
-                           where r.EventID       = $EventID
-                           and   r.SchedID       = $SchedID
-                           and   r.ParticipantID = t.TeamID
-                           and   e.EventID       = r.EventID
-                           and   c.ChurchID      = r.ChurchID
-                           and   e.TeamEvent     = 'Y'
-                           order by c.ChurchName,t.TeamID
-                          ")
+   $sql = "Select  c.ChurchName,
+                   c.ChurchID,
+                   concat('Team No: ',t.TeamID) Name,
+                   IFNULL(r.Award,'Not Assigned') Award,
+                   t.TeamID ParticipantID
+           from    $RegistrationTable r,
+                   $EventsTable       e,
+                   $ChurchesTable     c,
+                   $TeamsTable        t
+           where r.EventID       = $EventID
+           and   r.SchedID       = $SchedID
+           and   r.ParticipantID = t.TeamID
+           and   e.EventID       = r.EventID
+           and   c.ChurchID      = r.ChurchID
+           and   e.TeamEvent     = 'Y'
+           order by c.ChurchName,t.TeamID
+          ";
+
+   $results = $db->query($sql)
               or die ("Unable to get event Member list:" . sqlError());
 }
 else
 {
-   $results = $db->query("Select  p.ParticipantID,
-                                   c.ChurchName,
-                                   c.ChurchID,
-                                   concat(p.FirstName,' ',p.LastName) Name,
-                                   IFNULL(r.Award,'Not Assigned') Award
-                           from    $RegistrationTable r,
-                                   $ParticipantsTable p,
-                                   $ChurchesTable     c
-                           where   r.EventID       = $EventID
-                           and     r.SchedID       = $SchedID
-                           and     p.ParticipantID = r.ParticipantID
-                           and     c.ChurchID      = r.ChurchID
-                           order by c.ChurchName,p.LastName,p.FirstName
-                          ")
+   $sql = "Select  p.ParticipantID,
+                   c.ChurchName,
+                   c.ChurchID,
+                   concat(p.FirstName,' ',p.LastName) Name,
+                   IFNULL(r.Award,'Not Assigned') Award
+           from    $RegistrationTable r,
+                   $ParticipantsTable p,
+                   $ChurchesTable     c
+           where   r.EventID       = $EventID
+           and     r.SchedID       = $SchedID
+           and     p.ParticipantID = r.ParticipantID
+           and     c.ChurchID      = r.ChurchID
+           order by c.ChurchName,p.LastName,p.FirstName
+          ";
+
+   $results = $db->query($sql)
               or die ("Unable to get event Member list:" . sqlError());
 }
 ?>
@@ -171,30 +176,30 @@ else
                   if ($Award == 'Gold')
                   {
                      $Gold_Checked   = 'checked';
-                     $flagColor      = '"yellow"';
+                     $flagColor      = 'yellow';
                   }
                   else if ($Award == 'Silver')
                   {
                      $Silver_Checked = 'checked';
-                     $flagColor      = '"silver"';
+                     $flagColor      = 'silver';
                   }
                   else if ($Award == 'Bronze')
                   {
                      $Bronze_Checked = 'checked';
-                     $flagColor      = '"#DAA520"';
+                     $flagColor      = '#DAA520';
                   }
                   else if ($Award == 'No Award')
                   {
                      $None_Checked   = 'checked';
-                     $flagColor      = '"white"';
+                     $flagColor      = 'white';
                   }
                   else if ($Award == 'No Show')
                   {
                      $Noshow_Checked = 'checked';
-                     $flagColor      = '"black"';
+                     $flagColor      = 'black';
                   }
                   else
-                     $flagColor = '"red"';
+                     $flagColor = 'red';
 
 
 
@@ -216,23 +221,23 @@ else
                     <td style='width: 28%;'><?php print $ChurchName;?></td>
                     <td style='width: 20%;'><?php print "$ViewMembers$PatricipantName";?></td>
                     <td style='width: 10%;'>
-                        <input type="radio" value="Gold" name="<?php print "\"$RadioName\" $Gold_Checked";?>" />
+                        <input type="radio" value="Gold" name=<?php print "\"$RadioName\" $Gold_Checked";?> />
                           Gold
                     </td>
                     <td style='width: 10%;'>
-                        <input type="radio" value="Silver" name="<?php print "\"$RadioName\" $Silver_Checked";?>" />
+                        <input type="radio" value="Silver" name=<?php print "\"$RadioName\" $Silver_Checked";?> />
                           Silver
                     </td>
                     <td style='width: 10%;'>
-                        <input type="radio" value="Bronze" name="<?php print "\"$RadioName\" $Bronze_Checked";?>" />
+                        <input type="radio" value="Bronze" name=<?php print "\"$RadioName\" $Bronze_Checked";?> />
                           Bronze
                     </td>
                     <td style='width: 10%;'>
-                        <input type="radio" value="No Award" name="<?php print "\"$RadioName\" $None_Checked";?>" />
+                        <input type="radio" value="No Award" name=<?php print "\"$RadioName\" $None_Checked";?> />
                           No Award
                     </td>
                     <td style='width: 10%;'>
-                        <input type="radio" value="No Show" name="<?php print "\"$RadioName\" $Noshow_Checked";?>" />
+                        <input type="radio" value="No Show" name=<?php print "\"$RadioName\" $Noshow_Checked";?> />
                           No Show
                     </td>
                   </tr>

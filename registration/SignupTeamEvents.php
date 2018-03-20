@@ -21,13 +21,19 @@ include 'include/RegFunctions.php';
 <title>Signup for Team Events</title>
 
 </head>
+<?php
+if ($UserStatus == 'O')
+   $colspan=3;
+else
+   $colspan=1;
+?>
 
 <body>
 <h1 align="center">Signup for Team Events</h1>
       <form method="post" action="AddTeam.php">
          <table class='registrationTable'>
             <tr>
-               <th style='width: 70px;  text-align: center' colspan='3'>Action</th>
+               <th style='width: 70px;  text-align: center' colspan='<?php print $colspan?>'>Action</th>
                <th style='width: 105px; text-align: left'>Participants</th>
                <th style='text-align: left'>Team Number</th>
                <th style='text-align: left'>Event Name</th>
@@ -55,8 +61,23 @@ include 'include/RegFunctions.php';
             ?>
             <tr>
                <td style='width: 70px; text-align: center;'>[<a href="AdminTeamEvents.php?Action=View<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">View</a>]</td>
-               <td style='width: 70px; text-align: center;'>[<a href="AdminTeamEvents.php?Action=Update<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">Update</a>]</td>
-               <td style='width: 70px; text-align: center;'> [<a href="DelTeam.php?<?php  print "&TeamID=".$row['TeamID']; ?>">Delete</a>]</td>
+               <?php
+               if ($UserStatus == 'O')
+               {
+               ?>
+               <td style='width: 70px; text-align: center;'>
+                  [<a href="AdminTeamEvents.php?Action=Update<?php  print "&TeamID=".$row['TeamID']."&EventID=".$row['EventID']; ?>">
+                     Update
+                  </a>]
+               </td>
+               <td style='width: 70px; text-align: center;'>
+                   [<a href="DelTeam.php?<?php  print "&TeamID=".$row['TeamID']; ?>">
+                      Delete
+                    </a>]
+               </td>
+               <?php
+               }
+               ?>
                <td style='width: 100px; text-align: center;'> <?php  print $numMembers?></td>
                <td style='width: 100px; text-align: center;'> <?php  print $row['TeamID']?></td>
                <td>
@@ -81,7 +102,14 @@ include 'include/RegFunctions.php';
          }
          ?>
          </table>
-         <p align="center"><input type="submit" value="Add" name="Add" /></p>
+         <?php
+         if ($UserStatus == 'O')
+         {
+            ?>
+            <p align="center"><input type="submit" value="Add" name="Add" /></p>
+         <?php
+         }
+         ?>
          <?php footer("","")?>
       </form>
 </body>
