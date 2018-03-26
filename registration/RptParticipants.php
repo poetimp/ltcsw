@@ -97,7 +97,7 @@ else
                      <th style='width: 10%'>ID          </th>
                      <th style='width: 10%'>Grade       </th>
                      <th style='width: 25%'>T-Shirt Size</th>
-                     <th style='width: 25%'>Meal Ticket </th>
+<!--                 <th style='width: 25%'>Meal Ticket </th> -->
                      <th style='width: 30%'>Name        </th>
                   </tr>
                <?php
@@ -107,7 +107,7 @@ else
                <td><?php  print $participantID; ?></td>
                <td><?php  print $Grade; ?></td>
                <td><?php  print $ShirtSize;  ?></td>
-               <td><?php  print $MealTicket;  ?></td>
+<!--           <td><?php  print $MealTicket;  ?></td> -->
                <td><?php  print $participantName;  ?></td>
             </tr>
          <?php
