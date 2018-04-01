@@ -312,52 +312,52 @@ else
                               if ($Solo_Award == 'Gold')
                               {
                                  $Solo_Gold_Checked   = 'checked';
-                                 $Solo_flagColor      = '"yellow"';
+                                 $Solo_flagColor      = 'yellow';
                               }
                               else if ($Solo_Award == 'Silver')
                               {
                                  $Solo_Silver_Checked = 'checked';
-                                 $Solo_flagColor      = '"silver"';
+                                 $Solo_flagColor      = 'silver';
                               }
                               else if ($Solo_Award == 'Bronze')
                               {
                                  $Solo_Bronze_Checked = 'checked';
-                                 $Solo_flagColor      = '"#DAA520"';
+                                 $Solo_flagColor      = '#DAA520';
                               }
                               else if ($Solo_Award == 'No Award')
                               {
                                  $Solo_None_Checked   = 'checked';
-                                 $Solo_flagColor      = '"white"';
+                                 $Solo_flagColor      = 'white';
                               }
                               else if ($Solo_Award == 'No Show')
                               {
                                  $Solo_Noshow_Checked = 'checked';
-                                 $Solo_flagColor      = '"black"';
+                                 $Solo_flagColor      = 'black';
                               }
                               else
-                                 $Solo_flagColor = '"red"';
+                                 $Solo_flagColor = 'red';
                           ?>
                              <td id='preserve' bgcolor="<?php print $Solo_flagColor?>">&nbsp;</td>
                              <td>&nbsp;</td>
                              <td><?php print $MemberName?></td>
                              <td style='width: 10%;'>
-                                <input type="radio" value="Gold" name="<?php print "\"$RadioSolo\" $Solo_Gold_Checked";?>" />
+                                <input type="radio" value="Gold" name=<?php print "\"$RadioSolo\" $Solo_Gold_Checked";?> />
                                    Gold
                              </td>
                              <td style='width: 10%;'>
-                                <input type="radio" value="Silver" name="<?php print "\"$RadioSolo\" $Solo_Silver_Checked";?>" />
+                                <input type="radio" value="Silver" name=<?php print "\"$RadioSolo\" $Solo_Silver_Checked";?> />
                                    Silver
                              </td>
                              <td style='width: 10%;'>
-                                <input type="radio" value="Bronze" name="<?php print "\"$RadioSolo\" $Solo_Bronze_Checked";?>" />
+                                <input type="radio" value="Bronze" name=<?php print "\"$RadioSolo\" $Solo_Bronze_Checked";?> />
                                    Bronze
                              </td>
                              <td style='width: 10%;'>
-                                <input type="radio" value="No Award" name="<?php print "\"$RadioSolo\" $Solo_None_Checked";?>" />
+                                <input type="radio" value="No Award" name=<?php print "\"$RadioSolo\" $Solo_None_Checked";?> />
                                    No Award
                              </td>
                              <td style='width: 10%;'>
-                                <input type="radio" value="No Show" name="<?php print "\"$RadioSolo\" $Solo_Noshow_Checked";?>" />
+                                <input type="radio" value="No Show" name=<?php print "\"$RadioSolo\" $Solo_Noshow_Checked";?> />
                                    No Show
                              </td>
                           <?php
