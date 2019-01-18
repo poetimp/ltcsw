@@ -5,6 +5,10 @@
 //
 // Author: Paul Lemmons
 //----------------------------------------------------------------------------
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+include 'include/RegFunctions.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
@@ -13,14 +17,12 @@
 //    print ("Can not clear database. It has already been done.");
 //    die();
 
-include 'include/RegFunctions.php';
-
 if ($Admin != 'Y')
 {
    header("refresh: 0; URL=Admin.php");
    die();
 }
-die ("Already done for 2018");
+die ("Already done for 2019");
 
 if (isset($_POST['Confirm']))
 {
