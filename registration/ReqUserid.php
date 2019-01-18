@@ -32,7 +32,7 @@ if (isset($_POST['submit']))
    else
    {
 
-      $to      = "paullem@fastmail.fm";
+      $to      = "paul@lemmons.name";
       $subject = "LTC Userid Request";
       $body    = "Userid: ". $Userid . "\n" .
                  "Name  : ".$Name    . "\n" .
