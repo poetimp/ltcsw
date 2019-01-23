@@ -359,7 +359,7 @@ function selectTime($Timestr = '')
 
          ?>
          <tr>
-            <td style='text-align: center'><a href='javascript:void(0)' onclick='javascript:addEvent(<?php print "\"$EventID\""?>)'>Add</a></td>
+            <td style='text-align: center;width: 50px'><a href='javascript:void(0)' onclick='javascript:addEvent(<?php print "\"$EventID\""?>)'>Add</a></td>
             <th colspan="4"><?php  print $EventName; ?></th>
          </tr>
          <?php
