@@ -324,7 +324,23 @@ function ChurchName($ChurchID)
    $row = $result->fetch(PDO::FETCH_ASSOC);
    return $row['ChurchName'];
 }
+//-----------------------------------------------------------------------------
+// Return the name of a event given its numeric ID
+//-----------------------------------------------------------------------------
+function EventName($EventID)
+{
+   global $EventsTable;
+   global $db;
 
+   $result = $db->query("select   EventName
+                          from     $EventsTable
+                          where    EventID      = $EventID
+                         ")
+             or die ("Unable to get Event Name:" . sqlError());
+
+   $row = $result->fetch(PDO::FETCH_ASSOC);
+   return $row['EventName'];
+}
 //-----------------------------------------------------------------------------
 // Return an array with two indicies ('Solo' and 'Team'). The values associated
 // with each index represents the number of events the participant is in of

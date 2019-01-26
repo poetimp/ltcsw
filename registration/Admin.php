@@ -103,6 +103,7 @@ $charmerCount = $row['Count'];
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptEventParticipation.php">            Event Participation                                 </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptCountEventBySched.php">             Event Participation by time slot                    </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptCoordEvents.php">                   Event Directors Rosters                             </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptCoordEventsShort.php">              Event Directors Rosters (Less Detail)               </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptCharmers.php">                      List of C.H.A.R.M.E.R.S                             </a></td></tr>
                         <tr><td style='padding-left: 5%'>Judges</td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptJudgesAssignment.php">              Judges Assigned                                     </a></td></tr>
