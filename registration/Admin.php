@@ -99,11 +99,11 @@ $charmerCount = $row['Count'];
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptEnrollment.php">                    Church List with Enrollment                         </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptTshirts.php">                       T-Shirts: Sizes and quantities                      </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptAwardCounts.php">                   Award Counts                                        </a></td></tr>
+                        <tr><td style='padding-left: 10%'><a target="_blank" href="RptEventDirectors.php">                Event Directors                                     </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptEventParticipation.php">            Event Participation                                 </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptCountEventBySched.php">             Event Participation by time slot                    </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptCoordEvents.php">                   Event Directors Rosters                             </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptCharmers.php">                      List of C.H.A.R.M.E.R.S                             </a></td></tr>
-
                         <tr><td style='padding-left: 5%'>Judges</td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptJudgesAssignment.php">              Judges Assigned                                     </a></td></tr>
                         <tr><td style='padding-left: 10%'><a target="_blank" href="RptJudges.php?Admin=Y">                Judges by Congregation                              </a></td></tr>
