@@ -10,7 +10,7 @@
 $picColumns = 4;
 $picWidth   = 300;
 
-$picDir   = "/webroot/l/t/ltcsw001/www/tshirt-judging/shirts-2018";
+$picDir   = "/webroot/l/t/ltcsw001/www/tshirt-judging/shirts-2019";
 $picFiles = scandir($picDir);
 
 ?>
