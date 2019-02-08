@@ -468,7 +468,7 @@ if ($_POST)
                //============================
 
                $toWho   = 'paul.lemmons@gmail.com';
-               $toWho  .= ',mamasaidsew@cox.net';
+               $toWho  .= ',gratefulmomofpgt@gmail.com';
              //$toWho   = 'paul.lemmons@gmail.com';
 
                $from    = 'MIME-Version: 1.0' . "\r\n";
