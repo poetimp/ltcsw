@@ -60,7 +60,7 @@ if (isset($_POST['Add']))
                      ?>
                   </select>
                </th>
-               <th style='width: 50%; text-align: center'>&lt;--- Select the type ofevent to add, then press Add ---&gt;</th>
+               <th style='width: 50%; text-align: center'>&lt;--- Select the type of event to add, then press Add ---&gt;</th>
                <td style='width: 25%; text-align: center'><input type="submit" value="Add" name="Add" /></td>
             </tr>
          </table>
