@@ -119,6 +119,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
          // Church was selected so give opportunity to add a transaction
          //==================================================================================
             $ChurchName = ChurchName($ChurchID);
+            $costDetail = ChurchExpenses($ChurchID);
             //==================================================================================
             // First show current transaction history
             //==================================================================================
@@ -164,14 +165,21 @@ if ($ChurchID != "" and isset($_POST['TxType']))
                      $Type    = "--";
                   }
 
-                  print "<tr>";
-                  print "   <td>$Date</td>";
-                  print "   <td>$Type</td>";
-                  print "   <td>".FormatMoney($Amount)."</td>";
-                  print "   <td>$Annotation</td>";
-                  print "</tr>";
+                  print "<tr>\n";
+                  print "   <td>$Date</td>\n";
+                  print "   <td>$Type</td>\n";
+                  print "   <td>".FormatMoney($Amount)."</td>\n";
+                  print "   <td>$Annotation</td>\n";
+                  print "</tr>\n";
                }
                ?>
+            </table>
+            <br />
+            <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto'>
+               <tr>
+                  <th style='width: 130px;'>Current Ballance</th>
+                  <td style='width: 160px;'><?php print FormatMoney($costDetail["Balance"])?></td>
+               </tr>
             </table>
             <br />
             <?php
@@ -216,8 +224,9 @@ if ($ChurchID != "" and isset($_POST['TxType']))
             <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto'>
                <tr>
                   <th style='width: 130px;'>Transaction Type:</th>
-                  <td style='width: 80px;'><input type="radio" value="Credit" name="TxType" <?php print $creditChecked?> />Money received from Church</td>
-                  <td style='width: 80px;'><input type="radio" value="Refund" name="TxType" <?php print $debitChecked?> />Money given back to Church</td>
+                  <td style='width: 160px;'><input type="radio" value="Credit" name="TxType" <?php print $creditChecked?> />Money received from Church<br />
+                                            <input type="radio" value="Refund" name="TxType" <?php print $debitChecked?> />Money given back to Church
+                  </td>
                </tr>
                <tr>
                   <th style='width: 130px;'>Amount:</th>
