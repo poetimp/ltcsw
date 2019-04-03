@@ -216,8 +216,8 @@ if ($ChurchID != "" and isset($_POST['TxType']))
             <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto'>
                <tr>
                   <th style='width: 130px;'>Transaction Type:</th>
-                  <td style='width: 80px;'><input type="radio" value="Credit" name="TxType" <?php print $creditChecked?> />Credit</td>
-                  <td style='width: 80px;'><input type="radio" value="Refund" name="TxType" <?php print $debitChecked?> />Refund</td>
+                  <td style='width: 80px;'><input type="radio" value="Credit" name="TxType" <?php print $creditChecked?> />Money received from Church</td>
+                  <td style='width: 80px;'><input type="radio" value="Refund" name="TxType" <?php print $debitChecked?> />Money given back to Church</td>
                </tr>
                <tr>
                   <th style='width: 130px;'>Amount:</th>
