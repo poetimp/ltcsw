@@ -177,7 +177,7 @@ if ($ChurchID != "" and isset($_POST['TxType']))
             <br />
             <table class='registrationTable' style='width: 50%;margin-left: auto;margin-right: auto'>
                <tr>
-                  <th style='width: 130px;'>Current Ballance</th>
+                  <th style='width: 130px;'>Current Balance</th>
                   <td style='width: 160px;'><?php print FormatMoney($costDetail["Balance"])?></td>
                </tr>
             </table>
