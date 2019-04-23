@@ -20,6 +20,7 @@ if (isset($_POST['Confirm']))
 
    $db->query("delete from $EventScheduleTable where RoomID='$RoomID'")
        or die ("Unable to delete Room record from schedule table: " . sqlError());
+   WriteToLog("Room $RoomID Deleted");
        ?>
       <head>
          <meta http-equiv="Content-Language" content="en-us" />

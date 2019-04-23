@@ -36,6 +36,7 @@ if (isset($_POST['Confirm']))
                   ")
       or die ("Unable to delete registration record: " . sqlError());
    }
+   WriteToLog("Participant $ParticipantID has been deleted");
    ?>
       <head>
          <meta name="viewport" content="width=device-width, initial-scale=1.0" />

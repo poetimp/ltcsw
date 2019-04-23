@@ -17,6 +17,7 @@ if (isset($_POST['Confirm']))
       or die ("Unable to delete Judge record: "        . sqlError());
    $db->query("delete from $JudgeAssignmentsTable   where JudgeID=".$_REQUEST['JudgeID'])
       or die ("Unable to delete Judge Assignment records: "  . sqlError());
+   WriteToLog("Judge ".$_REQUEST['JudgeID']." Deleted");
    ?>
       <head>
          <meta http-equiv="Content-Language" content="en-us" />
