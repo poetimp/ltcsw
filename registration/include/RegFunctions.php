@@ -613,6 +613,7 @@ function ScheduleEventAdd($EventID,$StartTime,$RoomID)   //Returns Success or Fa
                          )
                   ")
       or die ("Unable to write to EventSchedule: ".sqlError());
+      WriteToLog("Added event $EventID to schedule at $StartTime in room $RoomID");
       return TRUE;
    }
    else

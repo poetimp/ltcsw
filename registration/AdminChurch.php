@@ -230,6 +230,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       }
 
       $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
+      WriteToLog("$mode: Church $ChurchName");
    ?>
          <body>
          <?php

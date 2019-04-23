@@ -165,6 +165,7 @@ if (isset($_POST['Update']))
                                 '$ShirtCount')
                         ")
             or die ("Unable to insert extra shirts into ExtraOrders table: ".sqlError());
+            WriteToLog("Ordered $ShirtCount shirts");
          }
       }
 
@@ -184,6 +185,7 @@ if (isset($_POST['Update']))
                                 '$MealCount')
                         ")
             or die ("Unable to insert extra meal ticket into ExtraOrders table: ".sqlError());
+            WriteToLog("Ordered $MealCount meals");
          }
       }
    }

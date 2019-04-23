@@ -63,6 +63,7 @@ if (isset($_POST['Submit']))
                                    )
                            ")
                or die ("Unable to Add Judge to assignment: ".sqlError());
+               WriteToLog("Added Judge $JudgeID scheduled at $SchedID");
             }
             else
             {

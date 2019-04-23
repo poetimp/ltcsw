@@ -87,6 +87,7 @@ if (isset($_REQUEST['Add']))
                          values($ChurchID,$EventID,'$TeamComment')")
       or die ("Unable to create team: " . sqlError());
       $TeamID = $db->lastInsertId();
+      WriteToLog("Added Team for $EventID");
    }
    else
    {
@@ -144,6 +145,7 @@ if (isset($_REQUEST['Add']))
             or die ("Unable to create team: " . sqlError());
             $TeamID = $db->lastInsertId();
             $allFull=0; // Cleared of all charged
+            WriteToLog("Added Team for even $EventID");
          }
       }
 
@@ -320,6 +322,7 @@ if (isset($_POST['Apply']))
                   $db->query("insert into $TeamMembersTable
                                       ( TeamID , ParticipantID,  ChurchID,  Award)
                                values ($TeamID ,$ParticipantID, $ChurchID, $AwardStr)");
+                  WriteToLog("Added $ParticipantID to team $TeamID");
                }
                else
                {

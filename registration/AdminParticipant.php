@@ -266,6 +266,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
       }
 
       $results = $db->query($sql) or die ("Unable to process update: " . sqlError());
+      WriteToLog("$mode: $ParticipantID: $FirstName $LastName");
    ?>
          <body>
          <?php

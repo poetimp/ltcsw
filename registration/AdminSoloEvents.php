@@ -86,6 +86,7 @@ if (isset($_POST['Apply']))
                          )"
                      )
          or die ("Unable to insert registration record: " . sqlError());
+         WriteToLog("Added $ParticipantID to solo event $EventID");
       }
       else if (isset($_POST[$controlID]) and $_POST[$controlID] > 0) // Scheduled so must check
       {
@@ -118,6 +119,7 @@ if (isset($_POST['Apply']))
                            )"
                         )
             or die ("Unable to insert the registration record: " . sqlError());
+            WriteToLog("Aded $ParticipantID to solo event $EventID");
          }
       }
    }

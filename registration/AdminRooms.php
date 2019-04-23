@@ -105,7 +105,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
 
       if ($mode == 'add')
          $RoomID = $db->lastInsertId();
-
+      WriteToLog("Added or updated room $RoomName");
       ?>
          <body>
          <?php

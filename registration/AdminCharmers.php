@@ -146,6 +146,7 @@ if (isset($_POST['add']) or isset($_POST['update']))
                  ";
 
          $db->query($sql) or die ("Unable to process insert: " . sqlError());
+         WriteToLog("$mode: Charmer $charmerName");
       }
 
       if ($ErrorMsg == "")
